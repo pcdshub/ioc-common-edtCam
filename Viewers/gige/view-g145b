@@ -1,6 +1,0 @@
-#! /bin/bash
-
-# Image size = 1390 x 1038
-w=`expr 280 + 1390`
-h=`expr 65 + 1038`
-./viewer.pyw --camerapv $1 --width $w --height $h $2 $3 $4 $5

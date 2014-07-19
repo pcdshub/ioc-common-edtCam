@@ -1,0 +1,15 @@
+# Archive file for ioc-tst-orca1
+
+file gige-ioc.archive
+{
+    {
+        IOC = TST:IOC:GIGE:ORCA1
+    }
+}
+
+# Bring in the pcds plugin archive pv's
+file pcdsPlugins.archive
+{
+    {   CAM = "TST:GIGE:ORCA1"	}
+}
+
