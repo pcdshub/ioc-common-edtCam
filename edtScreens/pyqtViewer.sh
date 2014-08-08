@@ -1,4 +1,10 @@
 #!/bin/bash
+# Guard against use of wrong python version
+unset PYTHONPATH
+unset LD_LIBRARY_PATH
+export PATH=/usr/local/bin:/bin:/usr/bin
+
+# Now bring in our EPICS and python environnments
 source /reg/g/pcds/setup/epicsenv-3.14.12.sh
 source /reg/g/pcds/setup/python25.sh
 

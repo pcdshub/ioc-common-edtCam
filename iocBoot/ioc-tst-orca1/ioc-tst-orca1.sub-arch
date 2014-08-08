@@ -1,15 +1,25 @@
 # Archive file for ioc-tst-orca1
 
-file gige-ioc.archive
+file edt-ioc.archive
 {
     {
-        IOC = TST:IOC:GIGE:ORCA1
+        IOC = TST:IOC:EDT:ORCA1
     }
 }
 
-# Bring in the pcds plugin archive pv's
-file pcdsPlugins.archive
+file ADBase.tpl-arch
 {
-    {   CAM = "TST:GIGE:ORCA1"	}
+    { P = "TST:EDT:ORCA1", R = ":"	}
 }
+
+#file hamaOrcaFlash4_0.archive
+#{
+#    { P = "TST:EDT:ORCA1", R = ":"	}
+#}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "TST:EDT:ORCA1"	}
+#}
 
