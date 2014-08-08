@@ -3,33 +3,45 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
+# Create and install EDT Camera DB Files
+DB += edtPdvCamera.db
+
 #----------------------------------------------------
 # Create and install (or just install)
 # databases, templates, substitutions like this
-DB += iocAdmin.db
-DB += evrPmc230.db
 
-# Create and install Camera DB Files
-#DB += prosilica.db
-
-# Create and install plugin DB Files
-DB += pluginColorConvert.db
-DB += pluginFileMPEG.db
-DB += pluginHDF5.db
-DB += pluginImage.db
-DB += pluginJPEG.db
-DB += pluginMagick.db
-DB += pluginMJPG.db
-DB += pluginNetCDF.db
-DB += pluginNexus.db
-DB += pluginOverlay.db
-DB += pluginProcess.db
-DB += pluginROI.db
-DB += pluginStats.db
-DB += pluginTIFF.db
-DB += pluginTransform.db
-
+DB_INSTALLS += $(ASYN)/db/asynRecord.db
 DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
+DB_INSTALLS += $(EVENT)/db/evrPmc230.db
+DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
+
+#
+# Install Camera db, configuration, and protocol files
+# The driver will expect that each camera model will
+# have 3 versions of the PDV configuration file for
+# free run, external triggered, and external pulse mode.
+#
+# Free run mode:
+#	The camera is allowed to acquire images as fast as it can
+# External triggered:
+#	The camera shutter is triggered by an external trigger,
+#	but the shutter duration is set via serial commands
+# External pulse:
+#	The camera shutter is opened by an external trigger and
+#	closed when the trigger pulse ends.
+#
+# Example for model hamaOrcaFlash4_0
+#	hamaOrcaFlash4_0f.cfg		Free Run  Config File
+#	hamaOrcaFlash4_0t.cfg		Ext. Trig Config File
+#	hamaOrcaFlash4_0p.cfg		Ext Pulse Config File
+# 
+MODEL = hamaOrcaFlash4_0
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).db
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).env
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)f.cfg
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)t.cfg
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)p.cfg
+DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).proto
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -37,49 +49,11 @@ DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
 #
 ARCHIVE += edt-ioc.archive
 
-# Create and install plugin archive Files
-ARCHIVE += pluginColorConvert.archive
-ARCHIVE += pluginFileMPEG.archive
-ARCHIVE += pluginHDF5.archive
-ARCHIVE += pluginImage.archive
-ARCHIVE += pluginJPEG.archive
-ARCHIVE += pluginMJPG.archive
-ARCHIVE += pluginMagick.archive
-ARCHIVE += pluginNetCDF.archive
-ARCHIVE += pluginNexus.archive
-ARCHIVE += pluginOverlay.archive
-ARCHIVE += pluginProcess.archive
-ARCHIVE += pluginROI.archive
-ARCHIVE += pluginStats.archive
-ARCHIVE += pluginTIFF.archive
-ARCHIVE += pluginTransform.archive
-
 #----------------------------------------------------
 # Create and install (or just install)
 # Autosave request files, templates, substitutions like this
 #
 REQ += edt-ioc.req
-
-# Create and install plugin autosave Files
-REQ += pluginColorConvert.req
-REQ += pluginFileMPEG.req
-REQ += pluginHDF5.req
-REQ += pluginImage.req
-REQ += pluginJPEG.req
-REQ += pluginMJPG.req
-REQ += pluginMagick.req
-REQ += pluginNetCDF.req
-REQ += pluginNexus.req
-REQ += pluginOverlay.req
-REQ += pluginProcess.req
-REQ += pluginROI.req
-REQ += pluginStats.req
-REQ += pluginTIFF.req
-REQ += pluginTransform.req
-
-# These must be after the individual plugins
-ARCHIVE += pcdsPlugins.archive
-REQ 	+= pcdsPlugins.req
 
 include $(TOP)/configure/RULES
 #----------------------------------------

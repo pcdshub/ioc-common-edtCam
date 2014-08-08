@@ -1,0 +1,34 @@
+#
+# edtPdvCamera.substitutions
+# substitutions file to create the generic part of the ADEdtPdv DB database
+#
+file ADBase.template
+{
+	{
+	P		= $(CAM),
+	R		= :,
+	PORT	= $(CAM_PORT),
+	ADDR	= 0,
+	TIMEOUT	= 1
+	}
+}
+
+file NDFile.template
+{
+	{
+	P		= $(CAM),
+	R		= :,
+	PORT	= $(CAM_PORT),
+	ADDR	= 0,
+	TIMEOUT	= 1
+	}
+}
+
+file edtPdvBase.template
+{
+	{
+	P		= $(CAM),
+	R		= :,
+	PORT	= $(CAM_PORT)
+	}
+}
