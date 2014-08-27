@@ -13,4 +13,4 @@
 NDFileMagickConfigure( "Magick$(N)", $(QSIZE), 0, "$(PLUGIN_SRC)", 0 )
 
 # Load the plugin records
-dbLoadRecords( "db/pluginMagick.db",  "CAM=$(CAM),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH)" )
+dbLoadRecords( "db/pluginMagick.db",  "CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH)" )

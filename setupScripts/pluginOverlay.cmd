@@ -13,4 +13,4 @@
 NDOverlayConfigure( "Over$(N)", 16, 0, "$(PLUGIN_SRC)", 0, 8 )
 
 # Load the plugin records
-dbLoadRecords( "db/pluginOverlay.db",  "CAM=$(CAM),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH)" )
+dbLoadRecords( "db/pluginOverlay.db",  "CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH)" )
