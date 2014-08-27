@@ -24,6 +24,11 @@ DB += pluginStats.db
 DB += pluginTIFF.db
 DB += pluginTransform.db
 
+# Install viewer cmd scripts
+DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin2Viewer.cmd
+DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin4Viewer.cmd
+DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoFullViewer.cmd
+
 #----------------------------------------------------
 # Create and install (or just install)
 # Archive files, templates, substitutions like this

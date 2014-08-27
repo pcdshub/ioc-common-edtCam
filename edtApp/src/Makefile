@@ -24,13 +24,10 @@ edt_DBD += evrSupport.dbd
 edt_DBD += devMrfEr.dbd
 
 # areaDetector
-edt_DBD += asyn.dbd
 edt_DBD += busyRecord.dbd
-edt_DBD += busySupport.dbd
 edt_DBD += genSubRecord.dbd
 edt_DBD += sscan.dbd
-edt_DBD += ADSupport.dbd
-edt_DBD += simDetectorSupport.dbd
+edt_DBD += commonDriverSupport.dbd
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 

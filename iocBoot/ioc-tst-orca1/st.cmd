@@ -20,7 +20,8 @@ epicsEnvSet( "CAM_PV",	"TST:EDT:ORCA1" )
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
-epicsEnvSet( "EVR_TYPE",	"1" )
+#epicsEnvSet( "EVR_TYPE",	"1" )
+epicsEnvSet( "EVR_TYPE",	"15" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
@@ -37,7 +38,6 @@ epicsEnvSet( "X_OFF",		"0"	)
 epicsEnvSet( "Y_OFF",		"0"	)
 
 # Comment/uncomment/change diagnostic settings as desired
-var EDT_PDV_DEBUG 3
 epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
 epicsEnvSet( "SER_TRACE_MASK",    "9" )
@@ -65,6 +65,9 @@ cd( "../.." )
 # Register all support components
 dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
+
+# Set iocsh debug variables
+var EDT_PDV_DEBUG 3
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -151,10 +154,10 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 #< db/FFMPGDataStream.cmd
 
 # Configure and load any desired viewers
-#< db/MonoFullViewer.cmd
+< db/MonoFullViewer.cmd
 #< db/MonoBin2Viewer.cmd
 #< db/MonoBin3Viewer.cmd
-#< db/MonoBin4Viewer.cmd
+< db/MonoBin4Viewer.cmd
 #< db/FalseColorViewer.cmd
 #< db/ColorFullViewer.cmd
 #< db/ColorBin2Viewer.cmd
