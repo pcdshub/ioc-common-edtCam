@@ -1,18 +1,25 @@
-TODO: Add notes on how to build and run this IOC,
-along with any useful information that would help
-someone else to support this IOC if needed.
+#
+# EDT AreaDetector IOC Setup and Use
+#
 
-IOC created with the commands:
 
-$ makeBaseApp.pl -t pcdsIoc -a linux-x86_64 -r 'IOC:XPP:GIGE:01' gige
-$ makeBaseApp.pl -i -t pcdsIoc -a linux-x86_64 -p gige -r 'IOC:XPP:GIGE:01' ioc-xpp-gige-01
-$ makeBaseApp.pl -i -t pcdsIoc -a linux-x86_64 -p gige -r 'IOC:XPP:GIGE:02' ioc-xpp-gige-02
- 
-To run the python viewer, you must install the following yum packages:
-lapack-devel
 
-Also, You need to source the following script:
-source /reg/g/pcds/setup/pyca.sh
 
-This will setup your environment to run python 2.5.5
+IOC info:
+sioc name ioc-tst-orca1
+Working dir: ~bhill/wa2/epics/ioc/common/edtCam/current
+
+Camera PV Prefix:	TST:EDT:ORCA1
+Full Res Image:		TST:EDT:ORCA1:IMAGE1
+
+To launch edm viewer:
+~bhill/wa2/epics/ioc/common/edtCam/current/edm-devel.cmd
+
+To launch python viewer:
+a.
+Hit "Python Viewer" button on EDM Top level GUI
+
+b.
+cd /reg/g/pcds/controls/pycaqt/pulnix6740.latest
+./pulnix6740.pyw --inst TST --pvlist tst.lst --camerapv TST:EDT:ORCA1
 

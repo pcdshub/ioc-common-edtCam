@@ -67,7 +67,7 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
-var EDT_PDV_DEBUG 3
+var EDT_PDV_DEBUG 2
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -182,3 +182,10 @@ create_monitor_set( "$(IOC).req", 5, "" )
 
 # All IOCs should dump some common info after initial startup.
 < /reg/d/iocCommon/All/post_linux.cmd
+
+dbpf TST:EDT:ORCA1:IMAGE1:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:ROI5:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:THUMBNAIL:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:ROI7:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:ROI7:AcquireMode 1
+
