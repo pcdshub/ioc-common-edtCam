@@ -13,6 +13,7 @@ DB += edtPdvCamera.db
 DB_INSTALLS += $(ASYN)/db/asynRecord.db
 DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
 DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
+DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
 DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
 
 #

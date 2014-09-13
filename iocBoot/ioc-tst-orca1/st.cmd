@@ -20,8 +20,8 @@ epicsEnvSet( "CAM_PV",	"TST:EDT:ORCA1" )
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
-#epicsEnvSet( "EVR_TYPE",	"1" )
-epicsEnvSet( "EVR_TYPE",	"15" )
+epicsEnvSet( "EVR_TYPE",	"1" )
+#epicsEnvSet( "EVR_TYPE",	"15" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
@@ -42,7 +42,7 @@ epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
 epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
-epicsEnvSet( "ST_CMD_DELAYS", "8" )
+epicsEnvSet( "ST_CMD_DELAYS", 	  "2" )
 
 # Do we need these?
 # epicsEnvSet("PREFIX", "TST:EDT")
@@ -76,6 +76,8 @@ dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
 dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
 set_savefile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 set_requestfile_path( "$(TOP)/autosave" )
+# Also look in the iocData autosave folder for auto generated req files
+set_requestfile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
@@ -89,7 +91,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 # Configure a PMC EVR
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD)" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -155,7 +158,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load any desired viewers
 < db/MonoFullViewer.cmd
-#< db/MonoBin2Viewer.cmd
+< db/MonoBin2Viewer.cmd
 #< db/MonoBin3Viewer.cmd
 < db/MonoBin4Viewer.cmd
 #< db/FalseColorViewer.cmd
@@ -177,7 +180,11 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # 
 iocInit()
 
+# Create autosave files from info directives
+makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
+
 # Start autosave backups
+create_monitor_set( "autoSettings.req", 5, "" )
 create_monitor_set( "$(IOC).req", 5, "" )
 
 # All IOCs should dump some common info after initial startup.
@@ -185,7 +192,10 @@ create_monitor_set( "$(IOC).req", 5, "" )
 
 dbpf TST:EDT:ORCA1:IMAGE1:EnableCallbacks 1
 dbpf TST:EDT:ORCA1:ROI5:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:IMAGE2:EnableCallbacks 1
+dbpf TST:EDT:ORCA1:ROI6:EnableCallbacks 1
 dbpf TST:EDT:ORCA1:THUMBNAIL:EnableCallbacks 1
 dbpf TST:EDT:ORCA1:ROI7:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:ROI7:AcquireMode 1
+epicsThreadSleep 2
+#dbpf TST:EDT:ORCA1:Acquire 1
 
