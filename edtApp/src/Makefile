@@ -31,6 +31,8 @@ edt_DBD += commonDriverSupport.dbd
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 
+edt_DBD += timeStampSource.dbd
+
 # ffmpegServer
 #edt_DBD += ffmpegServer.dbd
 
@@ -95,6 +97,8 @@ edt_SYS_LIBS += z
 #edt_LIBS += avutil
 #edt_LIBS += ffmpegServer
 #edt_LIBS += swscale
+
+edt_LIBS += timeStampSource
 
 edt_LIBS += $(EPICS_BASE_IOC_LIBS)
 

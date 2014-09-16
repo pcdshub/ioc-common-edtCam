@@ -18,6 +18,5 @@ edm -x -eolc	\
 	-m "P=${CAM},R=:"	\
 	-m "HUTCH=${HUTCH}"	\
 	-m "PVLIST=${PVLIST}"	\
-	edtPdvScreens/edtTop.edl  \
-	edtPdvScreens/hamaOrcaFlash4_0.edl  &
+	edtPdvScreens/edtTop.edl  &
 

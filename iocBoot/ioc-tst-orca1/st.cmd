@@ -31,12 +31,6 @@ epicsEnvSet( "HTTP_PORT",	"7800" )
 epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
-# Pixel resolution and offsets
-epicsEnvSet( "RESOLUTION",	"1.0"	)
-epicsEnvSet( "EGU",			"?"	)
-epicsEnvSet( "X_OFF",		"0"	)
-epicsEnvSet( "Y_OFF",		"0"	)
-
 # Comment/uncomment/change diagnostic settings as desired
 epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
@@ -44,19 +38,6 @@ epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "2" )
 
-# Do we need these?
-# epicsEnvSet("PREFIX", "TST:EDT")
-# epicsEnvSet("CAM",  "ORCA")
-# epicsEnvSet( "PORT", "CAM")
-# epicsEnvSet("ID",   "1")
-# epicsEnvSet("TYPE",  "Int16")
-# epicsEnvSet("FTVL",  "SHORT")
-# epicsEnvSet("XSIZE",  "2048")
-# epicsEnvSet("YSIZE",  "2048")
-# epicsEnvSet("NELEMENTS", "4198400")
-# epicsEnvSet("QSIZE",  "10")
-# epicsEnvSet("BLOCKING",  "1")
-# epicsEnvSet("NCHANS", "2048")
 cd( "../.." )
 
 # Run common startup commands for linux soft IOC's
@@ -114,7 +95,7 @@ epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
 # Configure an edtPdv driver for the specified camera model
 # =========================================================
 edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)" )
-# registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
+registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
 
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",		1, $(CAM_TRACE_MASK) )
@@ -130,7 +111,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
 dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT)" )
-#dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(PREFIX):$(CAM_PORT),PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
 
 # For camera serial asyn diagnostics
 # (AreaDetector plugins each have their own AsynIO record)
@@ -169,6 +150,9 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load the selected plugins, if any
 #< db/$(PLUGINS).cmd
+epicsEnvSet(	"N",					"1" )
+epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
+< setupScripts/pluginStats.cmd
 
 #
 #

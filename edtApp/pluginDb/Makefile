@@ -28,6 +28,7 @@ DB += pluginTransform.db
 DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin2Viewer.cmd
 DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin4Viewer.cmd
 DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoFullViewer.cmd
+DB_INSTALLS += $(GIGE_CAM)/setupScripts/pluginStats.cmd
 
 #----------------------------------------------------
 # Create and install (or just install)
