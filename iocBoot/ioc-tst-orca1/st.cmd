@@ -174,12 +174,9 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # All IOCs should dump some common info after initial startup.
 < /reg/d/iocCommon/All/post_linux.cmd
 
-dbpf TST:EDT:ORCA1:IMAGE1:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:ROI5:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:IMAGE2:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:ROI6:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:THUMBNAIL:EnableCallbacks 1
-dbpf TST:EDT:ORCA1:ROI7:EnableCallbacks 1
 epicsThreadSleep 2
 #dbpf TST:EDT:ORCA1:Acquire 1
+
+# Timestamp support
+dbpf TST:EDT:ORCA1:TSS_EVENTCODE 141
 

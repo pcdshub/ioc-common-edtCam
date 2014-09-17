@@ -25,10 +25,10 @@ DB += pluginTIFF.db
 DB += pluginTransform.db
 
 # Install viewer cmd scripts
-DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin2Viewer.cmd
-DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoBin4Viewer.cmd
-DB_INSTALLS += $(GIGE_CAM)/setupScripts/MonoFullViewer.cmd
-DB_INSTALLS += $(GIGE_CAM)/setupScripts/pluginStats.cmd
+DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoBin2Viewer.cmd
+DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoBin4Viewer.cmd
+DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoFullViewer.cmd
+DB_INSTALLS += $(ADSTREAM)/setupScripts/pluginStats.cmd
 
 #----------------------------------------------------
 # Create and install (or just install)
