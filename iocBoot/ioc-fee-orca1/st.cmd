@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Bruce Hill (bhill)" )
-epicsEnvSet( "LOCATION",	"Test Lab" )
+epicsEnvSet( "LOCATION",	"FEE Spectrometer" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,9 +13,9 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"TST:IOC:EDT:ORCA1" )
-epicsEnvSet( "EVR_PV",	"TST:EVR:EDT:ORCA1" )
-epicsEnvSet( "CAM_PV",	"TST:EDT:ORCA1" )
+epicsEnvSet( "IOC_PV",	"FEE:IOC:EDT:ORCA1" )
+epicsEnvSet( "EVR_PV",	"FEE:EVR:EDT:ORCA1" )
+epicsEnvSet( "CAM_PV",	"FEE:EDT:ORCA1" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
@@ -34,9 +34,9 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 # Comment/uncomment/change diagnostic settings as desired
 epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
-epicsEnvSet( "SER_TRACE_MASK",    "9" )
+epicsEnvSet( "SER_TRACE_MASK",    "1" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
-epicsEnvSet( "ST_CMD_DELAYS", 	  "2" )
+epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
 cd( "../.." )
 
@@ -48,7 +48,7 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
-var EDT_PDV_DEBUG 2
+var EDT_PDV_DEBUG 1
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -74,8 +74,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 # Configure a PMC EVR
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=FEE:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrSLAC.db",			"EVR=FEE:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -152,6 +152,8 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load the selected plugins, if any
 #< db/$(PLUGINS).cmd
+
+# Load and configure a stats plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 < setupScripts/pluginStats.cmd
@@ -177,8 +179,8 @@ create_monitor_set( "$(IOC).req", 5, "" )
 < /reg/d/iocCommon/All/post_linux.cmd
 
 epicsThreadSleep 2
-#dbpf TST:EDT:ORCA1:Acquire 1
+#dbpf FEE:EDT:ORCA1:Acquire 1
 
 # Timestamp support
-dbpf TST:EDT:ORCA1:TSS_EVENTCODE 141
+dbpf FEE:EDT:ORCA1:TSS_EVENTCODE 140
 

@@ -18,6 +18,7 @@ DBD += edt.dbd
 edt_DBD += base.dbd
 edt_DBD += iocAdmin.dbd
 edt_DBD += autosaveSupport.dbd
+edt_DBD += diagTimer.dbd
 
 # EVR
 edt_DBD += evrSupport.dbd
@@ -48,6 +49,7 @@ edt_SRCS_DEFAULT += edtMain.cpp
 edt_LIBS += autosave
 edt_LIBS += devIocStats
 edt_LIBS += genSub
+edt_LIBS += diagTimer
 
 # EVR
 edt_LIBS += evrSupport
