@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1284
-y 871
+x 1987
+y 1349
 w 174
 h 146
 font "helvetica-medium-r-12.0"
@@ -29,7 +29,7 @@ endScreenProperties
 object TwoDProfileMonitorClass
 beginObjectProperties
 major 4
-minor 1
+minor 2
 release 1
 x 0
 y 16
@@ -38,7 +38,7 @@ h 130
 dataPvStr "$(CAM):THUMBNAIL:ArrayData"
 widthPvStr "$(CAM):THUMBNAIL:ArraySize0_RBV"
 heightPvStr "$(CAM):THUMBNAIL:ArraySize1_RBV"
-dataWidth 3
+dataWidth 340
 pvBasedDataSize 1
 nBitsPerPixel 8
 endObjectProperties
@@ -47,7 +47,7 @@ endObjectProperties
 object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 2
+minor 4
 release 0
 x 0
 y 0
@@ -62,7 +62,7 @@ buttonLabel "+"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "gigeScreens/liveImage.edl"
+  0 "$(ORIG)"
 }
 closeAction {
   0 1
@@ -71,7 +71,7 @@ setPosition {
   0 "parentWindow"
 }
 symbols {
-  0 "CAM=$(CAM),IOC=$(IOC)"
+  0 "CAM=$(CAM),IOC=$(IOC),IMAGE=$(IMAGE)"
 }
 closeDisplay {
   0 1
@@ -83,13 +83,12 @@ object activeXTextClass
 beginObjectProperties
 major 4
 minor 1
-release 0
+release 1
 x 16
 y 0
-w 44
-h 14
-font "helvetica-medium-r-12.0"
-fontAlign "center"
+w 38
+h 12
+font "helvetica-medium-r-10.0"
 fgColor index 14
 bgColor index 7
 value {

@@ -25,10 +25,10 @@ DB += pluginTIFF.db
 DB += pluginTransform.db
 
 # Install viewer cmd scripts
-DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoBin2Viewer.cmd
-DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoBin4Viewer.cmd
-DB_INSTALLS += $(ADSTREAM)/setupScripts/MonoFullViewer.cmd
-DB_INSTALLS += $(ADSTREAM)/setupScripts/pluginStats.cmd
+DB_INSTALLS += $(ADSTREAM)/db/MonoBin2Viewer.cmd
+DB_INSTALLS += $(ADSTREAM)/db/MonoBin4Viewer.cmd
+DB_INSTALLS += $(ADSTREAM)/db/MonoFullViewer.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginStats.cmd
 
 #----------------------------------------------------
 # Create and install (or just install)

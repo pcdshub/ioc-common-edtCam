@@ -34,7 +34,7 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 # Comment/uncomment/change diagnostic settings as desired
 epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
-epicsEnvSet( "SER_TRACE_MASK",    "1" )
+epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
@@ -48,7 +48,7 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
-var EDT_PDV_DEBUG 1
+var EDT_PDV_DEBUG 2
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )

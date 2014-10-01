@@ -112,9 +112,9 @@ x 4
 y 48
 w 676
 h 480
-dataPvStr "$(CAM):IMG_OVER2:ArrayData"
-widthPvStr "$(CAM):IMG_OVER2:ArraySize0_RBV"
-heightPvStr "$(CAM):IMG_OVER2:ArraySize1_RBV"
+dataPvStr "$(CAM):IMAGE2:ArrayData"
+widthPvStr "$(CAM):IMAGE2:ArraySize0_RBV"
+heightPvStr "$(CAM):IMAGE2:ArraySize1_RBV"
 dataWidth 646
 pvBasedDataSize 1
 nBitsPerPixel 8
@@ -563,7 +563,7 @@ buttonLabel "-"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "gigeScreens/thumbnail.edl"
+  0 "edtScreens/thumbnail.edl"
 }
 closeAction {
   0 1
@@ -681,7 +681,7 @@ x 792
 y 92
 w 76
 h 20
-controlPv "$(CAM):IMG_OVER2:ArrayRate_RBV"
+controlPv "$(CAM):IMAGE2:ArrayRate_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 16
@@ -716,7 +716,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "gigeScreens/gigeViewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist $(PVLIST)"
+  0 "edtScreens/gigeViewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist $(PVLIST)"
 }
 endObjectProperties
 
@@ -739,7 +739,7 @@ buttonLabel "Plugins"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "gigeScreens/pcdsPlugins.edl"
+  0 "edtScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
@@ -899,7 +899,7 @@ x 776
 y 268
 w 64
 h 20
-controlPv "$(CAM):IMG_OVER2:MinCallbackTime"
+controlPv "$(CAM):IMAGE2:MinCallbackTime"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"

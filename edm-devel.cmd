@@ -18,5 +18,5 @@ edm -x -eolc	\
 	-m "P=${CAM},R=:"	\
 	-m "HUTCH=${HUTCH}"	\
 	-m "PVLIST=${PVLIST}"	\
-	edtPdvScreens/edtTop.edl  &
+	edtScreens/edtCamTop.edl  &
 
