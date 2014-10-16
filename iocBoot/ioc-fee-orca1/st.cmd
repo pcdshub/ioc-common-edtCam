@@ -32,8 +32,8 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
-epicsEnvSet( "CAM_TRACE_MASK",    "1" )
-epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
+epicsEnvSet( "CAM_TRACE_MASK",    "9" )
+epicsEnvSet( "CAM_TRACE_IO_MASK", "0" )
 epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
@@ -182,5 +182,5 @@ epicsThreadSleep 2
 #dbpf FEE:EDT:ORCA1:Acquire 1
 
 # Timestamp support
-dbpf FEE:EDT:ORCA1:TSS_EVENTCODE 140
+#dbpf FEE:EDT:ORCA1:TSS_SETEC 140
 

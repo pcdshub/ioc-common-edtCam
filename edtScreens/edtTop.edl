@@ -246,7 +246,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "edtScreens/gigeViewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist $(PVLIST) &"
+  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg &"
 }
 endObjectProperties
 
