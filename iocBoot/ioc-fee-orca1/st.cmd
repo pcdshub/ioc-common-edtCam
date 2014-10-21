@@ -13,9 +13,9 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"FEE:IOC:EDT:ORCA1" )
-epicsEnvSet( "EVR_PV",	"FEE:EVR:EDT:ORCA1" )
-epicsEnvSet( "CAM_PV",	"FEE:EDT:ORCA1" )
+epicsEnvSet( "IOC_PV",	"IOC:FEE1:441" )
+epicsEnvSet( "EVR_PV",	"EVR:FEE1:441" )
+epicsEnvSet( "CAM_PV",	"CAMR:FEE1:441" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
@@ -74,8 +74,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 # Configure a PMC EVR
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=FEE:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=FEE:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=EVR:FEE1:441,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrSLAC.db",			"EVR=EVR:FEE1:441,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -112,7 +112,7 @@ asynSetTraceIOMask( "$(CAM_PORT).SER",	1, $(SER_TRACE_IO_MASK) )
 epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
-dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG1" )
 dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
 
 # For camera serial asyn diagnostics
@@ -179,8 +179,8 @@ create_monitor_set( "$(IOC).req", 5, "" )
 < /reg/d/iocCommon/All/post_linux.cmd
 
 epicsThreadSleep 2
-#dbpf FEE:EDT:ORCA1:Acquire 1
+#dbpf CAMR:FEE1:441:Acquire 1
 
 # Timestamp support
-#dbpf FEE:EDT:ORCA1:TSS_SETEC 140
+#dbpf CAMR:FEE1:441:TSS_SETEC 140
 

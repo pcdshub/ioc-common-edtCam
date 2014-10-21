@@ -3,23 +3,23 @@
 file edt-ioc.archive
 {
     {
-        IOC = FEE:IOC:EDT:ORCA1
+        IOC = IOC:FEE1:441
     }
 }
 
 file ADBase.tpl-arch
 {
-    { P = "FEE:EDT:ORCA1", R = ":"	}
+    { P = "CAMR:FEE1:441", R = ":"	}
 }
 
 #file hamaOrcaFlash4_0.archive
 #{
-#    { P = "FEE:EDT:ORCA1", R = ":"	}
+#    { P = "CAMR:FEE1:441", R = ":"	}
 #}
 
 # Bring in the pcds plugin archive pv's
 #file pcdsPlugins.archive
 #{
-#    {   CAM = "FEE:EDT:ORCA1"	}
+#    {   CAM = "CAMR:FEE1:441"	}
 #}
 

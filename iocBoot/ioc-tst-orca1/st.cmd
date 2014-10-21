@@ -112,7 +112,7 @@ asynSetTraceIOMask( "$(CAM_PORT).SER",	1, $(SER_TRACE_IO_MASK) )
 epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
-dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG2" )
 dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
 
 # For camera serial asyn diagnostics
