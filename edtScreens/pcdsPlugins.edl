@@ -2264,7 +2264,7 @@ commandLabel {
   0 "Reset Plugins"
 }
 command {
-  0 "edtScreens/resetPCDSPlugins.sh"
+  0 "edtCamScreens/resetPCDSPlugins.sh"
 }
 endObjectProperties
 

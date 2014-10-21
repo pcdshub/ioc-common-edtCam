@@ -158,7 +158,7 @@ buttonLabel "Live Image"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtScreens/liveImage.edl"
+  0 "edtCamScreens/liveImage.edl"
 }
 closeAction {
   0 1
@@ -269,7 +269,7 @@ buttonLabel "Plugins"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtScreens/pcdsPlugins.edl"
+  0 "edtCamScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
@@ -2129,7 +2129,7 @@ buttonLabel "Full Image"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtScreens/fullImage.edl"
+  0 "edtCamScreens/fullImage.edl"
 }
 closeAction {
   0 1

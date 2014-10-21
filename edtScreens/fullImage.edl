@@ -567,7 +567,7 @@ buttonLabel "-"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtScreens/thumbnail.edl"
+  0 "edtCamScreens/thumbnail.edl"
 }
 closeAction {
   0 1
@@ -745,7 +745,7 @@ buttonLabel "Plugins"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtScreens/pcdsPlugins.edl"
+  0 "edtCamScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
