@@ -5,6 +5,7 @@ include $(TOP)/configure/CONFIG
 
 # Create and install EDT Camera DB Files
 DB += edtPdvCamera.db
+DB += PluginBldSpectrometer.db
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -50,12 +51,14 @@ DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).proto
 # Archive files, templates, substitutions like this
 #
 ARCHIVE += edt-ioc.archive
+ARCHIVE += PluginBldSpectrometer.archive
 
 #----------------------------------------------------
 # Create and install (or just install)
 # Autosave request files, templates, substitutions like this
 #
 REQ += edt-ioc.req
+REQ += PluginBldSpectrometer.req
 
 include $(TOP)/configure/RULES
 #----------------------------------------

@@ -20,8 +20,8 @@ epicsEnvSet( "CAM_PV",	"TST:EDT:ORCA1" )
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
-epicsEnvSet( "EVR_TYPE",	"1" )
-#epicsEnvSet( "EVR_TYPE",	"15" )
+#epicsEnvSet( "EVR_TYPE",	"1" )
+epicsEnvSet( "EVR_TYPE",	"15" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
@@ -72,10 +72,10 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 #
 #
-# Configure a PMC EVR
+# Configuring EVR card $(EVR_CARD)
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -150,10 +150,15 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 #< db/ColorBin3Viewer.cmd
 #< db/ColorBin4Viewer.cmd
 
-# Configure and load the selected plugins, if any
-#< db/$(PLUGINS).cmd
+# Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
+< setupScripts/pluginBldSpectrometer.cmd
+
+# Configure and load any additional plugins, if any
+epicsEnvSet(	"N",					"1" )
+epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
+#< db/$(PLUGINS).cmd
 < setupScripts/pluginStats.cmd
 
 #

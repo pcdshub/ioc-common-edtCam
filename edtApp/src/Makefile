@@ -33,12 +33,14 @@ edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 
 edt_DBD += timeStampSource.dbd
+edt_DBD += PluginBldSpectrometer.dbd
 
 # ffmpegServer
 #edt_DBD += ffmpegServer.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 edt_SRCS += edt_registerRecordDeviceDriver.cpp
+edt_SRCS += PluginBldSpectrometer.cpp
 edt_SRCS_DEFAULT += edtMain.cpp
 
 # Add locally compiled object code

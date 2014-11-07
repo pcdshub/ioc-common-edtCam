@@ -32,3 +32,8 @@ file ADBase_settings.req
 #    {   P = "TST:EDT:ORCA1",	R = ":" 	}
 #}
 
+
+file PluginBldSpectrometer.req
+{
+    { P = "TST:EDT:ORCA1", R = ":", CAM="TST:EDT:ORCA1", N = "1"	}
+}

@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1987
-y 1349
+x 1924
+y 1182
 w 174
 h 146
 font "helvetica-medium-r-12.0"
@@ -38,7 +38,7 @@ h 130
 dataPvStr "$(CAM):THUMBNAIL:ArrayData"
 widthPvStr "$(CAM):THUMBNAIL:ArraySize0_RBV"
 heightPvStr "$(CAM):THUMBNAIL:ArraySize1_RBV"
-dataWidth 340
+dataWidth -1
 pvBasedDataSize 1
 nBitsPerPixel 8
 endObjectProperties

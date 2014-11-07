@@ -3,9 +3,9 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 933
-y 1343
-w 700
+x 1924
+y 536
+w 1140
 h 614
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
@@ -93,7 +93,7 @@ minor 0
 release 0
 x 0
 y 0
-w 700
+w 1140
 h 40
 lineColor index 56
 fill
@@ -154,7 +154,7 @@ bgColor index 3
 topShadowColor index 1
 botShadowColor index 13
 font "helvetica-medium-r-12.0"
-buttonLabel "Live Image"
+buttonLabel "View Image"
 numPvs 4
 numDsps 1
 displayFileName {
@@ -240,7 +240,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg &"
+  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM):IMAGE2 --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg &"
 }
 endObjectProperties
 
@@ -838,26 +838,6 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 16
-y 360
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Color mode"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
 x 20
 y 244
 w 120
@@ -879,7 +859,7 @@ major 4
 minor 1
 release 1
 x 16
-y 332
+y 300
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -890,46 +870,6 @@ useDisplayBg
 value {
   "Data type"
 }
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 148
-y 360
-w 80
-h 20
-fgColor index 25
-bgColor index 3
-inconsistentColor index 12
-topShadowColor index 2
-botShadowColor index 12
-controlPv "$(P)$(R)ColorMode"
-indicatorPv "$(P)$(R)ColorMode"
-font "helvetica-bold-r-12.0"
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 148
-y 332
-w 80
-h 20
-fgColor index 25
-bgColor index 3
-inconsistentColor index 12
-topShadowColor index 2
-botShadowColor index 12
-controlPv "$(P)$(R)DataType"
-indicatorPv "$(P)$(R)DataType"
-font "helvetica-bold-r-12.0"
 endObjectProperties
 
 # (Text Monitor)
@@ -989,35 +929,10 @@ major 4
 minor 7
 release 0
 x 236
-y 332
+y 300
 w 100
 h 20
 controlPv "$(P)$(R)DataType_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 236
-y 360
-w 100
-h 20
-controlPv "$(P)$(R)ColorMode_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -1216,14 +1131,14 @@ minor 1
 release 1
 x 364
 y 52
-w 104
+w 108
 h 20
 font "helvetica-bold-r-12.0"
 fontAlign "center"
 fgColor index 14
 bgColor index 3
 value {
-  "Image Settings"
+  "Camera Settings"
 }
 endObjectProperties
 
@@ -1244,36 +1159,6 @@ bgColor index 3
 value {
   "Image Collection"
 }
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 396
-y 584
-w 104
-h 24
-fgColor index 14
-bgColor index 3
-topShadowColor index 2
-botShadowColor index 12
-font "helvetica-medium-r-12.0"
-buttonLabel "Network Stats"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "areaDetectorScreens/prosilicaMore.edl"
-}
-menuLabel {
-  0 "Network Stats"
-}
-symbols {
-  0 "P=$(P),R=$(R)"
-}
-icon
 endObjectProperties
 
 # (Related Display)
@@ -1401,7 +1286,7 @@ setPosition {
   0 "button"
 }
 symbols {
-  0 "P=$(P),R=$(R),IOC=$(IOC)"
+  0 "P=$(P),R=$(R),IOC=$(IOC),EVR=$(EVR)"
 }
 replaceSymbols {
   0 1
@@ -2913,5 +2798,222 @@ onLabel "Full Mode"
 offLabel "Go To Full Mode"
 3d
 font "helvetica-medium-r-12.0"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 236
+y 384
+w 100
+h 20
+controlPv "$(P)$(R)ColorMode_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 384
+w 120
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Color mode"
+}
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 704
+y 72
+w 420
+h 240
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 704
+y 60
+w 84
+h 24
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+value {
+  "IMAGE1"
+}
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 704
+y 332
+w 420
+h 240
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 704
+y 320
+w 84
+h 24
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+value {
+  "IMAGE2"
+}
+endObjectProperties
+
+# (Embedded Window)
+object activePipClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 716
+y 340
+w 400
+h 228
+fgColor index 14
+bgColor index 0
+topShadowColor index 1
+botShadowColor index 14
+displaySource "menu"
+filePv "LOC\\\\emb-trig=0"
+sizeOfs 5
+numDsps 1
+displayFileName {
+  0 "areaDetectorScreens/emb-image-sts.edl"
+}
+menuLabel {
+  0 "Embedded Image Status"
+}
+symbols {
+  0 "P=$(P)$(R)IMAGE2,R=:"
+}
+replaceSymbols {
+  0 1
+}
+propagateMacros {
+  0 0
+}
+noScroll
+endObjectProperties
+
+# (Embedded Window)
+object activePipClass
+beginObjectProperties
+major 4
+minor 1
+release 0
+x 716
+y 80
+w 400
+h 228
+fgColor index 14
+bgColor index 0
+topShadowColor index 1
+botShadowColor index 14
+displaySource "menu"
+filePv "LOC\\\\emb-trig=0"
+sizeOfs 5
+numDsps 1
+displayFileName {
+  0 "areaDetectorScreens/emb-image-sts.edl"
+}
+menuLabel {
+  0 "Embedded Image Status"
+}
+symbols {
+  0 "P=$(P)$(R)IMAGE1,R=:"
+}
+replaceSymbols {
+  0 1
+}
+propagateMacros {
+  0 0
+}
+noScroll
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 412
+y 584
+w 88
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 0
+botShadowColor index 14
+font "helvetica-medium-r-12.0"
+buttonLabel "BLD"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "edtCamScreens/BldSpectrometer.edl"
+}
+symbols {
+  0 "CAM=$(CAM),P=$(CAM):BLD1,R=:,IOC=$(IOC)"
+}
+replaceSymbols {
+  0 1
+}
+propagateMacros {
+  0 0
+}
 endObjectProperties
 

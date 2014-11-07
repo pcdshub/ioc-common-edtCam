@@ -1,0 +1,14 @@
+#
+# PluginBldSpectrometer Archive file
+#
+
+file NDPluginBase.tpl-arch
+{
+    {   P = "$(CAM):",	R = "BLD$(N):"	}
+}
+
+file PluginBldSpectrometer.tpl-arch
+{
+    {   P = "$(CAM):",	R = "BLD$(N):"	}
+}
+

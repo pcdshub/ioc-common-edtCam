@@ -16,5 +16,5 @@ edm -x -eolc	\
 	-m "CAM=${CAM}"		\
 	-m "P=${CAM},R=:"	\
 	-m "HUTCH=${HUTCH}"	\
-	edtScreens/edtCamTop.edl  &
+	edtCamScreens/edtCamTop.edl  &
 

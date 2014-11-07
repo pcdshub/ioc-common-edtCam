@@ -14,43 +14,75 @@ record( dfanout, "$(CAM):EdtBeamEventCodeFanout" )
 }
 
 
+record( ao, "$(CAM):Def120HzTrigDelay" )
+{
+    field( DESC, "Default trigger delay" )
+    field( DOL,  "4.9e-3" )
+    field( PINI, "YES" )
+	info( autosaveFields, "DESC VAL" )
+}
+
+record( ao, "$(CAM):Def120HzExposure" )
+{
+    field( DESC, "Default trigger delay" )
+	field( DOL,  "4.3e-3" )
+    field( PINI, "YES" )
+	info( autosaveFields, "DESC VAL" )
+}
+
+record( longout, "$(CAM):Def120HzMinY" )
+{
+    field( DESC, "Default Y start line" )
+	field( DOL,  "840" )
+    field( PINI, "YES" )
+	info( autosaveFields, "DESC VAL" )
+}
+
+
+# TODO: Set trigger polarity and width
 record( seq, "$(CAM):GoTo120HzMode" )
 {
 	field( DOL1, "0" )
 	field( LNK1, "$(CAM):Acquire PP NMS" )
 	field( DLY1, "0.0" )
 
-	field( DOL2, "40" )
-	field( LNK2, "$(CAM):EdtCamEventCode PP NMS" )
+	field( DOL2, "$(CAM):Def120HzMinY" )
+	field( LNK2, "$(CAM):MinY PP NMS" )
 	field( DLY2, "1.0" )
 
-	field( DOL3, "140" )
-	field( LNK3, "$(CAM):EdtBeamEventCode PP NMS" )
+	field( DOL3, "1" )
+	field( LNK3, "$(CAM):TriggerMode PP NMS" )
 	field( DLY3, "0.0" )
 
-	field( DOL4, "4.0e-3" )
-	field( LNK4, "$(CAM):EdtCamTrigDelay PP NMS" )
+	field( DOL4, "2" )
+	field( LNK4, "$(CAM):ImageMode PP NMS" )
 	field( DLY4, "0.0" )
 
-	field( DOL5, "4.3e-3" )
-	field( LNK5, "$(CAM):AcquireTime PP NMS" )
-	field( DLY5, "0.0" )
+	field( DOL5, "40" )
+	field( LNK5, "$(CAM):EdtCamEventCode PP NMS" )
+	field( DLY5, "1.0" )
 
-	field( DOL6, "840" )
-	field( LNK6, "$(CAM):MinY PP NMS" )
+	field( DOL6, "140" )
+	field( LNK6, "$(CAM):EdtBeamEventCode PP NMS" )
 	field( DLY6, "0.0" )
 
-	field( DOL7, "1" )
-	field( LNK7, "$(CAM):TriggerMode PP NMS" )
+	field( DOL7, "$(CAM):Def120HzTrigDelay" )
+	field( LNK7, "$(CAM):EdtCamTrigDelay PP NMS" )
 	field( DLY7, "0.0" )
 
-	field( DOL8, "2" )
-	field( LNK8, "$(CAM):ImageMode PP NMS" )
+	field( DOL8, "$(CAM):Def120HzExposure" )
+	field( LNK8, "$(CAM):AcquireTime PP NMS" )
 	field( DLY8, "0.0" )
 
-	field( DOL9, "1" )
-	field( LNK9, "$(CAM):Acquire PP NMS" )
-	field( DLY9, "5.0" )
+	field( DOL9, "0.0" )
+	field( LNK9, "$(CAM):IMAGE1:MinCallbackTime PP NMS" )
+	field( DLY9, "0.0" )
+
+	field( DOLA, "1" )
+	field( LNKA, "$(CAM):Acquire PP NMS" )
+	field( DLYA, "6.0" )
+
+	info( autosaveFields, "DESC" )
 }
 
 
@@ -88,8 +120,14 @@ record( seq, "$(CAM):GoToFullMode" )
 	field( LNK8, "$(CAM):ImageMode PP NMS" )
 	field( DLY8, "0.0" )
 
-	field( DOL9, "1" )
-	field( LNK9, "$(CAM):Acquire PP NMS" )
-	field( DLY9, "5.0" )
+	field( DOL9, "0.5" )
+	field( LNK9, "$(CAM):IMAGE1:MinCallbackTime PP NMS" )
+	field( DLY9, "0.0" )
+
+	field( DOLA, "1" )
+	field( LNKA, "$(CAM):Acquire PP NMS" )
+	field( DLYA, "6.0" )
+
+	info( autosaveFields, "DESC DOL1 LNK1 DLY1 DOL2 LNK2 DLY2 DOL3 LNK3 DLY3 DOL4 LNK4 DLY4 DOL5 LNK5 DLY5 DOL6 LNK6 DLY6 DOL7 LNK7 DLY7 DOL8 LNK8 DLY8 DOL9 LNK9 DLY9 DOLA LNKA DLYA" )
 }
 
