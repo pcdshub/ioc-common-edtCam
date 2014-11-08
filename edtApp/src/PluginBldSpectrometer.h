@@ -27,7 +27,10 @@ typedef struct BldSpectrometer
 	double					m_adjCenterOfMass;	// Baseline adjusted center of mass (Only includes pixels at or above baseline)
 	double					m_rawIntegral;		// Integral of raw horizontal projection values
 	double					m_adjIntegral;		// Baseline adjusted integral (Only includes pixels at or above baseline)
-	double					m_baseline;
+	double					m_baselineThreshold;
+	size_t					m_horizProjWidth;
+	size_t					m_horizProjFirstRowUsed;
+	size_t					m_horizProjLastRowUsed;
 	std::vector<double>		m_HorizProj;		// Horizontal projection of sample values by column
 	std::vector<SpectrometerPeak>	m_Peaks;
 
@@ -53,34 +56,6 @@ typedef enum
 }	NDStatProfileType;
 #define MAX_PROFILE_TYPES profCursor+1
 
-typedef enum
-{
-	TSMinValue,
-	TSMinX,
-	TSMinY,
-	TSMaxValue,
-	TSMaxX,
-	TSMaxY,
-	TSMeanValue,
-	TSSigmaValue,
-	TSTotal,
-	TSNet,
-	TSCentroidX,
-	TSCentroidY,
-	TSSigmaX,
-	TSSigmaY,
-	TSSigmaXY
-}	NDStatTSType;
-#define MAX_TIME_SERIES_TYPES TSSigmaXY+1
-
-typedef enum
-{
-	TSEraseStart,
-	TSStart,
-	TSStop,
-	TSRead
-}	BldSpectrometerTSControl_t;
-
 /* Statistics */
 #define PluginBldSpectrometerComputeStatisticsString  "BLD_COMPUTE_STATISTICS"  /* (asynInt32,        r/w) Compute statistics? */
 #define PluginBldSpectrometerBgdWidthString           "BLD_BGD_WIDTH"           /* (asynInt32,        r/w) Width of background region when computing net */
@@ -104,28 +79,6 @@ typedef enum
 #define PluginBldSpectrometerSigmaYString             "BLD_SIGMAY_VALUE"        /* (asynFloat64,      r/o) Sigma Y */
 #define PluginBldSpectrometerSigmaXYString            "BLD_SIGMAXY_VALUE"       /* (asynFloat64,      r/o) Sigma XY */
 
-/* Time series of basic statistics and centroid statistics */
-#define PluginBldSpectrometerTSControlString          "BLD_TS_CONTROL"          /* (asynInt32,        r/w) Erase/start, stop, start */
-#define PluginBldSpectrometerTSNumPointsString        "BLD_TS_NUM_POINTS"       /* (asynInt32,        r/w) Number of time series points to use */
-#define PluginBldSpectrometerTSCurrentPointString     "BLD_TS_CURRENT_POINT"    /* (asynInt32,        r/o) Current point in time series */
-#define PluginBldSpectrometerTSAcquiringString        "BLD_TS_ACQUIRING"        /* (asynInt32,        r/o) Acquiring time series */
-#define PluginBldSpectrometerTSMinValueString         "BLD_TS_MIN_VALUE"        /* (asynFloat64Array, r/o) Series of minimum counts */
-#define PluginBldSpectrometerTSMinXString             "BLD_TS_MIN_X"            /* (asynFloat64Array, r/o) Series of X position of minimum counts */
-#define PluginBldSpectrometerTSMinYString             "BLD_TS_MIN_Y"            /* (asynFloat64Array, r/o) Series of Y position of minimum counts */
-#define PluginBldSpectrometerTSMaxValueString         "BLD_TS_MAX_VALUE"        /* (asynFloat64Array, r/o) Series of maximum counts */
-#define PluginBldSpectrometerTSMaxXString             "BLD_TS_MAX_X"            /* (asynFloat64Array, r/o) Series of X position of maximum counts */
-#define PluginBldSpectrometerTSMaxYString             "BLD_TS_MAX_Y"            /* (asynFloat64Array, r/o) Series of Y position of maximum counts */
-#define PluginBldSpectrometerTSMeanValueString        "BLD_TS_MEAN_VALUE"       /* (asynFloat64Array, r/o) Series of mean counts */
-#define PluginBldSpectrometerTSSigmaValueString       "BLD_TS_SIGMA_VALUE"      /* (asynFloat64Array, r/o) Series of sigma */
-#define PluginBldSpectrometerTSTotalString            "BLD_TS_TOTAL"            /* (asynFloat64Array, r/o) Series of total */
-#define PluginBldSpectrometerTSNetString              "BLD_TS_NET"              /* (asynFloat64Array, r/o) Series of net */
-#define PluginBldSpectrometerTSSeriesMaxString        "TS_MAX_SUM"          /* (asynFloat64Array, r/o) Series of max elements sum */
-#define PluginBldSpectrometerTSCentroidXString        "BLD_TS_CENTROIDX_VALUE"  /* (asynFloat64Array, r/o) Series of X centroid */
-#define PluginBldSpectrometerTSCentroidYString        "BLD_TS_CENTROIDY_VALUE"  /* (asynFloat64Array, r/o) Series of Y centroid */
-#define PluginBldSpectrometerTSSigmaXString           "BLD_TS_SIGMAX_VALUE"     /* (asynFloat64Array, r/o) Series of sigma X */
-#define PluginBldSpectrometerTSSigmaYString           "BLD_TS_SIGMAY_VALUE"     /* (asynFloat64Array, r/o) Series of sigma Y */
-#define PluginBldSpectrometerTSSigmaXYString          "BLD_TS_SIGMAXY_VALUE"    /* (asynFloat64Array, r/o) Series of sigma XY */
-
 /* Profiles*/
 #define PluginBldSpectrometerComputeProfilesString    "BLD_COMPUTE_PROFILES"    /* (asynInt32,        r/w) Compute profiles? */
 #define PluginBldSpectrometerProfileSizeXString       "BLD_PROFILE_SIZE_X"      /* (asynInt32,        r/o) X profile size */
@@ -140,6 +93,9 @@ typedef enum
 #define PluginBldSpectrometerProfileCentroidYString   "BLD_PROFILE_CENTROID_Y"  /* (asynFloat64Array, r/o) Y centroid profile array */
 #define PluginBldSpectrometerProfileCursorXString     "BLD_PROFILE_CURSOR_X"    /* (asynFloat64Array, r/o) X cursor profile array */
 #define PluginBldSpectrometerProfileCursorYString     "BLD_PROFILE_CURSOR_Y"    /* (asynFloat64Array, r/o) Y cursor profile array */
+
+/* Projections */
+#define PluginBldSpectrometerComputeProjectionsString    "BLD_COMPUTE_PROJ"		/* (asynInt32,        r/w) Compute projections? */
 
 #define PluginBldSpectrometerSendBldString   "BLD_SEND"   /* (asynInt32,        r/w) Set non-zero to send BLD pkts */
 
@@ -169,10 +125,12 @@ public:
 	asynStatus doComputeCentroid(NDArray *pArray);
 	template <typename epicsType> asynStatus doComputeProfilesT(NDArray *pArray);
 	asynStatus doComputeProfiles(NDArray *pArray);
-	template <typename epicsType> asynStatus	doSendBldT(	NDArray * pArray,
-															BldSpectrometer_t *	pBldData );
-	asynStatus									doSendBld(	NDArray * pArray,
-															BldSpectrometer_t *	pBldData );
+	template <typename epicsType> asynStatus	doComputeProjectionsT(	NDArray				*	pArray,
+																		BldSpectrometer_t	*	pBldData	);
+	asynStatus									doComputeProjections(	NDArray				*	pArray,
+																		BldSpectrometer_t	*	pBldData	);
+	asynStatus									doSendBld(				NDArray				*	pArray,
+																		BldSpectrometer_t	*	pBldData	);
 
 protected:
 	int PluginBldSpectrometerComputeStatistics;
@@ -199,27 +157,6 @@ protected:
 	int PluginBldSpectrometerSigmaY;
 	int PluginBldSpectrometerSigmaXY;
 
-	/* Time Series */
-	int PluginBldSpectrometerTSControl;
-	int PluginBldSpectrometerTSNumPoints;
-	int PluginBldSpectrometerTSCurrentPoint;
-	int PluginBldSpectrometerTSAcquiring;
-	int PluginBldSpectrometerTSMinValue;
-	int PluginBldSpectrometerTSMinX;
-	int PluginBldSpectrometerTSMinY;
-	int PluginBldSpectrometerTSMaxValue;
-	int PluginBldSpectrometerTSMaxX;
-	int PluginBldSpectrometerTSMaxY;
-	int PluginBldSpectrometerTSMeanValue;
-	int PluginBldSpectrometerTSSigmaValue;
-	int PluginBldSpectrometerTSTotal;
-	int PluginBldSpectrometerTSNet;
-	int PluginBldSpectrometerTSCentroidX;
-	int PluginBldSpectrometerTSCentroidY;
-	int PluginBldSpectrometerTSSigmaX;
-	int PluginBldSpectrometerTSSigmaY;
-	int PluginBldSpectrometerTSSigmaXY;
-
 	/* Profiles */
 	int PluginBldSpectrometerComputeProfiles;
 	int PluginBldSpectrometerProfileSizeX;
@@ -235,6 +172,7 @@ protected:
 	int PluginBldSpectrometerProfileCursorX;
 	int PluginBldSpectrometerProfileCursorY;
 
+	int PluginBldSpectrometerComputeProjections;
 	int PluginBldSpectrometerSendBld;
 
 	#define LAST_PLUGIN_BLD_SPEC_PARAM PluginBldSpectrometerSendBld
@@ -248,14 +186,12 @@ private:
 	double			sigmaXY;
 	double		*	profileX[MAX_PROFILE_TYPES];
 	double		*	profileY[MAX_PROFILE_TYPES];
-	double		*	timeSeries[MAX_TIME_SERIES_TYPES];
 	size_t			profileSizeX;
 	size_t			profileSizeY;
 	size_t			cursorX;
 	size_t			cursorY;
 	epicsInt32	*	totalArray;
 	epicsInt32	*	netArray;
-	void			doTimeSeriesCallbacks();
 };
 #define NUM_PLUGIN_BLD_SPEC_PARAMS ((int)(&LAST_PLUGIN_BLD_SPEC_PARAM - &FIRST_PLUGIN_BLD_SPEC_PARAM + 1))
 

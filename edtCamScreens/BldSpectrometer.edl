@@ -3,7 +3,7 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1028
+x 1107
 y 336
 w 780
 h 860
@@ -2282,8 +2282,8 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 444
-y 788
+x 448
+y 816
 w 192
 h 20
 fgColor index 25
@@ -2293,6 +2293,26 @@ topShadowColor index 1
 botShadowColor index 11
 controlPv "$(P)$(R)SendBld"
 indicatorPv "$(P)$(R)SendBld_RBV"
+font "helvetica-bold-r-12.0"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 448
+y 792
+w 192
+h 20
+fgColor index 25
+bgColor index 3
+inconsistentColor index 0
+topShadowColor index 1
+botShadowColor index 11
+controlPv "$(P)$(R)ComputeProjections"
+indicatorPv "$(P)$(R)ComputeProjections_RBV"
 font "helvetica-bold-r-12.0"
 endObjectProperties
 

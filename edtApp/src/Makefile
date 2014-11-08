@@ -31,6 +31,7 @@ edt_DBD += sscan.dbd
 edt_DBD += commonDriverSupport.dbd
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
+edt_DBD += bldClient.dbd
 
 edt_DBD += timeStampSource.dbd
 edt_DBD += PluginBldSpectrometer.dbd
@@ -52,6 +53,7 @@ edt_LIBS += autosave
 edt_LIBS += devIocStats
 edt_LIBS += genSub
 edt_LIBS += diagTimer
+edt_LIBS += bldClient
 
 # EVR
 edt_LIBS += evrSupport

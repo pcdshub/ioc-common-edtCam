@@ -7,10 +7,14 @@ $(P)$(R)CentroidX_RBV			1
 $(P)$(R)CentroidY_RBV			1
 $(P)$(R)ComputeCentroid			10				monitor
 $(P)$(R)ComputeCentroid_RBV		1
+$(P)$(R)ComputeProjections		10				monitor
+$(P)$(R)ComputeProjections_RBV	1
 $(P)$(R)ComputeProfiles			10				monitor
 $(P)$(R)ComputeProfiles_RBV		1
 $(P)$(R)ComputeStatistics		10				monitor
 $(P)$(R)ComputeStatistics_RBV	1
+$(P)$(R)SendBld					10				monitor
+$(P)$(R)SendBld_RBV				1
 $(P)$(R)CursorX					10				monitor
 $(P)$(R)CursorX_RBV				1
 $(P)$(R)CursorY					10				monitor
@@ -34,8 +38,3 @@ $(P)$(R)SigmaX_RBV				1
 $(P)$(R)SigmaXY_RBV				1
 $(P)$(R)SigmaY_RBV				1
 $(P)$(R)Total_RBV				1
-$(P)$(R)TSAcquiring				1
-$(P)$(R)TSControl				10				monitor
-$(P)$(R)TSCurrentPoint			1
-$(P)$(R)TSNumPoints				10				monitor
-$(P)$(R)TSRead					10				monitor
