@@ -154,6 +154,8 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 #< db/$(PLUGINS).cmd
 
 # Configure and load the BLD plugin
+epicsEnvSet(	"N",					"1" )
+epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 setupScripts/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
@@ -187,4 +189,14 @@ epicsThreadSleep 2
 
 # Timestamp support
 #dbpf CAMR:FEE1:441:TSS_SETEC 140
+
+# Configure the BLD client
+epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer
+epicsEnvSet( "BLD_SRC",		"46" )		# Src Id, FeeSpec0
+epicsEnvSet( "BLD_IP",		"239.255.24.$(BLD_SRC)" )
+epicsEnvSet( "BLD_PORT",	"10148" )
+epicsEnvSet( "BLD_MAX",		"8980" )	# 9000 MTU - 20 byte header
+BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
+BldStart()
+BldIsStarted()
 
