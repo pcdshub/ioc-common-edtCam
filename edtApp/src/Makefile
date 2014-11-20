@@ -26,7 +26,7 @@ edt_DBD += devMrfEr.dbd
 
 # areaDetector
 edt_DBD += busyRecord.dbd
-edt_DBD += genSubRecord.dbd
+#edt_DBD += genSubRecord.dbd
 edt_DBD += sscan.dbd
 edt_DBD += commonDriverSupport.dbd
 edt_DBD += edtPdvSupport.dbd
@@ -51,7 +51,7 @@ edt_SRCS_DEFAULT += edtMain.cpp
 # base and std modules
 edt_LIBS += autosave
 edt_LIBS += devIocStats
-edt_LIBS += genSub
+#edt_LIBS += genSub
 edt_LIBS += diagTimer
 edt_LIBS += bldClient
 

@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1924
-y 536
+x 2113
+y 34
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -1391,34 +1391,6 @@ useDisplayBg
 value {
   "Period between images"
 }
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 532
-y 240
-w 59
-h 18
-controlPv "$(P)$(R)AcquirePeriod"
-format "decimal"
-font "helvetica-medium-r-12.0"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-autoHeight
-motifWidget
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
 endObjectProperties
 
 # (Text Monitor)

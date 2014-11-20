@@ -13,11 +13,12 @@
 
 typedef struct SpectrometerPeak
 {
-	size_t					m_StartCol;		// Starting column of peak
-	size_t					m_EndCol;		// End column not included in peak
-	double					m_PeakPos;		// Peak position, units are columns relative to start of sample
+	size_t					m_Start;		// Starting column of peak
+	size_t					m_End;			// End column not included in peak
+	double					m_PeakPos;		// Peak index position, units are pixels relative to start of row
+	double					m_PeakCenter;	// Peak center of mass, units are pixels relative to start of row
 	double					m_PeakHeight;	// Peak height, range MIN_INT<epicsType> .. MAX_INT<epicsType>
-	double					m_PeakFwhm;		// Peak FullWidthHalfMax, units are columns relative to start of sample
+	double					m_PeakFwhm;		// Peak FullWidthHalfMax, units are pixels
 }	SpectrometerPeak_t;
 
 typedef struct BldSpectrometer

@@ -15,11 +15,12 @@
 #include <epicsString.h>
 #include <epicsMutex.h>
 #include <iocsh.h>
+#include <epicsExport.h>
 
+#include "bldPvClient.h"
+#include "evrTime.h"
 #include "NDArray.h"
 #include "PluginBldSpectrometer.h"
-#include "bldPvClient.h"
-#include <epicsExport.h>
 
 #define MAX(A,B) (A)>(B)?(A):(B)
 #define MIN(A,B) (A)<(B)?(A):(B)
@@ -265,8 +266,12 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	pBldData->m_horizProjLastRowUsed	= this->profileSizeX + 1;
 	for (	size_t	iPeak = 0; iPeak < nPeaks; iPeak++ )
 	{
-		pBldData->m_Peaks[iPeak].m_PeakPos		= 0.0;
-		pBldData->m_Peaks[iPeak].m_PeakHeight	= 0.0;
+		pBldData->m_Peaks[iPeak].m_Start		= 0;
+		pBldData->m_Peaks[iPeak].m_End			= 0;
+		pBldData->m_Peaks[iPeak].m_PeakPos		= NAN;
+		pBldData->m_Peaks[iPeak].m_PeakCenter	= NAN;
+		pBldData->m_Peaks[iPeak].m_PeakHeight	= NAN;
+		pBldData->m_Peaks[iPeak].m_PeakFwhm		= NAN;
 	}
 	pBldData->m_HorizProj.resize( this->profileSizeX );
 	for (	size_t	ix = 0; ix < this->profileSizeX; ix++ )
@@ -275,6 +280,7 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	}
 
 	// Compute BLD data
+#if 1
 	epicsType	*	pData = (epicsType *) pArray->pData;
 	for (		size_t	iy = 0; iy < this->profileSizeY; iy++ )
 	{
@@ -291,6 +297,114 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 			}
 		}
 	}
+#else
+	epicsType	&	rData[][] = (epicsType *) pArray->pData;
+	for (		size_t	ix = 0; ix < this->profileSizeX; ix++ )
+	{
+		epicsType	*	pData = (epicsType *) pArray->pData;
+		pData += ix;
+		for (	size_t	iy = 0; iy < this->profileSizeY; iy++ )
+		{
+			double	value	= static_cast<double>( *pData );
+			pData += this->profileSizeY;
+			pBldData->m_HorizProj[ix]	+= value;
+			pBldData->m_rawIntegral		+= value;
+			pBldData->m_rawCenterOfMass	+= value * ix;
+			if ( value >= pBldData->m_baselineThreshold )
+			{
+				pBldData->m_adjIntegral		+= value;
+				pBldData->m_adjCenterOfMass	+= value * ix;
+			}
+		}
+	}
+
+	// Do automatic peak detection
+	// Uses an IIR filtered spectrum to suppress noise for determining
+	// start and end points for each peak to be analyzed.
+	//
+	// The algorithm is designed to determine start and end of each peak region in one pass.
+	// Then each peak region is analyzed with a single pass that determines
+	// peak height, position, center of mass, and full width half max.
+	//
+	// Each region to be analyzed for peak characteristics starts
+	// when the filtered spectrum exceeds the peak threshold
+	// and ends when it drops below the peak threshold.
+	//
+	// To detect divided peaks, a dividedPeaksPercentage is used.
+	// Once the filtered spectrum value dips below the current peak's max
+	// times the dividedPeaksPercentage, we look for the lowest point
+	// of a possible trough between two peaks.
+	//
+	// A new peak region will be started if the filtered spectrum value
+	// rises again using the lowest point between the peaks
+	// as the dividing point between their analysis regions.
+	// 
+	double		filtSpec		= 0.0;
+	double		iir				= 0.7;	// IIR filter factor, Time Constant for 0.7 is ~ 2.8 columns
+	double		peakThreshold	= 2000.0;
+	double		dividedPercent	= 90.0;
+	size_t		iPeak			= 0;
+	size_t		peakStart		= 0;
+	size_t		peakEnd			= 0;
+	double		peakMax			= 0.0;
+	double		troughMin		= NAN;
+	for ( size_t	ix = 0; ix < this->profileSizeX; ix++ )
+	{
+		double	value = pBldData->m_HorizProj[ix];
+		filtSpec = ( value * iir ) + ( filtSpec * ( 1.0 - iir ) );
+
+		// Keep track of the max
+		if( peakMax <= value )
+			peakMax =  value;
+
+		if ( peakStart != 0 )
+		{
+			// Look for peak end
+			// Either below the peakThreshold or we've risen above the trough minimum
+			if ( filtSpec < peakThreshold
+				||	(	!isnan( troughMin )
+					&&	value > troughMin ) )
+			{
+				// End this peak and start another
+				pBldData[iPeak].m_Start	= peakStart;
+				pBldData[iPeak].m_End	= ix;
+				troughMin				= NAN;
+				peakMax					= 0.0;
+				peakStart				= 0;
+				if ( ++iPeak >= N_PEAKS_MAX )
+					break;
+			}
+		}
+
+		// Look for a new peak start
+		// Could be the same sample if we just rose above a trough minimum
+		if( peakStart == 0 && filtSpec >= peakThreshold )
+		{
+			peakMax		= value;
+			peakStart	= ix;
+		}
+
+		// If we're in a peak region and the value drops below the divided peaks threshold ...
+		if (	peakStart != 0
+			&&	value < peakMax * dividedPercent )
+		{
+			// Keep track of our possible trough low
+			if ( isnan(troughMin) || value < troughMin )
+				troughMin = value;
+		}
+	}
+
+	if ( iPeak < N_PEAKS_MAX )
+	{
+		// See if we have enough data for a final peak
+		if ( peakStart != 0 && !isnan( troughMin ) )
+		{
+			// End this peak
+			pBldData[iPeak].m_Start	= peakStart;
+			pBldData[iPeak].m_End	= ix;
+		}
+	}
+#endif
 
 	if( pBldData->m_rawIntegral > 0 )
 		pBldData->m_rawCenterOfMass /= pBldData->m_rawIntegral;
@@ -361,8 +475,7 @@ asynStatus PluginBldSpectrometer::doSendBld(
 
 	size_t		nPeaks	= pBldData->m_Peaks.size();
 
-	//	TODO: Pre-allocate storage to avoid malloc/free
-	//	Compute the output buffer size and malloc it
+	//	Compute the output buffer size
 	assert( sizeof(uint32_t) == 4 );
 	assert( sizeof(double)	 == 8 );
 	size_t			sBufferMax	=	(	sizeof(uint32_t)		//	Projection Width
@@ -383,6 +496,7 @@ asynStatus PluginBldSpectrometer::doSendBld(
 										*	nPeaks	)
 									);
 
+	//	TODO: Pre-allocate storage to avoid malloc/free
 	void		*	pBufferOrig		= malloc( sBufferMax );
 
 	// Packing fixed size portion of output buffer
@@ -423,6 +537,7 @@ asynStatus PluginBldSpectrometer::doSendBld(
 	int bldStatus	= 0;
 	if ( bldStatus != 3 )
 	bldStatus = BldSendPacket( 0, srcPhysicalID, xtcType, &pNDArray->epicsTS, pBufferOrig, sBuffer );
+	free( pBufferOrig );
 
 	if ( bldStatus != 0 )
 	{
@@ -593,7 +708,9 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 
 		if (sendBld)
 		{
-			doSendBld( pArray, pBld );
+			int		pulseId	= pArray->epicsTS.nsec & PULSEID_INVALID;
+			if ( pulseId != PULSEID_INVALID )
+				doSendBld( pArray, pBld );
 		}
 
 		// Update output PV's
