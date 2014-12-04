@@ -33,7 +33,8 @@ edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 edt_DBD += bldClient.dbd
 
-edt_DBD += timeStampSource.dbd
+#edt_DBD += timeStampSource.dbd
+edt_DBD += timeStampFifo.dbd
 edt_DBD += PluginBldSpectrometer.dbd
 
 # ffmpegServer
@@ -104,7 +105,8 @@ edt_SYS_LIBS += z
 #edt_LIBS += ffmpegServer
 #edt_LIBS += swscale
 
-edt_LIBS += timeStampSource
+#edt_LIBS += timeStampSource
+edt_LIBS += timeStampFifo
 
 edt_LIBS += $(EPICS_BASE_IOC_LIBS)
 

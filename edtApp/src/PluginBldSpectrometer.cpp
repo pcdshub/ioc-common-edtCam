@@ -262,8 +262,13 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	pBldData->m_rawCenterOfMass			= 0.0;
 	pBldData->m_rawIntegral				= 0.0;
 	pBldData->m_horizProjWidth			= this->profileSizeX;
-	pBldData->m_horizProjFirstRowUsed	= 0;
-	pBldData->m_horizProjLastRowUsed	= this->profileSizeX + 1;
+	pBldData->m_horizProjFirstRowUsed	= 0;	// TODO: Need to fetch asynDrv port CAM, addr 0, param MIN_Y
+	// Possibly something along these lines
+	//	asynUser	*	pasynUser = asynManager->createAsynUser(0,0);
+	//	port * pPort = asynManager->locatePort( NDArrayPort, NDArrayAddr );
+	//	int	firstRow	= 0;
+	//	pPort->readIntegerParam( MIN_Y, &firstRow );
+	pBldData->m_horizProjLastRowUsed	= pBldData->m_horizProjFirstRowUsed	+ this->profileSizeY - 1;
 	for (	size_t	iPeak = 0; iPeak < nPeaks; iPeak++ )
 	{
 		pBldData->m_Peaks[iPeak].m_Start		= 0;

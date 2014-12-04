@@ -49,6 +49,7 @@ edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
 var EDT_PDV_DEBUG 2
+var DEBUG_TSFifo  1
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -84,11 +85,13 @@ dbLoadRecords( "db/evrPmc230.db",			"EVR=EVR:FEE1:441,CARD=$(EVR_CARD),IP0E=Enab
 #epicsThreadSleep $(ST_CMD_DELAYS)
 # $$LOOP(EVR)
 
-< db/$(MODEL).env
-
 # Default edtPdvDriver settings
 epicsEnvSet(	"CAM_PORT",					"CAM" )
+epicsEnvSet(	"CAM_MODE",					"Base" )
 epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
+
+# Read model specific environment variables
+< db/$(MODEL).env
 
 #
 #
@@ -97,7 +100,7 @@ epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
 # Configure an edtPdv driver for the specified camera model
 # =========================================================
 edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
-registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
+#registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
 
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",		1, $(CAM_TRACE_MASK) )
@@ -113,7 +116,8 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
 dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG1" )
-dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
+#dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG1:EC_RBV,DLY=1" )
 
 # For camera serial asyn diagnostics
 # (AreaDetector plugins each have their own AsynIO record)
@@ -156,7 +160,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-setupScripts/pluginBldSpectrometer.cmd
+< setupScripts/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
@@ -186,9 +190,6 @@ create_monitor_set( "$(IOC).req", 5, "" )
 
 epicsThreadSleep 2
 #dbpf CAMR:FEE1:441:Acquire 1
-
-# Timestamp support
-#dbpf CAMR:FEE1:441:TSS_SETEC 140
 
 # Configure the BLD client
 epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer

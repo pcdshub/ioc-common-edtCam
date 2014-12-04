@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 2113
-y 34
+x 729
+y 31
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -1351,7 +1351,7 @@ minor 7
 release 0
 x 532
 y 100
-w 59
+w 60
 h 18
 controlPv "$(P)$(R)AcquireTime"
 format "decimal"
@@ -1361,7 +1361,6 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
-autoHeight
 motifWidget
 limitsFromDb
 nullColor index 40
@@ -1637,7 +1636,6 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
-autoHeight
 motifWidget
 nullColor index 40
 smartRefresh
@@ -2678,7 +2676,7 @@ minor 7
 release 0
 x 532
 y 76
-w 59
+w 60
 h 18
 controlPv "$(P)$(R)EdtBeamEventCode"
 format "decimal"
@@ -2688,7 +2686,6 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
-autoHeight
 motifWidget
 limitsFromDb
 nullColor index 40
@@ -2710,7 +2707,7 @@ x 600
 y 76
 w 88
 h 20
-controlPv "$(P)$(R)TSS_EVENTCODE"
+controlPv "$(P)$(R)TSS:ProcessSub.B"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -2987,5 +2984,75 @@ replaceSymbols {
 propagateMacros {
   0 0
 }
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 236
+y 328
+w 100
+h 20
+controlPv "$(P)$(R)BitsPerPixel_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 16
+y 328
+w 120
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Bits per Pixel"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 236
+y 356
+w 100
+h 20
+controlPv "$(P)$(R)BytesPerPixel_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
 endObjectProperties
 
