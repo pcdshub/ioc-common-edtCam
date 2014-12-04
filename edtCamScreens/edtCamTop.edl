@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 729
-y 31
+x 671
+y 73
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -1351,7 +1351,7 @@ minor 7
 release 0
 x 532
 y 100
-w 60
+w 59
 h 18
 controlPv "$(P)$(R)AcquireTime"
 format "decimal"
@@ -1361,6 +1361,7 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
+autoHeight
 motifWidget
 limitsFromDb
 nullColor index 40
@@ -1636,6 +1637,7 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
+autoHeight
 motifWidget
 nullColor index 40
 smartRefresh
@@ -2656,7 +2658,7 @@ minor 1
 release 1
 x 376
 y 76
-w 140
+w 108
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -2674,10 +2676,10 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 532
+x 488
 y 76
-w 60
-h 18
+w 56
+h 20
 controlPv "$(P)$(R)EdtBeamEventCode"
 format "decimal"
 font "helvetica-medium-r-12.0"
@@ -2686,6 +2688,7 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
+autoHeight
 motifWidget
 limitsFromDb
 nullColor index 40
@@ -2703,9 +2706,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 600
+x 548
 y 76
-w 88
+w 64
 h 20
 controlPv "$(P)$(R)TSS:ProcessSub.B"
 font "helvetica-medium-r-12.0"
@@ -2975,6 +2978,9 @@ numDsps 1
 displayFileName {
   0 "edtCamScreens/BldSpectrometer.edl"
 }
+setPosition {
+  0 "button"
+}
 symbols {
   0 "CAM=$(CAM),P=$(CAM):BLD1,R=:,IOC=$(IOC)"
 }
@@ -3051,6 +3057,32 @@ limitsFromDb
 nullColor index 40
 smartRefresh
 useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 616
+y 76
+w 72
+h 20
+controlPv "$(P)$(R)EdtBeamRepRate_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
 newPos
 objType "monitors"
 noExecuteClipMask

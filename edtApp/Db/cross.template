@@ -1,75 +1,70 @@
 # Database for the records which support 2
 # colored crossmark overlays
 
-record(longout, "$(P)$(R)Cross1X")
+record( longout, "$(P)$(R)Cross1X" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross1X_RBV")
-   field(OUT, "$(P)$(R)Cross1X_RBV")
+	field( OUT,  "$(P)$(R)Cross1X_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross1X_RBV")
+record( longin, "$(P)$(R)Cross1X_RBV" )
 {
-   field(DTYP, "Soft Channel")
 }
 
-record(longout, "$(P)$(R)Cross1Y")
+record( longout, "$(P)$(R)Cross1Y" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross1Y_RBV")
-   field(OUT, "$(P)$(R)Cross1Y_RBV")
+	field( OUT,  "$(P)$(R)Cross1Y_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross1Y_RBV")
+record( longin, "$(P)$(R)Cross1Y_RBV" )
 {
-   field(DTYP, "Soft Channel")
 }
 
-record(longout, "$(P)$(R)Cross1Color")
+record( longout, "$(P)$(R)Cross1Color" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross1Color_RBV")
-   field(OUT, "$(P)$(R)Cross1Color_RBV")
+	field( OUT,  "$(P)$(R)Cross1Color_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross1Color_RBV")
+record( longin, "$(P)$(R)Cross1Color_RBV" )
 {
-   field(DTYP, "Soft Channel")
 }
 
-record(longout, "$(P)$(R)Cross2X")
+record( longout, "$(P)$(R)Cross2X" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross2X_RBV")
-   field(OUT, "$(P)$(R)Cross2X_RBV")
+	field( OUT,  "$(P)$(R)Cross2X_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross2X_RBV")
+record( longin, "$(P)$(R)Cross2X_RBV" )
 {
-   field(DTYP, "Soft Channel")
 }
 
-record(longout, "$(P)$(R)Cross2Y")
+record( longout, "$(P)$(R)Cross2Y" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross2Y_RBV")
-   field(OUT, "$(P)$(R)Cross2Y_RBV")
+	field( OUT,  "$(P)$(R)Cross2Y_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross2Y_RBV")
+record( longin, "$(P)$(R)Cross2Y_RBV" )
 {
-   field(DTYP, "Soft Channel")
 }
 
-record(longout, "$(P)$(R)Cross2Color")
+record( longout, "$(P)$(R)Cross2Color" )
 {
-   field(DTYP, "Soft Channel")
-   field(FLNK, "$(P)$(R)Cross2Color_RBV")
-   field(OUT, "$(P)$(R)Cross2Color_RBV")
+	field( OUT,  "$(P)$(R)Cross2Color_RBV PP MS" )
+	field( PINI, "YES" )
+	info( autosavefields, "VAL DESC" )
 }
 
-record(longin, "$(P)$(R)Cross2Color_RBV")
+record( longin, "$(P)$(R)Cross2Color_RBV" )
 {
-   field(DTYP, "Soft Channel")
+	info( autosavefields, "DESC" )
 }
 

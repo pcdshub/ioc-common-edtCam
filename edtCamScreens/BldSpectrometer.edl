@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1107
-y 336
+x 2174
+y 960
 w 780
 h 860
 font "helvetica-bold-r-12.0"
@@ -23,6 +23,36 @@ showGrid
 snapToGrid
 gridSize 4
 endScreenProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 428
+y 200
+w 336
+h 196
+lineColor index 5
+fill
+fillColor index 5
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 436
+y 212
+w 324
+h 180
+lineColor index 14
+fill
+fillColor index 3
+endObjectProperties
 
 # (Rectangle)
 object activeRectangleClass
@@ -2302,8 +2332,8 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 448
-y 792
+x 444
+y 228
 w 192
 h 20
 fgColor index 25
@@ -2314,5 +2344,420 @@ botShadowColor index 11
 controlPv "$(P)$(R)ComputeProjections"
 indicatorPv "$(P)$(R)ComputeProjections_RBV"
 font "helvetica-bold-r-12.0"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 452
+y 256
+w 76
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Threshold"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 536
+y 256
+w 84
+h 20
+controlPv "$(P)$(R)HorizBaseline"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+newPos
+noExecuteClipMask
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 652
+y 228
+w 96
+h 20
+fgColor index 43
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-medium-r-12.0"
+buttonLabel "Horiz Proj"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "areaDetectorScreens/NDPlot.edl"
+}
+symbols {
+  0 "DATA=HorizProj,TITLE=Horiz Proj,XLABEL=Column Number,YLABEL=Column Sum"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 452
+y 284
+w 172
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Baseline Adj Center of Mass"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 452
+y 312
+w 172
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Raw Center of Mass"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 452
+y 340
+w 172
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Baseline Adj Integral"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 452
+y 368
+w 172
+h 20
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Baseline Raw Integral"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 436
+y 204
+w 80
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 5
+value {
+  "Horiz Proj"
+}
+border
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 652
+y 256
+w 96
+h 20
+controlPv "$(P)$(R)HorizBaseline_RBV"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 648
+y 280
+w 104
+h 28
+fgColor index 14
+bgColor index 0
+topShadowColor index 45
+botShadowColor index 47
+font "helvetica-medium-r-18.0"
+invisible
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "historyScreens/histViewer.edl"
+}
+menuLabel {
+  0 "History"
+}
+symbols {
+  0 "SIG=$(P)$(R)AdjCtrMass_RBV,DUR=LAST_N"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 648
+y 308
+w 104
+h 28
+fgColor index 14
+bgColor index 0
+topShadowColor index 45
+botShadowColor index 47
+font "helvetica-medium-r-18.0"
+invisible
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "historyScreens/histViewer.edl"
+}
+menuLabel {
+  0 "History"
+}
+symbols {
+  0 "SIG=$(P)$(R)RawCtrMass_RBV,DUR=LAST_N"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 648
+y 336
+w 104
+h 28
+fgColor index 14
+bgColor index 0
+topShadowColor index 45
+botShadowColor index 47
+font "helvetica-medium-r-18.0"
+invisible
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "historyScreens/histViewer.edl"
+}
+menuLabel {
+  0 "History"
+}
+symbols {
+  0 "SIG=$(P)$(R)AdjIntegral_RBV,DUR=LAST_N"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 648
+y 364
+w 104
+h 28
+fgColor index 14
+bgColor index 0
+topShadowColor index 45
+botShadowColor index 47
+font "helvetica-medium-r-18.0"
+invisible
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "historyScreens/histViewer.edl"
+}
+menuLabel {
+  0 "History"
+}
+symbols {
+  0 "SIG=$(P)$(R)RawIntegral_RBV,DUR=LAST_N"
+}
+replaceSymbols {
+  0 1
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 652
+y 284
+w 96
+h 20
+controlPv "$(P)$(R)AdjCtrMass_RBV"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 652
+y 312
+w 96
+h 20
+controlPv "$(P)$(R)RawCtrMass_RBV"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 652
+y 340
+w 96
+h 20
+controlPv "$(P)$(R)AdjIntegral_RBV"
+format "exponential"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 652
+y 368
+w 96
+h 20
+controlPv "$(P)$(R)RawIntegral_RBV"
+format "exponential"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 16
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
 endObjectProperties
 

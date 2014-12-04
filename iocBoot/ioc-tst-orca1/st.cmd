@@ -126,6 +126,10 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 
 # Load camera model specific db
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
+
+# Load history records
+dbLoadRecords(	"db/ai_hist.db",			"P=$(CAM_PV),R=:" )
+
 #
 #
 #

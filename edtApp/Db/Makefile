@@ -4,6 +4,7 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 # Create and install EDT Camera DB Files
+DB += ai_hist.db
 DB += edtPdvCamera.db
 DB += PluginBldSpectrometer.db
 
@@ -51,6 +52,7 @@ DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).proto
 # Create and install (or just install)
 # Archive files, templates, substitutions like this
 #
+ARCHIVE += ai_hist.archive
 ARCHIVE += edt-ioc.archive
 ARCHIVE += PluginBldSpectrometer.archive
 
@@ -58,6 +60,7 @@ ARCHIVE += PluginBldSpectrometer.archive
 # Create and install (or just install)
 # Autosave request files, templates, substitutions like this
 #
+REQ += ai_hist.req
 REQ += edt-ioc.req
 REQ += PluginBldSpectrometer.req
 

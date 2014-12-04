@@ -1,0 +1,18 @@
+#
+# ai_hist.sub-req
+#
+
+# Save's RMS limits for each waveform
+file wave_proc.tpl-req
+{
+	pattern
+	{	WAVE,								}
+	{	"$(P)$(R)ArrayRate_RBV"				}
+	{	"$(P)$(R)BLD1:AdjCtrMass_RBV"		}
+	{	"$(P)$(R)BLD1:AdjIntegral_RBV"		}
+	{	"$(P)$(R)BLD1:ArrayRate_RBV"		}
+	{	"$(P)$(R)BLD1:HorizRawCtrMass_RBV"		}
+	{	"$(P)$(R)BLD1:HorizRawIntegral_RBV"		}
+	{	"$(P)$(R)IMAGE1:ArrayRate_RBV"		}
+	{	"$(P)$(R)IMAGE2:ArrayRate_RBV"		}
+}

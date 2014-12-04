@@ -1,5 +1,5 @@
 /*
- * PluginBldSpectrometer.cpp
+ * PluginSpectrometer.cpp
  *
  * Image statistics plugin
  * Author: Bruce Hill
@@ -25,10 +25,10 @@
 #define MAX(A,B) (A)>(B)?(A):(B)
 #define MIN(A,B) (A)<(B)?(A):(B)
 
-// static const char *driverName="PluginBldSpectrometer";
+// static const char *driverName="PluginSpectrometer";
 
 template <typename epicsType>
-asynStatus PluginBldSpectrometer::doComputeCentroidT(NDArray *pArray)
+asynStatus PluginSpectrometer::doComputeCentroidT(NDArray *pArray)
 {
 	epicsType *pData = (epicsType *)pArray->pData;
 	double value, *pValue, *pThresh, centroidTotal;
@@ -36,7 +36,7 @@ asynStatus PluginBldSpectrometer::doComputeCentroidT(NDArray *pArray)
 
 	if (pArray->ndims > 2) return(asynError);
 
-	getDoubleParam (PluginBldSpectrometerCentroidThreshold,  &this->centroidThreshold);
+	getDoubleParam( PluginSpectrometerCentroidThreshold,  &this->centroidThreshold );
 	this->unlock();
 	this->centroidX = 0;
 	this->centroidY = 0;
@@ -106,7 +106,7 @@ asynStatus PluginBldSpectrometer::doComputeCentroidT(NDArray *pArray)
 	return(asynSuccess);
 }
 
-asynStatus PluginBldSpectrometer::doComputeCentroid(NDArray *pArray)
+asynStatus PluginSpectrometer::doComputeCentroid(NDArray *pArray)
 {
 	asynStatus status;
 
@@ -144,7 +144,7 @@ asynStatus PluginBldSpectrometer::doComputeCentroid(NDArray *pArray)
 }
 
 template <typename epicsType>
-asynStatus PluginBldSpectrometer::doComputeProfilesT(NDArray *pArray)
+asynStatus PluginSpectrometer::doComputeProfilesT(NDArray *pArray)
 {
 	epicsType *pData = (epicsType *)pArray->pData;
 	epicsType *pCentroid, *pCursor;
@@ -154,8 +154,8 @@ asynStatus PluginBldSpectrometer::doComputeProfilesT(NDArray *pArray)
 	if (pArray->ndims > 2) return(asynError);
 
 	/* Compute the X and Y profiles at the centroid and cursor positions */
-	getIntegerParam (PluginBldSpectrometerCursorX, &itemp); this->cursorX = itemp;
-	getIntegerParam (PluginBldSpectrometerCursorY, &itemp); this->cursorY = itemp;
+	getIntegerParam (PluginSpectrometerCursorX, &itemp); this->cursorX = itemp;
+	getIntegerParam (PluginSpectrometerCursorY, &itemp); this->cursorY = itemp;
 	this->unlock();
 	iy = (size_t) (this->centroidY + 0.5);
 	iy = MAX(iy, 0);
@@ -186,19 +186,19 @@ asynStatus PluginBldSpectrometer::doComputeProfilesT(NDArray *pArray)
 		pCursor   += this->profileSizeX;
 	}
 	this->lock();
-	doCallbacksFloat64Array(this->profileX[profAverage],   this->profileSizeX, PluginBldSpectrometerProfileAverageX, 0);
-	doCallbacksFloat64Array(this->profileY[profAverage],   this->profileSizeY, PluginBldSpectrometerProfileAverageY, 0);
-	doCallbacksFloat64Array(this->profileX[profThreshold], this->profileSizeX, PluginBldSpectrometerProfileThresholdX, 0);
-	doCallbacksFloat64Array(this->profileY[profThreshold], this->profileSizeY, PluginBldSpectrometerProfileThresholdY, 0);
-	doCallbacksFloat64Array(this->profileX[profCentroid],  this->profileSizeX, PluginBldSpectrometerProfileCentroidX, 0);
-	doCallbacksFloat64Array(this->profileY[profCentroid],  this->profileSizeY, PluginBldSpectrometerProfileCentroidY, 0);
-	doCallbacksFloat64Array(this->profileX[profCursor],    this->profileSizeX, PluginBldSpectrometerProfileCursorX, 0);
-	doCallbacksFloat64Array(this->profileY[profCursor],    this->profileSizeY, PluginBldSpectrometerProfileCursorY, 0);
+	doCallbacksFloat64Array(this->profileX[profAverage],   this->profileSizeX, PluginSpectrometerProfileAverageX, 0);
+	doCallbacksFloat64Array(this->profileY[profAverage],   this->profileSizeY, PluginSpectrometerProfileAverageY, 0);
+	doCallbacksFloat64Array(this->profileX[profThreshold], this->profileSizeX, PluginSpectrometerProfileThresholdX, 0);
+	doCallbacksFloat64Array(this->profileY[profThreshold], this->profileSizeY, PluginSpectrometerProfileThresholdY, 0);
+	doCallbacksFloat64Array(this->profileX[profCentroid],  this->profileSizeX, PluginSpectrometerProfileCentroidX, 0);
+	doCallbacksFloat64Array(this->profileY[profCentroid],  this->profileSizeY, PluginSpectrometerProfileCentroidY, 0);
+	doCallbacksFloat64Array(this->profileX[profCursor],    this->profileSizeX, PluginSpectrometerProfileCursorX, 0);
+	doCallbacksFloat64Array(this->profileY[profCursor],    this->profileSizeY, PluginSpectrometerProfileCursorY, 0);
 
 	return(asynSuccess);
 }
 
-asynStatus PluginBldSpectrometer::doComputeProfiles(NDArray *pArray)
+asynStatus PluginSpectrometer::doComputeProfiles(NDArray *pArray)
 {
 	asynStatus status;
 
@@ -237,38 +237,38 @@ asynStatus PluginBldSpectrometer::doComputeProfiles(NDArray *pArray)
 
 
 template <typename epicsType>
-asynStatus PluginBldSpectrometer::doComputeProjectionsT(
+asynStatus PluginSpectrometer::doComputeProjectionsT(
 	NDArray				*	pArray,
 	BldSpectrometer_t	*	pBldData )
 {
-	const char	*	functionName = "PluginBldSpectrometer::doComputeProjectionsT";
+	const char	*	functionName = "PluginSpectrometer::doComputeProjectionsT";
 	if ( pArray->ndims > 2 )
 		return( asynError );
 
 	// Get the BLD configuration parameters
 	size_t		nPeaks					= pBldData->m_Peaks.size();
-	pBldData->m_baselineThreshold		= 0.0;
+	getDoubleParam( PluginSpectrometerHorizBaseline,  &pBldData->m_HorizBaseline );
 #if 0
 	int				itemp;
-	getIntegerParam( PluginBldSpectrometerCursorX, &itemp ); this->cursorX = itemp;
-	getIntegerParam( PluginBldSpectrometerCursorY, &itemp ); this->cursorY = itemp;
+	getIntegerParam( PluginSpectrometerCursorX, &itemp ); this->cursorX = itemp;
+	getIntegerParam( PluginSpectrometerCursorY, &itemp ); this->cursorY = itemp;
 #endif
 
 	// Unlock to prevent deadlocks?
 	this->unlock();
 
 	// Clear BLD data
-	pBldData->m_adjCenterOfMass			= 0.0;
-	pBldData->m_rawCenterOfMass			= 0.0;
-	pBldData->m_rawIntegral				= 0.0;
-	pBldData->m_horizProjWidth			= this->profileSizeX;
-	pBldData->m_horizProjFirstRowUsed	= 0;	// TODO: Need to fetch asynDrv port CAM, addr 0, param MIN_Y
+	pBldData->m_AdjCtrMass			= 0.0;
+	pBldData->m_RawCtrMass			= 0.0;
+	pBldData->m_RawIntegral				= 0.0;
+	pBldData->m_HorizProjWidth			= this->profileSizeX;
+	pBldData->m_HorizProjFirstRowUsed	= 0;	// TODO: Need to fetch asynDrv port CAM, addr 0, param MIN_Y
 	// Possibly something along these lines
 	//	asynUser	*	pasynUser = asynManager->createAsynUser(0,0);
 	//	port * pPort = asynManager->locatePort( NDArrayPort, NDArrayAddr );
 	//	int	firstRow	= 0;
 	//	pPort->readIntegerParam( MIN_Y, &firstRow );
-	pBldData->m_horizProjLastRowUsed	= pBldData->m_horizProjFirstRowUsed	+ this->profileSizeY - 1;
+	pBldData->m_HorizProjLastRowUsed	= pBldData->m_HorizProjFirstRowUsed	+ this->profileSizeY - 1;
 	for (	size_t	iPeak = 0; iPeak < nPeaks; iPeak++ )
 	{
 		pBldData->m_Peaks[iPeak].m_Start		= 0;
@@ -281,7 +281,7 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	pBldData->m_HorizProj.resize( this->profileSizeX );
 	for (	size_t	ix = 0; ix < this->profileSizeX; ix++ )
 	{
-		pBldData->m_HorizProj[ix]	= 0.0;
+		pBldData->m_HorizProj[ix]	= 0;
 	}
 
 	// Compute BLD data
@@ -292,13 +292,13 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 		for (	size_t	ix = 0; ix < this->profileSizeX; ix++ )
 		{
 			double	value	= static_cast<double>( *pData++ );
-			pBldData->m_HorizProj[ix]	+= value;
-			pBldData->m_rawIntegral		+= value;
-			pBldData->m_rawCenterOfMass	+= value * ix;
-			if ( value >= pBldData->m_baselineThreshold )
+			pBldData->m_HorizProj[ix]	+= static_cast<epicsUInt32>(value);
+			pBldData->m_RawIntegral		+= value;
+			pBldData->m_RawCtrMass	+= value * ix;
+			if ( value >= pBldData->m_HorizBaseline )
 			{
-				pBldData->m_adjIntegral		+= value;
-				pBldData->m_adjCenterOfMass	+= value * ix;
+				pBldData->m_AdjIntegral		+= value;
+				pBldData->m_AdjCtrMass	+= value * ix;
 			}
 		}
 	}
@@ -312,13 +312,13 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 		{
 			double	value	= static_cast<double>( *pData );
 			pData += this->profileSizeY;
-			pBldData->m_HorizProj[ix]	+= value;
-			pBldData->m_rawIntegral		+= value;
-			pBldData->m_rawCenterOfMass	+= value * ix;
-			if ( value >= pBldData->m_baselineThreshold )
+			pBldData->m_HorizProj[ix]	+= static_cast<epicsUInt32>(value);
+			pBldData->m_RawIntegral		+= value;
+			pBldData->m_RawCtrMass	+= value * ix;
+			if ( value >= pBldData->m_HorizBaseline )
 			{
-				pBldData->m_adjIntegral		+= value;
-				pBldData->m_adjCenterOfMass	+= value * ix;
+				pBldData->m_AdjIntegral		+= value;
+				pBldData->m_AdjCtrMass	+= value * ix;
 			}
 		}
 	}
@@ -355,7 +355,7 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	double		troughMin		= NAN;
 	for ( size_t	ix = 0; ix < this->profileSizeX; ix++ )
 	{
-		double	value = pBldData->m_HorizProj[ix];
+		double	value = static_cast<epicsUInt32>( pBldData->m_HorizProj[ix] );
 		filtSpec = ( value * iir ) + ( filtSpec * ( 1.0 - iir ) );
 
 		// Keep track of the max
@@ -411,27 +411,35 @@ asynStatus PluginBldSpectrometer::doComputeProjectionsT(
 	}
 #endif
 
-	if( pBldData->m_rawIntegral > 0 )
-		pBldData->m_rawCenterOfMass /= pBldData->m_rawIntegral;
+	if( pBldData->m_RawIntegral > 0 )
+		pBldData->m_RawCtrMass /= pBldData->m_RawIntegral;
 	else
-		pBldData->m_rawCenterOfMass = 0.0;
-	if( pBldData->m_adjIntegral > 0 )
-		pBldData->m_adjCenterOfMass /= pBldData->m_adjIntegral;
+		pBldData->m_RawCtrMass = 0.0;
+	if( pBldData->m_AdjIntegral > 0 )
+		pBldData->m_AdjCtrMass /= pBldData->m_AdjIntegral;
 	else
-		pBldData->m_adjCenterOfMass = 0.0;
+		pBldData->m_AdjCtrMass = 0.0;
 
 	asynPrint(	this->pasynUserSelf, ASYN_TRACEIO_DRIVER,
 				"%s: rawCOM %.1f, adjCOM %.1f, rawSum %.3e, adjSum %.3e\n", functionName,
-				pBldData->m_rawCenterOfMass,	pBldData->m_adjCenterOfMass,
-				pBldData->m_rawIntegral,		pBldData->m_adjIntegral		);
+				pBldData->m_RawCtrMass,	pBldData->m_AdjCtrMass,
+				pBldData->m_RawIntegral,		pBldData->m_AdjIntegral		);
 
 	this->lock();
 
+	// Update PV's
+	doCallbacksInt32Array(	reinterpret_cast<epicsInt32 *>( pBldData->m_HorizProj.data() ),
+							pBldData->m_HorizProjWidth, PluginSpectrometerHorizProj, 0	);
+	// setDoubleParam( PluginSpectrometerHorizBaseline,	pBldData->m_HorizBaseline	);
+	setDoubleParam( PluginSpectrometerAdjCtrMass,		pBldData->m_AdjCtrMass	);
+	setDoubleParam( PluginSpectrometerRawCtrMass,		pBldData->m_RawCtrMass	);
+	setDoubleParam( PluginSpectrometerAdjIntegral,		pBldData->m_AdjIntegral	);
+	setDoubleParam( PluginSpectrometerRawIntegral,		pBldData->m_RawIntegral	);
 
 	return(asynSuccess);
 }
 
-asynStatus PluginBldSpectrometer::doComputeProjections(
+asynStatus PluginSpectrometer::doComputeProjections(
 	NDArray				*	pArray,
 	BldSpectrometer_t	*	pBldData	)
 {
@@ -471,11 +479,11 @@ asynStatus PluginBldSpectrometer::doComputeProjections(
 }
 
 
-asynStatus PluginBldSpectrometer::doSendBld(
+asynStatus PluginSpectrometer::doSendBld(
 	NDArray				*	pNDArray,
 	BldSpectrometer_t	*	pBldData	)
 {
-	const char	*	functionName	= "PluginBldSpectrometer::doSendBld";
+	const char	*	functionName	= "PluginSpectrometer::doSendBld";
 	asynStatus		status			= asynSuccess;
 
 	size_t		nPeaks	= pBldData->m_Peaks.size();
@@ -486,13 +494,13 @@ asynStatus PluginBldSpectrometer::doSendBld(
 	size_t			sBufferMax	=	(	sizeof(uint32_t)		//	Projection Width
 									+	sizeof(uint32_t)		//	First row used
 									+	sizeof(uint32_t)		//	Last row used
-									+	sizeof(double)			//	rawCenterOfMass
-									+	sizeof(double)			//	baselineThreshold
-									+	sizeof(double)			//	adjCenterOfMass
-									+	sizeof(double)			//	rawIntegral
+									+	sizeof(double)			//	RawCtrMass
+									+	sizeof(double)			//	HorizBaseline
+									+	sizeof(double)			//	AdjCtrMass
+									+	sizeof(double)			//	RawIntegral
 									+	sizeof(uint32_t)		//	nPeaks
 									+	(	sizeof(uint32_t)	//	Horiz projection
-										*	pBldData->m_horizProjWidth	)
+										*	pBldData->m_HorizProjWidth	)
 									+	(	sizeof(double)		//	Peak positions
 										*	nPeaks	)
 									+	(	sizeof(double)		//	Peak heights
@@ -506,20 +514,20 @@ asynStatus PluginBldSpectrometer::doSendBld(
 
 	// Packing fixed size portion of output buffer
 	uint32_t	*	pBufferUint32	= static_cast<uint32_t *>( pBufferOrig );
-	*pBufferUint32++	= pBldData->m_horizProjWidth;
-	*pBufferUint32++	= pBldData->m_horizProjFirstRowUsed;
-	*pBufferUint32++	= pBldData->m_horizProjLastRowUsed;
+	*pBufferUint32++	= pBldData->m_HorizProjWidth;
+	*pBufferUint32++	= pBldData->m_HorizProjFirstRowUsed;
+	*pBufferUint32++	= pBldData->m_HorizProjLastRowUsed;
 	double		*	pBufferDouble	= reinterpret_cast<double *>( pBufferUint32 );
-	*pBufferDouble++	= pBldData->m_rawCenterOfMass;
-	*pBufferDouble++	= pBldData->m_baselineThreshold;
-	*pBufferDouble++	= pBldData->m_adjCenterOfMass;
-	*pBufferDouble++	= pBldData->m_rawIntegral;
+	*pBufferDouble++	= pBldData->m_RawCtrMass;
+	*pBufferDouble++	= pBldData->m_HorizBaseline;
+	*pBufferDouble++	= pBldData->m_AdjCtrMass;
+	*pBufferDouble++	= pBldData->m_RawIntegral;
 	pBufferUint32		= reinterpret_cast<uint32_t *>( pBufferDouble );
 	*pBufferUint32++	= nPeaks;
 
 	// Packing variable size portion of output buffer
-	for ( size_t	ix = 0; ix < pBldData->m_horizProjWidth; ix++ )
-		*pBufferUint32++	= static_cast<uint32_t>( this->profileX[profAverage][ix] );
+	for ( size_t	ix = 0; ix < pBldData->m_HorizProjWidth; ix++ )
+		*pBufferUint32++	= static_cast<uint32_t>( pBldData->m_HorizProj[ix] );
 
 	pBufferDouble	= reinterpret_cast<double *>( pBufferUint32 );
 	for ( size_t	iPeak = 0; iPeak < nPeaks; iPeak++ )
@@ -566,9 +574,9 @@ asynStatus PluginBldSpectrometer::doSendBld(
   * Does image statistics.
   * \param[in] pArray  The NDArray from the callback.
   */
-void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
+void PluginSpectrometer::processCallbacks(NDArray *pArray)
 {
-//	const char	*	functionName = "PluginBldSpectrometer::processCallbacks";
+//	const char	*	functionName = "PluginSpectrometer::processCallbacks";
 
 	/* This function does array statistics.
 	 * It is called with the mutex already locked.	It unlocks it during long calculations when private
@@ -585,10 +593,10 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 	NDPluginDriver::processCallbacks(pArray);
 
 	pArray->getInfo(&arrayInfo);
-	getIntegerParam( PluginBldSpectrometerComputeCentroid,		&computeCentroid );
-	getIntegerParam( PluginBldSpectrometerComputeProfiles,		&computeProfiles );
-	getIntegerParam( PluginBldSpectrometerComputeProjections,	&computeProjections );
-	getIntegerParam( PluginBldSpectrometerSendBld,				&sendBld );
+	getIntegerParam( PluginSpectrometerComputeCentroid,		&computeCentroid );
+	getIntegerParam( PluginSpectrometerComputeProfiles,		&computeProfiles );
+	getIntegerParam( PluginSpectrometerComputeProjections,	&computeProjections );
+	getIntegerParam( PluginSpectrometerSendBld,				&sendBld );
 
 	if (pArray->ndims > 0) sizeX = pArray->dims[0].size;
 	if (pArray->ndims == 1) sizeY = 1;
@@ -597,7 +605,7 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 	if (sizeX != this->profileSizeX)
 	{
 		this->profileSizeX = sizeX;
-		setIntegerParam(PluginBldSpectrometerProfileSizeX,	(int)this->profileSizeX);
+		setIntegerParam(PluginSpectrometerProfileSizeX,	(int)this->profileSizeX);
 		for ( size_t i=0; i<MAX_PROFILE_TYPES; i++)
 		{
 			if (this->profileX[i]) free(this->profileX[i]);
@@ -607,7 +615,7 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 	if (sizeY != this->profileSizeY)
 	{
 		this->profileSizeY = sizeY;
-		setIntegerParam(PluginBldSpectrometerProfileSizeY, (int)this->profileSizeY);
+		setIntegerParam(PluginSpectrometerProfileSizeY, (int)this->profileSizeY);
 		for ( size_t i=0; i<MAX_PROFILE_TYPES; i++)
 		{
 			if (this->profileY[i]) free(this->profileY[i]);
@@ -624,7 +632,7 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 		int dim;
 		double				bgdCounts,	avgBgd;
 		NDArray			*	pBgdArray	= NULL;
-		getIntegerParam(PluginBldSpectrometerBgdWidth, &bgdWidth);
+		getIntegerParam(PluginSpectrometerBgdWidth, &bgdWidth);
 		doComputeStatistics(pArray, pBld);
 		/* If there is a non-zero background width then compute the background counts */
 		if (bgdWidth > 0)
@@ -675,16 +683,16 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 			avgBgd = bgdCounts / bgdPixels;
 			pBld->net = pBld->total - avgBgd*pBld->nElements;
 		}
-		setDoubleParam(PluginBldSpectrometerMinValue,	 pBld->min);
-		setDoubleParam(PluginBldSpectrometerMinX,		 (double)pBld->minX);
-		setDoubleParam(PluginBldSpectrometerMinY,		 (double)pBld->minY);
-		setDoubleParam(PluginBldSpectrometerMaxValue,	 pBld->max);
-		setDoubleParam(PluginBldSpectrometerMaxX,		 (double)pBld->maxX);
-		setDoubleParam(PluginBldSpectrometerMaxY,		 (double)pBld->maxY);
-		setDoubleParam(PluginBldSpectrometerMeanValue,	 pBld->mean);
-		setDoubleParam(PluginBldSpectrometerSigmaValue,  pBld->sigma);
-		setDoubleParam(PluginBldSpectrometerTotal,		 pBld->total);
-		setDoubleParam(PluginBldSpectrometerNet,		 pBld->net);
+		setDoubleParam(PluginSpectrometerMinValue,	 pBld->min);
+		setDoubleParam(PluginSpectrometerMinX,		 (double)pBld->minX);
+		setDoubleParam(PluginSpectrometerMinY,		 (double)pBld->minY);
+		setDoubleParam(PluginSpectrometerMaxValue,	 pBld->max);
+		setDoubleParam(PluginSpectrometerMaxX,		 (double)pBld->maxX);
+		setDoubleParam(PluginSpectrometerMaxY,		 (double)pBld->maxY);
+		setDoubleParam(PluginSpectrometerMeanValue,	 pBld->mean);
+		setDoubleParam(PluginSpectrometerSigmaValue,  pBld->sigma);
+		setDoubleParam(PluginSpectrometerTotal,		 pBld->total);
+		setDoubleParam(PluginSpectrometerNet,		 pBld->net);
 		asynPrint(	this->pasynUserSelf, ASYN_TRACEIO_DRIVER,
 					(char *)pArray->pData, arrayInfo.totalBytes,
 					"%s: min=%f, max=%f, mean=%f, total=%f, net=%f",
@@ -695,11 +703,11 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 	if (computeCentroid)
 	{
 		doComputeCentroid(pArray);
-		setDoubleParam(PluginBldSpectrometerCentroidX,	 this->centroidX);
-		setDoubleParam(PluginBldSpectrometerCentroidY,	 this->centroidY);
-		setDoubleParam(PluginBldSpectrometerSigmaX,		 this->sigmaX);
-		setDoubleParam(PluginBldSpectrometerSigmaY,		 this->sigmaY);
-		setDoubleParam(PluginBldSpectrometerSigmaXY,	 this->sigmaXY);
+		setDoubleParam(PluginSpectrometerCentroidX,	 this->centroidX);
+		setDoubleParam(PluginSpectrometerCentroidY,	 this->centroidY);
+		setDoubleParam(PluginSpectrometerSigmaX,		 this->sigmaX);
+		setDoubleParam(PluginSpectrometerSigmaY,		 this->sigmaY);
+		setDoubleParam(PluginSpectrometerSigmaXY,	 this->sigmaXY);
 	}
 
 	if (computeProfiles)
@@ -720,14 +728,14 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
 
 		// Update output PV's
 #if 0
-		doCallbacksFloat64Array( this->profileX[profAverage],	this->profileSizeX,	PluginBldSpectrometerProfileAverageX,	0 );
-		doCallbacksFloat64Array( this->profileY[profAverage],	this->profileSizeY,	PluginBldSpectrometerProfileAverageY,	0 );
-		doCallbacksFloat64Array( this->profileX[profThreshold],	this->profileSizeX,	PluginBldSpectrometerProfileThresholdX,	0 );
-		doCallbacksFloat64Array( this->profileY[profThreshold],	this->profileSizeY,	PluginBldSpectrometerProfileThresholdY,	0 );
-		doCallbacksFloat64Array( this->profileX[profCentroid],	this->profileSizeX,	PluginBldSpectrometerProfileCentroidX,	0 );
-		doCallbacksFloat64Array( this->profileY[profCentroid],	this->profileSizeY,	PluginBldSpectrometerProfileCentroidY,	0 );
-		doCallbacksFloat64Array( this->profileX[profCursor],	this->profileSizeX,	PluginBldSpectrometerProfileCursorX,	0 );
-		doCallbacksFloat64Array( this->profileY[profCursor],	this->profileSizeY,	PluginBldSpectrometerProfileCursorY,	0 );
+		doCallbacksFloat64Array( this->profileX[profAverage],	this->profileSizeX,	PluginSpectrometerProfileAverageX,	0 );
+		doCallbacksFloat64Array( this->profileY[profAverage],	this->profileSizeY,	PluginSpectrometerProfileAverageY,	0 );
+		doCallbacksFloat64Array( this->profileX[profThreshold],	this->profileSizeX,	PluginSpectrometerProfileThresholdX,	0 );
+		doCallbacksFloat64Array( this->profileY[profThreshold],	this->profileSizeY,	PluginSpectrometerProfileThresholdY,	0 );
+		doCallbacksFloat64Array( this->profileX[profCentroid],	this->profileSizeX,	PluginSpectrometerProfileCentroidX,	0 );
+		doCallbacksFloat64Array( this->profileY[profCentroid],	this->profileSizeY,	PluginSpectrometerProfileCentroidY,	0 );
+		doCallbacksFloat64Array( this->profileX[profCursor],	this->profileSizeX,	PluginSpectrometerProfileCursorX,	0 );
+		doCallbacksFloat64Array( this->profileY[profCursor],	this->profileSizeY,	PluginSpectrometerProfileCursorY,	0 );
 #endif
 	}
 
@@ -746,9 +754,9 @@ void PluginBldSpectrometer::processCallbacks(NDArray *pArray)
   * For all parameters it sets the value in the parameter library and calls any registered callbacks..
   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
   * \param[in] value Value to write. */
-asynStatus PluginBldSpectrometer::writeInt32(asynUser *pasynUser, epicsInt32 value)
+asynStatus PluginSpectrometer::writeInt32(asynUser *pasynUser, epicsInt32 value)
 {
-	static const char	*	functionName	= "PluginBldSpectrometer::writeInt32";
+	static const char	*	functionName	= "PluginSpectrometer::writeInt32";
 	const char			*	reasonName		= "unknownReason";
 	int						function		= pasynUser->reason;
 	asynStatus				status			= asynSuccess;
@@ -756,14 +764,14 @@ asynStatus PluginBldSpectrometer::writeInt32(asynUser *pasynUser, epicsInt32 val
 	/* Set the parameter in the parameter library. */
 	status = (asynStatus) setIntegerParam(function, value);
 
-	if (function == PluginBldSpectrometerCursorX)
+	if (function == PluginSpectrometerCursorX)
 	{
 		this->cursorX = value;
 		if (this->pArrays[0])
 		{
 			doComputeProfiles(this->pArrays[0]);
 		}
-	} else if (function == PluginBldSpectrometerCursorY)
+	} else if (function == PluginSpectrometerCursorY)
 	{
 		this->cursorY = value;
 		if (this->pArrays[0])
@@ -773,7 +781,7 @@ asynStatus PluginBldSpectrometer::writeInt32(asynUser *pasynUser, epicsInt32 val
 	} else
 	{
 		/* If this parameter belongs to a base class call its method */
-		if (function < FIRST_PLUGIN_BLD_SPEC_PARAM)
+		if (function < FIRST_PLUGIN_SPEC_PARAM)
 			status = NDPluginDriver::writeInt32(pasynUser, value);
 	}
 
@@ -797,9 +805,9 @@ asynStatus PluginBldSpectrometer::writeInt32(asynUser *pasynUser, epicsInt32 val
   * For all parameters it sets the value in the parameter library and calls any registered callbacks..
   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
   * \param[in] value Value to write. */
-asynStatus	PluginBldSpectrometer::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
+asynStatus	PluginSpectrometer::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 {
-	static const char	*	functionName	= "PluginBldSpectrometer::writeFloat64";
+	static const char	*	functionName	= "PluginSpectrometer::writeFloat64";
 	const char			*	reasonName		= "unknownReason";
 	int						function		= pasynUser->reason;
 	asynStatus				status			= asynSuccess;
@@ -809,20 +817,20 @@ asynStatus	PluginBldSpectrometer::writeFloat64(asynUser *pasynUser, epicsFloat64
 	 * status at the end, but that's OK */
 	status = setDoubleParam(function, value);
 
-	if (function == PluginBldSpectrometerCentroidThreshold)
+	if (function == PluginSpectrometerCentroidThreshold)
 	{
-		getIntegerParam(PluginBldSpectrometerComputeCentroid, &computeCentroid);
+		getIntegerParam(PluginSpectrometerComputeCentroid, &computeCentroid);
 		if (computeCentroid && this->pArrays[0])
 		{
 			doComputeCentroid(this->pArrays[0]);
-			getIntegerParam(PluginBldSpectrometerComputeProfiles, &computeProfiles);
+			getIntegerParam(PluginSpectrometerComputeProfiles, &computeProfiles);
 			if (computeProfiles) doComputeProfiles(this->pArrays[0]);
 		}
 	}
 	else
 	{
 		/* If this parameter belongs to a base class call its method */
-		if (function < FIRST_PLUGIN_BLD_SPEC_PARAM)
+		if (function < FIRST_PLUGIN_SPEC_PARAM)
 			status = NDPluginDriver::writeFloat64(pasynUser, value);
 	}
 
@@ -843,7 +851,7 @@ asynStatus	PluginBldSpectrometer::writeFloat64(asynUser *pasynUser, epicsFloat64
 
 
 
-/** Constructor for PluginBldSpectrometer; most parameters are simply passed to NDPluginDriver::NDPluginDriver.
+/** Constructor for PluginSpectrometer; most parameters are simply passed to NDPluginDriver::NDPluginDriver.
   * After calling the base class constructor this method sets reasonable default values for all of the
   * parameters.
   * \param[in] portName The name of the asyn port driver to be created.
@@ -862,67 +870,75 @@ asynStatus	PluginBldSpectrometer::writeFloat64(asynUser *pasynUser, epicsFloat64
   * \param[in] priority The thread priority for the asyn port driver thread if ASYN_CANBLOCK is set in asynFlags.
   * \param[in] stackSize The stack size for the asyn port driver thread if ASYN_CANBLOCK is set in asynFlags.
   */
-PluginBldSpectrometer::PluginBldSpectrometer(const char *portName, int queueSize, int blockingCallbacks,
+PluginSpectrometer::PluginSpectrometer(const char *portName, int queueSize, int blockingCallbacks,
 						 const char *NDArrayPort, int NDArrayAddr,
 						 int maxBuffers, size_t maxMemory,
 						 int priority, int stackSize)
 	/* Invoke the base class constructor */
 	: NDPluginDriver(portName, queueSize, blockingCallbacks,
-				   NDArrayPort, NDArrayAddr, 1, NUM_PLUGIN_BLD_SPEC_PARAMS, maxBuffers, maxMemory,
+				   NDArrayPort, NDArrayAddr, 1, NUM_PLUGIN_SPEC_PARAMS, maxBuffers, maxMemory,
 				   asynInt32ArrayMask | asynFloat64ArrayMask | asynGenericPointerMask,
 				   asynInt32ArrayMask | asynFloat64ArrayMask | asynGenericPointerMask,
 				   0, 1, priority, stackSize)
 {
-	//const char *functionName = "PluginBldSpectrometer::PluginBldSpectrometer";
+	//const char *functionName = "PluginSpectrometer::PluginSpectrometer";
 
 	/* Statistics */
-	createParam(PluginBldSpectrometerComputeStatisticsString, asynParamInt32,	   &PluginBldSpectrometerComputeStatistics);
-	createParam(PluginBldSpectrometerBgdWidthString,		  asynParamInt32,	   &PluginBldSpectrometerBgdWidth);
-	createParam(PluginBldSpectrometerMinValueString,		  asynParamFloat64,    &PluginBldSpectrometerMinValue);
-	createParam(PluginBldSpectrometerMinXString,			  asynParamFloat64,    &PluginBldSpectrometerMinX);
-	createParam(PluginBldSpectrometerMinYString,			  asynParamFloat64,    &PluginBldSpectrometerMinY);
-	createParam(PluginBldSpectrometerMaxValueString,		  asynParamFloat64,    &PluginBldSpectrometerMaxValue);
-	createParam(PluginBldSpectrometerMaxXString,			  asynParamFloat64,    &PluginBldSpectrometerMaxX);
-	createParam(PluginBldSpectrometerMaxYString,			  asynParamFloat64,    &PluginBldSpectrometerMaxY);
-	createParam(PluginBldSpectrometerMeanValueString,		  asynParamFloat64,    &PluginBldSpectrometerMeanValue);
-	createParam(PluginBldSpectrometerSigmaValueString,		  asynParamFloat64,    &PluginBldSpectrometerSigmaValue);
-	createParam(PluginBldSpectrometerTotalString,			  asynParamFloat64,    &PluginBldSpectrometerTotal);
-	createParam(PluginBldSpectrometerNetString,				  asynParamFloat64,    &PluginBldSpectrometerNet);
+	createParam(PluginSpectrometerComputeStatisticsString, asynParamInt32,	   &PluginSpectrometerComputeStatistics);
+	createParam(PluginSpectrometerBgdWidthString,		  asynParamInt32,	   &PluginSpectrometerBgdWidth);
+	createParam(PluginSpectrometerMinValueString,		  asynParamFloat64,    &PluginSpectrometerMinValue);
+	createParam(PluginSpectrometerMinXString,			  asynParamFloat64,    &PluginSpectrometerMinX);
+	createParam(PluginSpectrometerMinYString,			  asynParamFloat64,    &PluginSpectrometerMinY);
+	createParam(PluginSpectrometerMaxValueString,		  asynParamFloat64,    &PluginSpectrometerMaxValue);
+	createParam(PluginSpectrometerMaxXString,			  asynParamFloat64,    &PluginSpectrometerMaxX);
+	createParam(PluginSpectrometerMaxYString,			  asynParamFloat64,    &PluginSpectrometerMaxY);
+	createParam(PluginSpectrometerMeanValueString,		  asynParamFloat64,    &PluginSpectrometerMeanValue);
+	createParam(PluginSpectrometerSigmaValueString,		  asynParamFloat64,    &PluginSpectrometerSigmaValue);
+	createParam(PluginSpectrometerTotalString,			  asynParamFloat64,    &PluginSpectrometerTotal);
+	createParam(PluginSpectrometerNetString,				  asynParamFloat64,    &PluginSpectrometerNet);
 
 	/* Centroid */
-	createParam(PluginBldSpectrometerComputeCentroidString,   asynParamInt32,	   &PluginBldSpectrometerComputeCentroid);
-	createParam(PluginBldSpectrometerCentroidThresholdString, asynParamFloat64,    &PluginBldSpectrometerCentroidThreshold);
-	createParam(PluginBldSpectrometerCentroidXString,		  asynParamFloat64,    &PluginBldSpectrometerCentroidX);
-	createParam(PluginBldSpectrometerCentroidYString,		  asynParamFloat64,    &PluginBldSpectrometerCentroidY);
-	createParam(PluginBldSpectrometerSigmaXString,			  asynParamFloat64,    &PluginBldSpectrometerSigmaX);
-	createParam(PluginBldSpectrometerSigmaYString,			  asynParamFloat64,    &PluginBldSpectrometerSigmaY);
-	createParam(PluginBldSpectrometerSigmaXYString,			  asynParamFloat64,    &PluginBldSpectrometerSigmaXY);
+	createParam(PluginSpectrometerComputeCentroidString,   asynParamInt32,	   &PluginSpectrometerComputeCentroid);
+	createParam(PluginSpectrometerCentroidThresholdString, asynParamFloat64,    &PluginSpectrometerCentroidThreshold);
+	createParam(PluginSpectrometerCentroidXString,		  asynParamFloat64,    &PluginSpectrometerCentroidX);
+	createParam(PluginSpectrometerCentroidYString,		  asynParamFloat64,    &PluginSpectrometerCentroidY);
+	createParam(PluginSpectrometerSigmaXString,			  asynParamFloat64,    &PluginSpectrometerSigmaX);
+	createParam(PluginSpectrometerSigmaYString,			  asynParamFloat64,    &PluginSpectrometerSigmaY);
+	createParam(PluginSpectrometerSigmaXYString,			  asynParamFloat64,    &PluginSpectrometerSigmaXY);
 
 	/* Profiles */
-	createParam(PluginBldSpectrometerComputeProfilesString,   asynParamInt32,		  &PluginBldSpectrometerComputeProfiles);
-	createParam(PluginBldSpectrometerProfileSizeXString,	  asynParamInt32,		  &PluginBldSpectrometerProfileSizeX);
-	createParam(PluginBldSpectrometerProfileSizeYString,	  asynParamInt32,		  &PluginBldSpectrometerProfileSizeY);
-	createParam(PluginBldSpectrometerCursorXString,			  asynParamInt32,		  &PluginBldSpectrometerCursorX);
-	createParam(PluginBldSpectrometerCursorYString,			  asynParamInt32,		  &PluginBldSpectrometerCursorY);
-	createParam(PluginBldSpectrometerProfileAverageXString,   asynParamFloat64Array,  &PluginBldSpectrometerProfileAverageX);
-	createParam(PluginBldSpectrometerProfileAverageYString,   asynParamFloat64Array,  &PluginBldSpectrometerProfileAverageY);
-	createParam(PluginBldSpectrometerProfileThresholdXString, asynParamFloat64Array,  &PluginBldSpectrometerProfileThresholdX);
-	createParam(PluginBldSpectrometerProfileThresholdYString, asynParamFloat64Array,  &PluginBldSpectrometerProfileThresholdY);
-	createParam(PluginBldSpectrometerProfileCentroidXString,  asynParamFloat64Array,  &PluginBldSpectrometerProfileCentroidX);
-	createParam(PluginBldSpectrometerProfileCentroidYString,  asynParamFloat64Array,  &PluginBldSpectrometerProfileCentroidY);
-	createParam(PluginBldSpectrometerProfileCursorXString,	  asynParamFloat64Array,  &PluginBldSpectrometerProfileCursorX);
-	createParam(PluginBldSpectrometerProfileCursorYString,	  asynParamFloat64Array,  &PluginBldSpectrometerProfileCursorY);
+	createParam(PluginSpectrometerComputeProfilesString,   asynParamInt32,		  &PluginSpectrometerComputeProfiles);
+	createParam(PluginSpectrometerProfileSizeXString,	  asynParamInt32,		  &PluginSpectrometerProfileSizeX);
+	createParam(PluginSpectrometerProfileSizeYString,	  asynParamInt32,		  &PluginSpectrometerProfileSizeY);
+	createParam(PluginSpectrometerCursorXString,			  asynParamInt32,		  &PluginSpectrometerCursorX);
+	createParam(PluginSpectrometerCursorYString,			  asynParamInt32,		  &PluginSpectrometerCursorY);
+	createParam(PluginSpectrometerProfileAverageXString,   asynParamFloat64Array,  &PluginSpectrometerProfileAverageX);
+	createParam(PluginSpectrometerProfileAverageYString,   asynParamFloat64Array,  &PluginSpectrometerProfileAverageY);
+	createParam(PluginSpectrometerProfileThresholdXString, asynParamFloat64Array,  &PluginSpectrometerProfileThresholdX);
+	createParam(PluginSpectrometerProfileThresholdYString, asynParamFloat64Array,  &PluginSpectrometerProfileThresholdY);
+	createParam(PluginSpectrometerProfileCentroidXString,  asynParamFloat64Array,  &PluginSpectrometerProfileCentroidX);
+	createParam(PluginSpectrometerProfileCentroidYString,  asynParamFloat64Array,  &PluginSpectrometerProfileCentroidY);
+	createParam(PluginSpectrometerProfileCursorXString,	  asynParamFloat64Array,  &PluginSpectrometerProfileCursorX);
+	createParam(PluginSpectrometerProfileCursorYString,	  asynParamFloat64Array,  &PluginSpectrometerProfileCursorY);
 
-	/* BLD */
-	createParam(PluginBldSpectrometerComputeProjectionsString, asynParamInt32,		 &PluginBldSpectrometerComputeProjections);
-	createParam(PluginBldSpectrometerSendBldString, asynParamInt32,		 &PluginBldSpectrometerSendBld);
+	/* Horiz Projections */
+	createParam( PluginSpectrometerComputeProjectionsString,	asynParamInt32,			&PluginSpectrometerComputeProjections );
+	createParam( PluginSpectrometerHorizBaselineString,  asynParamFloat64,		&PluginSpectrometerHorizBaseline );
+	createParam( PluginSpectrometerHorizProjString,	  		asynParamInt32Array,	&PluginSpectrometerHorizProj );
+	createParam( PluginSpectrometerAdjCtrMassString,			asynParamFloat64,		&PluginSpectrometerAdjCtrMass );
+	createParam( PluginSpectrometerRawCtrMassString,			asynParamFloat64,		&PluginSpectrometerRawCtrMass );
+	createParam( PluginSpectrometerAdjIntegralString,		asynParamFloat64,		&PluginSpectrometerAdjIntegral );
+	createParam( PluginSpectrometerRawIntegralString,		asynParamFloat64,		&PluginSpectrometerRawIntegral );
+
+	/* BLD Send control */
+	createParam( PluginSpectrometerSendBldString, asynParamInt32,		 &PluginSpectrometerSendBld);
 
 	// Clear the profile pointers
 	memset(this->profileX, 0, sizeof(this->profileX));
 	memset(this->profileY, 0, sizeof(this->profileY));
 
 	/* Set the plugin type string */
-	setStringParam(NDPluginDriverPluginType, "PluginBldSpectrometer");
+	setStringParam(NDPluginDriverPluginType, "PluginSpectrometer");
 
 	/* Try to connect to the array port */
 	connectToArrayPort();
@@ -934,7 +950,7 @@ extern "C" int BldSpectrometerConfigure(const char *portName, int queueSize, int
 								 int maxBuffers, size_t maxMemory,
 								 int priority, int stackSize)
 {
-	new PluginBldSpectrometer(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr,
+	new PluginSpectrometer(portName, queueSize, blockingCallbacks, NDArrayPort, NDArrayAddr,
 					  maxBuffers, maxMemory, priority, stackSize);
 	return(asynSuccess);
 }

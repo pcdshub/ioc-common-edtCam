@@ -19,6 +19,7 @@ edt_DBD += base.dbd
 edt_DBD += iocAdmin.dbd
 edt_DBD += autosaveSupport.dbd
 edt_DBD += diagTimer.dbd
+edt_DBD += history.dbd
 
 # EVR
 edt_DBD += evrSupport.dbd
@@ -55,6 +56,7 @@ edt_LIBS += devIocStats
 #edt_LIBS += genSub
 edt_LIBS += diagTimer
 edt_LIBS += bldClient
+edt_LIBS += history
 
 # EVR
 edt_LIBS += evrSupport

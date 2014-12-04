@@ -17,7 +17,7 @@ record( dfanout, "$(CAM):EdtBeamEventCodeFanout" )
 record( ao, "$(CAM):Def120HzTrigDelay" )
 {
     field( DESC, "Default trigger delay" )
-    field( DOL,  "4.9e-3" )
+    field( DOL,  "4.3e-3" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -28,7 +28,7 @@ record( ao, "$(CAM):Def120HzExposure" )
     field( DESC, "Default exposure" )
 #	Tested as low as 820 at 120Hz w/ 4.0ms exposure,
 #	but long term stability not yet proven 
-	field( DOL,  "4.9e-3" )
+	field( DOL,  "5.0e-3" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -48,13 +48,13 @@ record( longout, "$(CAM):Def120HzMinY" )
 # TODO: Set trigger polarity and width
 record( seq, "$(CAM):GoTo120HzMode" )
 {
-	field( DOL1, "0" )
-	field( LNK1, "$(CAM):Acquire PP NMS" )
-	field( DLY1, "0.0" )
+#	field( DOL1, "0" )
+#	field( LNK1, "$(CAM):Acquire PP NMS" )
+#	field( DLY1, "0.0" )
 
 	field( DOL2, "$(CAM):Def120HzMinY" )
 	field( LNK2, "$(CAM):MinY PP NMS" )
-	field( DLY2, "1.0" )
+	field( DLY2, "0.0" )
 
 	field( DOL3, "1" )
 	field( LNK3, "$(CAM):TriggerMode PP NMS" )
@@ -86,7 +86,7 @@ record( seq, "$(CAM):GoTo120HzMode" )
 
 	field( DOLA, "1" )
 	field( LNKA, "$(CAM):Acquire PP NMS" )
-	field( DLYA, "6.0" )
+	field( DLYA, "1.0" )
 
 	info( autosaveFields, "DESC" )
 }
@@ -94,13 +94,13 @@ record( seq, "$(CAM):GoTo120HzMode" )
 
 record( seq, "$(CAM):GoToFullMode" )
 {
-	field( DOL1, "0" )
-	field( LNK1, "$(CAM):Acquire PP NMS" )
-	field( DLY1, "0.0" )
+#	field( DOL1, "0" )
+#	field( LNK1, "$(CAM):Acquire PP NMS" )
+#	field( DLY1, "0.0" )
 
 	field( DOL2, "44" )
 	field( LNK2, "$(CAM):EdtCamEventCode PP NMS" )
-	field( DLY2, "1.0" )
+	field( DLY2, "0.0" )
 
 	field( DOL3, "40" )
 	field( LNK3, "$(CAM):EdtBeamEventCode PP NMS" )
@@ -118,7 +118,7 @@ record( seq, "$(CAM):GoToFullMode" )
 	field( LNK6, "$(CAM):MinY PP NMS" )
 	field( DLY6, "0.0" )
 
-	field( DOL7, "1" )
+	field( DOL7, "0" )
 	field( LNK7, "$(CAM):TriggerMode PP NMS" )
 	field( DLY7, "0.0" )
 
@@ -132,8 +132,27 @@ record( seq, "$(CAM):GoToFullMode" )
 
 	field( DOLA, "1" )
 	field( LNKA, "$(CAM):Acquire PP NMS" )
-	field( DLYA, "6.0" )
+	field( DLYA, "1.0" )
 
-	info( autosaveFields, "DESC DOL1 LNK1 DLY1 DOL2 LNK2 DLY2 DOL3 LNK3 DLY3 DOL4 LNK4 DLY4 DOL5 LNK5 DLY5 DOL6 LNK6 DLY6 DOL7 LNK7 DLY7 DOL8 LNK8 DLY8 DOL9 LNK9 DLY9 DOLA LNKA DLYA" )
+	info( autosaveFields, "DESC" )
+#	info( autosaveFields, "DESC DOL1 DLY1 DOL2 DLY2 DOL3 DLY3 DOL4 DLY4 DOL5 DLY5 DOL6 DLY6 DOL7 DLY7 DOL8 DLY8 DOL9 DLY9 DOLA DLYA" )
+}
+
+# This record monitors the EDT trigger mode and sets the timestamp policy accordingly
+# $(CAM):EdtTriggerMode_RBV is defined in the ADEdtPdv module's edtPdvBase.template
+# 0 = Free Run
+# 1 = External trigger
+# 2 = External trigger w/ pulse length controlling exposure time
+# $(CAM):TSS:TsPolicy is defined in the timeStampFifo module's timeStampFifo.template
+# 0 = Most recent timestamp for event code
+# 1 = Only return synced timestamp for event code
+# 2 = Return best available timestamp, may set pulse id to 360hz fiducial
+record( calcout, "$(CAM):TSS:TsPolicyCalc" )
+{
+    field( DESC, "Update TS Policy" )
+	field( INPA, "$(CAM):EdtTriggerMode_RBV CPP NMS" )
+    field( CALC, "A==0?2:1" )
+	field( OUT,  "$(CAM):TSS:TsPolicy PP NMS" )
+	info( autosaveFields, "DESC" )
 }
 
