@@ -36,7 +36,7 @@ epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "0" )
 epicsEnvSet( "SER_TRACE_MASK",    "1" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
-epicsEnvSet( "ST_CMD_DELAYS", 	  "2" )
+epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
 cd( "../.." )
 
@@ -117,7 +117,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # Configure and load standard edtPdv camera database
 dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG2" )
 #dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
-#dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT=$(CAM_PORT),EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
+dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
 dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
 
 # For camera serial asyn diagnostics
@@ -181,7 +181,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 iocInit()
 
 # Create autosave files from info directives
-#makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
+makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
 
 # Start autosave backups
 create_monitor_set( "autoSettings.req", 5, "" )
@@ -189,9 +189,6 @@ create_monitor_set( "$(IOC).req", 5, "" )
 
 # All IOCs should dump some common info after initial startup.
 < /reg/d/iocCommon/All/post_linux.cmd
-
-epicsThreadSleep 2
-#dbpf TST:EDT:ORCA1:Acquire 1
 
 # Configure the BLD client
 epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer
@@ -203,3 +200,7 @@ BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
 BldStart()
 BldIsStarted()
 
+# Final delay before auto-start image acquisition
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+dbpf $(CAM_PV):Acquire 1

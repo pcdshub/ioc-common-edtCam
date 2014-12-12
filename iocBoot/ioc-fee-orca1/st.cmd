@@ -32,9 +32,9 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
-epicsEnvSet( "CAM_TRACE_MASK",    "9" )
+epicsEnvSet( "CAM_TRACE_MASK",    "1" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "0" )
-epicsEnvSet( "SER_TRACE_MASK",    "9" )
+epicsEnvSet( "SER_TRACE_MASK",    "1" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
@@ -192,9 +192,6 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # All IOCs should dump some common info after initial startup.
 < /reg/d/iocCommon/All/post_linux.cmd
 
-epicsThreadSleep 2
-#dbpf CAMR:FEE1:441:Acquire 1
-
 # Configure the BLD client
 epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer
 epicsEnvSet( "BLD_SRC",		"46" )		# Src Id, FeeSpec0
@@ -205,3 +202,7 @@ BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
 BldStart()
 BldIsStarted()
 
+# Final delay before auto-start image acquisition
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+dbpf $(CAM_PV):Acquire 1
