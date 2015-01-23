@@ -1,0 +1,31 @@
+# Archive file for ioc-xcs-edtCam2
+
+file edt-ioc.archive
+{
+    {
+        IOC = IOC:XCS:CAM:02
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "XCS:SB1:CVV:01", R = ":"	}
+    { P = "XCS:LAM:CVV:01", R = ":"	}
+}
+
+#file hamaOrcaFlash4_0.archive
+#{
+#    { P = "XCS:SB1:CVV:01", R = ":"	}
+#}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "XCS:SB1:CVV:01"	}
+#}
+
+file PluginBldSpectrometer.archive
+{
+    { P = "XCS:SB1:CVV:01", R = ":", CAM="XCS:SB1:CVV:01", N = "1"	}
+    { P = "XCS:LAM:CVV:01", R = ":", CAM="XCS:LAM:CVV:01", N = "1"	}
+}
