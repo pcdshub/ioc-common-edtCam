@@ -449,7 +449,9 @@ record( waveform, "$(P)$(R)HorizProj" )
 	field( INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_HORIZ_PROJ" )
 	field( FTVL, "LONG" )
 	field( NELM, "$(XSIZE)" )
+	field( TSE,  "-2" )
 	field( SCAN, "I/O Intr" )
+	info( autosaveFields, "DESC" )
 }
 
 record( ao, "$(P)$(R)HorizBaseline" )
@@ -459,7 +461,7 @@ record( ao, "$(P)$(R)HorizBaseline" )
     field( OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_HORIZ_BASELINE" )
     field( VAL,  "1" )
     field( PREC, "3" )
-	info( autosaveFields, "VAL DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+	info( autosaveFields, "VAL DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
 }
 record( ai, "$(P)$(R)HorizBaseline_RBV" )
 {
@@ -476,7 +478,7 @@ record( ai, "$(P)$(R)AdjCtrMass_RBV" )
 	field( SCAN, "I/O Intr" )
 	field( TSE,  "-2" )
     field( PREC, "3" )
-	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
 }
 record( ai, "$(P)$(R)RawCtrMass_RBV" )
 {
@@ -485,7 +487,7 @@ record( ai, "$(P)$(R)RawCtrMass_RBV" )
 	field( SCAN, "I/O Intr" )
 	field( TSE,  "-2" )
     field( PREC, "3" )
-	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
 }
 record( ai, "$(P)$(R)AdjIntegral_RBV" )
 {
@@ -494,7 +496,7 @@ record( ai, "$(P)$(R)AdjIntegral_RBV" )
 	field( SCAN, "I/O Intr" )
 	field( TSE,  "-2" )
     field( PREC, "3" )
-	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
 }
 record( ai, "$(P)$(R)RawIntegral_RBV" )
 {
@@ -503,6 +505,6 @@ record( ai, "$(P)$(R)RawIntegral_RBV" )
 	field( SCAN, "I/O Intr" )
 	field( TSE,  "-2" )
     field( PREC, "3" )
-	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
 }
 
