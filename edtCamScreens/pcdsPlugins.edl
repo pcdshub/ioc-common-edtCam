@@ -40,7 +40,7 @@ bgColor index 0
 topShadowColor index 1
 botShadowColor index 13
 displaySource "file"
-file "areaDetectorScreens/commonPlugins.edl"
+file "edtCamScreens/ADStreamScreens/commonPlugins.edl"
 numDsps 0
 noScroll
 endObjectProperties
