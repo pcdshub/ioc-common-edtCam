@@ -28,7 +28,7 @@ record( ao, "$(CAM):Def120HzExposure" )
     field( DESC, "Default exposure" )
 #	Tested as low as 820 at 120Hz w/ 4.0ms exposure,
 #	but long term stability not yet proven 
-	field( DOL,  "5.0e-3" )
+	field( DOL,  "4.0e-3" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -48,9 +48,9 @@ record( longout, "$(CAM):Def120HzMinY" )
 # TODO: Set trigger polarity and width
 record( seq, "$(CAM):GoTo120HzMode" )
 {
-#	field( DOL1, "0" )
-#	field( LNK1, "$(CAM):Acquire PP NMS" )
-#	field( DLY1, "0.0" )
+	field( DOL1, "0" )
+	field( LNK1, "$(CAM):Acquire PP NMS" )
+	field( DLY1, "0.0" )
 
 	field( DOL2, "$(CAM):Def120HzMinY" )
 	field( LNK2, "$(CAM):MinY PP NMS" )
@@ -65,15 +65,15 @@ record( seq, "$(CAM):GoTo120HzMode" )
 	field( DLY4, "0.0" )
 
 	field( DOL5, "40" )
-	field( LNK5, "$(CAM):EdtCamEventCode PP NMS" )
+	field( LNK5, "$(CAM):EdtCamEventCode CA NMS" )
 	field( DLY5, "1.0" )
 
 	field( DOL6, "140" )
-	field( LNK6, "$(CAM):EdtBeamEventCode PP NMS" )
+	field( LNK6, "$(CAM):EdtBeamEventCode CA NMS" )
 	field( DLY6, "0.0" )
 
 	field( DOL7, "$(CAM):Def120HzTrigDelay" )
-	field( LNK7, "$(CAM):EdtCamTrigDelay PP NMS" )
+	field( LNK7, "$(CAM):EdtCamTrigDelay CA NMS" )
 	field( DLY7, "0.0" )
 
 	field( DOL8, "$(CAM):Def120HzExposure" )
@@ -98,28 +98,28 @@ record( seq, "$(CAM):GoToFullMode" )
 #	field( LNK1, "$(CAM):Acquire PP NMS" )
 #	field( DLY1, "0.0" )
 
-	field( DOL2, "44" )
-	field( LNK2, "$(CAM):EdtCamEventCode PP NMS" )
+	field( DOL2, "0" )
+	field( LNK2, "$(CAM):TriggerMode PP NMS" )
 	field( DLY2, "0.0" )
 
-	field( DOL3, "40" )
-	field( LNK3, "$(CAM):EdtBeamEventCode PP NMS" )
+	field( DOL3, "0" )
+	field( LNK3, "$(CAM):MinY PP NMS" )
 	field( DLY3, "0.0" )
 
-	field( DOL4, "4.1e-3" )
-	field( LNK4, "$(CAM):EdtCamTrigDelay PP NMS" )
-	field( DLY4, "0.0" )
+#	field( DOL4, "44" )
+#	field( LNK4, "$(CAM):EdtCamEventCode PP NMS" )
+#	field( DLY4, "0.0" )
 
-	field( DOL5, "0.05" )
-	field( LNK5, "$(CAM):AcquireTime PP NMS" )
-	field( DLY5, "0.0" )
+#	field( DOL5, "40" )
+#	field( LNK5, "$(CAM):EdtBeamEventCode PP NMS" )
+#	field( DLY5, "0.0" )
 
-	field( DOL6, "0" )
-	field( LNK6, "$(CAM):MinY PP NMS" )
+	field( DOL6, "4.1e-3" )
+	field( LNK6, "$(CAM):EdtCamTrigDelay CA NMS" )
 	field( DLY6, "0.0" )
 
-	field( DOL7, "0" )
-	field( LNK7, "$(CAM):TriggerMode PP NMS" )
+	field( DOL7, "0.05" )
+	field( LNK7, "$(CAM):AcquireTime PP NMS" )
 	field( DLY7, "0.0" )
 
 	field( DOL8, "2" )

@@ -548,8 +548,8 @@ asynStatus PluginSpectrometer::doSendBld(
 
 	// Send the packet
 	int bldStatus	= 0;
-	if ( bldStatus != 3 )
 	bldStatus = BldSendPacket( 0, srcPhysicalID, xtcType, &pNDArray->epicsTS, pBufferOrig, sBuffer );
+	//	TODO: Pre-allocate storage to avoid malloc/free
 	free( pBufferOrig );
 
 	if ( bldStatus != 0 )

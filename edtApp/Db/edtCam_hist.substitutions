@@ -1,5 +1,5 @@
 #
-# ai_hist.substitutions
+# edtCam_hist.substitutions
 #
 # Uses the generated ai_hist_pattern.db template
 # to create history waveforms for each of the
@@ -21,11 +21,6 @@ file ai_hist_pattern.db
 	pattern
 	{	PV,										EGU		}
 	{	"$(P)$(R)ArrayRate_RBV",				"Hz"	}
-	{	"$(P)$(R)BLD1:AdjCtrMass_RBV",			"arb"	}
-	{	"$(P)$(R)BLD1:AdjIntegral_RBV",			"arb"	}
-	{	"$(P)$(R)BLD1:ArrayRate_RBV",			"Hz"	}
-	{	"$(P)$(R)BLD1:HorizRawCtrMass_RBV",		"arb"		}
-	{	"$(P)$(R)BLD1:HorizRawIntegral_RBV",	"arb"		}
 	{	"$(P)$(R)IMAGE1:ArrayRate_RBV",			"Hz"	}
 	{	"$(P)$(R)IMAGE2:ArrayRate_RBV",			"Hz"	}
 }

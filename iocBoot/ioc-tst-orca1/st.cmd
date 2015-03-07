@@ -29,12 +29,13 @@ epicsEnvSet( "MODEL",		"hamaOrcaFlash4_0" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7800" )
 epicsEnvSet( "MJPG_PORT",	"8081"	)
-#epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
+#epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
+epicsEnvSet( "PLUGINS",		"commonPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
-epicsEnvSet( "CAM_TRACE_MASK",    "1" )
-epicsEnvSet( "CAM_TRACE_IO_MASK", "0" )
-epicsEnvSet( "SER_TRACE_MASK",    "1" )
+epicsEnvSet( "CAM_TRACE_MASK",    "9" )
+epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
+epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
@@ -48,8 +49,8 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
-var EDT_PDV_DEBUG 2
-var DEBUG_TSFifo  2
+var DEBUG_EDT_PDV 3
+var DEBUG_TS_FIFO 1
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -103,10 +104,12 @@ edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
 #registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
 
 # Set asyn trace flags
-asynSetTraceMask(   "$(CAM_PORT)",		1, $(CAM_TRACE_MASK) )
-asynSetTraceIOMask( "$(CAM_PORT)",		1, $(CAM_TRACE_IO_MASK) )
-asynSetTraceMask(   "$(CAM_PORT).SER",	1, $(SER_TRACE_MASK) )
-asynSetTraceIOMask( "$(CAM_PORT).SER",	1, $(SER_TRACE_IO_MASK) )
+asynSetTraceMask(   "$(CAM_PORT)",		0, $(CAM_TRACE_MASK) )
+asynSetTraceIOMask( "$(CAM_PORT)",		0, $(CAM_TRACE_IO_MASK) )
+asynSetTraceFile(	"$(CAM_PORT)",		0, "$(IOC_DATA)/$(IOC)/$(CAM_PORT).log" )
+asynSetTraceMask(   "$(CAM_PORT).SER",	0, $(SER_TRACE_MASK) )
+asynSetTraceIOMask( "$(CAM_PORT).SER",	0, $(SER_TRACE_IO_MASK) )
+#asynSetTraceFile(	"$(CAM_PORT).SER",	0, "$(IOC_DATA)/$(IOC)/$(CAM_PORT).SER.log" )
 
 #
 #
@@ -116,8 +119,6 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
 dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG2" )
-#dbLoadRecords(	"db/timeStampSource.db",	"DEV=$(CAM_PV),PORT=$(CAM_PORT)" )
-dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
 dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
 
 # For camera serial asyn diagnostics
@@ -128,7 +129,8 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
 
 # Load history records
-dbLoadRecords(	"db/ai_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
 #
@@ -159,6 +161,9 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 #< db/ColorBin3Viewer.cmd
 #< db/ColorBin4Viewer.cmd
 
+asynSetTraceMask(   "ROI6",		1, $(CAM_TRACE_MASK) )
+asynSetTraceIOMask( "ROI6",		1, $(CAM_TRACE_IO_MASK) )
+
 # Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
@@ -167,8 +172,13 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-#< db/$(PLUGINS).cmd
-< setupScripts/pluginStats.cmd
+< db/$(PLUGINS).cmd
+#< setupScripts/pluginStats.cmd
+
+# Create a TIFF plugin, set it to get data from the camera
+epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
+epicsEnvSet( "N", "1" )
+#< setupScripts/pluginTIFF.cmd
 
 #
 #
@@ -179,6 +189,10 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # Initialize the IOC and start processing records
 # 
 iocInit()
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+
 
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
@@ -189,6 +203,9 @@ create_monitor_set( "$(IOC).req", 5, "" )
 
 # All IOCs should dump some common info after initial startup.
 < /reg/d/iocCommon/All/post_linux.cmd
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure the BLD client
 epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer
@@ -199,8 +216,20 @@ epicsEnvSet( "BLD_MAX",		"8980" )	# 9000 MTU - 20 byte header
 BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
 BldStart()
 BldIsStarted()
-
-# Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
+epicsThreadSleep $(ST_CMD_DELAYS)
+
+# Hit Ctrl-C to defeat auto-start
+#
+# 3 seconds to auto-start of image acquisition
+#
+epicsThreadSleep $(ST_CMD_DELAYS)
+#
+# 2 seconds to auto-start of image acquisition
+#
+epicsThreadSleep $(ST_CMD_DELAYS)
+#
+# 1 seconds to auto-start of image acquisition
+#
 epicsThreadSleep $(ST_CMD_DELAYS)
 dbpf $(CAM_PV):Acquire 1

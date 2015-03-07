@@ -1,18 +1,15 @@
 #
-# ai_hist.sub-arch
+# bld_hist.sub-req
 #
 
 # Save's RMS limits for each waveform
-file hist_LAST_N.tpl-arch
+file wave_proc.tpl-req
 {
 	pattern
-	{	PV									}
-	{	"$(P)$(R)ArrayRate_RBV"				}
+	{	WAVE,								}
 	{	"$(P)$(R)BLD1:AdjCtrMass_RBV"		}
 	{	"$(P)$(R)BLD1:AdjIntegral_RBV"		}
 	{	"$(P)$(R)BLD1:ArrayRate_RBV"		}
 	{	"$(P)$(R)BLD1:HorizRawCtrMass_RBV"		}
 	{	"$(P)$(R)BLD1:HorizRawIntegral_RBV"		}
-	{	"$(P)$(R)IMAGE1:ArrayRate_RBV"		}
-	{	"$(P)$(R)IMAGE2:ArrayRate_RBV"		}
 }

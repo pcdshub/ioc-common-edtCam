@@ -48,8 +48,8 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
-var EDT_PDV_DEBUG 2
-var DEBUG_TSFifo  1
+var DEBUG_EDT_PDV 2
+var DEBUG_TS_FIFO  1
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -127,7 +127,8 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
 
 # Load history records
-dbLoadRecords(	"db/ai_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
 #

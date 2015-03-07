@@ -4,7 +4,8 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 # Create and install EDT Camera DB Files
-DB += ai_hist.db
+DB += bld_hist.db
+DB += edtCam_hist.db
 DB += cross.template
 DB += edtPdvCamera.db
 DB += PluginBldSpectrometer.db
@@ -41,28 +42,42 @@ DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
 #	hamaOrcaFlash4_0t.cfg		Ext. Trig Config File
 #	hamaOrcaFlash4_0p.cfg		Ext Pulse Config File
 # 
-MODEL = hamaOrcaFlash4_0
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).db
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).env
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)f.cfg
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)t.cfg
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL)p.cfg
-DB_INSTALLS += $(ADEDTPDV)/db/$(MODEL).proto
+
+# Hamamatsu Orca Flash 4.0
+MODELS = hamaOrcaFlash4_0
+# Adimec Opal 1000 12 bit
+MODELS += opal1000m_12
+# Pulnix 6740 10 bit
+MODELS += ptm6740_10
+# Uniq UP685 10 bit
+MODELS += up685
+# Uniq UP900 10 bit
+MODELS += up900
+
+MODELS := $(addprefix $(ADEDTPDV)/db/, $(MODELS))
+DB_INSTALLS += $(addsuffix .db,		$(MODELS))
+DB_INSTALLS += $(addsuffix .env,	$(MODELS))
+DB_INSTALLS += $(addsuffix f.cfg,	$(MODELS))
+DB_INSTALLS += $(addsuffix t.cfg,	$(MODELS))
+DB_INSTALLS += $(addsuffix p.cfg,	$(MODELS))
+DB_INSTALLS += $(addsuffix .proto,	$(MODELS))
 
 #----------------------------------------------------
 # Create and install (or just install)
 # Archive files, templates, substitutions like this
 #
-ARCHIVE += ai_hist.archive
-ARCHIVE += edt-ioc.archive
+ARCHIVE += bld_hist.archive
+ARCHIVE += edtCam_hist.archive
 ARCHIVE += cross.tpl-arch
+ARCHIVE += edt-ioc.archive
 ARCHIVE += PluginBldSpectrometer.archive
 
 #----------------------------------------------------
 # Create and install (or just install)
 # Autosave request files, templates, substitutions like this
 #
-REQ += ai_hist.req
+REQ += bld_hist.req
+REQ += edtCam_hist.req
 REQ += cross_settings.req
 REQ += edt-ioc.req
 REQ += PluginBldSpectrometer.req

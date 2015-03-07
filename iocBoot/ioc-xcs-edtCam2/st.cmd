@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Danial Damiani (ddamiani)" )
-epicsEnvSet( "LOCATION",	"IOC:XCS:CAM:02" )
+epicsEnvSet( "LOCATION",	"XCS:IOC:EDTCAM:02" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,10 +13,10 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"IOC:XCS:CAM:02" )
-epicsEnvSet( "EVR_PV",	"XCS:R44:EVR:02" )
-epicsEnvSet( "CAM_PV1",	"XCS:SB1:CVV:01" )
-epicsEnvSet( "CAM_PV2",	"XCS:LAM:CVV:01" )
+epicsEnvSet( "IOC_PV",	"XCS:IOC:EDTCAM:02" )
+epicsEnvSet( "EVR_PV",	"XCS:EVR:EDTCAM:02" )
+epicsEnvSet( "CAM_PV1",	"XCS:EDTCAM:01" )
+epicsEnvSet( "CAM_PV2",	"XCS:EDTCAM:02" )
 epicsEnvSet( "CAM_PV",	$(CAM_PV1) )
 
 # Configure EVR
@@ -34,11 +34,12 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
-epicsEnvSet( "CAM_TRACE_MASK",    "1" )
-epicsEnvSet( "CAM_TRACE_IO_MASK", "0" )
-epicsEnvSet( "SER_TRACE_MASK",    "1" )
+epicsEnvSet( "CAM_TRACE_MASK",    "9" )
+epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
+epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
+epicsEnvSet( "EVR_DEBUG",         "0" )
 
 cd( "../.." )
 
@@ -49,9 +50,9 @@ cd( "../.." )
 dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
-# Set iocsh debug variables
-var EDT_PDV_DEBUG 2
-var DEBUG_TSFifo  2
+# Set debug variables
+var DEBUG_EDT_PDV 2
+var DEBUG_TS_FIFO  2
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -65,6 +66,7 @@ set_requestfile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
+var save_restoreLogMissingRecords 0
 set_pass0_restoreFile( "autoSettings.sav" )
 set_pass0_restoreFile( "$(IOC).sav" )
 set_pass1_restoreFile( "autoSettings.sav" )
@@ -76,9 +78,10 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 #
 # Configuring EVR card $(EVR_CARD)
+ErDebugLevel( $(EVR_DEBUG) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:R44:EVR:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=XCS:R44:EVR:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:EVR:EDTCAM:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Disabled" )
+#dbLoadRecords( "db/evrSLAC.db",			"EVR=XCS:EVR:EDTCAM:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Disabled" )
 
 #
 #
@@ -127,7 +130,8 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
 
 # Load history records
-dbLoadRecords(	"db/ai_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
 #
@@ -144,7 +148,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #< db/$(PLUGINS).cmd
-< setupScripts/pluginStats.cmd
+#< setupScripts/pluginStats.cmd
 
 
 #
@@ -152,7 +156,7 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #
 #epicsEnvSet( "CAM_PV",		$(CAM_PV2) )
 #epicsEnvSet( "CAM_PORT",	"CAM2" )
-#epicsEnvSet( "MODEL",		"adimec1000m_12" )
+#epicsEnvSet( "MODEL",		"opal1000m_12" )
 #< db/$(MODEL).env
 #edtPdvConfig( "$(CAM_PORT)", 0, 1, "$(MODEL)", "$(CAM_MODE)" )
 #
@@ -180,7 +184,8 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
 
 # Load history records
-#dbLoadRecords(	"db/ai_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
 #
@@ -210,6 +215,9 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 # 
 iocInit()
 
+# Create archive files from info directives
+# makeArchiveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/archive/$(IOC).archive", "archiveFields" )
+
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
 
@@ -223,5 +231,5 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
-dbpf $(CAM_PV1):Acquire 1
-dbpf $(CAM_PV2):Acquire 1
+#dbpf $(CAM_PV1):Acquire 1
+#dbpf $(CAM_PV2):Acquire 1

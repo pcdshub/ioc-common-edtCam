@@ -56,8 +56,8 @@ gige_registerRecordDeviceDriver(pdbbase)
 < setupScripts/prosilica.cmd
 
 # Set asyn trace flags
-asynSetTraceMask(   "$(CAM_PORT)", $(TRACE_MASK) )
-asynSetTraceIOMask( "$(CAM_PORT)", $(TRACE_IO_MASK) )
+asynSetTraceMask(   "$(CAM_PORT)", 0, $(TRACE_MASK) )
+asynSetTraceIOMask( "$(CAM_PORT)", 0, $(TRACE_IO_MASK) )
 
 # Configure and load the plugins
 < setupScripts/$(PLUGINS).cmd

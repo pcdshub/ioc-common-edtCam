@@ -28,7 +28,23 @@ DB += pluginTransform.db
 DB_INSTALLS += $(ADSTREAM)/db/MonoBin2Viewer.cmd
 DB_INSTALLS += $(ADSTREAM)/db/MonoBin4Viewer.cmd
 DB_INSTALLS += $(ADSTREAM)/db/MonoFullViewer.cmd
+DB_INSTALLS += $(ADSTREAM)/db/commonPlugins.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pcdsPlugins.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginColorConvert.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginFileMPEG.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginHDF5.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginImage.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginJPEG.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginMJPG.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginMagick.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginNetCDF.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginNexus.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginOverlay.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginProcess.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginROI.cmd
 DB_INSTALLS += $(ADSTREAM)/db/pluginStats.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginTIFF.cmd
+DB_INSTALLS += $(ADSTREAM)/db/pluginTransform.cmd
 
 #----------------------------------------------------
 # Create and install (or just install)
