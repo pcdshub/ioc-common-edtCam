@@ -132,7 +132,7 @@ record( seq, "$(CAM):GoToFullMode" )
 
 	field( DOL8, "1" )
 	field( LNK8, "$(CAM):Acquire CA NMS" )
-	field( DLY8, "3.0" )
+	field( DLY8, "5.0" )
 
 	field( DOL9, "0" )
 	field( LNK9, "$(CAM):Acquire CA NMS" )
