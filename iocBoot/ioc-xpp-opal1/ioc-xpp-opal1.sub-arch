@@ -1,0 +1,29 @@
+# Archive file for ioc-xpp-opal1
+
+file edt-ioc.archive
+{
+    {
+        IOC = XPP:R30:IOC:27
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "XPP:OPAL1K:1", R = ":"	}
+}
+
+#file hamaOrcaFlash4_0.archive
+#{
+#    { P = "XPP:OPAL1K:1", R = ":"	}
+#}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "XPP:OPAL1K:1"	}
+#}
+
+file PluginBldSpectrometer.archive
+{
+    { P = "XPP:OPAL1K:1", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}
+}
