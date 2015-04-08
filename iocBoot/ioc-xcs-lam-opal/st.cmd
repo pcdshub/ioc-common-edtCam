@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Danial Damiani (ddamiani)" )
-epicsEnvSet( "LOCATION",	"XCS:IOC:EDTCAM:02" )
+epicsEnvSet( "LOCATION",	"XCS:IOC:LAM:EDTCAM:01" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,23 +13,22 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"XCS:IOC:EDTCAM:02" )
-epicsEnvSet( "EVR_PV",	"XCS:EVR:EDTCAM:02" )
-epicsEnvSet( "CAM_PV1",	"XCS:EDTCAM:01" )
+epicsEnvSet( "IOC_PV",	"XCS:IOC:LAM:EDTCAM:01" )
+epicsEnvSet( "EVR_PV",	"XCS:EVR:LAM:EDTCAM:01" )
+epicsEnvSet( "CAM_PV1",	"XCS:LAM:EDTCAM:01" )
 epicsEnvSet( "CAM_PV",	$(CAM_PV1) )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
 epicsEnvSet( "EVR_TYPE",	"1" )
-#epicsEnvSet( "EVR_TYPE",	"15" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
-epicsEnvSet( "MODEL",		"ptm6740_10" )
+epicsEnvSet( "MODEL",		"opal1000m_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
-epicsEnvSet( "HTTP_PORT",	"7800" )
-epicsEnvSet( "MJPG_PORT",	"8081"	)
+epicsEnvSet( "HTTP_PORT",	"7801" )
+epicsEnvSet( "MJPG_PORT",	"8082"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
@@ -79,8 +78,7 @@ set_pass1_restoreFile( "$(IOC).sav" )
 # Configuring EVR card $(EVR_CARD)
 ErDebugLevel( $(EVR_DEBUG) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:EVR:EDTCAM:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Disabled,IP2E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=XCS:EVR:EDTCAM:02,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Disabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:EVR:LAM:EDTCAM:01,CARD=$(EVR_CARD),IP0E=Disabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -118,7 +116,7 @@ asynSetTraceIOMask( "$(CAM_PORT).SER",	1, $(SER_TRACE_IO_MASK) )
 epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
-dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG2" )
+dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG1,BEAM_TRIG=$(EVR_PV):TRIG2" )
 dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
 
 # For camera serial asyn diagnostics
@@ -129,7 +127,7 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
 
 # Load history records
-dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
 dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
@@ -153,7 +151,7 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #
 #
 # Comment/uncomment/change delay as desired so you can see remaining messages before iocInit
-epicsThreadSleep $(ST_CMD_DELAYS)
+#epicsThreadSleep $(ST_CMD_DELAYS)
 
 # 
 # Initialize the IOC and start processing records
@@ -177,4 +175,3 @@ create_monitor_set( "$(IOC).req", 5, "" )
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
 #dbpf $(CAM_PV1):Acquire 1
-#dbpf $(CAM_PV2):Acquire 1

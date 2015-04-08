@@ -1,0 +1,20 @@
+# Archive file for ioc-xcs-lam-opal
+
+file edt-ioc.archive
+{
+    {
+        IOC = XCS:IOC:LAM:EDTCAM:01
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "XCS:LAM:EDTCAM:01", R = ":"	}
+}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "XCS:EDTCAM:01"	}
+#}
+
