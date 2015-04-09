@@ -454,6 +454,24 @@ record( waveform, "$(P)$(R)HorizProj" )
 	info( autosaveFields, "DESC" )
 }
 
+record( ao, "$(P)$(R)DarkLevel" )
+{
+    field( PINI, "YES" )
+    field( DTYP, "asynFloat64" )
+    field( OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_DARK_LEVEL" )
+    field( VAL,  "100.0" )
+    field( PREC, "3" )
+	info( autosaveFields, "VAL DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC" )
+}
+record( ai, "$(P)$(R)DarkLevel_RBV" )
+{
+	field( DTYP, "asynFloat64" )
+	field( INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_DARK_LEVEL" )
+	field( SCAN, "I/O Intr" )
+    field( PREC, "3" )
+	info( autosaveFields, "DESC HIGH HIHI HHSV HSV LOLO LOW LLSV LSV PREC TSE" )
+}
+
 record( ao, "$(P)$(R)HorizBaseline" )
 {
     field( PINI, "YES" )

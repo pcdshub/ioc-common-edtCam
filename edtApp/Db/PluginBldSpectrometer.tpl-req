@@ -7,3 +7,5 @@ $(P)$(R)ComputeProjections
 $(P)$(R)SendBld
 $(P)$(R)CursorX
 $(P)$(R)CursorY
+$(P)$(R)DarkLevel
+$(P)$(R)HorizBaseline

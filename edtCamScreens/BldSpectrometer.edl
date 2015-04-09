@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 2336
-y 1137
+x 1924
+y 1183
 w 780
 h 860
 font "helvetica-bold-r-12.0"
@@ -64,7 +64,7 @@ release 0
 x 16
 y 416
 w 324
-h 180
+h 208
 lineColor index 14
 fill
 fillColor index 3
@@ -824,9 +824,9 @@ major 4
 minor 0
 release 0
 x 16
-y 772
+y 796
 w 324
-h 72
+h 48
 lineColor index 14
 fill
 fillColor index 3
@@ -838,8 +838,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 20
-y 764
+x 16
+y 784
 w 72
 h 20
 font "helvetica-medium-r-12.0"
@@ -899,7 +899,7 @@ major 4
 minor 1
 release 1
 x 32
-y 460
+y 484
 w 76
 h 20
 font "helvetica-medium-r-12.0"
@@ -907,7 +907,7 @@ fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Threshold"
+  "Baseline"
 }
 endObjectProperties
 
@@ -918,7 +918,7 @@ major 4
 minor 7
 release 0
 x 116
-y 460
+y 484
 w 84
 h 20
 controlPv "$(P)$(R)HorizBaseline"
@@ -968,7 +968,7 @@ major 4
 minor 1
 release 1
 x 32
-y 488
+y 512
 w 172
 h 20
 font "helvetica-medium-r-12.0"
@@ -987,7 +987,7 @@ major 4
 minor 1
 release 1
 x 32
-y 516
+y 540
 w 172
 h 20
 font "helvetica-medium-r-12.0"
@@ -1006,7 +1006,7 @@ major 4
 minor 1
 release 1
 x 32
-y 544
+y 568
 w 172
 h 20
 font "helvetica-medium-r-12.0"
@@ -1025,7 +1025,7 @@ major 4
 minor 1
 release 1
 x 32
-y 572
+y 596
 w 172
 h 20
 font "helvetica-medium-r-12.0"
@@ -1033,7 +1033,7 @@ fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Baseline Raw Integral"
+  "Raw Integral"
 }
 endObjectProperties
 
@@ -1064,7 +1064,7 @@ major 4
 minor 7
 release 0
 x 232
-y 460
+y 484
 w 96
 h 20
 controlPv "$(P)$(R)HorizBaseline_RBV"
@@ -1088,7 +1088,7 @@ major 4
 minor 4
 release 0
 x 228
-y 484
+y 508
 w 104
 h 28
 fgColor index 14
@@ -1120,7 +1120,7 @@ major 4
 minor 4
 release 0
 x 228
-y 512
+y 536
 w 104
 h 28
 fgColor index 14
@@ -1152,7 +1152,7 @@ major 4
 minor 4
 release 0
 x 228
-y 540
+y 564
 w 104
 h 28
 fgColor index 14
@@ -1184,7 +1184,7 @@ major 4
 minor 4
 release 0
 x 228
-y 568
+y 592
 w 104
 h 28
 fgColor index 14
@@ -1216,7 +1216,7 @@ major 4
 minor 7
 release 0
 x 232
-y 488
+y 512
 w 96
 h 20
 controlPv "$(P)$(R)AdjCtrMass_RBV"
@@ -1240,7 +1240,7 @@ major 4
 minor 7
 release 0
 x 232
-y 516
+y 540
 w 96
 h 20
 controlPv "$(P)$(R)RawCtrMass_RBV"
@@ -1264,7 +1264,7 @@ major 4
 minor 7
 release 0
 x 232
-y 544
+y 568
 w 96
 h 20
 controlPv "$(P)$(R)AdjIntegral_RBV"
@@ -1289,7 +1289,7 @@ major 4
 minor 7
 release 0
 x 232
-y 572
+y 596
 w 96
 h 20
 controlPv "$(P)$(R)RawIntegral_RBV"
@@ -1461,7 +1461,7 @@ minor 7
 release 0
 # Geometry
 x 16
-y 604
+y 632
 w 324
 h 148
 # Appearance
@@ -1485,7 +1485,7 @@ updateTimerMs 100
 showXAxis
 xAxisSrc "fromUser"
 xMin 0
-xMax 2044
+xMax 2047
 xLabelIntervals 2
 # Y axis properties
 showYAxis
@@ -1505,6 +1505,73 @@ plotUpdateMode {
 }
 plotColor {
   0 index 26
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 232
+y 456
+w 96
+h 24
+controlPv "$(P)$(R)DarkLevel_RBV"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 116
+y 456
+w 84
+h 24
+controlPv "$(P)$(R)DarkLevel"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+newPos
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 32
+y 456
+w 76
+h 24
+font "helvetica-medium-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Dark Level"
 }
 endObjectProperties
 

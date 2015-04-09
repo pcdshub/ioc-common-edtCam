@@ -247,7 +247,9 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 
 	// Get the BLD configuration parameters
 	size_t		nPeaks					= pBldData->m_Peaks.size();
-	getDoubleParam( PluginSpectrometerHorizBaseline,  &pBldData->m_HorizBaseline );
+	double		darkLevel;
+	getDoubleParam( PluginSpectrometerDarkLevel,  	 &darkLevel );
+	getDoubleParam( PluginSpectrometerHorizBaseline, &pBldData->m_HorizBaseline );
 #if 0
 	int				itemp;
 	getIntegerParam( PluginSpectrometerCursorX, &itemp ); this->cursorX = itemp;
@@ -258,8 +260,9 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 	this->unlock();
 
 	// Clear BLD data
-	pBldData->m_AdjCtrMass			= 0.0;
-	pBldData->m_RawCtrMass			= 0.0;
+	pBldData->m_AdjCtrMass				= 0.0;
+	pBldData->m_AdjIntegral				= 0.0;
+	pBldData->m_RawCtrMass				= 0.0;
 	pBldData->m_RawIntegral				= 0.0;
 	pBldData->m_HorizProjWidth			= this->profileSizeX;
 	pBldData->m_HorizProjFirstRowUsed	= 0;	// TODO: Need to fetch asynDrv port CAM, addr 0, param MIN_Y
@@ -281,7 +284,7 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 	pBldData->m_HorizProj.resize( this->profileSizeX );
 	for (	size_t	ix = 0; ix < this->profileSizeX; ix++ )
 	{
-		pBldData->m_HorizProj[ix]	= 0;
+		pBldData->m_HorizProj[ix]	= 0.0;
 	}
 
 	// Compute BLD data
@@ -292,12 +295,13 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 		for (	size_t	ix = 0; ix < this->profileSizeX; ix++ )
 		{
 			double	value	= static_cast<double>( *pData++ );
-			pBldData->m_HorizProj[ix]	+= static_cast<epicsUInt32>(value);
+			value -= darkLevel;
+			pBldData->m_HorizProj[ix]	+= value;
 			pBldData->m_RawIntegral		+= value;
 			pBldData->m_RawCtrMass	+= value * ix;
-			if ( value >= pBldData->m_HorizBaseline )
+			if ( value >= pBldData->m_HorizBaseline || pBldData->m_HorizBaseline == 0.0 )
 			{
-				pBldData->m_AdjIntegral		+= value;
+				pBldData->m_AdjIntegral	+= value;
 				pBldData->m_AdjCtrMass	+= value * ix;
 			}
 		}
@@ -311,17 +315,23 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 		for (	size_t	iy = 0; iy < this->profileSizeY; iy++ )
 		{
 			double	value	= static_cast<double>( *pData );
+			value -= darkLevel;
 			pData += this->profileSizeY;
-			pBldData->m_HorizProj[ix]	+= static_cast<epicsUInt32>(value);
+			pBldData->m_HorizProj[ix]	+= value;
 			pBldData->m_RawIntegral		+= value;
 			pBldData->m_RawCtrMass	+= value * ix;
 			if ( value >= pBldData->m_HorizBaseline )
 			{
-				pBldData->m_AdjIntegral		+= value;
+				pBldData->m_AdjIntegral	+= value;
 				pBldData->m_AdjCtrMass	+= value * ix;
 			}
 		}
 	}
+	if( pBldData->m_AdjIntegral < 0.0 )
+		pBldData->m_AdjIntegral = 0.0;
+	if( pBldData->m_RawIntegral < 0.0 )
+		pBldData->m_RawIntegral = 0.0;
+		
 
 	// Do automatic peak detection
 	// Uses an IIR filtered spectrum to suppress noise for determining
@@ -428,8 +438,16 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 	this->lock();
 
 	// Update PV's
-	doCallbacksInt32Array(	reinterpret_cast<epicsInt32 *>( pBldData->m_HorizProj.data() ),
-							pBldData->m_HorizProjWidth, PluginSpectrometerHorizProj, 0	);
+	std::vector<epicsInt32>		horizProj;
+	horizProj.resize( this->profileSizeX );
+	for ( size_t	ix = 0; ix < this->profileSizeX; ix++ )
+	{
+		double	value = pBldData->m_HorizProj[ix];
+		if( value < 0.0 )
+			value = 0.0;
+		horizProj[ix] = static_cast<epicsInt32>( value );
+	}
+	doCallbacksInt32Array(	horizProj.data(), pBldData->m_HorizProjWidth, PluginSpectrometerHorizProj, 0	);
 	// setDoubleParam( PluginSpectrometerHorizBaseline,	pBldData->m_HorizBaseline	);
 	setDoubleParam( PluginSpectrometerAdjCtrMass,		pBldData->m_AdjCtrMass	);
 	setDoubleParam( PluginSpectrometerRawCtrMass,		pBldData->m_RawCtrMass	);
@@ -922,11 +940,12 @@ PluginSpectrometer::PluginSpectrometer(const char *portName, int queueSize, int 
 	createParam(PluginSpectrometerProfileCursorYString,	  asynParamFloat64Array,  &PluginSpectrometerProfileCursorY);
 
 	/* Horiz Projections */
-	createParam( PluginSpectrometerComputeProjectionsString,	asynParamInt32,			&PluginSpectrometerComputeProjections );
-	createParam( PluginSpectrometerHorizBaselineString,  asynParamFloat64,		&PluginSpectrometerHorizBaseline );
+	createParam( PluginSpectrometerComputeProjectionsString,asynParamInt32,			&PluginSpectrometerComputeProjections );
+	createParam( PluginSpectrometerDarkLevelString,			asynParamFloat64,		&PluginSpectrometerDarkLevel );
+	createParam( PluginSpectrometerHorizBaselineString,		asynParamFloat64,		&PluginSpectrometerHorizBaseline );
 	createParam( PluginSpectrometerHorizProjString,	  		asynParamInt32Array,	&PluginSpectrometerHorizProj );
-	createParam( PluginSpectrometerAdjCtrMassString,			asynParamFloat64,		&PluginSpectrometerAdjCtrMass );
-	createParam( PluginSpectrometerRawCtrMassString,			asynParamFloat64,		&PluginSpectrometerRawCtrMass );
+	createParam( PluginSpectrometerAdjCtrMassString,		asynParamFloat64,		&PluginSpectrometerAdjCtrMass );
+	createParam( PluginSpectrometerRawCtrMassString,		asynParamFloat64,		&PluginSpectrometerRawCtrMass );
 	createParam( PluginSpectrometerAdjIntegralString,		asynParamFloat64,		&PluginSpectrometerAdjIntegral );
 	createParam( PluginSpectrometerRawIntegralString,		asynParamFloat64,		&PluginSpectrometerRawIntegral );
 

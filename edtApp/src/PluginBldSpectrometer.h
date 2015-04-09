@@ -28,11 +28,12 @@ typedef struct BldSpectrometer
 	double					m_AdjCtrMass;	// Baseline adjusted center of mass (Only includes pixels at or above baseline)
 	double					m_RawIntegral;		// Integral of raw horizontal projection values
 	double					m_AdjIntegral;		// Baseline adjusted integral (Only includes pixels at or above baseline)
+	double					m_DarkLevel;
 	double					m_HorizBaseline;
 	size_t					m_HorizProjWidth;
 	size_t					m_HorizProjFirstRowUsed;
 	size_t					m_HorizProjLastRowUsed;
-	std::vector<epicsUInt32>		m_HorizProj;	// Horizontal projection of sample values by column
+	std::vector<double>		m_HorizProj;	// Horizontal projection of sample values by column
 	std::vector<SpectrometerPeak>	m_Peaks;
 
 	// These values cloned from PluginStats
@@ -97,7 +98,8 @@ typedef enum
 
 /* Horiz Projections */
 #define PluginSpectrometerComputeProjectionsString	"SPEC_COMPUTE_PROJ"	/* (asynInt32,		r/w) Compute horiz projection? */
-#define PluginSpectrometerHorizBaselineString	"SPEC_HORIZ_BASELINE"		/* (asynFloat64,	r/w) Baseline threshold */
+#define PluginSpectrometerDarkLevelString			"SPEC_DARK_LEVEL"	/* (asynFloat64,	r/w) Baseline threshold */
+#define PluginSpectrometerHorizBaselineString		"SPEC_HORIZ_BASELINE"/* (asynFloat64,	r/w) Baseline threshold */
 #define PluginSpectrometerHorizProjString			"SPEC_HORIZ_PROJ"	/* (asynUInt32Array,r/o) Horiz projection array */
 #define PluginSpectrometerAdjCtrMassString   		"SPEC_ADJ_CTR_MASS"	/* (asynFloat64,	r/o) Baseline Adj Center of Mass */
 #define PluginSpectrometerRawCtrMassString   		"SPEC_RAW_CTR_MASS"	/* (asynFloat64,	r/o) Raw Center of Mass */
@@ -181,6 +183,7 @@ protected:
 
 	/* Horiz Projection */
 	int PluginSpectrometerComputeProjections;
+	int PluginSpectrometerDarkLevel;
 	int PluginSpectrometerHorizBaseline;
 	int PluginSpectrometerHorizProj;
 	int PluginSpectrometerAdjCtrMass;

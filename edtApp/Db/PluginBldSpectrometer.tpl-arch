@@ -13,6 +13,10 @@ $(P)$(R)ComputeProfiles			10				monitor
 $(P)$(R)ComputeProfiles_RBV		1
 $(P)$(R)ComputeStatistics		10				monitor
 $(P)$(R)ComputeStatistics_RBV	1
+$(P)$(R)DarkLevel				10				monitor
+$(P)$(R)DarkLevel_RBV			1
+$(P)$(R)HorizBaseline			10				monitor
+$(P)$(R)HorizBaseline_RBV		1
 $(P)$(R)SendBld					10				monitor
 $(P)$(R)SendBld_RBV				1
 $(P)$(R)CursorX					10				monitor

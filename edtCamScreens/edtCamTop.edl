@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 743
-y 1224
+x 666
+y 582
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -581,7 +581,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 452
+x 500
 y 488
 w 92
 h 20
@@ -683,29 +683,6 @@ visMax "1"
 value {
   "Disconnected"
 }
-endObjectProperties
-
-# (Message Button)
-object activeMessageButtonClass
-beginObjectProperties
-major 4
-minor 1
-release 0
-x 552
-y 488
-w 40
-h 20
-fgColor index 25
-onColor index 6
-offColor index 3
-topShadowColor index 1
-botShadowColor index 13
-controlPv "$(P)$(R)NumImages"
-pressValue "0"
-onLabel "Zero"
-offLabel "Zero"
-3d
-font "helvetica-medium-r-14.0"
 endObjectProperties
 
 # (Static Text)
@@ -2913,7 +2890,7 @@ x 152
 y 228
 w 188
 h 20
-controlPv "$(P)$(R)OrcaModel_RBV"
+controlPv "$(P)$(R)EdtModel"
 font "helvetica-medium-r-12.0"
 fgColor index 15
 fgAlarm
