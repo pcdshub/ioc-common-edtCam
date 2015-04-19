@@ -3,7 +3,7 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 666
+x 646
 y 582
 w 1140
 h 614
@@ -846,7 +846,7 @@ minor 1
 release 1
 x 376
 y 100
-w 140
+w 108
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -864,12 +864,12 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 532
+x 492
 y 100
-w 59
-h 18
+w 100
+h 20
 controlPv "$(P)$(R)AcquireTime"
-format "decimal"
+format "gfloat"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 25
@@ -888,26 +888,6 @@ objType "controls"
 noExecuteClipMask
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 376
-y 240
-w 140
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Period between images"
-}
-endObjectProperties
-
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
@@ -919,32 +899,7 @@ y 100
 w 88
 h 20
 controlPv "$(P)$(R)AcquireTime_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 600
-y 240
-w 88
-h 20
-controlPv "$(P)$(R)AcquirePeriod_RBV"
+format "gfloat"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15

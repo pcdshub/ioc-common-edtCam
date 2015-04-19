@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1924
-y 1183
+x 647
+y 1224
 w 780
 h 860
 font "helvetica-bold-r-12.0"
@@ -378,16 +378,16 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 444
-y 660
-w 76
-h 20
-font "helvetica-bold-r-10.0"
+x 448
+y 664
+w 68
+h 24
+font "helvetica-bold-r-12.0"
 fgColor index 14
 bgColor index 3
 useDisplayBg
 value {
-  "Size X, Y"
+  "Pro. Size Y"
 }
 endObjectProperties
 
@@ -397,8 +397,8 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 536
-y 660
+x 640
+y 636
 w 100
 h 20
 controlPv "$(P)$(R)ProfileSizeX_RBV"
@@ -422,9 +422,9 @@ major 4
 minor 7
 release 0
 x 640
-y 660
+y 664
 w 100
-h 20
+h 24
 controlPv "$(P)$(R)ProfileSizeY_RBV"
 font "helvetica-bold-r-12.0"
 fontAlign "center"
@@ -1573,5 +1573,72 @@ useDisplayBg
 value {
   "Dark Level"
 }
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 448
+y 636
+w 68
+h 20
+font "helvetica-bold-r-12.0"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Pro. Size X"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 548
+y 636
+w 84
+h 20
+controlPv "$(P)$(R)ProfileSizeX"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+newPos
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 548
+y 664
+w 84
+h 24
+controlPv "$(P)$(R)ProfileSizeY"
+font "helvetica-bold-r-12.0"
+fontAlign "center"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+newPos
+noExecuteClipMask
 endObjectProperties
 
