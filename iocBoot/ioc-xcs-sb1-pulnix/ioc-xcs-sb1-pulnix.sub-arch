@@ -3,29 +3,29 @@
 file edt-ioc.archive
 {
     {
-        IOC = XCS:IOC:EDTCAM:02
+        IOC = XCS:IOC:SB1:PULNIX
     }
 }
 
 file ADBase.tpl-arch
 {
-    { P = "XCS:EDTCAM:01", R = ":"	}
-#    { P = "XCS:EDTCAM:02", R = ":"	}
+    { P = "XCS:SB1:PULNIX", R = ":"	}
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
 }
 
 #file hamaOrcaFlash4_0.archive
 #{
-#    { P = "XCS:EDTCAM:01", R = ":"	}
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
 #}
 
 # Bring in the pcds plugin archive pv's
 #file pcdsPlugins.archive
 #{
-#    {   CAM = "XCS:EDTCAM:01"	}
+#    {   CAM = "XCS:SB1:PULNIX"	}
 #}
 
 file PluginBldSpectrometer.archive
 {
-    { P = "XCS:EDTCAM:01", R = ":", CAM="XCS:EDTCAM:01", N = "1"	}
-#    { P = "XCS:EDTCAM:02", R = ":", CAM="XCS:EDTCAM:02", N = "1"	}
+    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
+#    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
 }

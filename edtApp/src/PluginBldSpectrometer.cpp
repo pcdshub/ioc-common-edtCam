@@ -507,17 +507,17 @@ asynStatus PluginSpectrometer::doSendBld(
 	size_t		nPeaks	= pBldData->m_Peaks.size();
 
 	//	Compute the output buffer size
-	assert( sizeof(uint32_t) == 4 );
+	assert( sizeof(epicsUInt32) == 4 );
 	assert( sizeof(double)	 == 8 );
-	size_t			sBufferMax	=	(	sizeof(uint32_t)		//	Projection Width
-									+	sizeof(uint32_t)		//	First row used
-									+	sizeof(uint32_t)		//	Last row used
+	size_t			sBufferMax	=	(	sizeof(epicsUInt32)		//	Projection Width
+									+	sizeof(epicsUInt32)		//	First row used
+									+	sizeof(epicsUInt32)		//	Last row used
 									+	sizeof(double)			//	RawCtrMass
 									+	sizeof(double)			//	HorizBaseline
 									+	sizeof(double)			//	AdjCtrMass
 									+	sizeof(double)			//	RawIntegral
-									+	sizeof(uint32_t)		//	nPeaks
-									+	(	sizeof(uint32_t)	//	Horiz projection
+									+	sizeof(epicsUInt32)		//	nPeaks
+									+	(	sizeof(epicsUInt32)	//	Horiz projection
 										*	pBldData->m_HorizProjWidth	)
 									+	(	sizeof(double)		//	Peak positions
 										*	nPeaks	)
@@ -531,7 +531,7 @@ asynStatus PluginSpectrometer::doSendBld(
 	void		*	pBufferOrig		= malloc( sBufferMax );
 
 	// Packing fixed size portion of output buffer
-	uint32_t	*	pBufferUint32	= static_cast<uint32_t *>( pBufferOrig );
+	epicsUInt32	*	pBufferUint32	= static_cast<epicsUInt32 *>( pBufferOrig );
 	*pBufferUint32++	= pBldData->m_HorizProjWidth;
 	*pBufferUint32++	= pBldData->m_HorizProjFirstRowUsed;
 	*pBufferUint32++	= pBldData->m_HorizProjLastRowUsed;
@@ -540,12 +540,12 @@ asynStatus PluginSpectrometer::doSendBld(
 	*pBufferDouble++	= pBldData->m_HorizBaseline;
 	*pBufferDouble++	= pBldData->m_AdjCtrMass;
 	*pBufferDouble++	= pBldData->m_RawIntegral;
-	pBufferUint32		= reinterpret_cast<uint32_t *>( pBufferDouble );
+	pBufferUint32		= reinterpret_cast<epicsUInt32 *>( pBufferDouble );
 	*pBufferUint32++	= nPeaks;
 
 	// Packing variable size portion of output buffer
 	for ( size_t	ix = 0; ix < pBldData->m_HorizProjWidth; ix++ )
-		*pBufferUint32++	= static_cast<uint32_t>( pBldData->m_HorizProj[ix] );
+		*pBufferUint32++	= static_cast<epicsUInt32>( pBldData->m_HorizProj[ix] );
 
 	pBufferDouble	= reinterpret_cast<double *>( pBufferUint32 );
 	for ( size_t	iPeak = 0; iPeak < nPeaks; iPeak++ )

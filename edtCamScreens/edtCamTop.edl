@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 646
-y 582
+x 765
+y 286
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -774,42 +774,6 @@ bgColor index 3
 value {
   "Model Specific Settings"
 }
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 24
-y 540
-w 152
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 0
-botShadowColor index 14
-font "helvetica-medium-r-12.0"
-buttonLabel "Orca Specific"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "edtPdvScreens/hamaOrcaFlash4_0.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "P=$(P),R=$(R),IOC=$(IOC),EVR=$(EVR)"
-}
-replaceSymbols {
-  0 1
-}
-propagateMacros {
-  0 0
-}
-icon
 endObjectProperties
 
 # (Related Display)
@@ -2501,42 +2465,6 @@ objType "monitors"
 noExecuteClipMask
 endObjectProperties
 
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 188
-y 540
-w 152
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 0
-botShadowColor index 14
-font "helvetica-medium-r-12.0"
-buttonLabel "ptm6740_10"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "edtPdvScreens/ptm6740_10.edl"
-}
-setPosition {
-  0 "button"
-}
-symbols {
-  0 "P=$(P),R=$(R),IOC=$(IOC),EVR=$(EVR)"
-}
-replaceSymbols {
-  0 1
-}
-propagateMacros {
-  0 0
-}
-icon
-endObjectProperties
-
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
@@ -2945,5 +2873,160 @@ command {
   0 "IOC=$(IOC) P=$(P) R=$(R) IMAGE=IMAGE2 edtCamScreens/ADStreamScreens/edmViewer.sh"
 }
 execCursor
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 24
+y 540
+w 176
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 0
+botShadowColor index 14
+font "helvetica-medium-r-12.0"
+buttonLabel "        Model Specific        "
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "edtPdvScreens/edtModel.edl"
+}
+setPosition {
+  0 "button"
+}
+symbols {
+  0 "P=$(P),R=$(R),IOC=$(IOC),EVR=$(EVR),CAM=$(CAM)"
+}
+replaceSymbols {
+  0 1
+}
+propagateMacros {
+  0 0
+}
+icon
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 44
+y 544
+w 152
+h 16
+controlPv "$(P)$(R)EdtModel"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+limitsFromDb
+nullColor index 0
+useHexPrefix
+newPos
+objType "monitors"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 376
+y 240
+w 312
+h 20
+
+beginGroup
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 376
+y 240
+w 108
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Acquire Period"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 492
+y 240
+w 100
+h 18
+controlPv "$(P)$(R)AcquirePeriod"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 600
+y 240
+w 88
+h 20
+controlPv "$(P)$(R)AcquirePeriod_RBV"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+endGroup
+
+visPv "$(P)$(R):AcquirePeriod.DISV"
+visMin "1"
+visMax "2"
 endObjectProperties
 

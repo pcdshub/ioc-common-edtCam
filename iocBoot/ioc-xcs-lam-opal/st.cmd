@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Danial Damiani (ddamiani)" )
-epicsEnvSet( "LOCATION",	"XCS:IOC:LAM:EDTCAM:01" )
+epicsEnvSet( "LOCATION",	"XCS:IOC:LAM:OPAL" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,10 +13,10 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"XCS:IOC:LAM:EDTCAM:01" )
-epicsEnvSet( "EVR_PV",	"XCS:EVR:LAM:EDTCAM:01" )
+epicsEnvSet( "IOC_PV",	"XCS:IOC:LAM:OPAL" )
+epicsEnvSet( "EVR_PV",	"XCS:EVR:LAM:OPAL" )
 epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG1" )
-epicsEnvSet( "CAM_PV",	"XCS:LAM:EDTCAM:01" )
+epicsEnvSet( "CAM_PV",	"XCS:LAM:OPAL" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
@@ -78,7 +78,7 @@ set_pass1_restoreFile( "$(IOC).sav" )
 # Configuring EVR card $(EVR_CARD)
 ErDebugLevel( $(EVR_DEBUG) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:EVR:LAM:EDTCAM:01,CARD=$(EVR_CARD),IP0E=Disabled,IP1E=Enabled,IP2E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=XCS:EVR:LAM:OPAL,CARD=$(EVR_CARD),IP0E=Disabled,IP1E=Enabled,IP2E=Enabled" )
 
 #
 #
@@ -101,7 +101,7 @@ epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
 # =========================================================
 # Configure an edtPdv driver for the specified camera model
 # =========================================================
-edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
+edtPdvConfig( "$(CAM_PORT)", 0, 1, "$(MODEL)", "$(CAM_MODE)" )
 
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",		1, $(CAM_TRACE_MASK) )

@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Danial Damiani (ddamiani)" )
-epicsEnvSet( "LOCATION",	"XCS:IOC:EDTCAM:02" )
+epicsEnvSet( "LOCATION",	"XCS:IOC:SB1:PULNIX" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,10 +13,10 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"XCS:IOC:EDTCAM:02" )
-epicsEnvSet( "EVR_PV",	"XCS:EVR:EDTCAM:02" )
+epicsEnvSet( "IOC_PV",	"XCS:IOC:SB1:PULNIX" )
+epicsEnvSet( "EVR_PV",	"XCS:EVR:SB1:PULNIX" )
 epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG0" )
-epicsEnvSet( "CAM_PV",	"XCS:EDTCAM:01" )
+epicsEnvSet( "CAM_PV",	"XCS:SB1:PULNIX" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
