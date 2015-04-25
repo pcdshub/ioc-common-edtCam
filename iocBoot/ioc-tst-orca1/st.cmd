@@ -15,6 +15,7 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 # PV Prefixes
 epicsEnvSet( "IOC_PV",	"TST:IOC:EDT:ORCA1" )
 epicsEnvSet( "EVR_PV",	"TST:EVR:EDT:ORCA1" )
+epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG0" )
 epicsEnvSet( "CAM_PV",	"TST:EDT:ORCA1" )
 
 # Configure EVR
@@ -76,8 +77,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 # Configuring EVR card $(EVR_CARD)
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-#dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
-dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Enabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled" )
+dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:ORCA1,CARD=$(EVR_CARD),IP0E=Enabled" )
 
 #
 #
@@ -118,15 +119,15 @@ asynSetTraceIOMask( "$(CAM_PORT).SER",	0, $(SER_TRACE_IO_MASK) )
 epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
-dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG0,BEAM_TRIG=$(EVR_PV):TRIG2" )
-dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
+dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(TRIG_PV),EVR=$(EVR_PV)" )
+dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):EVENT1CTRL.ENM,DLY=1" )
 
 # For camera serial asyn diagnostics
 # (AreaDetector plugins each have their own AsynIO record)
 dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT).SER,ADDR=0,IMAX=0,OMAX=0" )
 
 # Load camera model specific db
-dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 
 # Load history records
 dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )

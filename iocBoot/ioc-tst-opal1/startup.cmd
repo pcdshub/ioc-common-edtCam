@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Setup the IOC user environment
-export IOC="ioc-sxr-spec1"
-source /reg/d/iocCommon/All/sxr_env.sh
+export IOC="ioc-tst-opal1"
+source /reg/d/iocCommon/All/tst_env.sh
 
 # Make sure the IOC's data directories are ready for use
 $RUNUSER "mkdir -p      $IOC_DATA/$IOC/autosave"

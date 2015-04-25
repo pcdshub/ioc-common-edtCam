@@ -1,6 +1,3 @@
-# Makefile to install the st.cmd into the correctly location.
-# Author: Jason Tiller
-
 TOP = ../..
 include $(TOP)/configure/CONFIG
 ARCH = linux-x86_64
@@ -12,17 +9,12 @@ USR_ARCHIVEFLAGS += -V
 #----------------------------------------------------
 # Create and install IOC archive file
 #
-ARCHIVE += ioc-xcs-edtCam2.archive
+ARCHIVE += ioc-tst-ptm1.archive
 
 #----------------------------------------------------
 # Create and install IOC autosave file
 #
-REQ += ioc-xcs-edtCam2.req
-
-# See RULES.copy for more information on these variables.
-COPY_ONLY_IF_NON_LOCAL=1
-COPY_SUBDIR=iocBoot/ioc-xcs-edtCam2
-COPY_FILES=st.cmd
+REQ += ioc-tst-ptm1.req
 
 include $(TOP)/configure/RULES
 include $(TOP)/configure/RULES.ioc-targets

@@ -4,8 +4,8 @@
 # IOC macro should be the ioc name, used as
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
-epicsEnvSet( "ENGINEER",	"Bruce Hill (bhill)" )
-epicsEnvSet( "LOCATION",	"ioc-sxr-rec01" )
+epicsEnvSet( "ENGINEER",	"Danial Damiani (ddamiani)" )
+epicsEnvSet( "LOCATION",	"XCS:IOC:EDTCAM:02" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,10 +13,10 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"SXR:SPEC:IOC:01" )
-epicsEnvSet( "EVR_PV",	"SXR:SPEC:EVR:01" )
+epicsEnvSet( "IOC_PV",	"XCS:IOC:EDTCAM:02" )
+epicsEnvSet( "EVR_PV",	"XCS:EVR:EDTCAM:02" )
 epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG0" )
-epicsEnvSet( "CAM_PV",	"SXR:SPEC:CAM:01" )
+epicsEnvSet( "CAM_PV",	"XCS:EDTCAM:01" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
@@ -26,9 +26,7 @@ epicsEnvSet( "EVR_TYPE",	"1" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
-epicsEnvSet( "MODEL",		"opal1000m_12" )
-epicsEnvSet( "EDT_UNIT",	"0" )
-epicsEnvSet( "EDT_CH",		"0" )
+epicsEnvSet( "MODEL",		"ptm6740_10" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7800" )
 epicsEnvSet( "MJPG_PORT",	"8081"	)
@@ -81,8 +79,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 # Configuring EVR card $(EVR_CARD)
 ErDebugLevel( $(EVR_DEBUG) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=SXR:SPEC:EVR:01,CARD=$(EVR_CARD),IP0E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=SXR:SPEC:EVR:01,CARD=$(EVR_CARD),IP0E=Enabled" )
+dbLoadRecords( "db/evrPmc230.db",			"EVR=$(EVR_PV),CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Disabled,IP2E=Enabled" )
+#dbLoadRecords( "db/evrSLAC.db",			"EVR=$(EVR_PV),CARD=$(EVR_CARD),IP0E=Enabled,IP1E=Disabled,IP2E=Enabled" )
 
 #
 #
@@ -105,7 +103,7 @@ epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
 # =========================================================
 # Configure an edtPdv driver for the specified camera model
 # =========================================================
-edtPdvConfig( "$(CAM_PORT)", $(EDT_UNIT), $(EDT_CH), "$(MODEL)", "$(CAM_MODE)" )
+edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
 
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",		1, $(CAM_TRACE_MASK) )
@@ -142,14 +140,20 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load any desired viewers
 < db/MonoFullViewer.cmd
-#< db/MonoBin2Viewer.cmd
-#< db/MonoBin4Viewer.cmd
+< db/MonoBin2Viewer.cmd
+< db/MonoBin4Viewer.cmd
 
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #< db/$(PLUGINS).cmd
 #< setupScripts/pluginStats.cmd
+
+#
+#
+#
+# Comment/uncomment/change delay as desired so you can see remaining messages before iocInit
+epicsThreadSleep $(ST_CMD_DELAYS)
 
 # 
 # Initialize the IOC and start processing records
@@ -173,3 +177,4 @@ create_monitor_set( "$(IOC).req", 5, "" )
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
 #dbpf $(CAM_PV1):Acquire 1
+#dbpf $(CAM_PV2):Acquire 1

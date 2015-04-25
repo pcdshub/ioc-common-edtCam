@@ -15,8 +15,8 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 # PV Prefixes
 epicsEnvSet( "IOC_PV",	"XCS:IOC:LAM:EDTCAM:01" )
 epicsEnvSet( "EVR_PV",	"XCS:EVR:LAM:EDTCAM:01" )
-epicsEnvSet( "CAM_PV1",	"XCS:LAM:EDTCAM:01" )
-epicsEnvSet( "CAM_PV",	$(CAM_PV1) )
+epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG1" )
+epicsEnvSet( "CAM_PV",	"XCS:LAM:EDTCAM:01" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
@@ -116,15 +116,15 @@ asynSetTraceIOMask( "$(CAM_PORT).SER",	1, $(SER_TRACE_IO_MASK) )
 epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load standard edtPdv camera database
-dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(EVR_PV):TRIG1,BEAM_TRIG=$(EVR_PV):TRIG2" )
-dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):TRIG2:EC_RBV,DLY=1" )
+dbLoadRecords(	"db/edtPdvCamera.db",		"CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(TRIG_PV),EVR=$(EVR_PV)" )
+dbLoadRecords(	"db/timeStampFifo.template","DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):EVENT1CTRL.ENM,DLY=1" )
 
 # For camera serial asyn diagnostics
 # (AreaDetector plugins each have their own AsynIO record)
 dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT).SER,ADDR=0,IMAX=0,OMAX=0" )
 
 # Load camera model specific db
-dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT)" )
+dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 
 # Load history records
 #dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )

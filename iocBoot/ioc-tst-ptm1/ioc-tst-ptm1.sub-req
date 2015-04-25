@@ -1,0 +1,34 @@
+# Autosave file for IOC
+
+# Each EdtPdv IOC needs one of these
+file autosave_iocAdmin.tpl-req
+{
+    { IOC = "TST:IOC:EDT:PTM1" }
+}
+
+file autosave_pmc_evr.tpl-req
+{
+    { EVR = "TST:EVR:EDT:PTM1" }
+}
+
+file ADBase_settings.req
+{
+    { P = "TST:EDT:PTM1", R = ":"	}
+}
+
+# Bring in the pcds plugin autosave pv's
+#file pcdsPlugins.req
+#{
+#    {   CAM = "TST:EDT:PTM1"	}
+#}
+
+#file cross_settings.req
+#{
+#    {   P = "TST:EDT:PTM1",	R = ":" 	}
+#}
+
+
+#file PluginBldSpectrometer.req
+#{
+#    { P = "TST:EDT:PTM1", R = ":", CAM="TST:EDT:PTM1", N = "1"	}
+#}

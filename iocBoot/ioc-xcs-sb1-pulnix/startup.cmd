@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Setup the IOC user environment
-export IOC="ioc-sxr-spec1"
-source /reg/d/iocCommon/All/sxr_env.sh
+export IOC="ioc-xcs-sb1-pulnix"
+source /reg/d/iocCommon/All/xcs_env.sh
 
 # Make sure the IOC's data directories are ready for use
 $RUNUSER "mkdir -p      $IOC_DATA/$IOC/autosave"
@@ -13,6 +13,8 @@ $RUNUSER "chmod ug+w -R $IOC_DATA/$IOC"
 # For release
 
 # For development
+#cd ~dhzhang/Epics/unixCam/fee/iocBoot/$IOC
+#cd /reg/neh/home1/mcbrowne/trunk2/ioc/xcs/unixCam/current/build/iocBoot/$IOC
 cd /reg/neh/home1/bhill/wa2/epics/ioc/common/edtCam/current/iocBoot/$IOC
 
 # Copy the archive file to iocData
