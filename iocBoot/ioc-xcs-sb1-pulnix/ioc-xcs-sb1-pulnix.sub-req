@@ -3,40 +3,40 @@
 # Each EdtPdv IOC needs one of these
 file autosave_iocAdmin.tpl-req
 {
-    { IOC = "IOC:XCS:CAM:02" }
+    { IOC = "XCS:IOC:SB1:PULNIX" }
 }
 
 file autosave_pmc_evr.tpl-req
 {
-    { EVR = "XCS:R44:EVR:02" }
+    { EVR = "XCS:EVR:SB1:PULNIX" }
 }
 
 file ADBase_settings.req
 {
-    { P = "XCS:SB1:CVV:01", R = ":"	}
-    { P = "XCS:LAM:CVV:01", R = ":"	}
+    { P = "XCS:SB1:PULNIX", R = ":"	}
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
 }
 
 #file hamaOrcaFlash4_0.req
 #{
-#    { P = "XCS:SB1:CVV:01", R = ":"	}
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
 #}
 
 # Bring in the pcds plugin autosave pv's
 #file pcdsPlugins.req
 #{
-#    {   CAM = "XCS:SB1:CVV:01"	}
+#    {   CAM = "XCS:SB1:PULNIX"	}
 #}
 
 file cross_settings.req
 {
-    { P = "XCS:SB1:CVV:01",	R = ":" }
-    { P = "XCS:LAM:CVV:01", R = ":"	}
+    { P = "XCS:SB1:PULNIX",	R = ":" }
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
 }
 
 
 #file PluginBldSpectrometer.req
 #{
-#    { P = "XCS:SB1:CVV:01", R = ":", CAM="XCS:SB1:CVV:01", N = "1"	}
-#    { P = "XCS:LAM:CVV:01", R = ":", CAM="XCS:LAM:CVV:01", N = "1"	}
+#    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
+#    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
 #}
