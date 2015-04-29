@@ -1,0 +1,24 @@
+# Archive file for ioc-tst-up900
+
+file edt-ioc.archive
+{
+    {
+        IOC = TST:IOC:EDT:UP900
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "TST:EDT:UP900", R = ":"	}
+}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "TST:EDT:UP900"	}
+#}
+#
+#file PluginBldSpectrometer.archive
+#{
+#    { P = "TST:EDT:UP900", R = ":", CAM="TST:EDT:PTM1", N = "1"	}
+#}
