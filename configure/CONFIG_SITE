@@ -15,6 +15,9 @@
 
 CROSS_COMPILER_TARGET_ARCHS     =
 # PCDS: Only build the linux-x86 cross target if host is linux-x86_64
+ifeq '$(EPICS_HOST_ARCH)' 'rhel6-x86_64'
+CROSS_COMPILER_TARGET_ARCHS    +=  linuxRT_glibc-x86_64
+endif
 ifeq '$(EPICS_HOST_ARCH)' 'linux-x86_64'
 CROSS_COMPILER_TARGET_ARCHS    +=  linux-x86
 endif
