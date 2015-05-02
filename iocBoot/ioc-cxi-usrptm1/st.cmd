@@ -166,16 +166,52 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 asynSetTraceMask(   "ROI6",		1, $(CAM_TRACE_MASK) )
 asynSetTraceIOMask( "ROI6",		1, $(CAM_TRACE_IO_MASK) )
 
-# Configure and load the BLD plugin
+# Configure and load a plugin chain for the first ROI area
+# ROI plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
+< setupScripts/pluginROI.cmd
+# Image plugin
+epicsEnvSet(	"IMAGE_NAME",			"ROI_IMG1" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
+< setupScripts/pluginImage.cmd
+#
+# Integral can be computed by either of the following 
+#
+# Stats plugin
+epicsEnvSet(	"N",					"1" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
+< setupScripts/pluginStats.cmd
+# BldSpectrometer plugin
+epicsEnvSet(	"N",					"1" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
+< setupScripts/pluginBldSpectrometer.cmd
+
+# Configure and load a plugin chain for the second ROI area
+# ROI plugin
+epicsEnvSet(	"N",					"2" )
+epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
+< setupScripts/pluginROI.cmd
+# Image plugin
+epicsEnvSet(	"IMAGE_NAME",			"ROI_IMG2" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
+< setupScripts/pluginImage.cmd
+#
+# Integral can be computed by either of the following 
+#
+# Stats plugin
+epicsEnvSet(	"N",					"2" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
+< setupScripts/pluginStats.cmd
+# BldSpectrometer plugin
+epicsEnvSet(	"N",					"2" )
+epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
 < setupScripts/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
-epicsEnvSet(	"N",					"1" )
-epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-#< db/$(PLUGINS).cmd
-#< setupScripts/pluginStats.cmd
+#epicsEnvSet(	"N",					"1" )
+#epicsEnvSet(	"PLUGIN_SRC",			"?" )
+#< setupScripts/plugin?.cmd
 
 # Create a TIFF plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
@@ -211,12 +247,12 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure the BLD client
 epicsEnvSet( "BLD_XTC",		"0x10048" )	# XTC Type, Id_Spectrometer
-epicsEnvSet( "BLD_SRC",		"46" )		# Src Id, FeeSpec0
+epicsEnvSet( "BLD_SRC",		"?" )		# Src Id, ?
 epicsEnvSet( "BLD_IP",		"239.255.24.$(BLD_SRC)" )
 epicsEnvSet( "BLD_PORT",	"10148" )
 epicsEnvSet( "BLD_MAX",		"8980" )	# 9000 MTU - 20 byte header
-BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
-BldStart()
+#BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
+#BldStart()
 BldIsStarted()
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
