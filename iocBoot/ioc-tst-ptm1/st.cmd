@@ -131,7 +131,7 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 
 # Load history records
-dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
 dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #

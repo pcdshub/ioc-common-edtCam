@@ -174,4 +174,4 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
-#dbpf $(CAM_PV1):Acquire 1
+#dbpf $(CAM_PV):Acquire 1

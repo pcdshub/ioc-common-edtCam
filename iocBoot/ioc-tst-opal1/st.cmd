@@ -77,9 +77,10 @@ set_pass1_restoreFile( "$(IOC).sav" )
 #
 #
 # Configuring EVR card $(EVR_CARD)
-ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-#dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:OPAL1,CARD=$(EVR_CARD),IP$(TRIG)E=Enabled" )
-dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:OPAL1,CARD=$(EVR_CARD),IP$(TRIG)E=Enabled" )
+# EVR not installed yet!
+# ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
+# #dbLoadRecords( "db/evrPmc230.db",			"EVR=TST:EVR:EDT:OPAL1,CARD=$(EVR_CARD),IP$(TRIG)E=Enabled" )
+# dbLoadRecords( "db/evrSLAC.db",			"EVR=TST:EVR:EDT:OPAL1,CARD=$(EVR_CARD),IP$(TRIG)E=Enabled" )
 
 #
 #
@@ -131,7 +132,7 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 
 # Load history records
-dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
 dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #

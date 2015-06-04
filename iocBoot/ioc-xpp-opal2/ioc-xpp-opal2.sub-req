@@ -3,37 +3,37 @@
 # Each EdtPdv IOC needs one of these
 file autosave_iocAdmin.tpl-req
 {
-    { IOC = "XPP:OPAL1K:IOC:01" }
+    { IOC = "XPP:OPAL1K:IOC:02" }
 }
 
 file autosave_evr_SLAC.tpl-req
 {
-    { EVR = "XPP:OPAL1K:EVR:01" }
+    { EVR = "XPP:OPAL1K:EVR:02" }
 }
 
 file ADBase_settings.req
 {
-    { P = "XPP:OPAL1K:01", R = ":"	}
+    { P = "XPP:OPAL1K:02", R = ":"	}
 }
 
 #file hamaOrcaFlash4_0.req
 #{
-#    { P = "XPP:OPAL1K:01", R = ":"	}
+#    { P = "XPP:OPAL1K:02", R = ":"	}
 #}
 
 # Bring in the pcds plugin autosave pv's
 #file pcdsPlugins.req
 #{
-#    {   CAM = "XPP:OPAL1K:01"	}
+#    {   CAM = "XPP:OPAL1K:02"	}
 #}
 
 file cross_settings.req
 {
-    { P = "XPP:OPAL1K:01",	R = ":" }
+    { P = "XPP:OPAL1K:02",	R = ":" }
 }
 
 
 #file PluginBldSpectrometer.req
 #{
-#    { P = "XPP:OPAL1K:01", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}
+#    { P = "XPP:OPAL1K:02", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}
 #}

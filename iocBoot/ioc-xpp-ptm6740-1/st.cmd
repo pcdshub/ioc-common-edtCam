@@ -5,7 +5,7 @@
 # part of the path to the autosave directory
 # and in the autosave restoreSet name.
 epicsEnvSet( "ENGINEER",	"Bruce Hill (bhill)" )
-epicsEnvSet( "LOCATION",	"ioc-sxr-rec01" )
+epicsEnvSet( "LOCATION",	"XPP:R30:IOC:27" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 
 #
@@ -13,26 +13,25 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 #
 
 # PV Prefixes
-epicsEnvSet( "IOC_PV",	"SXR:SPEC:IOC:01" )
-epicsEnvSet( "EVR_PV",	"SXR:SPEC:EVR:01" )
-epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG0" )
-epicsEnvSet( "CAM_PV",	"SXR:SPEC:CAM:01" )
+epicsEnvSet( "IOC_PV",	"XPP:PTM6740:IOC:01" )
+epicsEnvSet( "EVR_PV",	"XPP:PTM6740:EVR:01" )
+epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG3" )
+epicsEnvSet( "CAM_PV",	"XPP:PTM6740:01" )
 
 # Configure EVR
 epicsEnvSet( "EVR_CARD",	"0" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
-epicsEnvSet( "EVR_TYPE",	"1" )
-#epicsEnvSet( "EVR_TYPE",	"15" )
+epicsEnvSet( "EVR_TYPE",	"15" )
 
 # Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
 # and additional plugins, if desired
-epicsEnvSet( "MODEL",		"opal1000m_12" )
-epicsEnvSet( "EDT_UNIT",	"0" )
+epicsEnvSet( "MODEL",		"ptm6740_10" )
+epicsEnvSet( "EDT_UNIT",	"1" )
 epicsEnvSet( "EDT_CH",		"0" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
-epicsEnvSet( "HTTP_PORT",	"7800" )
-epicsEnvSet( "MJPG_PORT",	"8081"	)
-#epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
+epicsEnvSet( "HTTP_PORT",	"7803" )
+epicsEnvSet( "MJPG_PORT",	"8083"	)
+epicsEnvSet( "PLUGINS",	"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
 epicsEnvSet( "CAM_TRACE_MASK",    "9" )
@@ -81,8 +80,8 @@ set_pass1_restoreFile( "$(IOC).sav" )
 # Configuring EVR card $(EVR_CARD)
 ErDebugLevel( $(EVR_DEBUG) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVR_TYPE) )
-dbLoadRecords( "db/evrPmc230.db",			"EVR=SXR:SPEC:EVR:01,CARD=$(EVR_CARD),IP0E=Enabled" )
-#dbLoadRecords( "db/evrSLAC.db",			"EVR=SXR:SPEC:EVR:01,CARD=$(EVR_CARD),IP0E=Enabled" )
+#dbLoadRecords( "db/evrPmc230.db",		"EVR=$(EVR_PV),CARD=$(EVR_CARD),IP3E=Enabled" )
+dbLoadRecords( "db/evrSLAC.db",			"EVR=$(EVR_PV),CARD=$(EVR_CARD),IP3E=Enabled" )
 
 #
 #
@@ -131,7 +130,7 @@ dbLoadRecords(	"db/asynRecord.db",			"P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT)
 dbLoadRecords(	"db/$(MODEL).db",			"P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 
 # Load history records
-dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
+#dbLoadRecords(	"db/bld_hist.db",			"P=$(CAM_PV),R=:" )
 dbLoadRecords(	"db/edtCam_hist.db",		"P=$(CAM_PV),R=:" )
 
 #
@@ -142,7 +141,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 
 # Configure and load any desired viewers
 < db/MonoFullViewer.cmd
-#< db/MonoBin2Viewer.cmd
+< db/MonoBin2Viewer.cmd
 #< db/MonoBin4Viewer.cmd
 
 # Configure and load any additional plugins, if any
@@ -172,4 +171,4 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
-#dbpf $(CAM_PV):Acquire 1
+dbpf $(CAM_PV):Acquire 1
