@@ -213,10 +213,21 @@ epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
 #epicsEnvSet(	"PLUGIN_SRC",			"?" )
 #< setupScripts/plugin?.cmd
 
+# Create a JPEG plugin, set it to get data from the camera
+epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
+epicsEnvSet( "N", "1" )
+< setupScripts/pluginJPEG.cmd
+
 # Create a TIFF plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-#< setupScripts/pluginTIFF.cmd
+< setupScripts/pluginTIFF.cmd
+
+# Create a HDF5 plugin, set it to get data from the camera
+epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
+epicsEnvSet( "N", "1" )
+< setupScripts/pluginHDF5.cmd
+
 
 #
 #
