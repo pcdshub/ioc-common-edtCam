@@ -98,6 +98,13 @@ edt_SYS_LIBS += xml2
 edt_SYS_LIBS += tiff
 edt_SYS_LIBS += jpeg
 edt_SYS_LIBS += z
+edt_SYS_LIBS += pthread
+edt_SYS_LIBS += dl
+
+ifneq (,$(wildcard $(PCRE_LIB)))
+PROD_DEPLIB_DIRS += $(PCRE_LIB)
+edt_SYS_LIBS += pcre
+endif
 
 # ffmpegServer
 #edt_LIBS += avcodec
@@ -109,6 +116,7 @@ edt_SYS_LIBS += z
 
 #edt_LIBS += timeStampSource
 edt_LIBS += timeStampFifo
+
 
 edt_LIBS += $(EPICS_BASE_IOC_LIBS)
 
