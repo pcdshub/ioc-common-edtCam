@@ -64,6 +64,10 @@ edt_LIBS += devMrfEr
 edt_LIBS += drvMrf
 edt_LIBS_Linux += mrfApi
 
+# EDT PDV libs
+edt_LIBS += edtPdv
+edt_LIBS += pdv
+
 # areaDetector
 edt_LIBS += calc
 edt_LIBS += busy
@@ -75,8 +79,6 @@ edt_LIBS += netCDF
 edt_LIBS += NeXus
 edt_LIBS += hdf5
 edt_LIBS += simDetector
-edt_LIBS += edtPdv
-edt_LIBS += pdv
 edt_LIBS += stream
 edt_LIBS += sscan
 edt_LIBS += asyn

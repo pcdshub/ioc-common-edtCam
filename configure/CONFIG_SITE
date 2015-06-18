@@ -37,5 +37,5 @@ endif
 # define INSTALL_LOCATION here
 
 # Settings for static and shared build options
-STATIC_BUILD=NO
+STATIC_BUILD=YES
 SHARED_LIBRARIES=YES
