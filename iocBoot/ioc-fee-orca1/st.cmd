@@ -199,7 +199,7 @@ epicsEnvSet( "BLD_SRC",		"46" )		# Src Id, FeeSpec0
 epicsEnvSet( "BLD_IP",		"239.255.24.$(BLD_SRC)" )
 epicsEnvSet( "BLD_PORT",	"10148" )
 epicsEnvSet( "BLD_MAX",		"8980" )	# 9000 MTU - 20 byte header
-BldConfigSend( 0, "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
+BldConfigSend( 0, "$(BLD_IP)", $(BLD_PORT), $(BLD_MAX) )
 BldStart()
 BldIsStarted()
 
