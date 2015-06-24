@@ -103,7 +103,7 @@ epicsEnvSet(	"STREAM_PROTOCOL_PATH",		"db" )
 # =========================================================
 # Configure an edtPdv driver for the specified camera model
 # =========================================================
-edtPdvConfig( "$(CAM_PORT)", 0, 1, "$(MODEL)", "$(CAM_MODE)" )
+edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
 #registerUserTimeStampSource( "$(CAM_PORT)", "TimeStampSource" )
 
 # Set asyn trace flags

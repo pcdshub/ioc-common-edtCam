@@ -15,7 +15,7 @@ epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
 # PV Prefixes
 epicsEnvSet( "IOC_PV",	"XPP:PTM6740:IOC:02" )
 epicsEnvSet( "EVR_PV",	"XPP:PTM6740:EVR:02" )
-epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG3" )
+epicsEnvSet( "TRIG_PV",	"$(EVR_PV):TRIG4" )
 epicsEnvSet( "CAM_PV",	"XPP:PTM6740:02" )
 
 # Configure EVR
@@ -147,7 +147,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< db/$(PLUGINS).cmd
+#< db/$(PLUGINS).cmd
 #< setupScripts/pluginStats.cmd
 
 # 
