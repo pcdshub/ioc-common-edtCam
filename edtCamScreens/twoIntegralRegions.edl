@@ -3025,7 +3025,7 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(R):AcquirePeriod.DISV"
+visPv "$(P)$(R):AcquirePeriod.DISA"
 visMin "1"
 visMax "2"
 endObjectProperties

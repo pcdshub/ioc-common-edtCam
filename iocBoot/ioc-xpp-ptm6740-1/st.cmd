@@ -51,8 +51,8 @@ dbLoadDatabase("dbd/edt.dbd")
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set debug variables
-var DEBUG_EDT_PDV 2
-var DEBUG_TS_FIFO  2
+var DEBUG_EDT_PDV 3
+var DEBUG_TS_FIFO 3
 
 # Load standard soft ioc database
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
@@ -156,7 +156,7 @@ epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 iocInit()
 
 # Create archive files from info directives
-# makeArchiveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/archive/$(IOC).archive", "archiveFields" )
+# makeArchiveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/archive/autoArchive.archive", "archiveFields" )
 
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
@@ -171,4 +171,4 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
-dbpf $(CAM_PV):Acquire 1
+#dbpf $(CAM_PV):Acquire 1

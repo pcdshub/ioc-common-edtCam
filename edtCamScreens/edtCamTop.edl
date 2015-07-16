@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1976
-y 359
+x 633
+y 527
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -3025,7 +3025,7 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(R):AcquirePeriod.DISV"
+visPv "$(P)$(R):AcquirePeriod.DISA"
 visMin "1"
 visMax "2"
 endObjectProperties

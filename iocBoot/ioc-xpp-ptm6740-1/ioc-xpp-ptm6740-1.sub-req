@@ -8,7 +8,7 @@ file autosave_iocAdmin.tpl-req
 
 file autosave_evr_SLAC.tpl-req
 {
-    { EVR = "XPP:R30:EVR:27" }
+    { EVR = "XPP:PTM6740:EVR:01" }
 }
 
 file ADBase_settings.req

@@ -235,4 +235,4 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # 1 seconds to auto-start of image acquisition
 #
 epicsThreadSleep $(ST_CMD_DELAYS)
-#dbpf $(CAM_PV):Acquire 1
+dbpf $(CAM_PV):Acquire 1

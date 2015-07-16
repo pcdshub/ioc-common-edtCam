@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/edt
+#!../../bin/linuxRT_glibc-x86_64/edt
 
 < envPaths
 # IOC macro should be the ioc name, used as

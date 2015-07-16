@@ -1,6 +1,6 @@
 TOP = ../..
 include $(TOP)/configure/CONFIG
-ARCH = linux-x86_64
+ARCH = linuxRT_glibc-x86_64
 TARGETS = envPaths
 
 # Make sure these archive files are fully expanded
