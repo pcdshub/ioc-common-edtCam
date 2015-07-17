@@ -148,7 +148,8 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #< db/$(PLUGINS).cmd
-#< setupScripts/pluginStats.cmd
+< setupScripts/pluginStats.cmd
+< setupScripts/pluginProcess.cmd
 
 # 
 # Initialize the IOC and start processing records
@@ -171,4 +172,4 @@ create_monitor_set( "$(IOC).req", 5, "" )
 # Final delay before auto-start image acquisition
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
-#dbpf $(CAM_PV):Acquire 1
+dbpf $(CAM_PV):Acquire 1

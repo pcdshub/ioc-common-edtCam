@@ -1,5 +1,5 @@
 #
-# pluginTransform.cmd
+# pluginProcess.cmd
 #
 # Required env vars
 #	CAM			- PV Prefix for all camera related PV's
