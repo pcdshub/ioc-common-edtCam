@@ -2870,7 +2870,7 @@ commandLabel {
   0 "View IMAGE2 in EDM Viewer"
 }
 command {
-  0 "IOC=$(IOC) P=$(P) R=$(R) IMAGE=IMAGE2 edtCamScreens/ADStreamScreens/edmViewer.sh"
+  0 "IOC=$(IOC) P=$(P) R=$(R) IMAGE=IMAGE2 ADStreamScreens/edmViewer.sh"
 }
 execCursor
 endObjectProperties
