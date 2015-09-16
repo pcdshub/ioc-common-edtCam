@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/edt
+#!../../bin/linuxRT_glibc-x86_64/edt
 
 < envPaths
 # IOC macro should be the ioc name, used as
@@ -44,7 +44,7 @@ epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 cd( "../.." )
 
 # Run common startup commands for linux soft IOC's
-< /reg/d/iocCommon/All/pre_linux.cmd
+< $(IOC_COMMON)/All/pre_linux.cmd
 
 # Register all support components
 dbLoadDatabase("dbd/edt.dbd")
@@ -205,7 +205,7 @@ create_monitor_set( "autoSettings.req", 5, "" )
 create_monitor_set( "$(IOC).req", 5, "" )
 
 # All IOCs should dump some common info after initial startup.
-< /reg/d/iocCommon/All/post_linux.cmd
+< $(IOC_COMMON)/All/post_linux.cmd
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
