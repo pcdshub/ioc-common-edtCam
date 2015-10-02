@@ -210,7 +210,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM):IMAGE2 --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg &"
+  0 "edtCamScreens/camviewer.sh $(HUTCH) --camera $(CAM) --camerapv $(CAM):IMAGE2 &"
 }
 endObjectProperties
 
