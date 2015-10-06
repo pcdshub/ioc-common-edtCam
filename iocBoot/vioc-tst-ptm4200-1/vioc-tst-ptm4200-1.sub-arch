@@ -1,0 +1,24 @@
+# Archive file for vioc-tst-ptm4200-1
+
+file edt-ioc.archive
+{
+    {
+        IOC = TST:IOC:EDT:PTM1
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "TST:EDT:PTM1", R = ":"	}
+}
+
+# Bring in the pcds plugin archive pv's
+#file pcdsPlugins.archive
+#{
+#    {   CAM = "TST:EDT:PTM1"	}
+#}
+
+#file PluginBldSpectrometer.archive
+#{
+#    { P = "TST:EDT:PTM1", R = ":", CAM="TST:EDT:PTM1", N = "1"	}
+#}
