@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 481
-y 1466
+x 768
+y 582
 w 1140
 h 614
 font "helvetica-medium-r-12.0"
@@ -32,21 +32,6 @@ major 4
 minor 0
 release 0
 x 364
-y 452
-w 328
-h 120
-lineColor index 3
-fill
-fillColor index 3
-endObjectProperties
-
-# (Rectangle)
-object activeRectangleClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 364
 y 60
 w 328
 h 376
@@ -61,10 +46,25 @@ beginObjectProperties
 major 4
 minor 0
 release 0
+x 364
+y 452
+w 328
+h 120
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Rectangle)
+object activeRectangleClass
+beginObjectProperties
+major 4
+minor 0
+release 0
 x 12
 y 144
 w 336
-h 368
+h 216
 lineColor index 3
 fill
 fillColor index 3
@@ -840,7 +840,6 @@ fgColor index 25
 fgAlarm
 bgColor index 5
 editable
-autoHeight
 motifWidget
 limitsFromDb
 nullColor index 40
@@ -2061,6 +2060,29 @@ endGroup
 
 endObjectProperties
 
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 284
+y 76
+w 56
+h 20
+fgColor index 14
+bgColor index 3
+topShadowColor index 1
+botShadowColor index 11
+font "helvetica-bold-r-12.0"
+buttonLabel "Diag ..."
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "edtPdvScreens/edtDiag.edl"
+}
+endObjectProperties
+
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -2143,8 +2165,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 40
-y 468
+x 44
+y 312
 w 124
 h 28
 fgColor index 14
@@ -2166,8 +2188,8 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 192
-y 468
+x 196
+y 312
 w 124
 h 28
 fgColor index 14
@@ -2542,7 +2564,7 @@ major 4
 minor 7
 release 0
 x 240
-y 400
+y 264
 w 100
 h 20
 controlPv "$(P)$(R)ColorMode_RBV"
@@ -2566,8 +2588,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 20
-y 400
+x 24
+y 264
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2586,8 +2608,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 20
-y 372
+x 24
+y 240
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2607,7 +2629,7 @@ major 4
 minor 7
 release 0
 x 240
-y 372
+y 240
 w 100
 h 20
 controlPv "$(P)$(R)BitsPerPixel_RBV"
@@ -2632,7 +2654,7 @@ major 4
 minor 1
 release 1
 x 24
-y 316
+y 216
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2652,7 +2674,7 @@ major 4
 minor 7
 release 0
 x 152
-y 316
+y 216
 w 188
 h 20
 controlPv "$(P)$(R)ArraySize_RBV"
@@ -2677,7 +2699,7 @@ major 4
 minor 7
 release 0
 x 240
-y 288
+y 192
 w 100
 h 20
 controlPv "$(P)$(R)ArraySizeY_RBV"
@@ -2702,7 +2724,7 @@ major 4
 minor 7
 release 0
 x 152
-y 288
+y 192
 w 80
 h 20
 controlPv "$(P)$(R)ArraySizeX_RBV"
@@ -2727,7 +2749,7 @@ major 4
 minor 1
 release 1
 x 24
-y 288
+y 192
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2747,7 +2769,7 @@ major 4
 minor 7
 release 0
 x 152
-y 228
+y 168
 w 188
 h 20
 controlPv "$(P)$(R)EdtModel"
@@ -2770,7 +2792,7 @@ major 4
 minor 1
 release 1
 x 24
-y 228
+y 168
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2814,7 +2836,7 @@ major 4
 minor 1
 release 1
 x 12
-y 144
+y 136
 w 50
 h 20
 font "helvetica-bold-r-12.0"
@@ -3002,9 +3024,9 @@ endObjectProperties
 
 endGroup
 
-visPv "$(P)$(R):AcquirePeriod.DISA"
-visMin "1"
-visMax "2"
+visPv "$(P)$(R)AcquirePeriod.DISA"
+visMin "0"
+visMax "1"
 endObjectProperties
 
 # (Shell Command)
@@ -3032,26 +3054,262 @@ command {
 }
 endObjectProperties
 
-# (Related Display)
-object relatedDisplayClass
+# (Rectangle)
+object activeRectangleClass
 beginObjectProperties
 major 4
-minor 4
+minor 0
 release 0
-x 240
-y 148
-w 104
+x 12
+y 384
+w 336
+h 128
+lineColor index 3
+fill
+fillColor index 3
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 12
+y 372
+w 80
 h 20
+font "helvetica-bold-r-12.0"
+fontAlign "center"
 fgColor index 14
 bgColor index 3
-topShadowColor index 1
-botShadowColor index 11
-font "helvetica-bold-r-12.0"
-buttonLabel "Driver Diag ..."
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "edtPdvScreens/edtDiag.edl"
+value {
+  "Timestamps"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 248
+y 400
+w 88
+h 20
+controlPv "$(P)$(R)TSS:FidDelay"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 140
+y 400
+w 100
+h 20
+controlPv "$(P)$(R)TSS:FidDelay"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 400
+w 108
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Fiducial Delay"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 248
+y 424
+w 88
+h 20
+controlPv "$(P)$(R)TSS:SyncStatus"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 140
+y 424
+w 100
+h 20
+controlPv "$(P)$(R)TSS:TsPolicy"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 424
+w 108
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Sync Policy/Status"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 248
+y 448
+w 88
+h 20
+controlPv "$(P)$(R)TSS:EventCode_RBV"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 140
+y 448
+w 100
+h 20
+controlPv "$(P)$(R)TSS:Gen"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 24
+y 448
+w 108
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Gen / EventCode"
 }
 endObjectProperties
 

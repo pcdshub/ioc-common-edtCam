@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 # Build an ioc application
 
 PROD_IOC = edt
+PROD_IOC += serial_cmd
 
 # edt.dbd will be created and installed
 DBD += edt.dbd
@@ -34,7 +35,7 @@ edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 edt_DBD += bldClient.dbd
 
-#edt_DBD += timeStampSource.dbd
+#edt_DBD += genSubRecord.dbd
 edt_DBD += timeStampFifo.dbd
 edt_DBD += PluginBldSpectrometer.dbd
 
@@ -46,6 +47,9 @@ edt_SRCS += edt_registerRecordDeviceDriver.cpp
 edt_SRCS += PluginBldSpectrometer.cpp
 edt_SRCS_DEFAULT += edtMain.cpp
 
+serial_cmd_SRCS += serial_cmd.c
+serial_cmd_LIBS += pdv
+
 # Add locally compiled object code
 #edt_SRCS += dbSubExample.c
 
@@ -53,7 +57,6 @@ edt_SRCS_DEFAULT += edtMain.cpp
 # base and std modules
 edt_LIBS += autosave
 edt_LIBS += devIocStats
-#edt_LIBS += genSub
 edt_LIBS += diagTimer
 edt_LIBS += bldClient
 edt_LIBS += history
@@ -116,8 +119,8 @@ endif
 #edt_LIBS += ffmpegServer
 #edt_LIBS += swscale
 
-#edt_LIBS += timeStampSource
 edt_LIBS += timeStampFifo
+#edt_LIBS += genSub
 
 
 edt_LIBS += $(EPICS_BASE_IOC_LIBS)
