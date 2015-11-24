@@ -32,7 +32,7 @@ IOCADMIN_MODULE_VERSION				= R3.0.0-2.0.2
 SEQ_MODULE_VERSION					= R2.1.2-0.4.1
 SSCAN_MODULE_VERSION				= R2.8.1-0.1.0
 STREAMDEVICE_MODULE_VERSION			= R2.5-0.8.1
-TIMESTAMPFIFO_MODULE_VERSION		= R1.0.0
+TIMESTAMPFIFO_MODULE_VERSION		= R1.1.0
 
 # ============================================================
 # External Support module path definitions

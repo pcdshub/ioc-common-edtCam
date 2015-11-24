@@ -7,7 +7,7 @@ endif
 
 include $(TOP)/configure/CONFIG
 ifndef ARCH
-ARCH = linux-x86_64
+ARCH = $$IF(ARCH,$$ARCH,linux-x86_64)
 endif
 
 INSTALL_LOCATION = ../..
