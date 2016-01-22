@@ -18,8 +18,11 @@ DB_INSTALLS += $(ASYN)/db/asynRecord.db
 DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
 DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
 DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
+DB_INSTALLS += $(EVENT2)/db/eventCodeDelays.db
 DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
 DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
+
+REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
 
 #
 # Install Camera db, configuration, and protocol files
@@ -70,8 +73,6 @@ ARCHIVE += edtCam_hist.archive
 ARCHIVE += cross.tpl-arch
 ARCHIVE += edt-ioc.archive
 ARCHIVE += PluginBldSpectrometer.archive
-ARCHIVE += evr_PMC.archive
-ARCHIVE += evr_SLAC.archive
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -82,8 +83,6 @@ REQ += edtCam_hist.req
 REQ += cross_settings.req
 REQ += edt-ioc.req
 REQ += PluginBldSpectrometer.req
-REQ	+= evr_PMC.req
-REQ += evr_SLAC.req
 
 include $(TOP)/configure/RULES
 #----------------------------------------
