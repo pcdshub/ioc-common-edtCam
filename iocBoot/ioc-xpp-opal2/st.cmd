@@ -149,7 +149,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 < db/$(PLUGINS).cmd
-#< setupScripts/pluginStats.cmd
+#< db/pluginStats.cmd
 
 # 
 # Initialize the IOC and start processing records

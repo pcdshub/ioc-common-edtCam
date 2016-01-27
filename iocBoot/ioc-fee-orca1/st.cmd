@@ -165,13 +165,13 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 # Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< setupScripts/pluginBldSpectrometer.cmd
+< db/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #< db/$(PLUGINS).cmd
-< setupScripts/pluginStats.cmd
+< db/pluginStats.cmd
 
 #
 #

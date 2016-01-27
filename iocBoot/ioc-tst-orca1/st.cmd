@@ -168,18 +168,18 @@ asynSetTraceIOMask( "ROI6",		1, $(CAM_TRACE_IO_MASK) )
 # Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< setupScripts/pluginBldSpectrometer.cmd
+< db/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 < db/$(PLUGINS).cmd
-#< setupScripts/pluginStats.cmd
+#< db/pluginStats.cmd
 
 # Create a TIFF plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-#< setupScripts/pluginTIFF.cmd
+#< db/pluginTIFF.cmd
 
 #
 #

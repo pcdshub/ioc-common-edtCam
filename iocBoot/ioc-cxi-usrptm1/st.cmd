@@ -170,63 +170,63 @@ asynSetTraceIOMask( "ROI6",		1, $(CAM_TRACE_IO_MASK) )
 # ROI plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< setupScripts/pluginROI.cmd
+< db/pluginROI.cmd
 # Image plugin
 epicsEnvSet(	"IMAGE_NAME",			"ROI_IMG1" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
-< setupScripts/pluginImage.cmd
+< db/pluginImage.cmd
 #
 # Integral can be computed by either of the following 
 #
 # Stats plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
-< setupScripts/pluginStats.cmd
+< db/pluginStats.cmd
 # BldSpectrometer plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI1" )
-< setupScripts/pluginBldSpectrometer.cmd
+< db/pluginBldSpectrometer.cmd
 
 # Configure and load a plugin chain for the second ROI area
 # ROI plugin
 epicsEnvSet(	"N",					"2" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< setupScripts/pluginROI.cmd
+< db/pluginROI.cmd
 # Image plugin
 epicsEnvSet(	"IMAGE_NAME",			"ROI_IMG2" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
-< setupScripts/pluginImage.cmd
+< db/pluginImage.cmd
 #
 # Integral can be computed by either of the following 
 #
 # Stats plugin
 epicsEnvSet(	"N",					"2" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
-< setupScripts/pluginStats.cmd
+< db/pluginStats.cmd
 # BldSpectrometer plugin
 epicsEnvSet(	"N",					"2" )
 epicsEnvSet(	"PLUGIN_SRC",			"ROI2" )
-< setupScripts/pluginBldSpectrometer.cmd
+< db/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
 #epicsEnvSet(	"N",					"1" )
 #epicsEnvSet(	"PLUGIN_SRC",			"?" )
-#< setupScripts/plugin?.cmd
+#< db/plugin?.cmd
 
 # Create a JPEG plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-< setupScripts/pluginJPEG.cmd
+< db/pluginJPEG.cmd
 
 # Create a TIFF plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-< setupScripts/pluginTIFF.cmd
+< db/pluginTIFF.cmd
 
 # Create a HDF5 plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-< setupScripts/pluginHDF5.cmd
+< db/pluginHDF5.cmd
 
 
 #
