@@ -99,17 +99,21 @@ edt_LIBS += Com
 #edt_LIBS += PvAPI
 edt_LIBS += sz
 #edt_SYS_LIBS += X11
-edt_SYS_LIBS += xml2
-edt_SYS_LIBS += tiff
-edt_SYS_LIBS += jpeg
+#edt_SYS_LIBS += xml2
+edt_LIBS += tiff
+edt_LIBS += jpeg
+edt_LIBS += pcre
 edt_SYS_LIBS += z
 edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
 
-ifneq (,$(wildcard $(PCRE_LIB)))
-PROD_DEPLIB_DIRS += $(PCRE_LIB)
-edt_SYS_LIBS += pcre
-endif
+PROD_DEPLIB_DIRS += $(PCRE_TOP)/lib
+PROD_DEPLIB_DIRS += /usr/lib64
+
+#ifneq (,$(wildcard $(PCRE_LIB)))
+#PROD_DEPLIB_DIRS += $(PCRE_LIB)
+#edt_LIBS += pcre
+#endif
 
 # ffmpegServer
 #edt_LIBS += avcodec

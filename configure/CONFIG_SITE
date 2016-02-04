@@ -19,7 +19,7 @@ ifeq '$(EPICS_HOST_ARCH)' 'rhel6-x86_64'
 CROSS_COMPILER_TARGET_ARCHS    +=  linuxRT_glibc-x86_64
 endif
 ifeq '$(EPICS_HOST_ARCH)' 'linux-x86_64'
-CROSS_COMPILER_TARGET_ARCHS    +=  linux-x86
+CROSS_COMPILER_TARGET_ARCHS    =
 endif
 
 # If you do NOT want to build for the host architecture,
@@ -39,3 +39,19 @@ endif
 # Settings for static and shared build options
 STATIC_BUILD=YES
 SHARED_LIBRARIES=YES
+
+ifndef CONFIG_SITE_TOP
+CONFIG_SITE_TOP=/reg/g/pcds/pyps/config
+endif
+include $(CONFIG_SITE_TOP)/common_dirs.mak
+PKG_ARCH    = $(T_A)
+ifeq '$(PKG_ARCH)' 'linuxRT_glibc-x86_64'
+PKG_ARCH    = rhel6-x86_64
+endif
+
+#NCURSES_TOP		= $(PSPKG_ROOT)/release/ncurses/5.7/$(PKG_ARCH)
+PCRE_TOP		= $(PSPKG_ROOT)/release/pcre/8.37/$(PKG_ARCH)
+
+#LIB_INSTALLS	+=	$(wildcard $(NCURSES_TOP)/lib/lib*)
+LIB_INSTALLS	+=	$(wildcard $(PCRE_TOP)/lib/lib*)
+
