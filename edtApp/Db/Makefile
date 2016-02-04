@@ -73,6 +73,8 @@ ARCHIVE += edtCam_hist.archive
 ARCHIVE += cross.tpl-arch
 ARCHIVE += edt-ioc.archive
 ARCHIVE += PluginBldSpectrometer.archive
+ARCHIVE += archive_evr_PMC.archive
+ARCHIVE += archive_evr_SLAC.archive
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -83,6 +85,8 @@ REQ += edtCam_hist.req
 REQ += cross_settings.req
 REQ += edt-ioc.req
 REQ += PluginBldSpectrometer.req
+REQ += autosave_evr_PMC.req
+REQ += autosave_evr_SLAC.req
 
 include $(TOP)/configure/RULES
 #----------------------------------------
