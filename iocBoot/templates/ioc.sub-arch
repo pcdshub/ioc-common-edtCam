@@ -6,7 +6,7 @@ file edt-ioc.archive
 }
 
 $$LOOP(EVR)
-file evr_$$(TYPE).archive
+file archive_evr_$$(TYPE).archive
 {
     { EVR = "$$NAME" }
 }

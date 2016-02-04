@@ -7,7 +7,7 @@ file autosave_iocAdmin.tpl-req
 }
 
 $$LOOP(EVR)
-file evr_$$(TYPE).req
+file autosave_evr_$$(TYPE).req
 {
     { EVR = "$$NAME" }
 }
