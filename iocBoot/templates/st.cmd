@@ -55,7 +55,7 @@ edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
 var DEBUG_TS_FIFO 1
-var DEBUG_EDT_PDV 3
+var DEBUG_EDT_PDV 2
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
