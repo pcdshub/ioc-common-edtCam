@@ -795,10 +795,10 @@ buttonLabel "EVR"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "evrScreens/evrPmc230.edl"
+  0 "event2Screens/evrOneTrig.edl"
 }
 symbols {
-  0 "EVR=$(EVR)"
+  0 "EVR=$(EVR),CH=$(CH)"
 }
 endObjectProperties
 
