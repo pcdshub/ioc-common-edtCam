@@ -107,13 +107,8 @@ edt_SYS_LIBS += z
 edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
 
-PROD_DEPLIB_DIRS += $(PCRE_TOP)/lib
-PROD_DEPLIB_DIRS += /usr/lib64
-
-#ifneq (,$(wildcard $(PCRE_LIB)))
-#PROD_DEPLIB_DIRS += $(PCRE_LIB)
-#edt_LIBS += pcre
-#endif
+#PROD_DEPLIB_DIRS += $(PCRE_TOP)/lib
+#PROD_DEPLIB_DIRS += /usr/lib64
 
 # ffmpegServer
 #edt_LIBS += avcodec
@@ -129,9 +124,16 @@ edt_LIBS += timeStampFifo
 
 edt_LIBS += $(EPICS_BASE_IOC_LIBS)
 
+# install: showme
+
 #===========================
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
+
+showme:
+	@echo T_A=$(T_A)
+	@echo PKG_ARCH=$(PKG_ARCH)
+	@echo PCRE_TOP=$(PCRE_TOP)
 
