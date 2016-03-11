@@ -1,5 +1,5 @@
 #
-# PluginBldSpectrometer db substitutions file
+# pluginBldSpectrometer db substitutions file
 #
 
 file NDPluginBase.template
@@ -16,7 +16,7 @@ file NDPluginBase.template
 	}
 }
 
-file PluginBldSpectrometer.template
+file pluginBldSpectrometer.template
 {
 	{
 	P=$(CAM):,

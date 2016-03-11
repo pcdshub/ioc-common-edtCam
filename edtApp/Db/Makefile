@@ -8,12 +8,13 @@ DB += bld_hist.db
 DB += edtCam_hist.db
 DB += cross.template
 DB += edtPdvCamera.db
-DB += PluginBldSpectrometer.db
+DB += pluginBldSpectrometer.db
 
 #----------------------------------------------------
 # Create and install (or just install)
 # databases, templates, substitutions like this
 
+DB_INSTALLS += $(TOP)/edtApp/Db/pluginBldSpectrometer.cmd
 DB_INSTALLS += $(ASYN)/db/asynRecord.db
 DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
 DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
@@ -72,7 +73,7 @@ ARCHIVE += bld_hist.archive
 ARCHIVE += edtCam_hist.archive
 ARCHIVE += cross.tpl-arch
 ARCHIVE += edt-ioc.archive
-ARCHIVE += PluginBldSpectrometer.archive
+ARCHIVE += pluginBldSpectrometer.archive
 ARCHIVE += archive_evr_PMC.archive
 ARCHIVE += archive_evr_SLAC.archive
 
@@ -84,7 +85,7 @@ REQ += bld_hist.req
 REQ += edtCam_hist.req
 REQ += cross_settings.req
 REQ += edt-ioc.req
-REQ += PluginBldSpectrometer.req
+REQ += pluginBldSpectrometer.req
 REQ += autosave_evr_PMC.req
 REQ += autosave_evr_SLAC.req
 
