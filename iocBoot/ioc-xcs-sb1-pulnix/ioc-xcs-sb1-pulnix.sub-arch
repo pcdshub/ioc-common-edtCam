@@ -24,7 +24,7 @@ file ADBase.tpl-arch
 #    {   CAM = "XCS:SB1:PULNIX"	}
 #}
 
-file PluginBldSpectrometer.archive
+file pluginBldSpectrometer.archive
 {
     { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
 #    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}

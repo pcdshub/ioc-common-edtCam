@@ -28,7 +28,7 @@ file ADBase_settings.req
 #}
 
 
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "CXI:USR:CVV:PTM1", R = ":", CAM="CXI:USR:CVV:PTM1", N = "1"	}
 #}

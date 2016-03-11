@@ -32,7 +32,7 @@ file ADBase_settings.req
 #    {   P = "CAMR:FEE1:441",	R = ":" 	}
 #}
 
-file PluginBldSpectrometer.req
+file pluginBldSpectrometer.req
 {
     { P = "CAMR:FEE1:441", R = ":", CAM = "CAMR:FEE1:441", N = "1"	}
 }

@@ -33,7 +33,7 @@ file cross_settings.req
 }
 
 
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "XPP:OPAL1K:02", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}
 #}

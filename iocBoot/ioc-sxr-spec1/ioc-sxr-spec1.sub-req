@@ -22,7 +22,7 @@ file cross_settings.req
 }
 
 
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "SXR:SPEC:CAM:01", R = ":", CAM="SXR:SPEC:CAM:01", N = "1"	}
 #}

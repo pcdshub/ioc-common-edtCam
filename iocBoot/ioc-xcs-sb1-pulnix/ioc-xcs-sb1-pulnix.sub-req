@@ -35,7 +35,7 @@ file cross_settings.req
 }
 
 
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
 #    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}

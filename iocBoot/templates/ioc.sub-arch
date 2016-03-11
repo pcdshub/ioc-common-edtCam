@@ -34,7 +34,7 @@ $$ENDLOOP(PLUGIN)
 $$ENDLOOP(CAMERA)
 
 $$LOOP(BLD)
-file PluginBldSpectrometer.archive
+file pluginBldSpectrometer.archive
 {
     { P = "$$NAME", R = ":", CAM = "$$NAME", N = "$$CALC{INDEX+1}"  }
 }

@@ -18,7 +18,7 @@ file ADBase.tpl-arch
 #    {   CAM = "CXI:USR:CVV:PTM1"	}
 #}
 #
-#file PluginBldSpectrometer.archive
+#file pluginBldSpectrometer.archive
 #{
 #    { P = "CXI:USR:CVV:PTM1", R = ":", CAM="CXI:USR:CVV:PTM1", N = "1"	}
 #}

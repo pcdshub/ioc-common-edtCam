@@ -28,7 +28,7 @@ file ADBase_settings.req
 #}
 
 
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "TST:EDT:UP900", R = ":", CAM="TST:EDT:PTM1", N = "1"	}
 #}

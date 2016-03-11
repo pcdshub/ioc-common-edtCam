@@ -18,7 +18,7 @@ file ADBase.tpl-arch
 #    {   CAM = "TST:EDT:PTM1"	}
 #}
 
-#file PluginBldSpectrometer.archive
+#file pluginBldSpectrometer.archive
 #{
 #    { P = "TST:EDT:PTM1", R = ":", CAM="TST:EDT:PTM1", N = "1"	}
 #}

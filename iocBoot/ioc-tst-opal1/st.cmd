@@ -1,5 +1,9 @@
 #!../../bin/linuxRT_glibc-x86_64/edt
 
+
+# Run common startup commands for linux soft IOC's
+< $(IOC_COMMON)/All/pre_linux.cmd
+
 < envPaths
 # IOC macro should be the ioc name, used as
 # part of the path to the autosave directory
@@ -7,6 +11,7 @@
 epicsEnvSet( "ENGINEER",	"Bruce Hill (bhill)" )
 epicsEnvSet( "LOCATION",	"Test Lab" )
 epicsEnvSet( "IOCSH_PS1",	"$(IOC)> " )
+cd( "../.." )
 
 #
 # Installation specific ioc instance configuration
@@ -25,8 +30,7 @@ epicsEnvSet( "EVR_CARD",	"0" )
 #epicsEnvSet( "EVR_TYPE",	"1" )
 epicsEnvSet( "EVR_TYPE",	"15" )
 
-# Specify camera model, asyn CAM_PORT, Mpeg HTTP_PORT,
-# and additional plugins, if desired
+# Specify camera env variables
 epicsEnvSet( "MODEL",		"opal1000m_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7800" )
@@ -34,20 +38,17 @@ epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
 epicsEnvSet( "PLUGINS",		"commonPlugins" )
 
-# Comment/uncomment/change diagnostic settings as desired
+
+
+# Diagnostic settings
 epicsEnvSet( "CAM_TRACE_MASK",    "9" )
 epicsEnvSet( "CAM_TRACE_IO_MASK", "1" )
 epicsEnvSet( "SER_TRACE_MASK",    "9" )
 epicsEnvSet( "SER_TRACE_IO_MASK", "1" )
 epicsEnvSet( "ST_CMD_DELAYS", 	  "1" )
 
-cd( "../.." )
-
-# Run common startup commands for linux soft IOC's
-< $(IOC_COMMON)/All/pre_linux.cmd
-
 # Register all support components
-dbLoadDatabase("dbd/edt.dbd")
+dbLoadDatabase( "dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Set iocsh debug variables
@@ -109,9 +110,9 @@ edtPdvConfig( "$(CAM_PORT)", 0, 0, "$(MODEL)", "$(CAM_MODE)" )
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",		0, $(CAM_TRACE_MASK) )
 asynSetTraceIOMask( "$(CAM_PORT)",		0, $(CAM_TRACE_IO_MASK) )
-asynSetTraceFile(	"$(CAM_PORT)",		0, "$(IOC_DATA)/$(IOC)/$(CAM_PORT).log" )
 asynSetTraceMask(   "$(CAM_PORT).SER",	0, $(SER_TRACE_MASK) )
 asynSetTraceIOMask( "$(CAM_PORT).SER",	0, $(SER_TRACE_IO_MASK) )
+#asynSetTraceFile(	"$(CAM_PORT)",		0, "$(IOC_DATA)/$(IOC)/$(CAM_PORT).log" )
 #asynSetTraceFile(	"$(CAM_PORT).SER",	0, "$(IOC_DATA)/$(IOC)/$(CAM_PORT).SER.log" )
 
 #

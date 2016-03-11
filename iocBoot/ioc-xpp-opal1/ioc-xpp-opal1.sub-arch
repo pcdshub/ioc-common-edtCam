@@ -30,7 +30,7 @@ file ADBase.tpl-arch
 #    {   CAM = "XPP:OPAL1K:01"	}
 #}
 
-#file PluginBldSpectrometer.archive
+#file pluginBldSpectrometer.archive
 #{
 #    { P = "XPP:OPAL1K:01", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}
 #}

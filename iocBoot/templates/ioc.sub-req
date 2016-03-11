@@ -26,7 +26,7 @@ $$ENDLOOP(CAMERA)
 #}
 
 $$LOOP(BLD)
-file PluginBldSpectrometer.req
+file pluginBldSpectrometer.req
 {
     { P = "$$NAME", R = ":", CAM = "$$NAME", N = "$$CALC{INDEX+1}"  }
 }
