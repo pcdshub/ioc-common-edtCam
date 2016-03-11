@@ -47,7 +47,8 @@ epicsEnvSet( "STREAM_PROTOCOL_PATH", "$$IF(STREAM_PROTOCOL_PATH,$$STREAM_PROTOCO
 epicsEnvSet( "ST_CMD_DELAYS",		"$$IF(ST_CMD_DELAYS,$$ST_CMD_DELAYS,1)" )
 epicsEnvSet( "CAM_TRACE_MASK",		"$$IF(CAM_TRACE,$$CAM_TRACE,1)" )
 epicsEnvSet( "CAM_TRACE_IO_MASK",	"$$IF(CAM_TRACE_IO,$$CAM_TRACE_IO,0)" )
-epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,1)" )
+epicsEnvSet( "SER_TRACE_MASK",	    "$$IF(SER_TRACE,$$SER_TRACE,1)" )
+epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,0)" )
 
 # Register all support components
 dbLoadDatabase( "dbd/edt.dbd" )
@@ -145,7 +146,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 
 # Configure the EVR
 ErDebugLevel( 0 )
-ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$TYPE) )
+ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(TRIG)IP$$(TRIG)E=Enabled,$$ENDIF(TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
 
 # Load soft ioc related record instances
@@ -178,7 +179,7 @@ create_monitor_set( "autoSettings.req",  5,  "" )
 create_monitor_set( "$(IOCNAME).req",    5,  "" )
 
 # All IOCs should dump some common info after initial startup.
-< $(IOC_COMMON)/All/post_linux.cmd
+# < $(IOC_COMMON)/All/post_linux.cmd
 
 $$LOOP(BLD)
 # Configure the BLD client
