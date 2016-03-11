@@ -20,7 +20,7 @@
 #include "bldPvClient.h"
 #include "evrTime.h"
 #include "NDArray.h"
-#include "PluginBldSpectrometer.h"
+#include "pluginBldSpectrometer.h"
 
 #define MAX(A,B) (A)>(B)?(A):(B)
 #define MIN(A,B) (A)<(B)?(A):(B)
@@ -531,6 +531,8 @@ asynStatus PluginSpectrometer::doSendBld(
 	void		*	pBufferOrig		= malloc( sBufferMax );
 
 	// Packing fixed size portion of output buffer
+	// TODO: Use Big Endian vs Little Endian macros to write these
+	// as Little Endian for network transmission
 	epicsUInt32	*	pBufferUint32	= static_cast<epicsUInt32 *>( pBufferOrig );
 	*pBufferUint32++	= pBldData->m_HorizProjWidth;
 	*pBufferUint32++	= pBldData->m_HorizProjFirstRowUsed;

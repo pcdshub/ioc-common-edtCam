@@ -37,14 +37,15 @@ edt_DBD += bldClient.dbd
 
 #edt_DBD += genSubRecord.dbd
 edt_DBD += timeStampFifo.dbd
-edt_DBD += PluginBldSpectrometer.dbd
+edt_DBD += pluginBldSpectrometer.dbd
 
 # ffmpegServer
 #edt_DBD += ffmpegServer.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 edt_SRCS += edt_registerRecordDeviceDriver.cpp
-edt_SRCS += PluginBldSpectrometer.cpp
+edt_SRCS += pluginBldSpectrometer.cpp
+edt_SRCS += libedt.c
 edt_SRCS_DEFAULT += edtMain.cpp
 
 serial_cmd_SRCS += serial_cmd.c
