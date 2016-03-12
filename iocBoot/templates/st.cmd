@@ -93,10 +93,14 @@ dbLoadRecords("db/edtCam_hist.db",  "P=$(CAM_PV),R=:" )
 dbLoadRecords("db/asynRecord.db",   "P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT).SER,ADDR=0,IMAX=0,OMAX=0" )
 
 # Load camera model specific db
+$$IF(BEAM_EC)
+dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC,BEAM_EC=$$BEAM_EC,BEAM_EC_RBV=$$BEAM_EC_RBV,BEAM_RATE_RBV=$$BEAM_RATE_RBV" )
+$$ELSE(BEAM_EC)
 dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
+$$ENDIF(BEAM_EC)
 
 # Load timestamp plugin
-dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(EVR_PV):EVENT1CTRL.ENM,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
+dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):EdtBeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
 
 # Load history records
 $$IF(BLD_SRC)
