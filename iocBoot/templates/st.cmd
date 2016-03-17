@@ -149,7 +149,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
 # Configure the EVR
-ErDebugLevel( 0 )
+ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(TRIG)IP$$(TRIG)E=Enabled,$$ENDIF(TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
 
@@ -183,7 +183,7 @@ create_monitor_set( "autoSettings.req",  5,  "" )
 create_monitor_set( "$(IOCNAME).req",    5,  "" )
 
 # All IOCs should dump some common info after initial startup.
-# < $(IOC_COMMON)/All/post_linux.cmd
+< $(IOC_COMMON)/All/post_linux.cmd
 
 $$LOOP(BLD)
 # Configure the BLD client

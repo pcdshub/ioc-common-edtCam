@@ -45,7 +45,8 @@ edt_DBD += pluginBldSpectrometer.dbd
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 edt_SRCS += edt_registerRecordDeviceDriver.cpp
 edt_SRCS += pluginBldSpectrometer.cpp
-edt_SRCS += libedt.c
+# Disabling libedt.c as I only brought it in to add some error msgs for debugging an mmap problem
+#edt_SRCS += libedt.c
 edt_SRCS_DEFAULT += edtMain.cpp
 
 serial_cmd_SRCS += serial_cmd.c
