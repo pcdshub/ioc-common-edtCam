@@ -6,19 +6,17 @@ file autosave_iocAdmin.tpl-req
     { IOC = "$$IOC_PV" }
 }
 
-$$LOOP(EVR)
-file autosave_evr_$$(TYPE).req
+$$IF(EVR_PV)
+file autosave_evr_$$(EVR_TYPE).req
 {
-    { EVR = "$$NAME" }
+    { EVR = "$$EVR_PV" }
 }
-$$ENDLOOP(EVR)
+$$ENDIF(EVR_PV)
 
-$$LOOP(CAMERA)
 file ADBase_settings.req
 {
-    { P = "$$NAME", R = ":"  }
+    { P = "$$CAM_PV", R = ":"  }
 }
-$$ENDLOOP(CAMERA)
 
 #file cross_settings.req
 #{
@@ -28,6 +26,6 @@ $$ENDLOOP(CAMERA)
 $$LOOP(BLD)
 file pluginBldSpectrometer.req
 {
-    { P = "$$NAME", R = ":", CAM = "$$NAME", N = "$$CALC{INDEX+1}"  }
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
 }
 $$ENDLOOP(BLD)

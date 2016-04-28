@@ -31,11 +31,9 @@ epicsEnvSet( "EVR_DEBUG",    "$$IF(EVR_DEBUG,$$EVR_DEBUG,0)" )
 # Specify camera env variables
 epicsEnvSet( "CAM_PV",       "$$CAM_PV" )
 epicsEnvSet( "CAM_PORT",     "$$IF(PORT,$$PORT,CAM)" )
-epicsEnvSet( "TRIG_NUM",     "$$TRIG" )
-epicsEnvSet( "TRIG_PV",      "$$(EVR_PV):TRIG$$TRIG" )
+epicsEnvSet( "TRIG_PV",      "$$(EVR_PV):TRIG$$IF(EVR_TRIG,$$EVR_TRIG,0)" )
 epicsEnvSet( "MODEL",        "$$MODEL" )
 epicsEnvSet( "HTTP_PORT",    "$$IF(HTTP_PORT,$$HTTP_PORT,7800)" )
-epicsEnvSet( "MJPG_PORT",    "$$IF(MJPG_PORT,$$MJPG_PORT,8081)" )
 
 # Default edtPdvDriver settings
 epicsEnvSet( "EDT_CARD",     		"$$IF(BOARD,$$BOARD,0)" )
@@ -80,7 +78,6 @@ $$ENDIF(USE_TRACE_FILES)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
-# Comment/uncomment/change delay as desired so you can see messages during boot
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
@@ -99,13 +96,10 @@ $$ELSE(BEAM_EC)
 dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 $$ENDIF(BEAM_EC)
 
+# IF(EVR_PV)
 # Load timestamp plugin
-dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):EdtBeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
-
-# Load history records
-$$IF(BLD_SRC)
-dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
-$$ENDIF(BLD_SRC)
+dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):BeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
+# ENDIF(EVR_PV)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
@@ -116,12 +110,13 @@ $$ENDIF(NO_ST_CMD_DELAY)
 # May be overridden by $(PLUGINS).cmd
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-epicsEnvSet( "QSIZE", "5" )
+epicsEnvSet( "QSIZE", "10" )
 
-# Configure and load any desired datastreams
-$$LOOP(DATASTREAM)
+# Configure and load any image streams
+$$LOOP(STREAM)
+epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,IMAGE1)" )
 < db/$$(NAME)Stream.cmd
-$$ENDLOOP(DATASTREAM)
+$$ENDLOOP(STREAM)
 
 # Configure and load any desired viewers
 $$LOOP(VIEWER)
@@ -129,18 +124,32 @@ epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,IMAGE1)" )
 < db/$$(NAME)Viewer.cmd
 $$ENDLOOP(VIEWER)
 
-# Configure and load the selected plugins, if any
+# Configure and load plugin sets
+$$IF(PLUGINS)
+< db/$$(PLUGINS).cmd
+$$ENDIF(PLUGINS)
+
+# Configure and load selected plugins, if any
 $$LOOP(PLUGIN)
 epicsEnvSet( "N",            "$$IF(NUM,$$NUM,1)" )
 epicsEnvSet( "PLUGIN_SRC",   "$$IF(SRC,$$SRC,CAM)" )
 < db/plugin$$(NAME).cmd
 $$ENDLOOP(PLUGIN)
 
-# Configure and load BLD plugin
 $$LOOP(BLD)
+# TODO: Reconfigure BLD as Spectrometer plugin
+# Configure and load BLD plugin
 epicsEnvSet( "N",            "$$CALC{INDEX+1}" )
 epicsEnvSet( "PLUGIN_SRC",   "CAM" )
 < db/pluginBldSpectrometer.cmd
+dbLoadRecords("db/cannedSequences.db",  "CAM=$(CAM_PV)" )
+$$IF(HIST)
+# Load history records
+# TODO: Fix me!  bld_hist.substitutions should become something
+# along the lines of
+# dbLoadRecords( "db/plugin$$(NAME)Hist.db 
+dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
+$$ENDIF(HIST)
 $$ENDLOOP(BLD)
 
 $$IF(NO_ST_CMD_DELAY)
@@ -148,13 +157,16 @@ $$ELSE(NO_ST_CMD_DELAY)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
+$$IF(EVR_PV)
 # Configure the EVR
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
-dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(TRIG)IP$$(TRIG)E=Enabled,$$ENDIF(TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
+dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(EVR_TRIG)IP$$(EVR_TRIG)E=Enabled,$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
+$$ENDIF(EVR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
+dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOC_NAME)" )
 
 # Setup autosave
 dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
@@ -185,16 +197,38 @@ create_monitor_set( "$(IOCNAME).req",    5,  "" )
 # All IOCs should dump some common info after initial startup.
 < $(IOC_COMMON)/All/post_linux.cmd
 
-$$LOOP(BLD)
-# Configure the BLD client
-epicsEnvSet( "BLD_XTC",     "$$IF(XTC,$$XTC,0x10048)" ) # XTC Type, Id_Spectrometer
-epicsEnvSet( "BLD_SRC",     "$$SRC" ) # Src Id
-epicsEnvSet( "BLD_IP",      "239.255.24.$(BLD_SRC)" )
+$$LOOP(PLUGIN)
+$$IF(BLD_SRC)
+# Configure plugin specific BLD
+epicsEnvSet( "BLD_IP",      "239.255.24.$$BLD_SRC" )
 epicsEnvSet( "BLD_PORT",    "$$IF(PORT,$$PORT,10148)" )
 epicsEnvSet( "BLD_MAX",     "$$IF(MAX,$$MAX,8980)" )    # 9000 MTU - 20 byte header
-BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_MAX) )
+BldConfigSend( "$(BLD_IP)", "$(BLD_PORT)", "$(BLD_MAX)" )
+
+$$IF(BLD_AUTO_START)
+# Autostart plugin specific BLD
 BldStart()
+$$ENDIF(BLD_AUTO_START)
+
 BldIsStarted()
+$$ENDIF(BLD_SRC)
+$$ENDLOOP(PLUGIN)
+
+# This is for the FEE Spectrometer
+$$LOOP(BLD)
+$$IF(BLD_SRC)
+epicsEnvSet( "BLD_IP",      "239.255.24.$$BLD_SRC" )
+epicsEnvSet( "BLD_PORT",    "$$IF(PORT,$$PORT,10148)" )
+epicsEnvSet( "BLD_MAX",     "$$IF(MAX,$$MAX,8980)" )    # 9000 MTU - 20 byte header
+BldConfigSend( "$(BLD_IP)", "$(BLD_PORT)", "$(BLD_MAX)" )
+
+$$IF(BLD_AUTO_START)
+# Autostart plugin specific BLD
+BldStart()
+$$ENDIF(BLD_AUTO_START)
+
+BldIsStarted()
+$$ENDIF(BLD_SRC)
 $$ENDLOOP(BLD)
 
 $$IF(NO_ST_CMD_DELAY)
@@ -206,7 +240,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 
 # TODO: Remove these dbpf calls if possible
 # Enable callbacks
-# dbpf $(CAM):ArrayCallbacks 1
+# dbpf $(CAM_PV):ArrayCallbacks 1
 
 $$IF(AUTO_START)
 dbpf $(CAM_PV):Acquire $$AUTO_START

@@ -5,17 +5,16 @@ file edt-ioc.archive
 	{	IOC = "$$IOC_PV"	}
 }
 
-$$LOOP(EVR)
-file archive_evr_$$(TYPE).archive
+$$IF(EVR_PV)
+file archive_evr_$$(EVR_TYPE).archive
 {
-    { EVR = "$$NAME" }
+    { EVR = "$$EVR_PV" }
 }
-$$ENDLOOP(EVR)
+$$ENDIF(EVR_PV)
 
-$$LOOP(CAMERA)
 file ADBase.tpl-arch
 {
-    {   P = "$$NAME",	R = ":" 	}
+    {   P = "$$CAM_PV",	R = ":" 	}
 }
 
 #file cross.tpl-arch
@@ -31,11 +30,10 @@ file plugin$$(ARCHIVE).archive
 }
 $$ENDIF(ARCHIVE)
 $$ENDLOOP(PLUGIN)
-$$ENDLOOP(CAMERA)
 
 $$LOOP(BLD)
 file pluginBldSpectrometer.archive
 {
-    { P = "$$NAME", R = ":", CAM = "$$NAME", N = "$$CALC{INDEX+1}"  }
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
 }
 $$ENDLOOP(BLD)
