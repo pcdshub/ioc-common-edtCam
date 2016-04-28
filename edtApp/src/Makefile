@@ -40,7 +40,7 @@ edt_DBD += timeStampFifo.dbd
 edt_DBD += pluginBldSpectrometer.dbd
 
 # ffmpegServer
-#edt_DBD += ffmpegServer.dbd
+edt_DBD += ffmpegServer.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 edt_SRCS += edt_registerRecordDeviceDriver.cpp
@@ -113,12 +113,13 @@ edt_SYS_LIBS += dl
 #PROD_DEPLIB_DIRS += /usr/lib64
 
 # ffmpegServer
-#edt_LIBS += avcodec
-#edt_LIBS += avdevice
-#edt_LIBS += avformat
-#edt_LIBS += avutil
-#edt_LIBS += ffmpegServer
-#edt_LIBS += swscale
+edt_LIBS += avdevice
+edt_LIBS += ffmpegServer
+edt_LIBS += swscale
+edt_LIBS += avformat
+edt_LIBS += avcodec
+edt_LIBS += avutil
+edt_LIBS += bz2
 
 edt_LIBS += timeStampFifo
 #edt_LIBS += genSub

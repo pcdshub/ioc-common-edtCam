@@ -1,59 +1,62 @@
+#
 # Timestamp and EventCode support
 #
 # Contains record to add camera trigger delay to camera
 # image acquisition time from trigger till when the timestamp is updated.
 #
-# Db records to propagate beam event code to timeStampSource PV
-# and provide canned setup sequences for common setups
+# Db records to compute timestamp delays and to propagate beam
+# event code to timeStampSource PV.
+#
 # Required macros:
-#	P			- Prefix for camera
-#	R			- Region for camera
+#	CAM				- Prefix for camera
 #
 # Optional macros:
-#	CAM_DLY_EGU		- CAM delay EGU, default ns
-#	EVR_DLY_EGU		- EVR delay EGU, default ns
-#	EVR_DLY_SCALE   - EVR CAM delay scale factor, default 1e9
-#   TSDLY_PV		- Timestamp expected delay PV, default $(P)$(R)TSS:ExpectedDelay
+#	CAM_DLY			- PV to write camera trigger delay to
+#	CAM_DLY_RBV		- PV for camera trigger delay readback
+#	CAM_DLY_EGU		- EGU for camera delay, defaults to ns
+#	CAM_DLY_SCALE	- Scale factor for coverting camera delay to sec, defaults to 1e9
+#	TSDLY_PV		- PV to write timestamp delay to, default to $(CAM):TSS:ExpectedDelay
 #
 
-record( longout, "$(P)$(R)DelayScale" )
+record( ao, "$(CAM):CamTrigDelay" )
 {
-	field( DOL,  "$(EVR_DLY_SCALE=1000000000)" )
-	field( EGU,  "$(EVR_DLY_EGU=ns)" )
+	field( PINI, "YES" )
+	field( PREC, "4" )
+	field( EGU,  "sec" )
+	field( FLNK, "$(CAM):CamTrigDelayCalc" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC HOPR LOPR PREC VAL" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
+}
+
+record( calcout, "$(CAM):CamTrigDelayCalc" )
+{
+	field( INPA, "$(CAM):CamTrigDelay NPP MS" )
+	field( INPB, "$(CAM):CamDelayScale CPP MS" )
+	field( CALC, "A*B" )
+	field( OUT,  "$(CAM_DLY=)" )
+	field( EGU,  "sec" )
+	field( PREC, "4" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC PREC" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
+}
+
+record( longout, "$(CAM):CamDelayScale" )
+{
+	field( DOL,  "$(CAM_DLY_SCALE=1000000000)" )
+	field( EGU,  "$(CAM_DLY_EGU=ns)" )
 	field( PINI, "YES" )
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
 }
 
-record( ao, "$(P)$(R)CamTrigDelay" )
+record( calc, "$(CAM):CamTrigDelay_RBV" )
 {
-	field( PINI, "YES" )
-	field( PREC, "4" )
-	field( EGU,  "$(CAM_DLY_EGU=sec)" )
-	field( FLNK, "$(P)$(R)CamTrigDelayCalc" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
-	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
-}
-record( calcout, "$(P)$(R)CamTrigDelayCalc" )
-{
-	field( INPA, "$(P)$(R)CamTrigDelay NPP MS" )
-	field( INPB, "$(P)$(R)DelayScale CPP MS" )
-	field( CALC, "A*B" )
-	field( OUT,  "$(CAM_DLY=)" )
-	field( EGU,  "$(CAM_DLY_EGU=sec)" )
-	field( PREC, "4" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
-	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
-}
-
-record( calc, "$(P)$(R)CamTrigDelay_RBV" )
-{
-	field( INPA, "$(CAM_DLY_RBV=0)" )
-	field( INPB, "$(P)$(R)DelayScale CPP MS" )
+	field( INPA, "$(CAM_DLY_RBV=unused) CPP MS" )
+	field( INPB, "$(CAM):CamDelayScale CPP MS" )
 	field( CALC, "B==0?A:(A/B)" )
-	field( EGU,  "$(CAM_DLY_EGU=sec)" )
+	field( EGU,  "sec" )
 	field( PREC, "4" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC PREC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
 }
 
@@ -61,167 +64,62 @@ record( calc, "$(P)$(R)CamTrigDelay_RBV" )
 # ExpectedDelay_Calc:
 #   Calculates expected delay from trigger to timeStamp update 
 # Inputs: All units in seconds
-#	A	- Camera acquire time (exposure length)
-#	B	- Camera image transmission time
-#	C	- Estimated driver processing delay before requesting timestamp
-record( calcout, "$(P)$(R)ExpectedDelay_Calc" )
+#	A	- Camera trigger delay
+#	B	- Camera trigger to timestamp delay
+record( calcout, "$(CAM):ExpectedDelay_Calc" )
 {
-    field( INPA, "$(P)$(R)TrigToTS_Calc CP MS" )
-    field( INPB, "$(P)$(R)CamTrigDelay CP MS" )
+    field( INPA, "$(CAM):CamTrigDelay_RBV CP MS" )
+    field( INPB, "$(CAM):TrigToTS_Calc CP MS" )
     field( CALC, "A+B" )
     field( EGU,  "sec" )
-    field( PREC, "5" ) 
-    field( OUT,  "$(TSDLY_PV=$(P)$(R)TSS:ExpectedDelay) PP MS" )
-}
-
-
-record( ao, "$(P)$(R)Def120HzTrigDelay" )
-{
-    field( DESC, "Default trigger delay" )
-    field( DOL,  "4.3e-3" )
-    field( PINI, "YES" )
     field( PREC, "5" )
-	info( autosaveFields, "DESC PREC VAL" )
+    field( OUT,  "$(TSDLY_PV=$(CAM):TSS:ExpectedDelay) PP MS" )
 }
 
-record( ao, "$(P)$(R)Def120HzExposure" )
+record( longout, "$(CAM):CamEventCode" )
 {
-    field( DESC, "Default exposure" )
-#	Tested as low as 820 at 120Hz w/ 4.0ms exposure,
-#	but long term stability not yet proven 
-	field( DOL,  "4.0e-3" )
-    field( PINI, "YES" )
-    field( PREC, "5" )
-	info( autosaveFields, "DESC PREC VAL" )
+	field( VAL,  "40" )
+	field( OUT,  "$(CAM_TRIG):TEC CPP NMS" )
+	field( PINI, "YES" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
+}
+record( longin, "$(CAM):CamEventCode_RBV" )
+{
+	field( INP,  "$(CAM_TRIG):EC_RBV CPP MS" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC VAL" )
 }
 
-record( longout, "$(P)$(R)Def120HzMinY" )
+record( ai, "$(CAM):CamRepRate_RBV" )
 {
-    field( DESC, "Default Y start line" )
-#	Tested as low as 820 at 120Hz w/ 4.0ms exposure
-#	but long term stability not yet proven 
-	field( DOL,  "828" )
-    field( PINI, "YES" )
-	info( autosaveFields, "DESC VAL" )
+	field( INP, "$(CAM_TRIG):RATE CPP MS" )
+	field( EGU,  "Hz" )
+	field( PREC, "1" )
+	field( FLNK, "$(CAM):CamRepDur" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
+}
+
+record( calc, "$(CAM):CamRepDur" )
+{
+	field( INPA, "$(CAM,undefined):CamRepRate_RBV CPP MS" )
+	field( CALC, "A==0?10:(1/A)" )
+	field( EGU,  "sec" )
+	field( PREC, "3" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
+	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
 }
 
 
-# TODO: Set trigger polarity and width
-record( seq, "$(P)$(R)GoTo120HzMode" )
+# This record monitors the trigger mode and puts the timestamp source
+# into freeRun mode while the camera is in freeRun.
+# $(CAM):TriggerMode_RBV is assumed to keep ADCore's 0==Internal
+record( calcout, "$(CAM):TsFreeRunCalc" )
 {
-	field( DOL1, "0" )
-	field( LNK1, "$(P)$(R)Acquire CA NMS" )
-	field( DLY1, "0.0" )
-
-	field( DOL2, "$(P)$(R)Def120HzMinY" )
-	field( LNK2, "$(P)$(R)MinY PP NMS" )
-	field( DLY2, "2.0" )
-
-	field( DOL3, "1" )
-	field( LNK3, "$(P)$(R)TriggerMode PP NMS" )
-	field( DLY3, "0.0" )
-
-	field( DOL4, "2" )
-	field( LNK4, "$(P)$(R)ImageMode PP NMS" )
-	field( DLY4, "0.0" )
-
-	field( DOL5, "40" )
-	field( LNK5, "$(P)$(R)EdtCamEventCode CA NMS" )
-	field( DLY5, "0.0" )
-
-	field( DOL6, "140" )
-	field( LNK6, "$(P)$(R)EdtBeamEventCode CA NMS" )
-	field( DLY6, "0.0" )
-
-	field( DOL7, "$(P)$(R)Def120HzTrigDelay" )
-	field( LNK7, "$(P)$(R)CamTrigDelay CA NMS" )
-	field( DLY7, "0.0" )
-
-	field( DOL8, "$(P)$(R)Def120HzExposure" )
-	field( LNK8, "$(P)$(R)AcquireTime PP NMS" )
-	field( DLY8, "0.0" )
-
-	field( DOL9, "0.0" )
-	field( LNK9, "$(P)$(R)IMAGE1:MinCallbackTime PP NMS" )
-	field( DLY9, "0.0" )
-
-	field( DOLA, "1" )
-	field( LNKA, "$(P)$(R)Acquire CA NMS" )
-	field( DLYA, "2.0" )
-
+    field( DESC, "Update TS FreeRun mode" )
+	field( INPA, "$(CAM):TriggerMode_RBV CPP NMS" )
+    field( CALC, "A==0?1:0" )
+	field( OUT,  "$(CAM):TSS:TsFreeRun PP NMS" )
 	info( autosaveFields, "DESC" )
 }
-
-
-record( seq, "$(P)$(R)GoToFullMode" )
-{
-	field( DOL1, "0" )
-	field( LNK1, "$(P)$(R)Acquire CA NMS" )
-	field( DLY1, "0.0" )
-
-	field( DOL2, "0" )
-	field( LNK2, "$(P)$(R)TriggerMode PP NMS" )
-	field( DLY2, "2.0" )
-
-	field( DOL3, "0" )
-	field( LNK3, "$(P)$(R)MinY PP NMS" )
-	field( DLY3, "0.0" )
-
-	field( DOL4, "4.1e-3" )
-	field( LNK4, "$(P)$(R)CamTrigDelay CA NMS" )
-	field( DLY4, "0.0" )
-
-	field( DOL5, "0.05" )
-	field( LNK5, "$(P)$(R)AcquireTime PP NMS" )
-	field( DLY5, "0.0" )
-
-	field( DOL6, "2" )
-	field( LNK6, "$(P)$(R)ImageMode PP NMS" )
-	field( DLY6, "0.0" )
-
-	field( DOL7, "0.5" )
-	field( LNK7, "$(P)$(R)IMAGE1:MinCallbackTime PP NMS" )
-	field( DLY7, "0.0" )
-
-#	field( DOL8, "44" )
-#	field( LNK8, "$(P)$(R)EdtCamEventCode PP NMS" )
-#	field( DLY8, "0.0" )
-
-#	field( DOL9, "40" )
-#	field( LNK9, "$(P)$(R)EdtBeamEventCode PP NMS" )
-#	field( DLY9, "0.0" )
-
-	field( DOL8, "1" )
-	field( LNK8, "$(P)$(R)Acquire CA NMS" )
-	field( DLY8, "5.0" )
-
-	field( DOL9, "0" )
-	field( LNK9, "$(P)$(R)Acquire CA NMS" )
-	field( DLY9, "1.0" )
-
-	field( DOLA, "1" )
-	field( LNKA, "$(P)$(R)Acquire CA NMS" )
-	field( DLYA, "1.0" )
-
-	info( autosaveFields, "DESC" )
-#	info( autosaveFields, "DESC DOL1 DLY1 DOL2 DLY2 DOL3 DLY3 DOL4 DLY4 DOL5 DLY5 DOL6 DLY6 DOL7 DLY7 DOL8 DLY8 DOL9 DLY9 DOLA DLYA" )
-}
-
-# This record monitors the EDT trigger mode and sets the timestamp policy accordingly
-# $(P)$(R)EdtTriggerMode_RBV is defined in the ADEdtPdv module's edtPdvBase.template
-# 0 = Free Run
-# 1 = External trigger
-# 2 = External trigger w/ pulse length controlling exposure time
-# $(P)$(R)TSS:TsPolicy is defined in the timeStampFifo module's timeStampFifo.template
-# 0 = Most recent timestamp for event code
-# 1 = Only return synced timestamp for event code
-# 2 = Return best available timestamp, may set pulse id to 360hz fiducial
-record( calcout, "$(P)$(R)TSS:TsPolicyCalc" )
-{
-    field( DESC, "Update TS Policy" )
-	field( INPA, "$(P)$(R)EdtTriggerMode_RBV CPP NMS" )
-    field( CALC, "A==0?2:1" )
-	field( OUT,  "$(P)$(R)TSS:TsPolicy PP NMS" )
-	info( autosaveFields, "DESC" )
-}
-

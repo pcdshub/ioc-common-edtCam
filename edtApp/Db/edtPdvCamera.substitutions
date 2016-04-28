@@ -50,11 +50,8 @@ file cross.template
 file timeStampEventCode.db
 {
 	{
-	P				= $(CAM),
-	R				= :,
+	CAM				= $(CAM),
 	CAM_DLY			= $(CAM_TRIG):TDES,
-	CAM_DLY_EGU		= ns,
 	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
-	CAM_DLY_SCALE	= 1e9,
 	}
 }

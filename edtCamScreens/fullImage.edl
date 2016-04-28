@@ -722,7 +722,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM) --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg"
+  0 "ADStreamScreens/camviewer.sh $(HUTCH) --camerapv $(CAM):IMAGE1 &"
 }
 endObjectProperties
 
@@ -745,7 +745,7 @@ buttonLabel "Plugins"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtCamScreens/pcdsPlugins.edl"
+  0 "ADStreamScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"

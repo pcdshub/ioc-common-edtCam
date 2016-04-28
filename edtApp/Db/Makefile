@@ -9,6 +9,7 @@ DB += edtCam_hist.db
 DB += cross.template
 DB += edtPdvCamera.db
 DB += pluginBldSpectrometer.db
+DB += cannedSequences.db
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -22,6 +23,10 @@ DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
 DB_INSTALLS += $(EVENT2)/db/eventCodeDelays.db
 DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
 DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
+DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.cmd)
+DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.db)
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
 
 REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
 
