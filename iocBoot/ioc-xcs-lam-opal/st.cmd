@@ -28,7 +28,6 @@ epicsEnvSet( "EVR_TYPE",	"1" )
 epicsEnvSet( "MODEL",		"opal1000m_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7801" )
-epicsEnvSet( "MJPG_PORT",	"8082"	)
 #epicsEnvSet( "PLUGINS",		"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired

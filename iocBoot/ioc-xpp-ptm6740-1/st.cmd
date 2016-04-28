@@ -30,7 +30,6 @@ epicsEnvSet( "EDT_UNIT",	"1" )
 epicsEnvSet( "EDT_CH",		"0" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7803" )
-epicsEnvSet( "MJPG_PORT",	"8083"	)
 epicsEnvSet( "PLUGINS",	"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired

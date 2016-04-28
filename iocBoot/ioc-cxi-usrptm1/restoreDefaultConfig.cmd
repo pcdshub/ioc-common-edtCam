@@ -10,8 +10,8 @@ export IOC_PV=CXI:USR:IOC:PTM1
 export CAM=CXI:USR:CVV:PTM1
 export HUTCH=cxi
 
-caput ${CAM}:EdtCamEventCode 40
-caput ${CAM}:EdtBeamEventCode 140
+caput ${CAM}:CamEventCode 40
+caput ${CAM}:BeamEventCode 140
 caput ${CAM}:MinX 0
 caput ${CAM}:MinY 0
 caput ${CAM}:SizeX 640

@@ -34,7 +34,6 @@ epicsEnvSet( "EVR_TYPE",	"15" )
 epicsEnvSet( "MODEL",		"opal1000m_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7800" )
-epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
 epicsEnvSet( "PLUGINS",		"commonPlugins" )
 

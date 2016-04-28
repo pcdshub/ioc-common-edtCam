@@ -35,7 +35,6 @@ epicsEnvSet( "EVR_DB", "evrSLAC.db" )
 epicsEnvSet( "MODEL",		"opal1000m_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7802" )
-epicsEnvSet( "MJPG_PORT",	"8082"	)
 epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
 #epicsEnvSet( "PLUGINS",		"commonPlugins" )
 
@@ -207,7 +206,7 @@ iocInit()
 #dbpf $(TRIG_PV):ASUB_LKUOFFSET.TPRO 2
 #dbpf $(TRIG_PV):TOFFSET.TPRO 2
 #dbpf $(TRIG_PV):TEC.TPRO 2
-#dbpf TST:EDT:OPAL2:EdtCamEventCode.TPRO 2
+#dbpf TST:EDT:OPAL2:CamEventCode.TPRO 2
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)

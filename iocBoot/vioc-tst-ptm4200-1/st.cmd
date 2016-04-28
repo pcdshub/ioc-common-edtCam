@@ -35,7 +35,6 @@ epicsEnvSet( "EVR_DB", "evrSLAC.db" )
 epicsEnvSet( "MODEL",		"ptm4200_12" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7802" )
-epicsEnvSet( "MJPG_PORT",	"8082"	)
 #epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
 epicsEnvSet( "PLUGINS",		"commonPlugins" )
 
