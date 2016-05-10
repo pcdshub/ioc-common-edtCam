@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 6
-y 96
+x 2008
+y 1141
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -410,7 +410,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 36
+x 16
 y 420
 w 124
 h 28
@@ -433,9 +433,9 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 188
+x 148
 y 420
-w 124
+w 120
 h 28
 fgColor index 14
 onColor index 6
@@ -491,8 +491,8 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 64
-y 152
+x 76
+y 148
 w 127
 h 14
 font "helvetica-medium-r-12.0"
@@ -3976,6 +3976,41 @@ bgColor index 3
 useDisplayBg
 value {
   "Binning"
+}
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 276
+y 420
+w 116
+h 28
+fgColor index 14
+bgColor index 3
+topShadowColor index 0
+botShadowColor index 14
+font "helvetica-medium-r-12.0"
+buttonLabel "Adjust ROI"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "ADStreamScreens/adjustROI.edl"
+}
+setPosition {
+  0 "button"
+}
+symbols {
+  0 "CAM=$(CAM),P=$(CAM),R=:"
+}
+replaceSymbols {
+  0 1
+}
+propagateMacros {
+  0 0
 }
 endObjectProperties
 

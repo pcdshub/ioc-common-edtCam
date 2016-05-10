@@ -1,4 +1,4 @@
-#!$$IOCTOP/bin/$$TARGET_ARCH/edt
+#!$$IOCTOP/bin/$$IF(TARGET_ARCH,$$TARGET_ARCH,linux-x86_64)/edt
 
 # Run common startup commands for linux soft IOC's
 < $(IOC_COMMON)/All/pre_linux.cmd

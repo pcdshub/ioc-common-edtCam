@@ -5,9 +5,8 @@ record( longout, "$(P)$(R)Cross1X" )
 {
 	field( OUT,  "$(P)$(R)Cross1X_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
-
 record( longin, "$(P)$(R)Cross1X_RBV" )
 {
 }
@@ -16,7 +15,7 @@ record( longout, "$(P)$(R)Cross1Y" )
 {
 	field( OUT,  "$(P)$(R)Cross1Y_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
 
 record( longin, "$(P)$(R)Cross1Y_RBV" )
@@ -27,7 +26,7 @@ record( longout, "$(P)$(R)Cross1Color" )
 {
 	field( OUT,  "$(P)$(R)Cross1Color_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
 
 record( longin, "$(P)$(R)Cross1Color_RBV" )
@@ -38,7 +37,7 @@ record( longout, "$(P)$(R)Cross2X" )
 {
 	field( OUT,  "$(P)$(R)Cross2X_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
 
 record( longin, "$(P)$(R)Cross2X_RBV" )
@@ -49,7 +48,7 @@ record( longout, "$(P)$(R)Cross2Y" )
 {
 	field( OUT,  "$(P)$(R)Cross2Y_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
 
 record( longin, "$(P)$(R)Cross2Y_RBV" )
@@ -60,11 +59,89 @@ record( longout, "$(P)$(R)Cross2Color" )
 {
 	field( OUT,  "$(P)$(R)Cross2Color_RBV PP MS" )
 	field( PINI, "YES" )
-	info( autosavefields, "VAL DESC" )
+	info( autosaveFields, "VAL DESC" )
 }
 
 record( longin, "$(P)$(R)Cross2Color_RBV" )
 {
-	info( autosavefields, "DESC" )
+	info( autosaveFields, "DESC" )
+}
+
+record( longout, "$(P)$(R)Cross1SizeX" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross1SizeY" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross2SizeX" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross2SizeY" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross3SizeX" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross3SizeY" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross4SizeX" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( longout, "$(P)$(R)Cross4SizeY" )
+{
+	field( PINI, "YES" )
+	info( autosaveFields, "VAL DESC" )
+}
+
+record( dfanout, "$(P)$(R)Cross_HOPR_X" )
+{
+	field( OMSL, "closed_loop" )
+	field( SELM, "All" )
+	field( DOL,  "$(P)$(R)ArraySizeX_RBV CPP MS" )
+	field( OUTA, "$(P)$(R)Cross1X.HOPR PP MS" )
+	field( OUTB, "$(P)$(R)Cross2X.HOPR PP MS" )
+	field( OUTC, "$(P)$(R)Cross3X.HOPR PP MS" )
+	field( OUTD, "$(P)$(R)Cross4X.HOPR PP MS" )
+	field( OUTE, "$(P)$(R)Cross1SizeX.HOPR PP MS" )
+	field( OUTF, "$(P)$(R)Cross2SizeX.HOPR PP MS" )
+	field( OUTG, "$(P)$(R)Cross3SizeX.HOPR PP MS" )
+	field( OUTH, "$(P)$(R)Cross4SizeX.HOPR PP MS" )
+}
+
+record( dfanout, "$(P)$(R)Cross_HOPR_Y" )
+{
+	field( OMSL, "closed_loop" )
+	field( SELM, "All" )
+	field( DOL,  "$(P)$(R)ArraySizeY_RBV CPP MS" )
+	field( OUTA, "$(P)$(R)Cross1Y.HOPR PP MS" )
+	field( OUTB, "$(P)$(R)Cross2Y.HOPR PP MS" )
+	field( OUTC, "$(P)$(R)Cross3Y.HOPR PP MS" )
+	field( OUTD, "$(P)$(R)Cross4Y.HOPR PP MS" )
+	field( OUTE, "$(P)$(R)Cross1SizeY.HOPR PP MS" )
+	field( OUTF, "$(P)$(R)Cross2SizeY.HOPR PP MS" )
+	field( OUTG, "$(P)$(R)Cross3SizeY.HOPR PP MS" )
+	field( OUTH, "$(P)$(R)Cross4SizeY.HOPR PP MS" )
 }
 
