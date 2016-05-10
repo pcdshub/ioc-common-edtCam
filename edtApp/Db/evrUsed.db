@@ -1,0 +1,42 @@
+#
+# This db file can be loaded into an IOC with or w/o an EVR
+#
+# It adds a new record, EvrUsed with required macro
+#	EVR_USED	0 = Not used, 1 = Used
+#
+# The other records provide a minimal subset of fields that
+# are compatible w/ their equivalent event module records
+# but by themselves leave STATUS and LINK as 0
+#
+record( bo, "$(EVR):EvrUsed" )
+{
+	field( PINI, "YES" )
+	field( ZNAM, "Unused" )
+	field( ONAM, "Used" )
+	field( DOL,  "$(EVR_USED)" )
+}
+
+record(mbbi, "$(EVR):STATUS")
+{
+  field(INP, "$(EVR):_CALC_STATUS NPP MS")
+  field(ZRVL, "0")
+  field(ZRST, "FAIL")
+  field(ZRSV, "MAJOR")
+}
+
+record(calc, "$(EVR):_CALC_STATUS")
+{
+  field(DESC, "Calc evr Status")
+  field(CALC, "(A=0||L=0)?0:2")
+  field(INPA, "$(EVR):EvrUsed CPP MS")
+  field(INPL, "$(EVR):LINK    CPP MS")
+  field(FLNK, "$(EVR):STATUS PP MS")
+}
+
+record(bi, "$(EVR):LINK")
+{
+  field(PINI, "YES")
+  field(ZSV,  "MAJOR")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}

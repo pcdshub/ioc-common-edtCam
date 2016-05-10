@@ -17,7 +17,7 @@ cd( "$(IOCTOP)" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "$$IF(MAX_ARRAY,$$MAX_ARRAY,20000000)" )
 
 # Setup EVR env vars
-epicsEnvSet( "EVR_PV",       "$$EVR_PV" )
+epicsEnvSet( "EVR_PV",		 "$$IF(EVR_PV,$$EVR_PV,NoEvr)" )
 epicsEnvSet( "EVR_CARD",     "$$IF(EVR_CARD,$$EVR_CARD,0)" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
 epicsEnvSet( "EVRID_PMC",    "1" )
@@ -142,7 +142,6 @@ $$LOOP(BLD)
 epicsEnvSet( "N",            "$$CALC{INDEX+1}" )
 epicsEnvSet( "PLUGIN_SRC",   "CAM" )
 < db/pluginBldSpectrometer.cmd
-dbLoadRecords("db/cannedSequences.db",  "CAM=$(CAM_PV)" )
 $$IF(HIST)
 # Load history records
 # TODO: Fix me!  bld_hist.substitutions should become something
@@ -151,6 +150,8 @@ $$IF(HIST)
 dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
 $$ENDIF(HIST)
 $$ENDLOOP(BLD)
+
+dbLoadRecords("db/cannedSequences.db",  "CAM=$(CAM_PV)" )
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
@@ -162,11 +163,14 @@ $$IF(EVR_PV)
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(EVR_TRIG)IP$$(EVR_TRIG)E=Enabled,$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
+dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=1" )
+$$ELSE(EVR_PV)
+dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=0" )
 $$ENDIF(EVR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
-dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOC_NAME)" )
+dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOCNAME)" )
 
 # Setup autosave
 dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
@@ -240,7 +244,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 
 # TODO: Remove these dbpf calls if possible
 # Enable callbacks
-# dbpf $(CAM_PV):ArrayCallbacks 1
+dbpf $(CAM_PV):ArrayCallbacks 1
 
 $$IF(AUTO_START)
 dbpf $(CAM_PV):Acquire $$AUTO_START

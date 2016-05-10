@@ -3,6 +3,9 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
+DB += iocName.db
+DB += evrUsed.db
+
 # Create and install EDT Camera DB Files
 DB += bld_hist.db
 DB += edtCam_hist.db

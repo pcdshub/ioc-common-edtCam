@@ -3,9 +3,9 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 990
+x 6
 y 96
-w 870
+w 840
 h 980
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
@@ -898,9 +898,9 @@ major 4
 minor 0
 release 0
 x 416
-y 60
+y 64
 w 400
-h 292
+h 276
 lineColor index 3
 fill
 fillColor index 3
@@ -913,7 +913,7 @@ major 4
 minor 1
 release 1
 x 416
-y 48
+y 56
 w 132
 h 20
 font "helvetica-bold-r-12.0"
@@ -931,7 +931,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 484
+x 488
 y 72
 w 140
 h 20
@@ -951,7 +951,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 640
+x 644
 y 72
 w 59
 h 18
@@ -981,7 +981,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 484
+x 488
 y 212
 w 140
 h 20
@@ -1001,7 +1001,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 72
 w 88
 h 20
@@ -1027,7 +1027,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 212
 w 88
 h 20
@@ -1053,7 +1053,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 580
+x 584
 y 152
 w 120
 h 20
@@ -1073,7 +1073,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 580
+x 584
 y 184
 w 120
 h 20
@@ -1093,7 +1093,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 484
+x 488
 y 152
 w 88
 h 20
@@ -1113,7 +1113,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 484
+x 488
 y 184
 w 88
 h 20
@@ -1133,7 +1133,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 152
 w 88
 h 20
@@ -1158,7 +1158,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 184
 w 88
 h 20
@@ -1183,7 +1183,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 484
+x 488
 y 124
 w 140
 h 20
@@ -1203,7 +1203,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 124
 w 88
 h 20
@@ -1228,7 +1228,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 640
+x 644
 y 124
 w 60
 h 18
@@ -1256,7 +1256,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 484
+x 488
 y 96
 w 216
 h 20
@@ -1269,7 +1269,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 640
+x 644
 y 96
 w 60
 h 20
@@ -1296,7 +1296,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 596
+x 600
 y 96
 w 32
 h 20
@@ -1316,7 +1316,7 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 484
+x 488
 y 96
 w 112
 h 20
@@ -1345,7 +1345,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 708
+x 712
 y 96
 w 88
 h 20
@@ -1358,7 +1358,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 708
+x 712
 y 96
 w 88
 h 20
@@ -1384,48 +1384,6 @@ visMin "0"
 visMax "1"
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 520
-y 244
-w 92
-h 32
-font "helvetica-bold-r-14.0"
-fontAlign "center"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Region"
-  "Start"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 668
-y 244
-w 92
-h 28
-font "helvetica-bold-r-14.0"
-fontAlign "center"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Region"
-  "Size"
-}
-endObjectProperties
-
 # (Lines)
 object activeLineClass
 beginObjectProperties
@@ -1433,7 +1391,7 @@ major 4
 minor 0
 release 1
 x 416
-y 352
+y 340
 w 400
 h 0
 lineColor index 14
@@ -1446,8 +1404,8 @@ xPoints {
   1 816
 }
 yPoints {
-  0 352
-  1 352
+  0 340
+  1 340
 }
 endObjectProperties
 
@@ -1483,7 +1441,7 @@ major 4
 minor 1
 release 1
 x 648
-y 288
+y 276
 w 68
 h 20
 font "helvetica-medium-r-12.0"
@@ -1503,7 +1461,7 @@ major 4
 minor 1
 release 1
 x 516
-y 288
+y 276
 w 52
 h 20
 font "helvetica-medium-r-12.0"
@@ -1523,7 +1481,7 @@ major 4
 minor 0
 release 0
 x 520
-y 288
+y 276
 w 52
 h 20
 
@@ -1536,7 +1494,7 @@ major 4
 minor 7
 release 0
 x 518
-y 288
+y 276
 w 50
 h 20
 controlPv "$(P)$(R)MinX"
@@ -1566,7 +1524,7 @@ major 4
 minor 1
 release 1
 x 416
-y 288
+y 276
 w 20
 h 20
 font "helvetica-bold-r-18.0"
@@ -1586,7 +1544,7 @@ major 4
 minor 1
 release 1
 x 416
-y 324
+y 312
 w 20
 h 20
 font "helvetica-bold-r-18.0"
@@ -1606,7 +1564,7 @@ major 4
 minor 1
 release 1
 x 516
-y 324
+y 312
 w 52
 h 20
 font "helvetica-medium-r-12.0"
@@ -1626,7 +1584,7 @@ major 4
 minor 0
 release 0
 x 520
-y 324
+y 312
 w 52
 h 20
 
@@ -1639,7 +1597,7 @@ major 4
 minor 7
 release 0
 x 518
-y 324
+y 312
 w 49
 h 20
 controlPv "$(P)$(R)MinY"
@@ -1669,7 +1627,7 @@ major 4
 minor 1
 release 1
 x 648
-y 324
+y 312
 w 68
 h 20
 font "helvetica-medium-r-12.0"
@@ -1689,7 +1647,7 @@ major 4
 minor 0
 release 0
 x 652
-y 324
+y 312
 w 68
 h 20
 
@@ -1702,7 +1660,7 @@ major 4
 minor 7
 release 0
 x 650
-y 324
+y 312
 w 67
 h 20
 controlPv "$(P)$(R)SizeY"
@@ -1732,7 +1690,7 @@ major 4
 minor 0
 release 0
 x 652
-y 288
+y 276
 w 68
 h 20
 
@@ -1745,7 +1703,7 @@ major 4
 minor 7
 release 0
 x 650
-y 288
+y 276
 w 67
 h 20
 controlPv "$(P)$(R)SizeX"
@@ -1768,26 +1726,6 @@ visMin "0"
 visMax "1"
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 444
-y 244
-w 64
-h 20
-font "helvetica-bold-r-14.0"
-fontAlign "center"
-fgColor index 14
-bgColor index 3
-useDisplayBg
-value {
-  "Binning"
-}
-endObjectProperties
-
 # (Lines)
 object activeLineClass
 beginObjectProperties
@@ -1797,7 +1735,7 @@ release 1
 x 440
 y 240
 w 0
-h 113
+h 101
 lineColor index 14
 fill
 fillColor index 14
@@ -1808,7 +1746,7 @@ xPoints {
 }
 yPoints {
   0 240
-  1 353
+  1 341
 }
 endObjectProperties
 
@@ -1821,7 +1759,7 @@ release 1
 x 512
 y 240
 w 0
-h 112
+h 100
 lineColor index 14
 fill
 fillColor index 14
@@ -1832,7 +1770,7 @@ xPoints {
 }
 yPoints {
   0 240
-  1 352
+  1 340
 }
 endObjectProperties
 
@@ -1845,7 +1783,7 @@ release 1
 x 644
 y 240
 w 0
-h 112
+h 100
 lineColor index 14
 fill
 fillColor index 14
@@ -1856,7 +1794,7 @@ xPoints {
 }
 yPoints {
   0 240
-  1 352
+  1 340
 }
 endObjectProperties
 
@@ -1867,7 +1805,7 @@ major 4
 minor 0
 release 1
 x 416
-y 316
+y 304
 w 400
 h 0
 lineColor index 14
@@ -1880,8 +1818,8 @@ xPoints {
   1 814
 }
 yPoints {
-  0 316
-  1 316
+  0 304
+  1 304
 }
 endObjectProperties
 
@@ -1892,7 +1830,7 @@ major 4
 minor 0
 release 1
 x 416
-y 280
+y 268
 w 400
 h 0
 lineColor index 14
@@ -1905,8 +1843,8 @@ xPoints {
   1 814
 }
 yPoints {
-  0 280
-  1 280
+  0 268
+  1 268
 }
 endObjectProperties
 
@@ -1917,7 +1855,7 @@ major 4
 minor 1
 release 1
 x 448
-y 288
+y 276
 w 24
 h 20
 font "helvetica-medium-r-10.0"
@@ -1936,7 +1874,7 @@ major 4
 minor 1
 release 1
 x 448
-y 324
+y 312
 w 24
 h 20
 font "helvetica-medium-r-10.0"
@@ -1955,7 +1893,7 @@ major 4
 minor 0
 release 0
 x 448
-y 324
+y 312
 w 24
 h 20
 
@@ -1968,7 +1906,7 @@ major 4
 minor 7
 release 0
 x 448
-y 324
+y 312
 w 23
 h 20
 controlPv "$(P)$(R)BinY"
@@ -1998,7 +1936,7 @@ major 4
 minor 0
 release 0
 x 448
-y 288
+y 276
 w 24
 h 20
 
@@ -2011,7 +1949,7 @@ major 4
 minor 7
 release 0
 x 448
-y 288
+y 276
 w 23
 h 20
 controlPv "$(P)$(R)BinX"
@@ -2041,7 +1979,7 @@ major 4
 minor 1
 release 1
 x 728
-y 324
+y 312
 w 72
 h 20
 font "helvetica-medium-r-12.0"
@@ -2061,7 +1999,7 @@ major 4
 minor 1
 release 1
 x 728
-y 288
+y 276
 w 72
 h 20
 font "helvetica-medium-r-12.0"
@@ -2081,7 +2019,7 @@ major 4
 minor 0
 release 0
 x 728
-y 288
+y 276
 w 72
 h 20
 
@@ -2094,7 +2032,7 @@ major 4
 minor 7
 release 0
 x 727
-y 288
+y 276
 w 73
 h 20
 controlPv "$(P)$(R)SizeX_RBV"
@@ -2125,7 +2063,7 @@ major 4
 minor 0
 release 0
 x 728
-y 324
+y 312
 w 72
 h 20
 
@@ -2138,7 +2076,7 @@ major 4
 minor 7
 release 0
 x 727
-y 324
+y 312
 w 73
 h 20
 controlPv "$(P)$(R)SizeY_RBV"
@@ -2169,7 +2107,7 @@ major 4
 minor 1
 release 1
 x 576
-y 324
+y 312
 w 60
 h 20
 font "helvetica-medium-r-12.0"
@@ -2189,7 +2127,7 @@ major 4
 minor 1
 release 1
 x 576
-y 288
+y 276
 w 64
 h 20
 font "helvetica-medium-r-12.0"
@@ -2209,7 +2147,7 @@ major 4
 minor 0
 release 0
 x 576
-y 324
+y 312
 w 64
 h 20
 
@@ -2222,7 +2160,7 @@ major 4
 minor 7
 release 0
 x 577
-y 324
+y 312
 w 60
 h 20
 controlPv "$(P)$(R)MinY_RBV"
@@ -2253,7 +2191,7 @@ major 4
 minor 0
 release 0
 x 576
-y 288
+y 276
 w 56
 h 20
 
@@ -2266,7 +2204,7 @@ major 4
 minor 7
 release 0
 x 577
-y 288
+y 276
 w 60
 h 20
 controlPv "$(P)$(R)MinX_RBV"
@@ -2297,7 +2235,7 @@ major 4
 minor 1
 release 1
 x 480
-y 288
+y 276
 w 28
 h 20
 font "helvetica-medium-r-10.0"
@@ -2316,7 +2254,7 @@ major 4
 minor 1
 release 1
 x 480
-y 324
+y 312
 w 28
 h 20
 font "helvetica-medium-r-10.0"
@@ -2335,7 +2273,7 @@ major 4
 minor 0
 release 0
 x 480
-y 324
+y 312
 w 28
 h 20
 
@@ -2348,7 +2286,7 @@ major 4
 minor 7
 release 0
 x 480
-y 324
+y 312
 w 26
 h 20
 controlPv "$(P)$(R)BinY_RBV"
@@ -2379,7 +2317,7 @@ major 4
 minor 0
 release 0
 x 480
-y 288
+y 276
 w 28
 h 20
 
@@ -2392,7 +2330,7 @@ major 4
 minor 7
 release 0
 x 480
-y 288
+y 276
 w 26
 h 20
 controlPv "$(P)$(R)BinX_RBV"
@@ -2641,7 +2579,7 @@ release 0
 x 416
 y 496
 w 400
-h 176
+h 184
 lineColor index 3
 fill
 fillColor index 3
@@ -2663,231 +2601,6 @@ fgColor index 14
 bgColor index 3
 value {
   "Timestamps"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 684
-y 564
-w 104
-h 20
-controlPv "$(P)$(R)TSS:ExpectedDelay"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 584
-y 564
-w 92
-h 20
-controlPv "$(P)$(R)TSS:ExpectedDelay"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 448
-y 564
-w 128
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Fiducial Delay"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 684
-y 588
-w 104
-h 20
-controlPv "$(P)$(R)TSS:SyncStatus"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 584
-y 588
-w 92
-h 20
-controlPv "$(P)$(R)TSS:TsPolicy"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 448
-y 588
-w 128
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Sync Policy/Status"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 684
-y 612
-w 104
-h 20
-controlPv "$(P)$(R)TSS:EventCode_RBV"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 584
-y 612
-w 92
-h 20
-controlPv "$(P)$(R)TSS:Gen"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 448
-y 612
-w 128
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Gen / EventCode"
 }
 endObjectProperties
 
@@ -3021,7 +2734,7 @@ major 4
 minor 4
 release 0
 x 436
-y 640
+y 652
 w 120
 h 20
 fgColor index 14
@@ -3050,9 +2763,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 448
+x 432
 y 536
-w 20
+w 120
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -3060,7 +2773,7 @@ fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "?"
+  "BeamEventCode"
 }
 endObjectProperties
 
@@ -3070,10 +2783,10 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 480
+x 560
 y 536
-w 56
-h 18
+w 64
+h 20
 controlPv "$(P)$(R)BeamEventCode"
 format "decimal"
 font "helvetica-medium-r-12.0"
@@ -3099,33 +2812,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 616
-y 536
-w 60
-h 20
-controlPv "$(P)$(R)CamTrigDelay_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 716
+x 700
 y 536
 w 72
 h 20
@@ -3666,79 +3353,6 @@ visMin "0"
 visMax "1"
 endObjectProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 716
-y 508
-w 72
-h 20
-controlPv "$(P)$(R)CamRepRate_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 584
-y 508
-w 56
-h 20
-controlPv "$(P)$(R)CamEventCode"
-format "decimal"
-font "helvetica-medium-r-12.0"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-autoHeight
-motifWidget
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 448
-y 508
-w 128
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 3
-value {
-  "Cam Eventcode"
-}
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -3794,7 +3408,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 640
+x 644
 y 212
 w 60
 h 20
@@ -3814,7 +3428,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 640
+x 644
 y 212
 w 59
 h 18
@@ -3827,7 +3441,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 640
+x 644
 y 212
 w 59
 h 18
@@ -3856,52 +3470,6 @@ visMin "0"
 visMax "1"
 endObjectProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 648
-y 508
-w 64
-h 20
-controlPv "$(P)$(R)TSS:EventCode_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 540
-y 536
-w 72
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "TriggerDelay"
-}
-endObjectProperties
-
 # (Shell Command)
 object shellCmdClass
 beginObjectProperties
@@ -3926,5 +3494,488 @@ command {
   0 "ADStreamScreens/configStream.sh $(CAM) all"
 }
 execCursor
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 680
+y 564
+w 92
+h 20
+controlPv "$(P)$(R)TSS:SyncStatus"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 432
+y 564
+w 120
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Sync Policy/Status"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 432
+y 508
+w 120
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Cam Trig Event Code"
+}
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 560
+y 508
+w 64
+h 18
+controlPv "$(P)$(R)CamEventCode"
+format "decimal"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 632
+y 508
+w 64
+h 20
+controlPv "$(P)$(R)TSS:EventCode_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 700
+y 508
+w 72
+h 20
+controlPv "$(P)$(R)CamRepRate_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 572
+y 564
+w 100
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 2
+botShadowColor index 13
+controlPv "$(P)$(R)TSS:TsPolicy"
+indicatorPv "$(P)$(R)TSS:TsPolicy"
+font "helvetica-medium-r-14.0"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 436
+y 592
+w 336
+h 48
+
+beginGroup
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 680
+y 592
+w 92
+h 20
+controlPv "$(P)$(R)TSS:ExpectedDelay"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 436
+y 592
+w 64
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Xmit Delay"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 504
+y 592
+w 72
+h 20
+controlPv "$(P)$(R)XmitDelay"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 576
+y 592
+w 96
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Total Exp Delay"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 712
+y 620
+w 60
+h 20
+controlPv "$(P)$(R)TSS:DiffVsExpMax"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 676
+y 620
+w 28
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Max"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 608
+y 620
+w 64
+h 20
+controlPv "$(P)$(R)TSS:DiffVsExpMin"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 572
+y 620
+w 24
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Min"
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 504
+y 620
+w 60
+h 20
+controlPv "$(P)$(R)TSS:DiffVsExp"
+format "gfloat"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 436
+y 620
+w 60
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "DiffVsExp"
+}
+endObjectProperties
+
+endGroup
+
+visPv "$(P)$(R)TSS:TsPolicy"
+visMin "0"
+visMax "2"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 652
+y 244
+w 148
+h 20
+font "helvetica-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Region Size"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 520
+y 244
+w 116
+h 20
+font "helvetica-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Region Start"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 444
+y 244
+w 64
+h 20
+font "helvetica-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 3
+useDisplayBg
+value {
+  "Binning"
+}
 endObjectProperties
 

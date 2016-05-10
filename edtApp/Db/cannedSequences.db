@@ -11,7 +11,7 @@
 record( ao, "$(CAM):Def120HzTrigDelay" )
 {
     field( DESC, "Default trigger delay" )
-    field( DOL,  "4.3e-3" )
+    field( DOL,  "1.0e-6" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -20,9 +20,7 @@ record( ao, "$(CAM):Def120HzTrigDelay" )
 record( ao, "$(CAM):Def120HzExposure" )
 {
     field( DESC, "Default exposure" )
-#	Tested as low as 820 at 120Hz w/ 4.0ms exposure,
-#	but long term stability not yet proven 
-	field( DOL,  "4.0e-3" )
+	field( DOL,  "1.0e-3" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -31,9 +29,7 @@ record( ao, "$(CAM):Def120HzExposure" )
 record( longout, "$(CAM):Def120HzMinY" )
 {
     field( DESC, "Default Y start line" )
-#	Tested as low as 820 at 120Hz w/ 4.0ms exposure
-#	but long term stability not yet proven 
-	field( DOL,  "828" )
+	field( DOL,  "0" )
     field( PINI, "YES" )
 	info( autosaveFields, "DESC VAL" )
 }
@@ -42,10 +38,6 @@ record( longout, "$(CAM):Def120HzMinY" )
 # TODO: Set trigger polarity and width
 record( seq, "$(CAM):GoTo120HzMode" )
 {
-	field( DOL1, "0" )
-	field( LNK1, "$(CAM):Acquire CA NMS" )
-	field( DLY1, "0.0" )
-
 	field( DOL2, "$(CAM):Def120HzMinY" )
 	field( LNK2, "$(CAM):MinY PP NMS" )
 	field( DLY2, "2.0" )
@@ -88,10 +80,6 @@ record( seq, "$(CAM):GoTo120HzMode" )
 
 record( seq, "$(CAM):GoToFullMode" )
 {
-	field( DOL1, "0" )
-	field( LNK1, "$(CAM):Acquire CA NMS" )
-	field( DLY1, "0.0" )
-
 	field( DOL2, "0" )
 	field( LNK2, "$(CAM):TriggerMode PP NMS" )
 	field( DLY2, "2.0" )
@@ -123,14 +111,6 @@ record( seq, "$(CAM):GoToFullMode" )
 #	field( DOL9, "40" )
 #	field( LNK9, "$(CAM):BeamEventCode PP NMS" )
 #	field( DLY9, "0.0" )
-
-	field( DOL8, "1" )
-	field( LNK8, "$(CAM):Acquire CA NMS" )
-	field( DLY8, "5.0" )
-
-	field( DOL9, "0" )
-	field( LNK9, "$(CAM):Acquire CA NMS" )
-	field( DLY9, "1.0" )
 
 	field( DOLA, "1" )
 	field( LNKA, "$(CAM):Acquire CA NMS" )
