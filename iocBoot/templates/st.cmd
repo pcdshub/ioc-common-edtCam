@@ -207,7 +207,8 @@ $$IF(BLD_SRC)
 epicsEnvSet( "BLD_IP",      "239.255.24.$$BLD_SRC" )
 epicsEnvSet( "BLD_PORT",    "$$IF(PORT,$$PORT,10148)" )
 epicsEnvSet( "BLD_MAX",     "$$IF(MAX,$$MAX,8980)" )    # 9000 MTU - 20 byte header
-BldConfigSend( "$(BLD_IP)", "$(BLD_PORT)", "$(BLD_MAX)" )
+BldSetID( "$$IF(BLD_ID,$$BLD_ID,0)" )
+BldConfigSend( "239.255.24.$$BLD_SRC", "$$IF(PORT,$$PORT,10148)", "$$IF(MAX,$$MAX,8980)", "$$IF(BLD_IF,$$BLD_IF,)" )
 
 $$IF(BLD_AUTO_START)
 # Autostart plugin specific BLD
@@ -224,7 +225,8 @@ $$IF(BLD_SRC)
 epicsEnvSet( "BLD_IP",      "239.255.24.$$BLD_SRC" )
 epicsEnvSet( "BLD_PORT",    "$$IF(PORT,$$PORT,10148)" )
 epicsEnvSet( "BLD_MAX",     "$$IF(MAX,$$MAX,8980)" )    # 9000 MTU - 20 byte header
-BldConfigSend( "$(BLD_IP)", "$(BLD_PORT)", "$(BLD_MAX)" )
+BldSetID( "$$IF(BLD_ID,$$BLD_ID,0)" )
+BldConfigSend( "239.255.24.$$BLD_SRC", "$$IF(PORT,$$PORT,10148)", "$$IF(MAX,$$MAX,8980)", "$$IF(BLD_IF,$$BLD_IF,)" )
 
 $$IF(BLD_AUTO_START)
 # Autostart plugin specific BLD
