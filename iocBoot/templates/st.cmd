@@ -29,7 +29,12 @@ epicsEnvSet( "EVRDB",        "$(EVRDB_$$EVR_TYPE)" )
 epicsEnvSet( "EVR_DEBUG",    "$$IF(EVR_DEBUG,$$EVR_DEBUG,0)" )
 
 # Specify camera env variables
+$$IF(CAM_PV)
 epicsEnvSet( "CAM_PV",       "$$CAM_PV" )
+$$ELSE(CAM_PV)
+errlog( "CAM_PV not defined" )
+exit()
+$$ENDIF(CAM_PV)
 epicsEnvSet( "CAM_PORT",     "$$IF(PORT,$$PORT,CAM)" )
 epicsEnvSet( "TRIG_PV",      "$$(EVR_PV):TRIG$$IF(EVR_TRIG,$$EVR_TRIG,0)" )
 epicsEnvSet( "MODEL",        "$$MODEL" )
@@ -51,6 +56,7 @@ epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,0)" )
 # Register all support components
 dbLoadDatabase( "dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
+scanOnceSetQueueSize( 2000 )
 
 # Set iocsh debug variables
 var DEBUG_TS_FIFO 1
