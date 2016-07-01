@@ -14,15 +14,24 @@ export EVR_PV=$$IF(EVR_PV,$$EVR_PV,NoEvr)
 export IOC_PV=$$IOC_PV
 export CAM=$$CAM_PV
 export TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0)
-export HUTCH=$$HUTCH
+export HUTCH=$$IF(HUTCH,$$HUTCH,tst)
 
-pushd ${EPICS_SITE_TOP}-dev/screens/edm/${HUTCH}/current
+
+EDM_TOP=edtCamScreens/edtCamTop.edl
+$$IF(SCREENS_TOP)
+SCREENS_TOP=$$SCREENS_TOP
+$$ELSE(SCREENS_TOP)
+SCREENS_TOP=${EPICS_SITE_TOP}-dev/screens/edm/${HUTCH}/current
+$$ENDIF(SCREENS_TOP)
+
+pushd ${SCREENS_TOP}
 edm -x -eolc	\
-	-m "IOC=${IOC_PV}"	\
-	-m "EVR=${EVR_PV}"	\
-	-m "CAM=${CAM}"		\
-	-m "CH=${TRIG_CH}"	\
-	-m "P=${CAM},R=:"	\
-	-m "HUTCH=${HUTCH}"	\
-	edtCamScreens/edtCamTop.edl  &
+	-m "IOC=${IOC_PV}"		\
+	-m "EVR=${EVR_PV}"		\
+	-m "CAM=${CAM}"			\
+	-m "CH=${TRIG_CH}"		\
+	-m "P=${CAM},R=:"		\
+	-m "EDM_TOP=${EDM_TOP}"	\
+	-m "HUTCH=${HUTCH}"		\
+	${EDM_TOP} &
 

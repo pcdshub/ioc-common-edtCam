@@ -24,8 +24,10 @@ epicsEnvSet( "EVRID_PMC",    "1" )
 epicsEnvSet( "EVRID_SLAC",   "15" )
 epicsEnvSet( "EVRDB_PMC",    "db/evrPmc230.db" )
 epicsEnvSet( "EVRDB_SLAC",   "db/evrSLAC.db" )
+$$IF(EVR_TYPE)
 epicsEnvSet( "EVRID",        "$(EVRID_$$EVR_TYPE)" )
 epicsEnvSet( "EVRDB",        "$(EVRDB_$$EVR_TYPE)" )
+$$ENDIF(EVR_TYPE)
 epicsEnvSet( "EVR_DEBUG",    "$$IF(EVR_DEBUG,$$EVR_DEBUG,0)" )
 
 # Specify camera env variables
@@ -56,7 +58,9 @@ epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,0)" )
 # Register all support components
 dbLoadDatabase( "dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
-scanOnceSetQueueSize( 2000 )
+
+# Bump up scanOnce queue size for evr invariant timing
+scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,2000) )
 
 # Set iocsh debug variables
 var DEBUG_TS_FIFO 1
@@ -102,10 +106,10 @@ $$ELSE(BEAM_EC)
 dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
 $$ENDIF(BEAM_EC)
 
-# IF(EVR_PV)
+$$IF(EVR_PV)
 # Load timestamp plugin
 dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):BeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
-# ENDIF(EVR_PV)
+$$ENDIF(EVR_PV)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
@@ -168,7 +172,7 @@ $$IF(EVR_PV)
 # Configure the EVR
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
-dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD),$$IF(EVR_TRIG)IP$$(EVR_TRIG)E=Enabled,$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG)IP$$(TRIG)E=Enabled,$$ENDLOOP(EXTRA_TRIG)" )
+dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD)$$IF(EVR_TRIG),IP$$(EVR_TRIG)E=Enabled$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG),IP$$(TRIG)E=Enabled$$ENDLOOP(EXTRA_TRIG)" )
 dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=1" )
 $$ELSE(EVR_PV)
 dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=0" )
