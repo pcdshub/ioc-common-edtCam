@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 2008
-y 1141
+x 1929
+y 723
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -545,6 +545,7 @@ topShadowColor index 1
 botShadowColor index 14
 font "helvetica-medium-r-12.0"
 buttonLabel "EDM Viewer"
+multipleInstances
 numCmds 1
 commandLabel {
   0 "View IMAGE2 in EDM Viewer"
@@ -898,9 +899,9 @@ major 4
 minor 0
 release 0
 x 416
-y 64
+y 56
 w 400
-h 276
+h 308
 lineColor index 3
 fill
 fillColor index 3
@@ -913,7 +914,7 @@ major 4
 minor 1
 release 1
 x 416
-y 56
+y 48
 w 132
 h 20
 font "helvetica-bold-r-12.0"
@@ -982,7 +983,7 @@ major 4
 minor 1
 release 1
 x 488
-y 212
+y 236
 w 140
 h 20
 font "helvetica-medium-r-12.0"
@@ -1028,7 +1029,7 @@ major 4
 minor 7
 release 0
 x 712
-y 212
+y 236
 w 88
 h 20
 controlPv "$(P)$(R)AcquirePeriod_RBV"
@@ -1054,7 +1055,7 @@ major 4
 minor 0
 release 0
 x 584
-y 152
+y 176
 w 120
 h 20
 fgColor index 25
@@ -1074,7 +1075,7 @@ major 4
 minor 0
 release 0
 x 584
-y 184
+y 208
 w 120
 h 20
 fgColor index 25
@@ -1094,7 +1095,7 @@ major 4
 minor 1
 release 1
 x 488
-y 152
+y 176
 w 88
 h 20
 font "helvetica-medium-r-12.0"
@@ -1114,7 +1115,7 @@ major 4
 minor 1
 release 1
 x 488
-y 184
+y 208
 w 88
 h 20
 font "helvetica-medium-r-12.0"
@@ -1134,7 +1135,7 @@ major 4
 minor 7
 release 0
 x 712
-y 152
+y 176
 w 88
 h 20
 controlPv "$(P)$(R)ImageMode_RBV"
@@ -1159,7 +1160,7 @@ major 4
 minor 7
 release 0
 x 712
-y 184
+y 208
 w 88
 h 20
 controlPv "$(P)$(R)TriggerMode_RBV"
@@ -1184,7 +1185,7 @@ major 4
 minor 1
 release 1
 x 488
-y 124
+y 148
 w 140
 h 20
 font "helvetica-medium-r-12.0"
@@ -1204,7 +1205,7 @@ major 4
 minor 7
 release 0
 x 712
-y 124
+y 148
 w 88
 h 20
 controlPv "$(P)$(R)NumImages_RBV"
@@ -1229,7 +1230,7 @@ major 4
 minor 7
 release 0
 x 644
-y 124
+y 148
 w 60
 h 18
 controlPv "$(P)$(R)NumImages"
@@ -1257,7 +1258,7 @@ major 4
 minor 0
 release 0
 x 488
-y 96
+y 120
 w 216
 h 20
 
@@ -1270,7 +1271,7 @@ major 4
 minor 7
 release 0
 x 644
-y 96
+y 120
 w 60
 h 20
 controlPv "$(P)$(R)Gain"
@@ -1297,7 +1298,7 @@ major 4
 minor 1
 release 1
 x 600
-y 96
+y 120
 w 32
 h 20
 font "helvetica-medium-r-12.0"
@@ -1317,7 +1318,7 @@ major 4
 minor 2
 release 0
 x 488
-y 96
+y 120
 w 112
 h 20
 fgColor index 14
@@ -1346,7 +1347,7 @@ major 4
 minor 0
 release 0
 x 712
-y 96
+y 120
 w 88
 h 20
 
@@ -1359,7 +1360,7 @@ major 4
 minor 7
 release 0
 x 712
-y 96
+y 120
 w 88
 h 20
 controlPv "$(P)$(R)Gain_RBV"
@@ -1391,7 +1392,7 @@ major 4
 minor 0
 release 1
 x 416
-y 340
+y 364
 w 400
 h 0
 lineColor index 14
@@ -1404,8 +1405,8 @@ xPoints {
   1 816
 }
 yPoints {
-  0 340
-  1 340
+  0 364
+  1 364
 }
 endObjectProperties
 
@@ -1416,7 +1417,7 @@ major 4
 minor 0
 release 1
 x 416
-y 240
+y 264
 w 400
 h 0
 lineColor index 14
@@ -1429,8 +1430,8 @@ xPoints {
   1 816
 }
 yPoints {
-  0 240
-  1 240
+  0 264
+  1 264
 }
 endObjectProperties
 
@@ -1441,7 +1442,7 @@ major 4
 minor 1
 release 1
 x 648
-y 276
+y 300
 w 68
 h 20
 font "helvetica-medium-r-12.0"
@@ -1461,7 +1462,7 @@ major 4
 minor 1
 release 1
 x 516
-y 276
+y 300
 w 52
 h 20
 font "helvetica-medium-r-12.0"
@@ -1481,7 +1482,7 @@ major 4
 minor 0
 release 0
 x 520
-y 276
+y 300
 w 52
 h 20
 
@@ -1494,7 +1495,7 @@ major 4
 minor 7
 release 0
 x 518
-y 276
+y 300
 w 50
 h 20
 controlPv "$(P)$(R)MinX"
@@ -1524,7 +1525,7 @@ major 4
 minor 1
 release 1
 x 416
-y 276
+y 300
 w 20
 h 20
 font "helvetica-bold-r-18.0"
@@ -1544,7 +1545,7 @@ major 4
 minor 1
 release 1
 x 416
-y 312
+y 336
 w 20
 h 20
 font "helvetica-bold-r-18.0"
@@ -1564,7 +1565,7 @@ major 4
 minor 1
 release 1
 x 516
-y 312
+y 336
 w 52
 h 20
 font "helvetica-medium-r-12.0"
@@ -1584,7 +1585,7 @@ major 4
 minor 0
 release 0
 x 520
-y 312
+y 336
 w 52
 h 20
 
@@ -1597,7 +1598,7 @@ major 4
 minor 7
 release 0
 x 518
-y 312
+y 336
 w 49
 h 20
 controlPv "$(P)$(R)MinY"
@@ -1627,7 +1628,7 @@ major 4
 minor 1
 release 1
 x 648
-y 312
+y 336
 w 68
 h 20
 font "helvetica-medium-r-12.0"
@@ -1647,7 +1648,7 @@ major 4
 minor 0
 release 0
 x 652
-y 312
+y 336
 w 68
 h 20
 
@@ -1660,7 +1661,7 @@ major 4
 minor 7
 release 0
 x 650
-y 312
+y 336
 w 67
 h 20
 controlPv "$(P)$(R)SizeY"
@@ -1690,7 +1691,7 @@ major 4
 minor 0
 release 0
 x 652
-y 276
+y 300
 w 68
 h 20
 
@@ -1703,7 +1704,7 @@ major 4
 minor 7
 release 0
 x 650
-y 276
+y 300
 w 67
 h 20
 controlPv "$(P)$(R)SizeX"
@@ -1733,7 +1734,7 @@ major 4
 minor 0
 release 1
 x 440
-y 240
+y 264
 w 0
 h 101
 lineColor index 14
@@ -1745,8 +1746,8 @@ xPoints {
   1 440
 }
 yPoints {
-  0 240
-  1 341
+  0 264
+  1 365
 }
 endObjectProperties
 
@@ -1757,7 +1758,7 @@ major 4
 minor 0
 release 1
 x 512
-y 240
+y 264
 w 0
 h 100
 lineColor index 14
@@ -1769,8 +1770,8 @@ xPoints {
   1 512
 }
 yPoints {
-  0 240
-  1 340
+  0 264
+  1 364
 }
 endObjectProperties
 
@@ -1781,7 +1782,7 @@ major 4
 minor 0
 release 1
 x 644
-y 240
+y 264
 w 0
 h 100
 lineColor index 14
@@ -1793,8 +1794,8 @@ xPoints {
   1 644
 }
 yPoints {
-  0 240
-  1 340
+  0 264
+  1 364
 }
 endObjectProperties
 
@@ -1805,7 +1806,7 @@ major 4
 minor 0
 release 1
 x 416
-y 304
+y 328
 w 400
 h 0
 lineColor index 14
@@ -1818,8 +1819,8 @@ xPoints {
   1 814
 }
 yPoints {
-  0 304
-  1 304
+  0 328
+  1 328
 }
 endObjectProperties
 
@@ -1830,7 +1831,7 @@ major 4
 minor 0
 release 1
 x 416
-y 268
+y 292
 w 400
 h 0
 lineColor index 14
@@ -1843,8 +1844,8 @@ xPoints {
   1 814
 }
 yPoints {
-  0 268
-  1 268
+  0 292
+  1 292
 }
 endObjectProperties
 
@@ -1855,7 +1856,7 @@ major 4
 minor 1
 release 1
 x 448
-y 276
+y 300
 w 24
 h 20
 font "helvetica-medium-r-10.0"
@@ -1874,7 +1875,7 @@ major 4
 minor 1
 release 1
 x 448
-y 312
+y 336
 w 24
 h 20
 font "helvetica-medium-r-10.0"
@@ -1893,7 +1894,7 @@ major 4
 minor 0
 release 0
 x 448
-y 312
+y 336
 w 24
 h 20
 
@@ -1906,7 +1907,7 @@ major 4
 minor 7
 release 0
 x 448
-y 312
+y 336
 w 23
 h 20
 controlPv "$(P)$(R)BinY"
@@ -1936,7 +1937,7 @@ major 4
 minor 0
 release 0
 x 448
-y 276
+y 300
 w 24
 h 20
 
@@ -1949,7 +1950,7 @@ major 4
 minor 7
 release 0
 x 448
-y 276
+y 300
 w 23
 h 20
 controlPv "$(P)$(R)BinX"
@@ -1979,7 +1980,7 @@ major 4
 minor 1
 release 1
 x 728
-y 312
+y 336
 w 72
 h 20
 font "helvetica-medium-r-12.0"
@@ -1999,7 +2000,7 @@ major 4
 minor 1
 release 1
 x 728
-y 276
+y 300
 w 72
 h 20
 font "helvetica-medium-r-12.0"
@@ -2019,7 +2020,7 @@ major 4
 minor 0
 release 0
 x 728
-y 276
+y 300
 w 72
 h 20
 
@@ -2032,7 +2033,7 @@ major 4
 minor 7
 release 0
 x 727
-y 276
+y 300
 w 73
 h 20
 controlPv "$(P)$(R)SizeX_RBV"
@@ -2063,7 +2064,7 @@ major 4
 minor 0
 release 0
 x 728
-y 312
+y 336
 w 72
 h 20
 
@@ -2076,7 +2077,7 @@ major 4
 minor 7
 release 0
 x 727
-y 312
+y 336
 w 73
 h 20
 controlPv "$(P)$(R)SizeY_RBV"
@@ -2107,7 +2108,7 @@ major 4
 minor 1
 release 1
 x 576
-y 312
+y 336
 w 60
 h 20
 font "helvetica-medium-r-12.0"
@@ -2127,7 +2128,7 @@ major 4
 minor 1
 release 1
 x 576
-y 276
+y 300
 w 64
 h 20
 font "helvetica-medium-r-12.0"
@@ -2147,7 +2148,7 @@ major 4
 minor 0
 release 0
 x 576
-y 312
+y 336
 w 64
 h 20
 
@@ -2160,7 +2161,7 @@ major 4
 minor 7
 release 0
 x 577
-y 312
+y 336
 w 60
 h 20
 controlPv "$(P)$(R)MinY_RBV"
@@ -2191,7 +2192,7 @@ major 4
 minor 0
 release 0
 x 576
-y 276
+y 300
 w 56
 h 20
 
@@ -2204,7 +2205,7 @@ major 4
 minor 7
 release 0
 x 577
-y 276
+y 300
 w 60
 h 20
 controlPv "$(P)$(R)MinX_RBV"
@@ -2235,7 +2236,7 @@ major 4
 minor 1
 release 1
 x 480
-y 276
+y 300
 w 28
 h 20
 font "helvetica-medium-r-10.0"
@@ -2254,7 +2255,7 @@ major 4
 minor 1
 release 1
 x 480
-y 312
+y 336
 w 28
 h 20
 font "helvetica-medium-r-10.0"
@@ -2273,7 +2274,7 @@ major 4
 minor 0
 release 0
 x 480
-y 312
+y 336
 w 28
 h 20
 
@@ -2286,7 +2287,7 @@ major 4
 minor 7
 release 0
 x 480
-y 312
+y 336
 w 26
 h 20
 controlPv "$(P)$(R)BinY_RBV"
@@ -2317,7 +2318,7 @@ major 4
 minor 0
 release 0
 x 480
-y 276
+y 300
 w 28
 h 20
 
@@ -2330,7 +2331,7 @@ major 4
 minor 7
 release 0
 x 480
-y 276
+y 300
 w 26
 h 20
 controlPv "$(P)$(R)BinX_RBV"
@@ -2361,7 +2362,7 @@ major 4
 minor 0
 release 0
 x 416
-y 368
+y 380
 w 400
 h 112
 lineColor index 3
@@ -2376,7 +2377,7 @@ major 4
 minor 1
 release 1
 x 556
-y 376
+y 388
 w 48
 h 20
 font "helvetica-medium-r-12.0"
@@ -2396,7 +2397,7 @@ major 4
 minor 1
 release 0
 x 608
-y 376
+y 388
 w 44
 h 20
 fgColor index 25
@@ -2420,7 +2421,7 @@ major 4
 minor 1
 release 0
 x 656
-y 376
+y 388
 w 40
 h 20
 fgColor index 25
@@ -2444,7 +2445,7 @@ major 4
 minor 1
 release 1
 x 704
-y 376
+y 388
 w 88
 h 20
 font "helvetica-medium-r-12.0"
@@ -2466,7 +2467,7 @@ major 4
 minor 1
 release 1
 x 704
-y 376
+y 388
 w 88
 h 20
 font "helvetica-medium-r-12.0"
@@ -2489,7 +2490,7 @@ major 4
 minor 1
 release 1
 x 556
-y 424
+y 436
 w 96
 h 20
 font "helvetica-medium-r-12.0"
@@ -2509,7 +2510,7 @@ major 4
 minor 7
 release 0
 x 704
-y 400
+y 412
 w 88
 h 20
 controlPv "$(P)$(R)ArrayCounter_RBV"
@@ -2535,7 +2536,7 @@ major 4
 minor 1
 release 0
 x 656
-y 400
+y 412
 w 40
 h 20
 fgColor index 25
@@ -2558,7 +2559,7 @@ major 4
 minor 1
 release 1
 x 416
-y 360
+y 372
 w 112
 h 20
 font "helvetica-bold-r-12.0"
@@ -2577,9 +2578,9 @@ major 4
 minor 0
 release 0
 x 416
-y 496
+y 504
 w 400
-h 184
+h 176
 lineColor index 3
 fill
 fillColor index 3
@@ -2592,7 +2593,7 @@ major 4
 minor 1
 release 1
 x 416
-y 488
+y 496
 w 80
 h 20
 font "helvetica-bold-r-12.0"
@@ -2611,7 +2612,7 @@ major 4
 minor 4
 release 0
 x 700
-y 448
+y 460
 w 96
 h 28
 fgColor index 14
@@ -2643,7 +2644,7 @@ major 4
 minor 1
 release 1
 x 468
-y 456
+y 468
 w 76
 h 20
 font "helvetica-medium-r-12.0"
@@ -2663,7 +2664,7 @@ major 4
 minor 7
 release 0
 x 548
-y 456
+y 468
 w 72
 h 20
 controlPv "$(P)$(R)DetectorState_RBV"
@@ -2688,7 +2689,7 @@ major 4
 minor 1
 release 1
 x 628
-y 456
+y 468
 w 68
 h 20
 font "helvetica-medium-r-12.0"
@@ -2708,7 +2709,7 @@ major 4
 minor 7
 release 0
 x 704
-y 452
+y 464
 w 88
 h 20
 controlPv "$(P)$(R)ArrayRate_RBV"
@@ -2733,8 +2734,8 @@ beginObjectProperties
 major 4
 minor 4
 release 0
-x 436
-y 652
+x 688
+y 656
 w 120
 h 20
 fgColor index 14
@@ -2764,7 +2765,7 @@ major 4
 minor 1
 release 1
 x 432
-y 536
+y 544
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -2784,7 +2785,7 @@ major 4
 minor 7
 release 0
 x 560
-y 536
+y 544
 w 64
 h 20
 controlPv "$(P)$(R)BeamEventCode"
@@ -2813,7 +2814,7 @@ major 4
 minor 7
 release 0
 x 700
-y 536
+y 544
 w 72
 h 20
 controlPv "$(P)$(R)BeamRepRate_RBV"
@@ -2839,7 +2840,7 @@ major 4
 minor 7
 release 0
 x 704
-y 424
+y 436
 w 88
 h 20
 controlPv "$(P)$(R)NumImagesCounter_RBV"
@@ -2865,7 +2866,7 @@ major 4
 minor 1
 release 1
 x 556
-y 400
+y 412
 w 96
 h 20
 font "helvetica-medium-r-12.0"
@@ -2885,7 +2886,7 @@ major 4
 minor 1
 release 1
 x 452
-y 392
+y 404
 w 127
 h 14
 font "helvetica-medium-r-12.0"
@@ -3409,7 +3410,7 @@ major 4
 minor 1
 release 1
 x 644
-y 212
+y 236
 w 60
 h 20
 font "helvetica-medium-r-12.0"
@@ -3429,7 +3430,7 @@ major 4
 minor 0
 release 0
 x 644
-y 212
+y 236
 w 59
 h 18
 
@@ -3442,7 +3443,7 @@ major 4
 minor 7
 release 0
 x 644
-y 212
+y 236
 w 59
 h 18
 controlPv "$(P)$(R)AcquirePeriod"
@@ -3503,7 +3504,7 @@ major 4
 minor 7
 release 0
 x 680
-y 564
+y 572
 w 92
 h 20
 controlPv "$(P)$(R)TSS:SyncStatus"
@@ -3529,7 +3530,7 @@ major 4
 minor 1
 release 1
 x 432
-y 564
+y 572
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -3549,7 +3550,7 @@ major 4
 minor 1
 release 1
 x 432
-y 508
+y 516
 w 120
 h 20
 font "helvetica-medium-r-12.0"
@@ -3569,7 +3570,7 @@ major 4
 minor 7
 release 0
 x 560
-y 508
+y 516
 w 64
 h 18
 controlPv "$(P)$(R)CamEventCode"
@@ -3599,7 +3600,7 @@ major 4
 minor 7
 release 0
 x 632
-y 508
+y 516
 w 64
 h 20
 controlPv "$(P)$(R)TSS:EventCode_RBV"
@@ -3625,7 +3626,7 @@ major 4
 minor 7
 release 0
 x 700
-y 508
+y 516
 w 72
 h 20
 controlPv "$(P)$(R)CamRepRate_RBV"
@@ -3651,7 +3652,7 @@ major 4
 minor 0
 release 0
 x 572
-y 564
+y 572
 w 100
 h 20
 fgColor index 25
@@ -3671,7 +3672,7 @@ major 4
 minor 0
 release 0
 x 436
-y 592
+y 600
 w 336
 h 48
 
@@ -3684,7 +3685,7 @@ major 4
 minor 7
 release 0
 x 680
-y 592
+y 600
 w 92
 h 20
 controlPv "$(P)$(R)TSS:ExpectedDelay"
@@ -3711,7 +3712,7 @@ major 4
 minor 1
 release 1
 x 436
-y 592
+y 600
 w 64
 h 20
 font "helvetica-medium-r-12.0"
@@ -3731,7 +3732,7 @@ major 4
 minor 7
 release 0
 x 504
-y 592
+y 600
 w 72
 h 20
 controlPv "$(P)$(R)XmitDelay"
@@ -3758,7 +3759,7 @@ major 4
 minor 1
 release 1
 x 576
-y 592
+y 600
 w 96
 h 20
 font "helvetica-medium-r-12.0"
@@ -3778,7 +3779,7 @@ major 4
 minor 7
 release 0
 x 712
-y 620
+y 628
 w 60
 h 20
 controlPv "$(P)$(R)TSS:DiffVsExpMax"
@@ -3805,7 +3806,7 @@ major 4
 minor 1
 release 1
 x 676
-y 620
+y 628
 w 28
 h 20
 font "helvetica-medium-r-12.0"
@@ -3825,7 +3826,7 @@ major 4
 minor 7
 release 0
 x 608
-y 620
+y 628
 w 64
 h 20
 controlPv "$(P)$(R)TSS:DiffVsExpMin"
@@ -3852,7 +3853,7 @@ major 4
 minor 1
 release 1
 x 572
-y 620
+y 628
 w 24
 h 20
 font "helvetica-medium-r-12.0"
@@ -3872,7 +3873,7 @@ major 4
 minor 7
 release 0
 x 504
-y 620
+y 628
 w 60
 h 20
 controlPv "$(P)$(R)TSS:DiffVsExp"
@@ -3899,7 +3900,7 @@ major 4
 minor 1
 release 1
 x 436
-y 620
+y 628
 w 60
 h 20
 font "helvetica-medium-r-12.0"
@@ -3926,7 +3927,7 @@ major 4
 minor 1
 release 1
 x 652
-y 244
+y 268
 w 148
 h 20
 font "helvetica-bold-r-14.0"
@@ -3946,7 +3947,7 @@ major 4
 minor 1
 release 1
 x 520
-y 244
+y 268
 w 116
 h 20
 font "helvetica-bold-r-14.0"
@@ -3966,7 +3967,7 @@ major 4
 minor 1
 release 1
 x 444
-y 244
+y 268
 w 64
 h 20
 font "helvetica-bold-r-14.0"
@@ -4011,6 +4012,82 @@ replaceSymbols {
 }
 propagateMacros {
   0 0
+}
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 712
+y 96
+w 88
+h 20
+controlPv "$(P)$(R)CamTrigDelay_RBV"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 15
+fgAlarm
+bgColor index 12
+limitsFromDb
+nullColor index 40
+smartRefresh
+useHexPrefix
+showUnits
+newPos
+objType "monitors"
+noExecuteClipMask
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 644
+y 96
+w 59
+h 18
+controlPv "$(P)$(R)CamTrigDelay"
+format "decimal"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+autoHeight
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 488
+y 96
+w 140
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Trigger Delay"
 }
 endObjectProperties
 
