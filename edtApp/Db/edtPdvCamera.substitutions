@@ -40,11 +40,12 @@ file edtPdvBase.template
 	}
 }
 
-file cross.template
+file cross.db
 {
 	{
 	P				= $(CAM),
 	R				= :,
+	}
 }
 
 file timeStampEventCode.db
