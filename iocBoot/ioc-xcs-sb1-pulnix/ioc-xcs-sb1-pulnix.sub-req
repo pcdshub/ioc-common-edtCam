@@ -28,6 +28,12 @@ file ADBase_settings.req
 #    {   CAM = "XCS:SB1:PULNIX"	}
 #}
 
+file cross_settings.req
+{
+    { P = "XCS:SB1:PULNIX",	R = ":" }
+#    { P = "XCS:SB1:PULNIX", R = ":"	}
+}
+
 
 #file pluginBldSpectrometer.req
 #{

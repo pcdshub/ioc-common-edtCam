@@ -18,6 +18,11 @@ file ADBase_settings.req
     { P = "$$CAM_PV", R = ":"  }
 }
 
+#file cross_settings.req
+#{
+#    {   P = "$$NAME",	R = ":" 	}
+#}
+
 $$LOOP(BLD)
 file pluginBldSpectrometer.req
 {

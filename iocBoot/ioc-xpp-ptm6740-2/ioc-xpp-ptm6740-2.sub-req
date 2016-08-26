@@ -27,6 +27,11 @@ file ADBase_settings.req
 #    {   CAM = "XPP:PTM6740:01"	}
 #}
 
+file cross_settings.req
+{
+    { P = "XPP:PTM6740:01",	R = ":" }
+}
+
 
 #file pluginBldSpectrometer.req
 #{

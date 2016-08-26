@@ -27,6 +27,12 @@ file ADBase_settings.req
 #    {   CAM = "XPP:OPAL1K:02"	}
 #}
 
+file cross_settings.req
+{
+    { P = "XPP:OPAL1K:02",	R = ":" }
+}
+
+
 #file pluginBldSpectrometer.req
 #{
 #    { P = "XPP:OPAL1K:02", R = ":", CAM="XPP:OPAL1K:1", N = "1"	}

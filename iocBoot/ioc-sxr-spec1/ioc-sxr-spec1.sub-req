@@ -16,6 +16,11 @@ file ADBase_settings.req
     { P = "SXR:SPEC:CAM:01", R = ":"	}
 }
 
+file cross_settings.req
+{
+    { P = "SXR:SPEC:CAM:01",	R = ":" }
+}
+
 
 #file pluginBldSpectrometer.req
 #{

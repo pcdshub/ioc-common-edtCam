@@ -60,7 +60,7 @@ dbLoadDatabase( "dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
 
 # Bump up scanOnce queue size for evr invariant timing
-scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
+scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,2000) )
 
 # Set iocsh debug variables
 var DEBUG_TS_FIFO 1

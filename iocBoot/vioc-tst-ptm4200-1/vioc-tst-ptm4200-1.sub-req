@@ -22,6 +22,12 @@ file ADBase_settings.req
 #    {   CAM = "TST:EDT:PTM1"	}
 #}
 
+#file cross_settings.req
+#{
+#    {   P = "TST:EDT:PTM1",	R = ":" 	}
+#}
+
+
 #file pluginBldSpectrometer.req
 #{
 #    { P = "TST:EDT:PTM1", R = ":", CAM="TST:EDT:PTM1", N = "1"	}

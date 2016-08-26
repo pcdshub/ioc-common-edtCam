@@ -17,6 +17,11 @@ file ADBase.tpl-arch
     {   P = "$$CAM_PV",	R = ":" 	}
 }
 
+file cross.tpl-arch
+{
+    {   P = "$$CAM_PV",	R = ":" 	}
+}
+
 $$LOOP(PLUGIN)
 $$IF(ARCHIVE)
 file plugin$$(ARCHIVE).archive

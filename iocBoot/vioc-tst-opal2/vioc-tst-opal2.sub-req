@@ -22,6 +22,11 @@ file ADBase_settings.req
 #    {   CAM = "TST:EDT:OPAL2"	}
 #}
 
+#file cross_settings.req
+#{
+#    {   P = "TST:EDT:OPAL2",	R = ":" 	}
+#}
+
 
 #file pluginBldSpectrometer.req
 #{
