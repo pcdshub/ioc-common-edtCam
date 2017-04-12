@@ -23,8 +23,4 @@ file ADBase_settings.req
 #    {   CAM = "XCS:LAM:OPAL"	}
 #}
 
-file cross_settings.req
-{
-	{ P = "XCS:LAM:OPAL", R = ":"	}
-}
 

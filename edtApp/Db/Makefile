@@ -9,7 +9,6 @@ DB += evrUsed.db
 # Create and install EDT Camera DB Files
 DB += bld_hist.db
 DB += edtCam_hist.db
-DB += cross.template
 DB += edtPdvCamera.db
 DB += pluginBldSpectrometer.db
 DB += cannedSequences.db
@@ -79,7 +78,6 @@ DB_INSTALLS += $(addsuffix .proto,	$(MODELS))
 #
 ARCHIVE += bld_hist.archive
 ARCHIVE += edtCam_hist.archive
-ARCHIVE += cross.tpl-arch
 ARCHIVE += edt-ioc.archive
 ARCHIVE += pluginBldSpectrometer.archive
 ARCHIVE += archive_evr_PMC.archive
@@ -91,7 +89,6 @@ ARCHIVE += archive_evr_SLAC.archive
 #
 REQ += bld_hist.req
 REQ += edtCam_hist.req
-REQ += cross_settings.req
 REQ += edt-ioc.req
 REQ += pluginBldSpectrometer.req
 REQ += autosave_evr_PMC.req
