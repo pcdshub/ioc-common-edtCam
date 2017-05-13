@@ -1,7 +1,0 @@
-Daniel Flath:  07/30/2013
-
-R0.37.0
-
-Modified st.cmd files for ioc-xcs-gige-703-[1|2|3] instances to make them uniform and fix a bug in instances 2 & 3
-
-Added Autosave Requests for the JPEG file writer plugin records/fields

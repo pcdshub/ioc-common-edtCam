@@ -1,7 +1,0 @@
-file autosave_evr_SLAC.tpl-req
-{
-	{
-		# Hack till msi supports empty substitutions
-		IOC		=	$(IOC),
-	}
-}

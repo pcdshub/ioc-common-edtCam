@@ -1,7 +1,0 @@
-file autosave_pmc_evr.tpl-req
-{
-	{
-		# Hack till msi supports empty substitutions
-		IOC		=	$(IOC),
-	}
-}

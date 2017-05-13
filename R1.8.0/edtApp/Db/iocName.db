@@ -1,5 +1,0 @@
-record( stringout, "$(IOC):IOCNAME" )
-{
-	field( PINI, "YES" )
-	field( VAL,  "$(IOCNAME)" )
-}
