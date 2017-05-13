@@ -1,0 +1,23 @@
+# Autosave file for IOC
+
+# Each EdtPdv IOC needs one of these
+file autosave_iocAdmin.tpl-req
+{
+    { IOC = "SXR:SPEC:IOC:01" }
+}
+
+file autosave_pmc_evr.tpl-req
+{
+    { EVR = "SXR:SPEC:EVR:01" }
+}
+
+file ADBase_settings.req
+{
+    { P = "SXR:SPEC:CAM:01", R = ":"	}
+}
+
+
+#file pluginBldSpectrometer.req
+#{
+#    { P = "SXR:SPEC:CAM:01", R = ":", CAM="SXR:SPEC:CAM:01", N = "1"	}
+#}

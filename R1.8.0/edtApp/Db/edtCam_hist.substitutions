@@ -1,0 +1,26 @@
+#
+# edtCam_hist.substitutions
+#
+# Uses the generated ai_hist_pattern.db template
+# to create history waveforms for each of the
+# specified PV's along with AVG, MAX, MIN,
+# RMS, and StdDev for each history.
+#
+# Required Macros:
+#	PV		 - PV name
+# Optional Macros:
+#	EGU		 - Engineering units, default to ""
+#	RMS_LOLO - Low  alarm   limit for $(PV)_RMS, default 0
+#	RMS_LOW  - Low  warning limit for $(PV)_RMS, default 0
+#	RMS_HIGH - High warning limit for $(PV)_RMS, default 0
+#	RMS_HIHI - High alarm   limit for $(PV)_RMS, default 0
+
+# Example
+file ai_hist_pattern.db
+{
+	pattern
+	{	PV,										EGU		}
+	{	"$(P)$(R)ArrayRate_RBV",				"Hz"	}
+	{	"$(P)$(R)IMAGE1:ArrayRate_RBV",			"Hz"	}
+	{	"$(P)$(R)IMAGE2:ArrayRate_RBV",			"Hz"	}
+}

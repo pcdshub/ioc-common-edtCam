@@ -1,0 +1,26 @@
+# Autosave file for IOC
+
+# Each EdtPdv IOC needs one of these
+file autosave_iocAdmin.tpl-req
+{
+    { IOC = "XCS:IOC:LAM:OPAL" }
+}
+
+file autosave_pmc_evr.tpl-req
+{
+    { EVR = "XCS:EVR:LAM:OPAL" }
+}
+
+file ADBase_settings.req
+{
+    { P = "XCS:LAM:OPAL", R = ":"	}
+}
+
+
+# Bring in the pcds plugin autosave pv's
+#file pcdsPlugins.req
+#{
+#    {   CAM = "XCS:LAM:OPAL"	}
+#}
+
+

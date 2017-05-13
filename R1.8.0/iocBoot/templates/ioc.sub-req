@@ -1,0 +1,26 @@
+# Autosave file for IOC
+
+# Each EdtPdv IOC needs one of these
+file autosave_iocAdmin.tpl-req
+{
+    { IOC = "$$IOC_PV" }
+}
+
+$$IF(EVR_PV)
+file autosave_evr_$$(EVR_TYPE).req
+{
+    { EVR = "$$EVR_PV" }
+}
+$$ENDIF(EVR_PV)
+
+file ADBase_settings.req
+{
+    { P = "$$CAM_PV", R = ":"  }
+}
+
+$$LOOP(BLD)
+file pluginBldSpectrometer.req
+{
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
+}
+$$ENDLOOP(BLD)
