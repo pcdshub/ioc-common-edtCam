@@ -1,0 +1,13 @@
+#
+# edtCam_hist.sub-arch
+#
+
+# Save's RMS limits for each waveform
+file hist_LAST_N.tpl-arch
+{
+	pattern
+	{	PV									}
+	{	"$(P)$(R)ArrayRate_RBV"				}
+	{	"$(P)$(R)IMAGE1:ArrayRate_RBV"		}
+	{	"$(P)$(R)IMAGE2:ArrayRate_RBV"		}
+}

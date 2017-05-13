@@ -1,0 +1,62 @@
+# CONFIG_SITE
+
+# Make any application-specific changes to the EPICS build
+# configuration variables in this file.
+#
+# Host/target specific settings can be specified in files named
+#  CONFIG_SITE.$(EPICS_HOST_ARCH).Common
+#  CONFIG_SITE.Common.$(T_A)
+#  CONFIG_SITE.$(EPICS_HOST_ARCH).$(T_A)
+
+# Set this when you only want to compile this application
+# for a subset of the cross-compiled target architectures
+# that Base is built for.
+# CROSS_COMPILER_TARGET_ARCHS = RTEMS-beatnik linux-x86 linux-x86_64
+
+CROSS_COMPILER_TARGET_ARCHS     =
+# PCDS: Only build the linux-x86 cross target if host is linux-x86_64
+ifeq '$(EPICS_HOST_ARCH)' 'rhel6-x86_64'
+CROSS_COMPILER_TARGET_ARCHS    +=  linuxRT_glibc-x86_64
+endif
+ifeq '$(EPICS_HOST_ARCH)' 'linux-x86_64'
+CROSS_COMPILER_TARGET_ARCHS    =
+endif
+
+# If you do NOT want to build for the host architecture,
+# clear BUILD_FOR_HOST_ARCH
+# BUILD_FOR_HOST_ARCH = 
+
+# Set this when your IOC and the host use different paths
+# to access the application. This will be needed to boot
+# from a Microsoft FTP server or with some NFS mounts.
+# You must rebuild in the iocBoot directory for this to
+# take effect.
+#IOCS_APPL_TOP = <path to application top as seen by IOC>
+
+# If you don't want to install into $(TOP) then
+# define INSTALL_LOCATION here
+
+# Settings for static and shared build options
+STATIC_BUILD=YES
+SHARED_LIBRARIES=YES
+
+ifndef CONFIG_SITE_TOP
+ifneq ($(wildcard /reg/g/pcds/pyps/config/common_dirs.*))
+CONFIG_SITE_TOP	= /reg/g/pcds/pyps/config
+else
+CONFIG_SITE_TOP	= /afs/slac/g/pcds/config
+endif
+endif
+include $(CONFIG_SITE_TOP)/common_dirs.mak
+
+PKG_ARCH    = $(T_A)
+ifeq '$(PKG_ARCH)' 'linuxRT_glibc-x86_64'
+PKG_ARCH    = rhel6-x86_64
+endif
+
+#NCURSES_TOP		= $(PSPKG_ROOT)/release/ncurses/5.7/$(PKG_ARCH)
+PCRE_TOP		= $(PSPKG_ROOT)/release/pcre/8.37/$(PKG_ARCH)
+
+#LIB_INSTALLS	+=	$(wildcard $(NCURSES_TOP)/lib/lib*)
+LIB_INSTALLS	+=	$(wildcard $(PCRE_TOP)/lib/lib*)
+

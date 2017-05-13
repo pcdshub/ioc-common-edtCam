@@ -1,0 +1,7 @@
+file archive_evr_SLAC.tpl-arch
+{
+	{
+		# Hack till msi supports empty substitutions
+		IOC		=	$(IOC),
+	}
+}

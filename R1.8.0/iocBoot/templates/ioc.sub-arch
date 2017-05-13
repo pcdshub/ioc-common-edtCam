@@ -1,0 +1,34 @@
+# Each edt IOC needs one of these
+
+file edt-ioc.archive
+{
+	{	IOC = "$$IOC_PV"	}
+}
+
+$$IF(EVR_PV)
+file archive_evr_$$(EVR_TYPE).archive
+{
+    { EVR = "$$EVR_PV" }
+}
+$$ENDIF(EVR_PV)
+
+file ADBase.tpl-arch
+{
+    {   P = "$$CAM_PV",	R = ":" 	}
+}
+
+$$LOOP(PLUGIN)
+$$IF(ARCHIVE)
+file plugin$$(ARCHIVE).archive
+{
+    { P = "$$PVNAME", R = ":", CAM = "$$PVNAME", N = "$$NUM"  }
+}
+$$ENDIF(ARCHIVE)
+$$ENDLOOP(PLUGIN)
+
+$$LOOP(BLD)
+file pluginBldSpectrometer.archive
+{
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
+}
+$$ENDLOOP(BLD)

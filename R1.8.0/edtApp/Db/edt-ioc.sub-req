@@ -1,0 +1,10 @@
+#
+# gige substitutions file
+#
+
+# Generate iocAdmin autosave request
+file autosave_iocAdmin.tpl-req
+{
+    {   IOC = $(IOC)  }
+}
+

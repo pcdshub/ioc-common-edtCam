@@ -1,0 +1,33 @@
+# RULES_SCREENLINKS
+INSTALL_SCREENLINKS = $(INSTALL_LOCATION)/screenLinks
+UNINSTALL_DIRS	+= $(INSTALL_SCREENLINKS)
+
+install: updateScreenLinks
+
+.PHONY: updateScreenLinks
+
+# Mark optional AD camera modules w/ unused/fooScreens
+ADSTREAM	?= unused
+ADPROSILICA	?= unused
+ARAVISGIGE	?= unused
+EVENT		?= $(EPICS_SITE_TOP)/modules/event/R4.0.0-2.9.2
+EVENT2		?= unused
+HISTORY		?= unused
+IOCADMIN	?= unused
+FFMPEGSERVER?= unused
+
+updateScreenLinks:
+	@echo Updating $(TOP)/screenLinks ...
+	@rm   -rf  $(INSTALL_SCREENLINKS)
+	@mkdir -p  $(INSTALL_SCREENLINKS)
+	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
+	@ln -s {$(ADSTREAM),$(INSTALL_SCREENLINKS)}/ADStreamScreens
+	@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorScreens
+	@ln -s {$(ASYN),$(INSTALL_SCREENLINKS)}/asynScreens
+	@ln -s {$(ADEDTPDV),$(INSTALL_SCREENLINKS)}/edtPdvScreens
+	@ln -s {$(EVENT2),$(INSTALL_SCREENLINKS)}/event2Screens
+	@ln -s {$(EVENT),$(INSTALL_SCREENLINKS)}/evrScreens
+	@ln -s {$(HISTORY),$(INSTALL_SCREENLINKS)}/historyScreens
+	@ln -s {$(IOCADMIN),$(INSTALL_SCREENLINKS)}/iocScreens
+	@ln -s {$(FFMPEGSERVER),$(INSTALL_SCREENLINKS)}/ffmpegScreens
+
