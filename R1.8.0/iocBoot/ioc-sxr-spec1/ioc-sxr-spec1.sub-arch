@@ -1,0 +1,18 @@
+# Archive file for ioc-sxr-spec1
+
+file edt-ioc.archive
+{
+    {
+        IOC = SXR:SPEC:IOC:01
+    }
+}
+
+file ADBase.tpl-arch
+{
+    { P = "SXR:SPEC:CAM:01", R = ":"	}
+}
+
+file pluginBldSpectrometer.archive
+{
+    { P = "SXR:SPEC:CAM:01", R = ":", CAM="SXR:SPEC:CAM:01", N = "1"	}
+}

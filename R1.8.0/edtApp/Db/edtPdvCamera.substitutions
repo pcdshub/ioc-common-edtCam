@@ -1,0 +1,58 @@
+#
+# edtPdvCamera.substitutions
+# substitutions file to create the generic part of the ADEdtPdv DB database
+#
+file ADBase.template
+{
+	{
+	P		= $(CAM),
+	R		= :,
+	PORT	= $(CAM_PORT),
+	ADDR	= 0,
+	TIMEOUT	= 1
+	}
+}
+
+file NDFile.template
+{
+	{
+	P		= $(CAM),
+	R		= :,
+	PORT	= $(CAM_PORT),
+	ADDR	= 0,
+	TIMEOUT	= 1
+	}
+}
+
+file edtPdvBase.template
+{
+	{
+	P				= $(CAM),
+	R				= :,
+	PORT			= $(CAM_PORT),
+	CAM_EC			= $(CAM_TRIG):TEC,
+	CAM_EC_RBV		= $(CAM_TRIG):EC_RBV,
+	CAM_DLY			= $(CAM_TRIG):TDES,
+	CAM_DLY_EGU		= ns,
+	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
+	CAM_DLY_SCALE	= 1e9,
+	CAM_RATE_RBV	= $(CAM_TRIG):RATE
+	}
+}
+
+file cross.db
+{
+	{
+	P				= $(CAM),
+	R				= :,
+	}
+}
+
+file timeStampEventCode.db
+{
+	{
+	CAM				= $(CAM),
+	CAM_DLY			= $(CAM_TRIG):TDES,
+	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
+	}
+}
