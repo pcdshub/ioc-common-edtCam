@@ -24,7 +24,11 @@ $$ELSE(SCREENS_TOP)
 SCREENS_TOP=${EPICS_SITE_TOP}-dev/screens/edm/${HUTCH}/current
 $$ENDIF(SCREENS_TOP)
 
-pushd ${SCREENS_TOP}
+#pushd ${SCREENS_TOP}
+# Now launching edm from new screenLinks directory under each IOCTOP release
+# so each ioc can have it's own custom set of screens that matches which
+# set of module depedencies that ioc was built with. 
+pushd $$IOCTOP/screenLinks
 edm -x -eolc	\
 	-m "IOC=${IOC_PV}"		\
 	-m "EVR=${EVR_PV}"		\

@@ -249,8 +249,6 @@ $$ENDLOOP(BLD)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
-# Final delay before auto-start image acquisition
-epicsThreadSleep $(ST_CMD_DELAYS)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
@@ -259,5 +257,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 dbpf $(CAM_PV):ArrayCallbacks 1
 
 $$IF(AUTO_START)
+# Final delay before auto-start image acquisition
+epicsThreadSleep 3
 dbpf $(CAM_PV):Acquire $$AUTO_START
 $$ENDIF(AUTO_START)
