@@ -104,7 +104,9 @@ edt_LIBS += sz
 #edt_SYS_LIBS += xml2
 edt_LIBS += tiff
 edt_LIBS += jpeg
+ifdef PCRE_LIB
 edt_LIBS += pcre
+endif
 edt_SYS_LIBS += z
 edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
@@ -138,5 +140,5 @@ include $(TOP)/configure/RULES
 showme:
 	@echo T_A=$(T_A)
 	@echo PKG_ARCH=$(PKG_ARCH)
-	@echo PCRE_TOP=$(PCRE_TOP)
+	@echo PCRE_LIB=$(PCRE_LIB)
 
