@@ -7,18 +7,19 @@ include $(TOP)/configure/CONFIG
 
 #=============================
 # Build an ioc application
+PROD_NAME = edt
 
-PROD_IOC = edt
+PROD_IOC = $(PROD_NAME) 
 PROD_IOC += serial_cmd
 
 # edt.dbd will be created and installed
 DBD += edt.dbd
 
+include $(ADCORE)/ADApp/commonDriverMakefile
+
 # edt.dbd will be made up from these files:
 # base and std modules
-edt_DBD += base.dbd
 edt_DBD += iocAdmin.dbd
-edt_DBD += autosaveSupport.dbd
 edt_DBD += diagTimer.dbd
 edt_DBD += history.dbd
 
@@ -27,10 +28,9 @@ edt_DBD += evrSupport.dbd
 edt_DBD += devMrfEr.dbd
 
 # areaDetector
-edt_DBD += busyRecord.dbd
 #edt_DBD += genSubRecord.dbd
-edt_DBD += sscan.dbd
-edt_DBD += commonDriverSupport.dbd
+#edt_DBD += sscan.dbd
+
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 edt_DBD += bldClient.dbd
@@ -57,7 +57,7 @@ serial_cmd_LIBS += pdv
 
 # Add required libraries
 # base and std modules
-edt_LIBS += autosave
+#edt_LIBS += autosave
 edt_LIBS += devIocStats
 edt_LIBS += diagTimer
 edt_LIBS += bldClient
@@ -73,37 +73,9 @@ edt_LIBS_Linux += mrfApi
 edt_LIBS += edtPdv
 edt_LIBS += pdv
 
-# areaDetector
-edt_LIBS += calc
-edt_LIBS += busy
-edt_LIBS += NDPlugin
-# GraphicsMagick not supported in areaDetector 1.9 for RHEL due to compiler issues
-#edt_LIBS += NDFileMagick
-edt_LIBS += ADBase
-edt_LIBS += netCDF
-edt_LIBS += NeXus
-edt_LIBS += hdf5
-edt_LIBS += simDetector
-edt_LIBS += stream
-edt_LIBS += sscan
-edt_LIBS += asyn
-edt_LIBS += recIoc
-edt_LIBS += softDevIoc
-edt_LIBS += miscIoc
-edt_LIBS += rsrvIoc
-edt_LIBS += dbtoolsIoc
-edt_LIBS += asIoc
-edt_LIBS += dbIoc
-edt_LIBS += registryIoc
-edt_LIBS += dbStaticIoc
-edt_LIBS += ca
-edt_LIBS += Com
 #edt_LIBS += PvAPI
-edt_LIBS += sz
 #edt_SYS_LIBS += X11
 #edt_SYS_LIBS += xml2
-edt_LIBS += tiff
-edt_LIBS += jpeg
 ifdef PCRE_LIB
 edt_LIBS += pcre
 endif
@@ -121,15 +93,22 @@ edt_LIBS += swscale
 edt_LIBS += avformat
 edt_LIBS += avcodec
 edt_LIBS += avutil
+edt_LIBS += swresample
 edt_LIBS += bz2
+edt_LIBS += lzma
+
+# areaDetector
+# GraphicsMagick not supported in areaDetector 1.9 for RHEL due to compiler issues
+#edt_LIBS += NDFileMagick
+edt_LIBS += simDetector
+edt_LIBS += stream
 
 edt_LIBS += timeStampFifo
 #edt_LIBS += genSub
 
 
-edt_LIBS += $(EPICS_BASE_IOC_LIBS)
-
 # install: showme
+
 
 #===========================
 

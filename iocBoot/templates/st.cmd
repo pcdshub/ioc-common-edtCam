@@ -101,9 +101,9 @@ dbLoadRecords("db/asynRecord.db",   "P=$(CAM_PV):SER,R=:AsynIO,PORT=$(CAM_PORT).
 
 # Load camera model specific db
 $$IF(BEAM_EC)
-dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC,BEAM_EC=$$BEAM_EC,BEAM_EC_RBV=$$BEAM_EC_RBV,BEAM_RATE_RBV=$$BEAM_RATE_RBV" )
+dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC,BEAM_EC=$$BEAM_EC,BEAM_EC_RBV=$$BEAM_EC_RBV,BEAM_RATE_RBV=$$BEAM_RATE_RBV,SerialDisable=$(CAM_PV):SerialDisable.RVAL" )
 $$ELSE(BEAM_EC)
-dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC" )
+dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC,SerialDisable=$(CAM_PV):SerialDisable.RVAL" )
 $$ENDIF(BEAM_EC)
 
 $$IF(EVR_PV)
