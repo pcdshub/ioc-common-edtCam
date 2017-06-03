@@ -7,10 +7,6 @@ file edt-ioc.archive
     }
 }
 
-file ADBase.tpl-arch
-{
-    { P = "CAMR:FEE1:441", R = ":"	}
-}
 
 #file hamaOrcaFlash4_0.archive
 #{

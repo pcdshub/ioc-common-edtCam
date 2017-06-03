@@ -12,10 +12,6 @@ file archive_evr_$$(EVR_TYPE).archive
 }
 $$ENDIF(EVR_PV)
 
-file ADBase.tpl-arch
-{
-    {   P = "$$CAM_PV",	R = ":" 	}
-}
 
 $$LOOP(PLUGIN)
 $$IF(ARCHIVE)

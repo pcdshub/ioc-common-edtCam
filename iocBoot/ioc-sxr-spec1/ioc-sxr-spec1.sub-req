@@ -11,10 +11,6 @@ file autosave_pmc_evr.tpl-req
     { EVR = "SXR:SPEC:EVR:01" }
 }
 
-file ADBase_settings.req
-{
-    { P = "SXR:SPEC:CAM:01", R = ":"	}
-}
 
 
 #file pluginBldSpectrometer.req

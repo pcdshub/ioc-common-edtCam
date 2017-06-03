@@ -14,10 +14,6 @@ file archive_evr_SLAC.tpl-arch
     }
 }
 
-file ADBase.tpl-arch
-{
-    { P = "XPP:OPAL1K:02", R = ":"	}
-}
 
 #file hamaOrcaFlash4_0.archive
 #{

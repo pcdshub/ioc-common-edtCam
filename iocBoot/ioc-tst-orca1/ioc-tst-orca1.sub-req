@@ -11,10 +11,6 @@ file autosave_pmc_evr.tpl-req
     { EVR = "TST:EVR:EDT:ORCA1" }
 }
 
-file ADBase_settings.req
-{
-    { P = "TST:EDT:ORCA1", R = ":"	}
-}
 
 #file hamaOrcaFlash4_0.req
 #{

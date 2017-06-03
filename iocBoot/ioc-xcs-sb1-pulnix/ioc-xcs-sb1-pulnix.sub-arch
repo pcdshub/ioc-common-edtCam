@@ -7,12 +7,6 @@ file edt-ioc.archive
     }
 }
 
-file ADBase.tpl-arch
-{
-    { P = "XCS:SB1:PULNIX", R = ":"	}
-#    { P = "XCS:SB1:PULNIX", R = ":"	}
-}
-
 #file hamaOrcaFlash4_0.archive
 #{
 #    { P = "XCS:SB1:PULNIX", R = ":"	}

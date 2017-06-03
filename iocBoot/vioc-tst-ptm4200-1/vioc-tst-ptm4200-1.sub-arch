@@ -7,10 +7,6 @@ file edt-ioc.archive
     }
 }
 
-file ADBase.tpl-arch
-{
-    { P = "TST:EDT:PTM1", R = ":"	}
-}
 
 # Bring in the pcds plugin archive pv's
 #file pcdsPlugins.archive

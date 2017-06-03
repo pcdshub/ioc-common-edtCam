@@ -11,10 +11,6 @@ file autosave_pmc_evr.tpl-req
     { EVR = "TST:EVR:EDT:PTM1" }
 }
 
-file ADBase_settings.req
-{
-    { P = "TST:EDT:PTM1", R = ":"	}
-}
 
 # Bring in the pcds plugin autosave pv's
 #file pcdsPlugins.req

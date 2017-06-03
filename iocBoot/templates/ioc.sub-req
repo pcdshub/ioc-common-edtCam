@@ -13,10 +13,6 @@ file autosave_evr_$$(EVR_TYPE).req
 }
 $$ENDIF(EVR_PV)
 
-file ADBase_settings.req
-{
-    { P = "$$CAM_PV", R = ":"  }
-}
 
 $$LOOP(BLD)
 file pluginBldSpectrometer.req
