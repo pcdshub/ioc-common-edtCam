@@ -28,6 +28,8 @@ record( ao, "$(CAM):CamTrigDelay" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
 }
 
+# This record calculates the EVR trigger delay and writes it to the
+# appropriate EVR record via macro CAM_DLY
 record( calcout, "$(CAM):CamTrigDelayCalc" )
 {
 	field( INPA, "$(CAM):CamTrigDelay NPP MS" )

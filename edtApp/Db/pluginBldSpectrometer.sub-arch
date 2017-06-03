@@ -2,10 +2,10 @@
 # pluginBldSpectrometer Archive file
 #
 
-file NDPluginBase.tpl-arch
-{
-    {   P = "$(CAM):",	R = "BLD$(N):"	}
-}
+#file NDPluginBase.tpl-arch
+#{
+#    {   P = "$(CAM):",	R = "BLD$(N):"	}
+#}
 
 file pluginBldSpectrometer.tpl-arch
 {
