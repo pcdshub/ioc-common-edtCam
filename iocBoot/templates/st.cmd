@@ -17,7 +17,8 @@ cd( "$(IOCTOP)" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "$$IF(MAX_ARRAY,$$MAX_ARRAY,20000000)" )
 
 # Setup EVR env vars
-epicsEnvSet( "EVR_PV",		 "$$IF(EVR_PV,$$EVR_PV,NoEvr)" )
+epicsEnvSet( "EVR_PV",       "$$IF(EVR_PV,$$EVR_PV,$$CAM_PV:NoEvr)" )
+epicsEnvSet( "TRIG_PV",      "$(EVR_PV):TRIG$$IF(EVR_TRIG,$$EVR_TRIG,0)" )
 epicsEnvSet( "EVR_CARD",     "$$IF(EVR_CARD,$$EVR_CARD,0)" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
 epicsEnvSet( "EVRID_PMC",    "1" )
@@ -38,7 +39,6 @@ errlog( "CAM_PV not defined" )
 exit()
 $$ENDIF(CAM_PV)
 epicsEnvSet( "CAM_PORT",     "$$IF(PORT,$$PORT,CAM)" )
-epicsEnvSet( "TRIG_PV",      "$$(EVR_PV):TRIG$$IF(EVR_TRIG,$$EVR_TRIG,0)" )
 epicsEnvSet( "MODEL",        "$$MODEL" )
 epicsEnvSet( "HTTP_PORT",    "$$IF(HTTP_PORT,$$HTTP_PORT,7800)" )
 

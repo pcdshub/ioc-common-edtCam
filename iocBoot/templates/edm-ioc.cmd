@@ -10,7 +10,7 @@ fi
 # Setup edm environment
 source $SETUP_SITE_TOP/epicsenv-cur.sh
 
-export EVR_PV=$$IF(EVR_PV,$$EVR_PV,NoEvr)
+export EVR_PV=$$IF(EVR_PV,$$EVR_PV,$$CAM_PV:NoEvr)
 export IOC_PV=$$IOC_PV
 export CAM=$$CAM_PV
 export TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0)
