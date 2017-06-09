@@ -54,17 +54,21 @@ REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
 # 
 
 # Hamamatsu Orca Flash 4.0
-MODELS = hamaOrcaFlash4_0
+#MODELS = hamaOrcaFlash4_0
 # Adimec Opal 1000 12 bit
-MODELS += opal1000m_12
+#MODELS += opal1000m_12
 # Pulnix 6740 10 bit
-MODELS += ptm6740_10
+#MODELS += ptm6740_10
 # Uniq UP685 10 bit
-MODELS += up685
+#MODELS += up685
 # Uniq UP900 10 bit
-MODELS += up900
+#MODELS += up900
+#MODELS := $(addprefix $(ADEDTPDV)/db/, $(MODELS))
 
-MODELS := $(addprefix $(ADEDTPDV)/db/, $(MODELS))
+# Install all ADEDTPDV models
+MODELS := $(wildcard $(ADEDTPDV)/db/*.env)
+MODELS := $(subst .env,,$(MODELS))
+
 DB_INSTALLS += $(addsuffix .db,		$(MODELS))
 DB_INSTALLS += $(addsuffix .env,	$(MODELS))
 DB_INSTALLS += $(addsuffix f.cfg,	$(MODELS))

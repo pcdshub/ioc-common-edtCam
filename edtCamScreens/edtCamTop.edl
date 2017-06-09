@@ -763,7 +763,7 @@ fontAlign "center"
 fgColor index 14
 bgColor index 3
 value {
-  "DataStream: IMAGE1"
+  "ViewerStream: IMAGE1"
 }
 endObjectProperties
 
@@ -4088,6 +4088,50 @@ bgColor index 0
 useDisplayBg
 value {
   "Trigger Delay"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 416
+y 688
+w 104
+h 20
+font "helvetica-bold-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+visPv "$(P)$(R)IMAGE2:StreamType"
+visMin "0"
+visMax "1"
+value {
+  "DataStream:"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 4
+y 688
+w 104
+h 20
+font "helvetica-bold-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+visPv "$(P)$(R)IMAGE1:StreamType"
+visMin "0"
+visMax "1"
+value {
+  "DataStream:"
 }
 endObjectProperties
 

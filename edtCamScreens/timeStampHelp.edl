@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 404
-y 1104
+x 32
+y 99
 w 460
 h 620
 font "helvetica-medium-r-12.0"
@@ -1174,7 +1174,7 @@ fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "XmitDelay (Trig to end of xmit)"
+  "XmitDelay (Start to end of xmit)"
 }
 endObjectProperties
 
@@ -1189,7 +1189,7 @@ y 248
 w 100
 h 20
 controlPv "$(P)$(R)CamProcDelay"
-format "float"
+format "exponential"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
