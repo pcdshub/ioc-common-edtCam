@@ -63,8 +63,8 @@ edt_registerRecordDeviceDriver(pdbbase)
 scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
 
 # Set iocsh debug variables
-var DEBUG_TS_FIFO 1
-var DEBUG_EDT_PDV 2
+var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
+var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
