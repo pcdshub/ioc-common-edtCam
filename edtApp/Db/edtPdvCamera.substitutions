@@ -45,3 +45,18 @@ file timeStampEventCode.db
 	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
 	}
 }
+
+file image_meta.template
+{
+	{
+	CAM				= "\$(CAM)",
+	P				= "\$(CAM)",
+	R				= ":",
+	RESOLUTION		= "\$(RESOLUTION=1)",
+	RES_EGU			= "\$(RES_EGU=um)",
+	XO				= "\$(XO=1)",
+	YO				= "\$(YO=1)",
+	XRC				= "\$(XRC=1000)",
+	YRC				= "\$(YRC=1000)",
+	}
+}
