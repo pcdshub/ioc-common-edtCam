@@ -13,6 +13,7 @@ source $SETUP_SITE_TOP/epicsenv-cur.sh
 export EVR_PV=$$IF(EVR_PV,$$EVR_PV,$$CAM_PV:NoEvr)
 export IOC_PV=$$IOC_PV
 export CAM=$$CAM_PV
+export CAM_NAME=$$IF(CAM_NAME,$$CAM_NAME,Unnamed)
 export TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0)
 export HUTCH=$$IF(HUTCH,$$HUTCH,tst)
 
@@ -30,12 +31,13 @@ $$ENDIF(SCREENS_TOP)
 # set of module depedencies that ioc was built with. 
 pushd $$IOCTOP/screenLinks
 edm -x -eolc	\
-	-m "IOC=${IOC_PV}"		\
-	-m "EVR=${EVR_PV}"		\
-	-m "CAM=${CAM}"			\
-	-m "CH=${TRIG_CH}"		\
-	-m "P=${CAM},R=:"		\
-	-m "EDM_TOP=${EDM_TOP}"	\
-	-m "HUTCH=${HUTCH}"		\
+	-m "IOC=${IOC_PV}"			\
+	-m "EVR=${EVR_PV}"			\
+	-m "CAM=${CAM}"				\
+	-m "CAM_NAME=${CAM}_NAME"	\
+	-m "CH=${TRIG_CH}"			\
+	-m "P=${CAM},R=:"			\
+	-m "EDM_TOP=${EDM_TOP}"		\
+	-m "HUTCH=${HUTCH}"			\
 	${EDM_TOP} &
 

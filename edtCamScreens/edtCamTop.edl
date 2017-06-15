@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 485
-y 96
+x 998
+y 1310
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -77,7 +77,7 @@ beginObjectProperties
 major 4
 minor 1
 release 0
-x 664
+x 776
 y 8
 w 32
 h 24
@@ -115,7 +115,7 @@ beginObjectProperties
 major 4
 minor 4
 release 0
-x 528
+x 656
 y 8
 w 32
 h 24
@@ -165,7 +165,7 @@ beginObjectProperties
 major 4
 minor 3
 release 0
-x 432
+x 560
 y 8
 w 92
 h 24
@@ -238,7 +238,7 @@ beginObjectProperties
 major 4
 minor 3
 release 0
-x 340
+x 468
 y 8
 w 88
 h 24
@@ -361,7 +361,7 @@ beginObjectProperties
 major 4
 minor 4
 release 0
-x 604
+x 732
 y 8
 w 36
 h 24
@@ -535,7 +535,7 @@ beginObjectProperties
 major 4
 minor 3
 release 0
-x 240
+x 368
 y 8
 w 92
 h 24
@@ -620,7 +620,7 @@ beginObjectProperties
 major 4
 minor 0
 release 1
-x 572
+x 700
 y 8
 w 24
 h 24
@@ -631,11 +631,11 @@ fillAlarm
 alarmPv "$(EVR):STATUS"
 numPoints 5
 xPoints {
-  0 584
-  1 572
-  2 584
-  3 596
-  4 584
+  0 712
+  1 700
+  2 712
+  3 724
+  4 712
 }
 yPoints {
   0 8
@@ -4132,6 +4132,26 @@ visMin "0"
 visMax "1"
 value {
   "DataStream:"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 232
+y 4
+w 116
+h 32
+font "helvetica-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 5
+useDisplayBg
+value {
+  "$(CAM_NAME)"
 }
 endObjectProperties
 
