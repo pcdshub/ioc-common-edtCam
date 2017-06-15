@@ -13,8 +13,8 @@ record( ai, "$(P)$(R)RESOLUTION" )
 {
 	field( DESC, "resolution" )
 	field( PINI, "YES" )
-	field( VAL,  "\$(RESOLUTION=1)" )
-	field( EGU,  "\$(RES_EGU=um)" )
+	field( VAL,  "$(RESOLUTION=1)" )
+	field( EGU,  "$(RES_EGU=um)" )
 	field( PREC, "3" )
 	info( autosaveFields, "EGU VAL" )
 }
