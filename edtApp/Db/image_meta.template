@@ -9,7 +9,7 @@
 #		Would get included in NTNDArray v4 normative type.
 #		Could be adjusted automatically in ROI and Process plugins like NDBitsPerPixel
 #
-record( ai, "$(P)$(R):RESOLUTION" )
+record( ai, "$(P)$(R)RESOLUTION" )
 {
 	field( DESC, "resolution" )
 	field( PINI, "YES" )
@@ -19,7 +19,7 @@ record( ai, "$(P)$(R):RESOLUTION" )
 	info( autosaveFields, "EGU VAL" )
 }
 
-record(bi, "$(P)$(R):X_ORIENT")
+record(bi, "$(P)$(R)X_ORIENT")
 {
 	field(DESC, "Image X Orient")
 	field(VAL,  "$(XO=1)")
@@ -29,7 +29,7 @@ record(bi, "$(P)$(R):X_ORIENT")
 	info( autosaveFields, "EGU VAL" )
 }
 
-record(bi, "$(P)$(R):Y_ORIENT")
+record(bi, "$(P)$(R)Y_ORIENT")
 {
 	field(DESC, "Image Y Orient")
 	field(VAL,  "$(YO=0)")
@@ -39,7 +39,7 @@ record(bi, "$(P)$(R):Y_ORIENT")
 	info( autosaveFields, "EGU VAL" )
 }
 
-record(ai, "$(P)$(R):X_RTCL_CTR")
+record(ai, "$(P)$(R)X_RTCL_CTR")
 {
 	field(DESC, "X reticle center")
 	field(VAL, "$(XRC=1000)")
@@ -49,7 +49,7 @@ record(ai, "$(P)$(R):X_RTCL_CTR")
 	info( autosaveFields, "EGU VAL" )
 }
 
-record(ai, "$(P)$(R):Y_RTCL_CTR")
+record(ai, "$(P)$(R)Y_RTCL_CTR")
 {
 	field(DESC, "Y reticle center")
 	field(VAL, "$(YRC=1000)")
@@ -65,7 +65,7 @@ record(ai, "$(P)$(R):Y_RTCL_CTR")
 # but each image needs to have a reference point for it's 0,0 pixel which
 # can be compared w/ the Reticle center
 # Perhaps only ADBase has Reticle center coordinates but each image has origins
-#record(ai, "$(P)$(R):X_ORIGIN")
+#record(ai, "$(P)$(R)X_ORIGIN")
 #{
 #	field(DESC, "X origin")
 #	field(VAL, "$(X_ORIGIN=0.0)")
@@ -75,7 +75,7 @@ record(ai, "$(P)$(R):Y_RTCL_CTR")
 #  info( autosaveFields, "EGU VAL" )
 #}
 
-#record(ai, "$(P)$(R):Y_ORIGIN")
+#record(ai, "$(P)$(R)Y_ORIGIN")
 #{
 #	field(DESC, "Y origin")
 #	field(VAL, "$(Y_ORIGIN=0.0)")
@@ -86,7 +86,7 @@ record(ai, "$(P)$(R):Y_RTCL_CTR")
 #}
 
 # These appear to be output only and rarely used
-record(ai, "$(P)$(R):X_BM_CTR")
+record(ai, "$(P)$(R)X_BM_CTR")
 {
 	field(DESC, "X beam center")
 	field(VAL, "0")
@@ -94,7 +94,7 @@ record(ai, "$(P)$(R):X_BM_CTR")
 	field(PREC, "5")
 	info( autosaveFields, "EGU VAL" )
 }
-record(ai, "$(P)$(R):Y_BM_CTR")
+record(ai, "$(P)$(R)Y_BM_CTR")
 {
 	field(DESC, "Y beam center")
 	field(VAL, "0")
@@ -104,16 +104,16 @@ record(ai, "$(P)$(R):Y_BM_CTR")
 }
 
 # Add to stdArray plugin (and NDPV
-#record( stringin, "$(P)$(R):CaptureTime" )
+#record( stringin, "$(P)$(R)CaptureTime" )
 #{
 #	field( DESC,	"Image Capture Time" )
 #	field( DTYP,	"Soft Timestamp" )
-#	field( TSEL,	"$(P)$(R):ArrayData.TIME" )
+#	field( TSEL,	"$(P)$(R)ArrayData.TIME" )
 #	field( INP,		"@%m/%d/%Y %H:%M:%S.%09f" )
 #}
 
 # SHIFT? ADProcess Scale/Offset/LowClip/HighClip?
-#record( longout, "$(P)$(R):BRIGHTNESS" )
+#record( longout, "$(P)$(R)BRIGHTNESS" )
 #{
 #	field( DESC, "Brightness scale factor" )
 #	field( PINI, "YES" )
@@ -126,7 +126,7 @@ record(ai, "$(P)$(R):Y_BM_CTR")
 #}
 
 # mbbo? None, 90, 180, 270?
-#record( longout, "$(P)$(R):ROTATE" )
+#record( longout, "$(P)$(R)ROTATE" )
 #{
 #	field( DESC, "Rotate (-1=CCW,1=CW,0=None)" )
 #	field( DTYP, "Soft Channel" )
@@ -135,7 +135,7 @@ record(ai, "$(P)$(R):Y_BM_CTR")
 #	field( PINI, "YES" )
 #}
 
-#record( longout, "$(P)$(R):ROI_AUTOBIN" )
+#record( longout, "$(P)$(R)ROI_AUTOBIN" )
 #{
 #	field( DESC, "ROI Auto Bin" )
 #	field( DTYP, "Soft Channel" )
@@ -144,7 +144,7 @@ record(ai, "$(P)$(R):Y_BM_CTR")
 #	field( PINI, "YES" )
 #}
 
-#record( longout, "$(P)$(R):ROI_AUTOROI" )
+#record( longout, "$(P)$(R)ROI_AUTOROI" )
 #{
 #	field( DESC, "ROI X Binning" )
 #	field( DTYP, "Soft Channel" )
@@ -153,7 +153,7 @@ record(ai, "$(P)$(R):Y_BM_CTR")
 #	field( PINI, "YES" )
 #}
 
-#record(longout, "$(P)$(R):SHIFT")
+#record(longout, "$(P)$(R)SHIFT")
 #{
 #	field(DESC, "Optional right shift")
 #	field(PINI, "YES")
