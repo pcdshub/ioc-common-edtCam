@@ -125,10 +125,15 @@ epicsEnvSet( "QSIZE", "10" )
 # Configure and load any image streams
 $$LOOP(STREAM)
 epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,IMAGE1)" )
+$$IF(STREAM_NELM)
+epicsEnvSet( "STREAM_NELM",  "$$STREAM_NELM" )
+$$ELSE(STREAM_NELM)
+epicsEnvSet( "STREAM_NELM",  "$(IMAGE_NELM)" )
+$$ENDIF(STREAM_NELM)
 < db/$$(NAME)Stream.cmd
 $$ENDLOOP(STREAM)
 
-# Configure and load any desired viewers
+# Configure and load any desired viewers (deprecated)
 $$LOOP(VIEWER)
 epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,IMAGE1)" )
 < db/$$(NAME)Viewer.cmd
