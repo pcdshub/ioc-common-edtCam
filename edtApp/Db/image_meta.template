@@ -26,7 +26,7 @@ record(bi, "$(P)$(R)X_ORIENT")
 	field(PINI, "YES")
 	field(ZNAM, "Normal")
 	field(ONAM, "Reverse")
-	info( autosaveFields, "EGU VAL" )
+	info( autosaveFields, "VAL" )
 }
 
 record(bi, "$(P)$(R)Y_ORIENT")
@@ -36,7 +36,7 @@ record(bi, "$(P)$(R)Y_ORIENT")
 	field(PINI, "YES")
 	field(ZNAM, "Normal")
 	field(ONAM, "Reverse")
-	info( autosaveFields, "EGU VAL" )
+	info( autosaveFields, "VAL" )
 }
 
 record(ai, "$(P)$(R)X_RTCL_CTR")
