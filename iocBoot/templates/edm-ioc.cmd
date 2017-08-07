@@ -34,7 +34,7 @@ edm -x -eolc	\
 	-m "IOC=${IOC_PV}"			\
 	-m "EVR=${EVR_PV}"			\
 	-m "CAM=${CAM}"				\
-	-m "CAM_NAME=${CAM}_NAME"	\
+	-m "CAM_NAME=${CAM_NAME}"	\
 	-m "CH=${TRIG_CH}"			\
 	-m "P=${CAM},R=:"			\
 	-m "EDM_TOP=${EDM_TOP}"		\

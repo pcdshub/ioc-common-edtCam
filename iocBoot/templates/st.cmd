@@ -197,9 +197,9 @@ save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
 set_pass0_restoreFile( "autoSettings.sav" )
-set_pass0_restoreFile( "$(IOC).sav" )
+#set_pass0_restoreFile( "$(IOC).sav" )
 set_pass1_restoreFile( "autoSettings.sav" )
-set_pass1_restoreFile( "$(IOC).sav" )
+#set_pass1_restoreFile( "$(IOC).sav" )
 
 #
 # Initialize the IOC and start processing records
@@ -211,7 +211,7 @@ makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "aut
 
 # Start autosave backups
 create_monitor_set( "autoSettings.req",  5,  "" )
-create_monitor_set( "$(IOCNAME).req",    5,  "" )
+#create_monitor_set( "$(IOCNAME).req",    5,  "" )
 
 # All IOCs should dump some common info after initial startup.
 < $(IOC_COMMON)/All/post_linux.cmd
