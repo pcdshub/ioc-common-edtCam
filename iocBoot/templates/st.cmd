@@ -41,7 +41,7 @@ $$ENDIF(CAM_PV)
 epicsEnvSet( "CAM_PORT",     "$$IF(PORT,$$PORT,CAM)" )
 epicsEnvSet( "MODEL",        "$$MODEL" )
 epicsEnvSet( "HTTP_PORT",    "$$IF(HTTP_PORT,$$HTTP_PORT,7800)" )
-
+epicsEnvSet( "N_AD_BUFFERS", "$$IF(N_AD_BUFFERS,$$N_AD_BUFFERS,0)" )
 # Default edtPdvDriver settings
 epicsEnvSet( "EDT_CARD",     		"$$IF(BOARD,$$BOARD,0)" )
 epicsEnvSet( "EDT_CHAN",     		"$$IF(CHAN,$$CHAN,0)" )
@@ -65,6 +65,7 @@ scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
 # Set iocsh debug variables
 var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
 var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
+var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
@@ -88,6 +89,7 @@ $$ENDIF(USE_TRACE_FILES)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
+# Comment/uncomment/change delay as desired so you can see messages during boot
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
@@ -124,7 +126,15 @@ epicsEnvSet( "QSIZE", "10" )
 
 # Configure and load any image streams
 $$LOOP(STREAM)
+$$IF(NAME,data)
+epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,DATA1)" )
+$$ENDIF(NAME)
+$$IF(NAME,viewer)
 epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,IMAGE1)" )
+$$ENDIF(NAME)
+$$IF(NAME,thumbnail)
+epicsEnvSet( "IMAGE_NAME",   "$$IF(IMAGE_NAME,$$IMAGE_NAME,THUMBNAIL)" )
+$$ENDIF(NAME)
 $$IF(STREAM_NELM)
 epicsEnvSet( "STREAM_NELM",  "$$STREAM_NELM" )
 $$ELSE(STREAM_NELM)
@@ -185,7 +195,7 @@ $$ENDIF(EVR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
-dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOCNAME)" )
+dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOCNAME),CAM=$(CAM_PV)" )
 
 # Setup autosave
 dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
@@ -260,6 +270,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 # TODO: Remove these dbpf calls if possible
 # Enable callbacks
 dbpf $(CAM_PV):ArrayCallbacks 1
+dbpf $(CAM_PV):LAUNCH_EDM "$$TOP/iocBoot/edm-$(IOCNAME).cmd"
 
 $$IF(AUTO_START)
 # Final delay before auto-start image acquisition
