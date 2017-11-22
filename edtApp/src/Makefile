@@ -20,8 +20,12 @@ include $(ADCORE)/ADApp/commonDriverMakefile
 # edt.dbd will be made up from these files:
 # base and std modules
 edt_DBD += iocAdmin.dbd
+edt_DBD += caPutLog.dbd
 edt_DBD += diagTimer.dbd
 edt_DBD += history.dbd
+
+# pvaSrv
+edt_DBD += dbPv.dbd
 
 # EVR
 edt_DBD += evrSupport.dbd
@@ -34,6 +38,9 @@ edt_DBD += devMrfEr.dbd
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
 edt_DBD += bldClient.dbd
+
+# Genicam support
+edt_DBD += asynGenicam.dbd
 
 #edt_DBD += genSubRecord.dbd
 edt_DBD += timeStampFifo.dbd
@@ -59,9 +66,13 @@ serial_cmd_LIBS += pdv
 # base and std modules
 #edt_LIBS += autosave
 edt_LIBS += devIocStats
+edt_LIBS += caPutLog
 edt_LIBS += diagTimer
 edt_LIBS += bldClient
 edt_LIBS += history
+
+# pvaSrv
+edt_LIBS += pvaSrv
 
 # EVR
 edt_LIBS += evrSupport
@@ -72,6 +83,9 @@ edt_LIBS_Linux += mrfApi
 # EDT PDV libs
 edt_LIBS += edtPdv
 edt_LIBS += pdv
+
+# Genicam support
+edt_LIBS += asynGenicam
 
 #edt_LIBS += PvAPI
 #edt_SYS_LIBS += X11
