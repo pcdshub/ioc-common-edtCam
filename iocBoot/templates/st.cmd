@@ -66,6 +66,7 @@ scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
 var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
 var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
 var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
+var DEBUG_GENICAM $$IF(DEBUG_GENICAM,$$DEBUG_GENICAM,1)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
@@ -75,6 +76,11 @@ var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 # =========================================================
 epicsEnvSet( "CAM_TYPE", "edt" )
 edtPdvConfig( "$(CAM_PORT)", "$(EDT_CARD)", "$(EDT_CHAN)", "$(MODEL)", "$(CAM_MODE)" )
+
+$$IF(GENICAM)
+# Genicam
+asynGenicamConfig( "$(CAM_PORT).SER", 0 )
+$$ENDIF(GENICAM)
 
 # Set asyn trace flags
 asynSetTraceMask(   "$(CAM_PORT)",      0, $(CAM_TRACE_MASK) )
@@ -212,9 +218,22 @@ set_pass1_restoreFile( "autoSettings.sav" )
 #set_pass1_restoreFile( "$(IOC).sav" )
 
 #
-# Initialize the IOC and start processing records
+# iocInit: Initialize the IOC and start processing records
 #
+$$IF(NO_ST_CMD_DELAY)
+$$ELSE(NO_ST_CMD_DELAY)
+epicsThreadSleep $(ST_CMD_DELAYS)
+$$ENDIF(NO_ST_CMD_DELAY)
 iocInit()
+
+# iocInit done
+$$IF(NO_ST_CMD_DELAY)
+$$ELSE(NO_ST_CMD_DELAY)
+epicsThreadSleep $(ST_CMD_DELAYS)
+$$ENDIF(NO_ST_CMD_DELAY)
+
+# Start PVAccess Server
+startPVAServer()
 
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
