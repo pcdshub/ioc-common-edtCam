@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1074
-y 48
+x 964
+y 1237
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -551,7 +551,7 @@ commandLabel {
   0 "View IMAGE2 in EDM Viewer"
 }
 command {
-  0 "HUTCH=$(HUTCH) EVR=$(EVR) IOC=$(IOC) P=$(P) R=$(R) IMAGE=IMAGE2 EDM_TOP=edtCamScreens/edtCamTop.edl ADStreamScreens/edmViewer.sh"
+  0 "HUTCH=$(HUTCH) CH=$(CH) EVR=$(EVR) IOC=$(IOC) P=$(P) R=$(R) IMAGE=IMAGE2 EDM_TOP=edtCamScreens/edtCamTop.edl ADStreamScreens/edmViewer.sh"
 }
 execCursor
 endObjectProperties
@@ -689,38 +689,6 @@ numPvs 4
 numDsps 1
 displayFileName {
   0 "ADStreamScreens/commonPlugins.edl"
-}
-symbols {
-  0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
-}
-replaceSymbols {
-  0 1
-}
-propagateMacros {
-  0 0
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 8
-y 656
-w 92
-h 24
-fgColor index 14
-bgColor index 3
-topShadowColor index 0
-botShadowColor index 14
-font "helvetica-medium-r-12.0"
-buttonLabel "PCDS Plugins"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "ADStreamScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
@@ -2728,82 +2696,6 @@ objType "monitors"
 noExecuteClipMask
 endObjectProperties
 
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 688
-y 656
-w 120
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 2
-botShadowColor index 12
-font "helvetica-medium-r-12.0"
-buttonLabel "Timestamp Help"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "edtCamScreens/timeStampHelp.edl"
-}
-menuLabel {
-  0 "Timestamp Help"
-}
-symbols {
-  0 "P=$(P),R=$(R)"
-}
-icon
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 432
-y 544
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "BeamEventCode"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 700
-y 544
-w 72
-h 20
-controlPv "$(P)$(R)BeamRepRate_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
@@ -3468,429 +3360,6 @@ command {
 execCursor
 endObjectProperties
 
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 680
-y 572
-w 92
-h 20
-controlPv "$(P)$(R)TSS:SyncStatus"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 432
-y 572
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Sync Policy/Status"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 432
-y 516
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Cam Trig Event Code"
-}
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 560
-y 516
-w 64
-h 18
-controlPv "$(P)$(R)CamEventCode"
-format "decimal"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-autoHeight
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 632
-y 516
-w 64
-h 20
-controlPv "$(P)$(R)TSS:EventCode_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 700
-y 516
-w 72
-h 20
-controlPv "$(P)$(R)CamRepRate_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 572
-y 572
-w 100
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 2
-botShadowColor index 13
-controlPv "$(P)$(R)TSS:TsPolicy"
-indicatorPv "$(P)$(R)TSS:TsPolicy"
-font "helvetica-medium-r-14.0"
-endObjectProperties
-
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 436
-y 600
-w 336
-h 48
-
-beginGroup
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 680
-y 600
-w 92
-h 20
-controlPv "$(P)$(R)TSS:ExpectedDelay"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 436
-y 600
-w 64
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Xmit Delay"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 504
-y 600
-w 72
-h 20
-controlPv "$(P)$(R)XmitDelay"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-precision 3
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 576
-y 600
-w 96
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Total Exp Delay"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 712
-y 628
-w 60
-h 20
-controlPv "$(P)$(R)TSS:DiffVsExpMax"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 676
-y 628
-w 28
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Max"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 608
-y 628
-w 64
-h 20
-controlPv "$(P)$(R)TSS:DiffVsExpMin"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 572
-y 628
-w 24
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Min"
-}
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 504
-y 628
-w 60
-h 20
-controlPv "$(P)$(R)TSS:DiffVsExp"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 436
-y 628
-w 60
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "DiffVsExp"
-}
-endObjectProperties
-
-endGroup
-
-visPv "$(P)$(R)TSS:TsPolicy"
-visMin "0"
-visMax "2"
-endObjectProperties
-
 # (Static Text)
 object activeXTextClass
 beginObjectProperties
@@ -3986,6 +3455,83 @@ propagateMacros {
 }
 endObjectProperties
 
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 416
+y 688
+w 104
+h 20
+font "helvetica-bold-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+visPv "$(P)$(R)IMAGE2:StreamType"
+visMin "0"
+visMax "1"
+value {
+  "DataStream:"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 4
+y 688
+w 104
+h 20
+font "helvetica-bold-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+visPv "$(P)$(R)IMAGE1:StreamType"
+visMin "0"
+visMax "1"
+value {
+  "DataStream:"
+}
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 208
+y 4
+w 156
+h 32
+font "helvetica-bold-r-14.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 5
+useDisplayBg
+value {
+  "$(CAM_NAME)"
+}
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 488
+y 96
+w 312
+h 20
+
+beginGroup
+
 # (Text Monitor)
 object activeXTextDspClass:noedit
 beginObjectProperties
@@ -4062,26 +3608,41 @@ value {
 }
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
+endGroup
+
+visPv "$(EVR):EvrUsed"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Related Display)
+object relatedDisplayClass
 beginObjectProperties
 major 4
-minor 1
-release 1
-x 416
-y 688
-w 104
+minor 4
+release 0
+x 428
+y 648
+w 120
 h 20
-font "helvetica-bold-r-12.0"
-fontAlign "right"
 fgColor index 14
 bgColor index 3
-visPv "$(P)$(R)IMAGE2:StreamType"
-visMin "0"
-visMax "1"
-value {
-  "DataStream:"
+topShadowColor index 2
+botShadowColor index 12
+font "helvetica-medium-r-12.0"
+buttonLabel "Timestamp Help"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "gigeScreens/timeStampHelp.edl"
 }
+menuLabel {
+  0 "Timestamp Help"
+}
+symbols {
+  0 "P=$(P),R=$(R)"
+}
+icon
 endObjectProperties
 
 # (Static Text)
@@ -4090,66 +3651,18 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 4
-y 688
-w 104
-h 20
-font "helvetica-bold-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 3
-visPv "$(P)$(R)IMAGE1:StreamType"
-visMin "0"
-visMax "1"
-value {
-  "DataStream:"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 208
-y 4
-w 156
-h 32
-font "helvetica-bold-r-14.0"
+x 544
+y 584
+w 144
+h 44
+font "helvetica-bold-r-18.0"
 fontAlign "center"
-fgColor index 14
+fgColor index 10
 bgColor index 5
 useDisplayBg
 value {
-  "$(CAM_NAME)"
+  "No EVR"
 }
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 632
-y 544
-w 64
-h 20
-controlPv "$(P)$(R)BeamEventCode_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
 endObjectProperties
 
 # (Group)
@@ -4158,47 +3671,49 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 560
-y 544
-w 64
-h 18
+x 420
+y 516
+w 388
+h 160
 
 beginGroup
 
-# (Text Control)
-object activeXTextDspClass
+# (Embedded Window)
+object activePipClass
 beginObjectProperties
 major 4
-minor 7
+minor 1
 release 0
-x 560
-y 544
-w 64
-h 18
-controlPv "$(P)$(R)BeamEventCode"
-format "decimal"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-bgColor index 5
-bgAlarm
-editable
-autoHeight
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
+x 420
+y 516
+w 388
+h 160
+fgColor index 14
+bgColor index 0
+topShadowColor index 1
+botShadowColor index 14
+displaySource "menu"
+filePv "LOC\\\\emb-timestamps=0"
+numDsps 1
+displayFileName {
+  0 "edtCamScreens/emb-timestamps.edl"
+}
+menuLabel {
+  0 "Embedded Timestamps"
+}
+symbols {
+  0 "P=$(P),R=$(R),EVR=$(EVR)"
+}
+replaceSymbols {
+  0 1
+}
+noScroll
 endObjectProperties
 
 endGroup
 
-visPv "$(P)$(R)BeamEventCode.DISA"
-visMin "0"
-visMax "1"
+visPv "$(EVR):EvrUsed"
+visMin "1"
+visMax "2"
 endObjectProperties
 
