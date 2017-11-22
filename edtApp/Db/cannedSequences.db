@@ -59,7 +59,7 @@ record( seq, "$(CAM):GoTo120HzMode" )
 #	field( DLY6, "0.0" )
 
 #	field( DOL7, "$(CAM):Def120HzTrigDelay" )
-#	field( LNK7, "$(CAM):EdtCamTrigDelay CA NMS" )
+#	field( LNK7, "$(CAM):CamTrigDelay CA NMS" )
 #	field( DLY7, "0.0" )
 
 	field( DOL8, "$(CAM):Def120HzExposure" )
@@ -89,7 +89,7 @@ record( seq, "$(CAM):GoToFullMode" )
 	field( DLY3, "0.0" )
 
 #	field( DOL4, "4.1e-3" )
-#	field( LNK4, "$(CAM):EdtCamTrigDelay CA NMS" )
+#	field( LNK4, "$(CAM):CamTrigDelay CA NMS" )
 #	field( DLY4, "0.0" )
 
 	field( DOL5, "0.05" )
