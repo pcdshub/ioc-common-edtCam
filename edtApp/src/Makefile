@@ -12,28 +12,30 @@ PROD_NAME = edt
 PROD_IOC = $(PROD_NAME) 
 PROD_IOC += serial_cmd
 
-# edt.dbd will be created and installed
-DBD += edt.dbd
+# $(PROD_NAME).dbd will be created and installed
+DBD += $(PROD_NAME).dbd
+
+# $(PROD_NAME).dbd will be made up from these files:
 
 include $(ADCORE)/ADApp/commonDriverMakefile
 
-# edt.dbd will be made up from these files:
-# base and std modules
-edt_DBD += iocAdmin.dbd
-edt_DBD += caPutLog.dbd
-edt_DBD += diagTimer.dbd
-edt_DBD += history.dbd
+# std ioc modules
+$(PROD_NAME)_DBD += iocAdmin.dbd
+$(PROD_NAME)_DBD += caPutLog.dbd
+$(PROD_NAME)_DBD += history.dbd
 
 # pvaSrv
-edt_DBD += dbPv.dbd
+$(PROD_NAME)_DBD += dbPv.dbd
 
-# EVR
-edt_DBD += evrSupport.dbd
-edt_DBD += devMrfEr.dbd
+ifdef EVENT2
+# Timing and EVR
+$(PROD_NAME)_DBD += diagTimer.dbd
+$(PROD_NAME)_DBD += evrSupport.dbd
+$(PROD_NAME)_DBD += devMrfEr.dbd
 
-# areaDetector
-#edt_DBD += genSubRecord.dbd
-#edt_DBD += sscan.dbd
+# ADCore timeStamp provider
+$(PROD_NAME)_DBD += timeStampFifo.dbd
+endif
 
 edt_DBD += edtPdvSupport.dbd
 edt_DBD += stream.dbd
@@ -43,7 +45,6 @@ edt_DBD += bldClient.dbd
 edt_DBD += asynGenicam.dbd
 
 #edt_DBD += genSubRecord.dbd
-edt_DBD += timeStampFifo.dbd
 edt_DBD += pluginBldSpectrometer.dbd
 
 # ffmpegServer
@@ -64,25 +65,34 @@ serial_cmd_LIBS += pdv
 
 # Add required libraries
 # base and std modules
-#edt_LIBS += autosave
-edt_LIBS += devIocStats
-edt_LIBS += caPutLog
-edt_LIBS += diagTimer
-edt_LIBS += bldClient
-edt_LIBS += history
+$(PROD_NAME)_LIBS += devIocStats
+$(PROD_NAME)_LIBS += caPutLog
+$(PROD_NAME)_LIBS += bldClient
+$(PROD_NAME)_LIBS += history
 
 # pvaSrv
-edt_LIBS += pvaSrv
+$(PROD_NAME)_LIBS += pvaSrv
 
-# EVR
-edt_LIBS += evrSupport
-edt_LIBS += devMrfEr
-edt_LIBS += drvMrf
-edt_LIBS_Linux += mrfApi
+ifdef EVENT2
+# ADCore Timestamp provider
+$(PROD_NAME)_LIBS += timeStampFifo
+
+# Timing and EVR
+$(PROD_NAME)_LIBS += evrSupport
+$(PROD_NAME)_LIBS += devMrfEr
+$(PROD_NAME)_LIBS += drvMrf
+$(PROD_NAME)_LIBS_Linux += mrfApi
+
+# Diagnostics
+$(PROD_NAME)_LIBS += diagTimer
+endif
 
 # EDT PDV libs
 edt_LIBS += edtPdv
 edt_LIBS += pdv
+
+# streamdevice lib
+edt_LIBS += stream
 
 # Genicam support
 edt_LIBS += asynGenicam
@@ -100,25 +110,24 @@ edt_SYS_LIBS += dl
 #PROD_DEPLIB_DIRS += $(PCRE_TOP)/lib
 #PROD_DEPLIB_DIRS += /usr/lib64
 
+# areaDetector ADSimDetector
+$(PROD_NAME)_LIBS += simDetector
+
+ifdef FFMPEGSERVER
 # ffmpegServer
-edt_LIBS += avdevice
-edt_LIBS += ffmpegServer
-edt_LIBS += swscale
-edt_LIBS += avformat
-edt_LIBS += avcodec
-edt_LIBS += avutil
-edt_LIBS += swresample
-edt_LIBS += bz2
-edt_LIBS += lzma
-
-# areaDetector
-# GraphicsMagick not supported in areaDetector 1.9 for RHEL due to compiler issues
-#edt_LIBS += NDFileMagick
-edt_LIBS += simDetector
-edt_LIBS += stream
-
-edt_LIBS += timeStampFifo
-#edt_LIBS += genSub
+$(PROD_NAME)_DBD += ffmpegServer.dbd
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
+$(PROD_NAME)_LIBS += avdevice
+$(PROD_NAME)_LIBS += ffmpegServer
+$(PROD_NAME)_LIBS += swscale
+$(PROD_NAME)_LIBS += avformat
+$(PROD_NAME)_LIBS += avcodec
+$(PROD_NAME)_LIBS += avutil
+$(PROD_NAME)_LIBS += swresample
+$(PROD_NAME)_LIBS += bz2
+$(PROD_NAME)_LIBS += lzma
+endif
 
 
 # install: showme

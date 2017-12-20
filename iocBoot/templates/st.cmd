@@ -289,7 +289,7 @@ $$ENDIF(NO_ST_CMD_DELAY)
 # TODO: Remove these dbpf calls if possible
 # Enable callbacks
 dbpf $(CAM_PV):ArrayCallbacks 1
-dbpf $(CAM_PV):LAUNCH_EDM "$$TOP/iocBoot/edm-$(IOCNAME).cmd"
+dbpf $(CAM_PV):LAUNCH_EDM "$$TOP/iocBoot/$(IOCNAME)/edm-$(IOCNAME).cmd"
 
 $$IF(AUTO_START)
 # Final delay before auto-start image acquisition

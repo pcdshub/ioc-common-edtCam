@@ -51,11 +51,12 @@ record( longout, "$(CAM):CamDelayScale" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
 }
 
-record( calc, "$(CAM):CamTrigDelay_RBV" )
+record( calcout, "$(CAM):CamTrigDelay_RBV" )
 {
 	field( INPA, "$(CAM_DLY_RBV=unused) CPP MS" )
 	field( INPB, "$(CAM):CamDelayScale CPP MS" )
 	field( CALC, "B==0?A:(A/B)" )
+#	field( OUT,  "$(CAM):CamTrigDelay CP NMS" )
 	field( EGU,  "sec" )
 	field( PREC, "4" )
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC PREC" )
