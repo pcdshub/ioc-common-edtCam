@@ -1,7 +1,78 @@
-Daniel Flath:  07/30/2013
 
-R0.37.0
+R1.17.0: 2017-12-19, bhill
+	Added support for caPutLog, pvaSrv, and asynGenicam.
+	Reworked EVR related pv's w/ an emb-timestamps subscreen
+		that only appears when an EVR is used.  Helps avoid lots of white widgets.
+	Added conditional call to asynGenicamConfig, and a call to startPVAServer() for V4 support.
+	Added LAUNCH_EDM pv
+	Fixed pv name CamTrigDelay in link
+	Update to latest module versions
+	Added defaults for N_AD_BUFFERS, viewer appropriate IMAGE_NAME, and added :LAUNCH_EDM record
 
-Modified st.cmd files for ioc-xcs-gige-703-[1|2|3] instances to make them uniform and fix a bug in instances 2 & 3
+R1.16.0: 2017-08-09, bhill
+	Bumped up to ADEdtPdv/R2.5.0 and ADStream/R2.2.0
 
-Added Autosave Requests for the JPEG file writer plugin records/fields
+R1.15.0: 2017-08-07, bhill
+	Added GeniCam support for GoldEye camera along w/ other misc updates.
+
+R1.14.0: 2017-06-16, bhill
+	Added a configurable STREAM_NELM so we can force streams to have a smaller NELM than the image.
+	Needed to help avoid bandwidth problems across gateway and gigabit links by clients
+		that don't support variable sized array transfers.
+
+R1.13.0: 2017-06-15, bhill
+	Added pv's w/ autosave for matlab profile monitor gui use:
+		X_ORIENT, Y_ORIENT, X_RTCL_CTR, Y_RTCL_CTR, RESOLUTION
+
+R1.12.0: 2017-06-15, bhill
+	Added CAM_NAME macro to edm screen, edm launcher and ioc-sample.cfg.
+	Also updated to event2/R4.2.2 and timeStampFifo/R1.5.6
+
+R1.11.0: 2017-06-11, bhill
+	Updated to ADEdtPdv/R2.2.0 for orca serial updates.
+	Also added option to set DEBUG_EDT_PDV and DEBUG_TS_FIFO via cfg files
+
+R1.10.0: 2017-06-09, bhill
+	Changed model installation to use wildcard to install all ADEdtPdv models.
+	Updated to ADEdtPdv/R2.1.0
+	Added more details to timeStampHelp.edl
+
+R1.9.0: 2017-06-03, bhill
+	Fixed RULES_SCREENLINKS for child iocs.
+	Added a timeStampHelp.edl screen
+	Removed some old style dependencies on autosave and archive template files.
+
+R1.8.0: 2017-05-13, bhill
+	Added support for creating TOP/screenLinks so each ioc can have custom screenLinks
+
+R1.7.1: 2016-08-26, bhill
+	Bumped up to ADStream/R1.6.0 to add support for averaging in each image stream
+
+R1.7.0: 2016-07-01, bhill
+	Updated to ADStreamScreens R1.5.0 and added support for SCREENS_TOP in cfg files.
+	Also fixed some minor st.cmd issues and added EDM_TOP to generated edm launcher.
+
+R1.6.0: 2016-06-22, bhill
+	Updated to ADEdtPdv/R1.13.0 to support Orca Vert HW ROI.
+	Also set the scanOnce queue size to 2000 to avoid overflowing it during bootupa
+	and added a check in the st.cmd template for CAM_PV defined.
+
+R1.5.0: 2016-05-10, bhill
+	Added an adjustROI screen and fixed cross and box calculations for overlays inside an roi'd image.
+
+R1.5.0: 2016-05-09, bhill
+	Added evrUsed.db so we can intelligently hide EVR related PV's when no EVR.
+	Updated edtCamTop to better match gigeTop
+	Uptated templates sample cfg and st.cmd for new features.
+	Updated to latest module releases.
+
+R1.4.0: 2016-03-16, bhill
+	Updated to latest module versions and made TSS:TsPolicy widget a normal menu button.
+
+R1.3.0: 2016-03-11, bhill
+	Supports templated ioc builds plus improves delay computations and timestamp accuracy.
+	Also uses new event2 trigger acquire/release support in event2/R4.0.0-3.0.0
+
+R0.37.0	2013-07-30, Daniel Flath
+	Modified st.cmd files for ioc-xcs-gige-703-[1|2|3] instances to make them uniform and fix a bug in instances 2 & 3
+	Added Autosave Requests for the JPEG file writer plugin records/fields
