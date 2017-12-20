@@ -1,7 +1,6 @@
 # Makefile for ioc instance
 TOP = ../..
 -include ./IOC_APPL_TOP
--include ../IOC_APPL_TOP
 ifneq (,$(IOC_APPL_TOP))
 TOP = $(IOC_APPL_TOP)
 endif
