@@ -307,7 +307,7 @@ asynStatus PluginSpectrometer::doComputeProjectionsT(
 		}
 	}
 #else
-	epicsType	&	rData[][] = (epicsType *) pArray->pData;
+	epicsType	*	pData = (epicsType *) pArray->pData;
 	for (		size_t	ix = 0; ix < this->profileSizeX; ix++ )
 	{
 		epicsType	*	pData = (epicsType *) pArray->pData;
