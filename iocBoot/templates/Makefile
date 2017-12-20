@@ -6,9 +6,7 @@ TOP = $(IOC_APPL_TOP)
 endif
 
 include $(TOP)/configure/CONFIG
-ifndef ARCH
-ARCH = linux-x86_64
-endif
+ARCH = $$IF(TARGET_ARCH,$$TARGET_ARCH,linux-x86_64)
 
 INSTALL_LOCATION = ../..
 INSTALL_LOCATION_BIN = $(TOP)/bin

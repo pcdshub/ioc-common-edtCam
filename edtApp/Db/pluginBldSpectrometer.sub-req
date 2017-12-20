@@ -1,0 +1,14 @@
+#
+# pluginBldSpectrometer Autosave file
+#
+
+#file NDPluginBase_settings.req
+#{
+#    {   P = "$(CAM):",	R = "BLD$(N):"	}
+#}
+
+file pluginBldSpectrometer.tpl-req
+{
+    {   P = "$(CAM):",	R = "BLD$(N):"	}
+}
+

@@ -1,0 +1,166 @@
+#
+# Image meta-data
+# 
+# These PV names are meta-data associated w/ the image and
+# used by the LCLS Profile Monitor matlab gui to help w/ steering.
+#
+# TODO: Should we make these NDAttributes?
+#	Advantages:
+#		Would get included in NTNDArray v4 normative type.
+#		Could be adjusted automatically in ROI and Process plugins like NDBitsPerPixel
+#
+record( ai, "$(P)$(R)RESOLUTION" )
+{
+	field( DESC, "resolution" )
+	field( PINI, "YES" )
+	field( VAL,  "$(RESOLUTION=1)" )
+	field( EGU,  "$(RES_EGU=um)" )
+	field( PREC, "3" )
+	info( autosaveFields, "EGU VAL" )
+}
+
+record(bi, "$(P)$(R)X_ORIENT")
+{
+	field(DESC, "Image X Orient")
+	field(VAL,  "$(XO=1)")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reverse")
+	info( autosaveFields, "VAL" )
+}
+
+record(bi, "$(P)$(R)Y_ORIENT")
+{
+	field(DESC, "Image Y Orient")
+	field(VAL,  "$(YO=0)")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reverse")
+	info( autosaveFields, "VAL" )
+}
+
+record(ai, "$(P)$(R)X_RTCL_CTR")
+{
+	field(DESC, "X reticle center")
+	field(VAL, "$(XRC=1000)")
+	field(PINI, "YES")
+	field(EGU,  "px")
+	field(PREC, "3")
+	info( autosaveFields, "EGU VAL" )
+}
+
+record(ai, "$(P)$(R)Y_RTCL_CTR")
+{
+	field(DESC, "Y reticle center")
+	field(VAL, "$(YRC=1000)")
+	field(PINI, "YES")
+	field(EGU,  "px")
+	field(PREC, "3")
+	info( autosaveFields, "EGU VAL" )
+}
+
+# TODO: See if you can get LCLS profile monitor to use origin
+# as reticle center may not be the image center if HW roi is in use
+# i.e. Reticle center can be measured and documented when camera is aligned,
+# but each image needs to have a reference point for it's 0,0 pixel which
+# can be compared w/ the Reticle center
+# Perhaps only ADBase has Reticle center coordinates but each image has origins
+#record(ai, "$(P)$(R)X_ORIGIN")
+#{
+#	field(DESC, "X origin")
+#	field(VAL, "$(X_ORIGIN=0.0)")
+#	field(EGU,  "$(RES_EGU=mm)")
+#	field(PREC, "3")
+#	field(PINI, "YES")
+#  info( autosaveFields, "EGU VAL" )
+#}
+
+#record(ai, "$(P)$(R)Y_ORIGIN")
+#{
+#	field(DESC, "Y origin")
+#	field(VAL, "$(Y_ORIGIN=0.0)")
+#	field(EGU,  "$(RES_EGU=mm)")
+#	field(PREC, "3")
+#	field(PINI, "YES")
+#  info( autosaveFields, "EGU VAL" )
+#}
+
+# These appear to be output only and rarely used
+record(ai, "$(P)$(R)X_BM_CTR")
+{
+	field(DESC, "X beam center")
+	field(VAL, "0")
+	field(EGU,  "mm")
+	field(PREC, "5")
+	info( autosaveFields, "EGU VAL" )
+}
+record(ai, "$(P)$(R)Y_BM_CTR")
+{
+	field(DESC, "Y beam center")
+	field(VAL, "0")
+	field(EGU,  "mm")
+	field(PREC, "5")
+	info( autosaveFields, "EGU VAL" )
+}
+
+# Add to stdArray plugin (and NDPV
+#record( stringin, "$(P)$(R)CaptureTime" )
+#{
+#	field( DESC,	"Image Capture Time" )
+#	field( DTYP,	"Soft Timestamp" )
+#	field( TSEL,	"$(P)$(R)ArrayData.TIME" )
+#	field( INP,		"@%m/%d/%Y %H:%M:%S.%09f" )
+#}
+
+# SHIFT? ADProcess Scale/Offset/LowClip/HighClip?
+#record( longout, "$(P)$(R)BRIGHTNESS" )
+#{
+#	field( DESC, "Brightness scale factor" )
+#	field( PINI, "YES" )
+#	field( DOL, "0" )
+#	field( EGU, "bits" )
+#	field( DRVH, "8" )
+#	field( DRVL, "-8" )
+#	field( HOPR, "8" )
+#	field( LOPR, "-8" )
+#}
+
+# mbbo? None, 90, 180, 270?
+#record( longout, "$(P)$(R)ROTATE" )
+#{
+#	field( DESC, "Rotate (-1=CCW,1=CW,0=None)" )
+#	field( DTYP, "Soft Channel" )
+#	field( DOL,  "$(ROTATE=0)" )
+#	field( OMSL, "supervisory" )
+#	field( PINI, "YES" )
+#}
+
+#record( longout, "$(P)$(R)ROI_AUTOBIN" )
+#{
+#	field( DESC, "ROI Auto Bin" )
+#	field( DTYP, "Soft Channel" )
+#	field( DOL,  "0" )
+#	field( OMSL, "supervisory" )
+#	field( PINI, "YES" )
+#}
+
+#record( longout, "$(P)$(R)ROI_AUTOROI" )
+#{
+#	field( DESC, "ROI X Binning" )
+#	field( DTYP, "Soft Channel" )
+#	field( DOL,  "1" )
+#	field( OMSL, "supervisory" )
+#	field( PINI, "YES" )
+#}
+
+#record(longout, "$(P)$(R)SHIFT")
+#{
+#	field(DESC, "Optional right shift")
+#	field(PINI, "YES")
+#	field(DOL, "0")
+#	field(EGU, "b")
+#	field(DRVH, "8")
+#	field(DRVL, "0")
+#	field(HOPR, "16")
+#	field(LOPR, "0")
+#}

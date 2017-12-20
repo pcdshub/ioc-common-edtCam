@@ -210,7 +210,7 @@ commandLabel {
   0 "Color Viewer"
 }
 command {
-  0 "/reg/g/pcds/pyps/config/$(HUTCH)/camviewer.sh --camerapv $(CAM):IMAGE2 --instr $(HUTCH) --pvlist /reg/g/pcds/pyps/config/$(HUTCH)/camviewer.cfg &"
+  0 "ADStreamScreens/camviewer.sh $(HUTCH) --camerapv $(CAM):IMAGE2 &"
 }
 endObjectProperties
 
@@ -233,7 +233,7 @@ buttonLabel "Plugins"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "edtCamScreens/pcdsPlugins.edl"
+  0 "ADStreamScreens/pcdsPlugins.edl"
 }
 symbols {
   0 "CAM=$(CAM),P=$(CAM):,IOC=$(IOC)"
@@ -795,10 +795,10 @@ buttonLabel "EVR"
 numPvs 4
 numDsps 1
 displayFileName {
-  0 "evrScreens/evrPmc230.edl"
+  0 "event2Screens/evrOneTrig.edl"
 }
 symbols {
-  0 "EVR=$(EVR)"
+  0 "EVR=$(EVR),CH=$(CH)"
 }
 endObjectProperties
 
@@ -2114,7 +2114,7 @@ x 488
 y 72
 w 56
 h 20
-controlPv "$(P)$(R)EdtBeamEventCode"
+controlPv "$(P)$(R)BeamEventCode"
 format "decimal"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -2293,7 +2293,7 @@ filePv "LOC\\\\emb-trig=0"
 sizeOfs 5
 numDsps 1
 displayFileName {
-  0 "areaDetectorScreens/emb-image-sts.edl"
+  0 "areaDetectorScreens/emb-stream-sts-sts.edl"
 }
 menuLabel {
   0 "Embedded Image Status"
@@ -2329,7 +2329,7 @@ filePv "LOC\\\\emb-trig=0"
 sizeOfs 5
 numDsps 1
 displayFileName {
-  0 "areaDetectorScreens/emb-image-sts.edl"
+  0 "areaDetectorScreens/emb-stream-sts-sts.edl"
 }
 menuLabel {
   0 "Embedded Image Status"
@@ -2391,7 +2391,7 @@ x 616
 y 72
 w 72
 h 20
-controlPv "$(P)$(R)EdtBeamRepRate_RBV"
+controlPv "$(P)$(R)BeamRepRate_RBV"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
@@ -3108,7 +3108,7 @@ filePv "LOC\\\\emb-trig=0"
 sizeOfs 5
 numDsps 1
 displayFileName {
-  0 "areaDetectorScreens/emb-image-sts.edl"
+  0 "areaDetectorScreens/emb-stream-sts-sts.edl"
 }
 menuLabel {
   0 "Embedded Image Status"
@@ -3489,7 +3489,7 @@ filePv "LOC\\\\emb-trig=0"
 sizeOfs 5
 numDsps 1
 displayFileName {
-  0 "areaDetectorScreens/emb-image-sts.edl"
+  0 "areaDetectorScreens/emb-stream-sts-sts.edl"
 }
 menuLabel {
   0 "Embedded Image Status"

@@ -1,44 +1,30 @@
-#
-# gigECam Archive file for $$IOCNAME
-#
+# Each edt IOC needs one of these
 
-# Each gigE IOC needs one of these
-file archive_iocAdmin.tpl-arch
+file edt-ioc.archive
 {
 	{	IOC = "$$IOC_PV"	}
 }
 
-file archive_SR.tpl-arch
+$$IF(EVR_PV)
+file archive_evr_$$(EVR_TYPE).archive
 {
-	{	IOC = "$$IOC_PV"	}
+    { EVR = "$$EVR_PV" }
 }
+$$ENDIF(EVR_PV)
 
-file ADBase.tpl-arch
+
+$$LOOP(PLUGIN)
+$$IF(ARCHIVE)
+file plugin$$(ARCHIVE).archive
 {
-    {   P = "$$CAM",	R = ":" 	}
+    { P = "$$PVNAME", R = ":", CAM = "$$PVNAME", N = "$$NUM"  }
 }
+$$ENDIF(ARCHIVE)
+$$ENDLOOP(PLUGIN)
 
-file prosilica.tpl-arch
+$$LOOP(BLD)
+file pluginBldSpectrometer.archive
 {
-    {   P = "$$CAM",	R = ":" 	}
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
 }
-
-# Bring in the pcds plugin archive pv's
-file pcdsPlugins.archive
-{
-    {   CAM = "$$CAM"	}
-}
-
-#file cross.tpl-arch
-#{
-#    {   P = "$$CAM",	R = ":" 	}
-#}
-
-$$LOOP(EVR)
-# Generate one set for each EVR
-file archive_pmc_evr.tpl-arch
-{
-	{	EVR = "$$EVR_PV"	}
-}
-$$ENDLOOP(EVR)
-
+$$ENDLOOP(BLD)

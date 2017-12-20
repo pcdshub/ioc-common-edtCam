@@ -30,7 +30,6 @@ epicsEnvSet( "EDT_UNIT",	"1" )
 epicsEnvSet( "EDT_CH",		"1" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7804" )
-epicsEnvSet( "MJPG_PORT",	"8084"	)
 epicsEnvSet( "PLUGINS",	"pcdsPlugins" )
 
 # Comment/uncomment/change diagnostic settings as desired
@@ -148,8 +147,8 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 #< db/$(PLUGINS).cmd
-< setupScripts/pluginStats.cmd
-< setupScripts/pluginProcess.cmd
+< db/pluginStats.cmd
+< db/pluginProcess.cmd
 
 # 
 # Initialize the IOC and start processing records

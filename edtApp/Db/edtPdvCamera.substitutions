@@ -13,17 +13,6 @@ file ADBase.template
 	}
 }
 
-file NDFile.template
-{
-	{
-	P		= $(CAM),
-	R		= :,
-	PORT	= $(CAM_PORT),
-	ADDR	= 0,
-	TIMEOUT	= 1
-	}
-}
-
 file edtPdvBase.template
 {
 	{
@@ -34,26 +23,40 @@ file edtPdvBase.template
 	CAM_EC_RBV		= $(CAM_TRIG):EC_RBV,
 	CAM_DLY			= $(CAM_TRIG):TDES,
 	CAM_DLY_EGU		= ns,
-	CAM_DLY_RBV		= $(CAM_TRIG):BW_TDES,
+	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
 	CAM_DLY_SCALE	= 1e9,
-	CAM_RATE_RBV	= $(CAM_TRIG):RATE,
-	BEAM_EC			= $(EVR):EVENT1CTRL.ENM,
-	BEAM_EC_RBV		= $(EVR):EVENT1CTRL.ENM,
-	BEAM_RATE_RBV	= $(EVR):EVENT1RATE,
+	CAM_RATE_RBV	= $(CAM_TRIG):RATE
 	}
 }
 
-file cross.template
+file cross.db
 {
 	{
 	P				= $(CAM),
 	R				= :,
+	}
 }
 
 file timeStampEventCode.db
 {
 	{
-	BEAM_EC			= $(EVR):EVENT1CTRL.ENM,
-	DEV				= $(CAM)
+	CAM				= $(CAM),
+	CAM_DLY			= $(CAM_TRIG):TDES,
+	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
+	}
+}
+
+file image_meta.template
+{
+	{
+	CAM				= "\$(CAM)",
+	P				= "\$(CAM)",
+	R				= ":",
+	RESOLUTION		= "\$(RESOLUTION=1)",
+	RES_EGU			= "\$(RES_EGU=um)",
+	XO				= "\$(XO=1)",
+	YO				= "\$(YO=1)",
+	XRC				= "\$(XRC=1000)",
+	YRC				= "\$(YRC=1000)",
 	}
 }

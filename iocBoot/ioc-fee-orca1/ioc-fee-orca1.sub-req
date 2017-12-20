@@ -11,10 +11,6 @@ file autosave_pmc_evr.tpl-req
     { EVR = "EVR:FEE1:441" }
 }
 
-file ADBase_settings.req
-{
-    { P = "CAMR:FEE1:441", R = ":"	}
-}
 
 #file hamaOrcaFlash4_0.req
 #{
@@ -27,12 +23,8 @@ file ADBase_settings.req
 #    {   CAM = "CAMR:FEE1:441"	}
 #}
 
-#file cross_settings.req
-#{
-#    {   P = "CAMR:FEE1:441",	R = ":" 	}
-#}
 
-file PluginBldSpectrometer.req
+file pluginBldSpectrometer.req
 {
     { P = "CAMR:FEE1:441", R = ":", CAM = "CAMR:FEE1:441", N = "1"	}
 }

@@ -1,39 +1,22 @@
-#
-# gigECam Autosave request file for $$IOCNAME
-#
+# Autosave file for IOC
 
-# Each gigE IOC needs one of these
+# Each EdtPdv IOC needs one of these
 file autosave_iocAdmin.tpl-req
 {
-	{	IOC = "$$IOC_PV"	}
+    { IOC = "$$IOC_PV" }
 }
 
-file ADBase_settings.req
+$$IF(EVR_PV)
+file autosave_evr_$$(EVR_TYPE).req
 {
-    {   P = "$$CAM",	R = ":" 	}
+    { EVR = "$$EVR_PV" }
 }
+$$ENDIF(EVR_PV)
 
-file prosilica_settings.req
+
+$$LOOP(BLD)
+file pluginBldSpectrometer.req
 {
-    {   P = "$$CAM",	R = ":" 	}
+    { CAM = "$$CAM_PV", N = "$$CALC{INDEX+1}"  }
 }
-
-# Bring in the pcds plugin autosave pv's
-file pcdsPlugins.req
-{
-    {   CAM = "$$CAM"	}
-}
-
-#file cross_settings.req
-#{
-#    {   P = "$$CAM",	R = ":" 	}
-#}
-
-$$LOOP(EVR)
-# Generate one set for each EVR
-file autosave_pmc_evr.tpl-req
-{
-	{	EVR = "$$EVR_PV"	}
-}
-$$ENDLOOP(EVR)
-
+$$ENDLOOP(BLD)

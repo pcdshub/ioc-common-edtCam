@@ -29,7 +29,6 @@ epicsEnvSet( "EVR_TYPE",	"15" )
 epicsEnvSet( "MODEL",		"hamaOrcaFlash4_0" )
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "20000000" )
 epicsEnvSet( "HTTP_PORT",	"7800" )
-epicsEnvSet( "MJPG_PORT",	"8081"	)
 #epicsEnvSet( "PLUGINS",     "pcdsPlugins" )
 epicsEnvSet( "PLUGINS",		"commonPlugins" )
 
@@ -168,18 +167,18 @@ asynSetTraceIOMask( "ROI6",		1, $(CAM_TRACE_IO_MASK) )
 # Configure and load the BLD plugin
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
-< setupScripts/pluginBldSpectrometer.cmd
+< db/pluginBldSpectrometer.cmd
 
 # Configure and load any additional plugins, if any
 epicsEnvSet(	"N",					"1" )
 epicsEnvSet(	"PLUGIN_SRC",			"CAM" )
 < db/$(PLUGINS).cmd
-#< setupScripts/pluginStats.cmd
+#< db/pluginStats.cmd
 
 # Create a TIFF plugin, set it to get data from the camera
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
-#< setupScripts/pluginTIFF.cmd
+#< db/pluginTIFF.cmd
 
 #
 #
@@ -214,7 +213,7 @@ epicsEnvSet( "BLD_SRC",		"46" )		# Src Id, FeeSpec0
 epicsEnvSet( "BLD_IP",		"239.255.24.$(BLD_SRC)" )
 epicsEnvSet( "BLD_PORT",	"10148" )
 epicsEnvSet( "BLD_MAX",		"8980" )	# 9000 MTU - 20 byte header
-BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_SRC), $(BLD_XTC), $(BLD_MAX) )
+BldConfigSend( "$(BLD_IP)", $(BLD_PORT), $(BLD_MAX) )
 BldStart()
 BldIsStarted()
 epicsThreadSleep $(ST_CMD_DELAYS)

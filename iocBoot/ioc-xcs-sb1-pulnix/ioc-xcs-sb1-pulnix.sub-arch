@@ -7,12 +7,6 @@ file edt-ioc.archive
     }
 }
 
-file ADBase.tpl-arch
-{
-    { P = "XCS:SB1:PULNIX", R = ":"	}
-#    { P = "XCS:SB1:PULNIX", R = ":"	}
-}
-
 #file hamaOrcaFlash4_0.archive
 #{
 #    { P = "XCS:SB1:PULNIX", R = ":"	}
@@ -24,7 +18,7 @@ file ADBase.tpl-arch
 #    {   CAM = "XCS:SB1:PULNIX"	}
 #}
 
-file PluginBldSpectrometer.archive
+file pluginBldSpectrometer.archive
 {
     { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}
 #    { P = "XCS:SB1:PULNIX", R = ":", CAM="XCS:SB1:PULNIX", N = "1"	}

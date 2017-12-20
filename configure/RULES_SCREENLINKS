@@ -1,0 +1,69 @@
+# RULES_SCREENLINKS
+INSTALL_SCREENLINKS = $(INSTALL_LOCATION)/screenLinks
+UNINSTALL_DIRS	+= $(INSTALL_SCREENLINKS)
+
+ifeq (,$(BUILD_TOP))
+# Only run this rule in the parent ioc
+install: updateScreenLinks
+endif
+
+.PHONY: updateScreenLinks
+
+# Mark optional AD camera modules w/ unused/fooScreens
+ADSTREAM        ?= unused
+EVENT2          ?= unused
+HISTORY         ?= unused
+IOCADMIN        ?= unused
+FFMPEGSERVER    ?= unused
+
+# Choose either directory soft links or copies for edm screens
+# Copies are recommended when releasing to PROD
+# Soft linked directories are more convenient during development
+# especially when the linked directories are in your work area too.
+updateScreenLinks:	updateScreenLinks_withSoftLinks
+#updateScreenLinks:	updateScreenLinks_withCopies
+
+updateScreenLinks_withSoftLinks:
+	@echo Updating $(TOP)/screenLinks with soft links ...
+	@rm -f     $(INSTALL_SCREENLINKS)/*
+	@mkdir -p  $(INSTALL_SCREENLINKS)
+	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
+	@ln -s {$(ADSTREAM),$(INSTALL_SCREENLINKS)}/ADStreamScreens
+	@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorHelp
+	@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorScreens
+	@ln -s {$(ASYN),$(INSTALL_SCREENLINKS)}/asynScreens
+	@ln -s {$(ADEDTPDV),$(INSTALL_SCREENLINKS)}/edtPdvScreens
+	@ln -s {$(EVENT2),$(INSTALL_SCREENLINKS)}/event2Screens
+	@ln -s {$(HISTORY),$(INSTALL_SCREENLINKS)}/historyScreens
+	@ln -s {$(IOCADMIN),$(INSTALL_SCREENLINKS)}/iocScreens
+	@ln -s {$(FFMPEGSERVER),$(INSTALL_SCREENLINKS)}/ffmpegScreens
+
+# Use copies for most screens so they can be deployed to accelerator
+# PROD area via cram.
+# Still use soft link for TOP/gigeScreens as it's relative
+# Still use soft link for configSiteTop as it's only for python viewer
+# and we'll need another solution for how to deploy it to accelerator.
+updateScreenLinks_withCopies:
+	@echo Updating $(TOP)/screenLinks ...
+	@rm    -rf  $(INSTALL_SCREENLINKS)/*
+	@mkdir -p   $(INSTALL_SCREENLINKS)
+	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/ADStreamScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/areaDetectorHelp
+	@mkdir -p   $(INSTALL_SCREENLINKS)/areaDetectorScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/asynScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/event2Screens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/iocScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/edtPdvScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/ffmpegScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/historyScreens
+	-@cp $(ADCORE)/areaDetectorHelp/*.*      $(INSTALL_SCREENLINKS)/areaDetectorHelp    2> /dev/null
+	-@cp $(ADCORE)/areaDetectorScreens/*.*   $(INSTALL_SCREENLINKS)/areaDetectorScreens 2> /dev/null
+	-@cp $(ADEDTPDV)/edtPdvScreens/*.*       $(INSTALL_SCREENLINKS)/edtPdvScreens       2> /dev/null
+	-@cp $(ADSTREAM)/ADStreamScreens/*.*     $(INSTALL_SCREENLINKS)/ADStreamScreens     2> /dev/null
+	-@cp $(ASYN)/asynScreens/*.*             $(INSTALL_SCREENLINKS)/asynScreens         2> /dev/null
+	-@cp $(EVENT2)/event2Screens/*.*         $(INSTALL_SCREENLINKS)/event2Screens       2> /dev/null
+	-@cp $(FFMPEGSERVER)/ffmpegScreens/*.*   $(INSTALL_SCREENLINKS)/ffmpegScreens       2> /dev/null
+	-@cp $(HISTORY)/historyScreens/*.*       $(INSTALL_SCREENLINKS)/historyScreens      2> /dev/null
+	-@cp $(IOCADMIN)/iocScreens/*.*          $(INSTALL_SCREENLINKS)/iocScreens          2> /dev/null
+

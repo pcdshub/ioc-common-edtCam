@@ -11,10 +11,6 @@ file autosave_evr_SLAC.tpl-req
     { EVR = "XPP:PTM6740:EVR:02" }
 }
 
-file ADBase_settings.req
-{
-    { P = "XPP:PTM6740:01", R = ":"	}
-}
 
 #file hamaOrcaFlash4_0.req
 #{
@@ -27,13 +23,8 @@ file ADBase_settings.req
 #    {   CAM = "XPP:PTM6740:01"	}
 #}
 
-file cross_settings.req
-{
-    { P = "XPP:PTM6740:01",	R = ":" }
-}
 
-
-#file PluginBldSpectrometer.req
+#file pluginBldSpectrometer.req
 #{
 #    { P = "XPP:PTM6740:01", R = ":", CAM="XPP:PTM6740:01", N = "1"	}
 #}
