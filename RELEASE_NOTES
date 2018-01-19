@@ -1,4 +1,7 @@
 
+R1.18.0: 2018-1-19, bhill
+
+
 R1.17.0: 2017-12-19, bhill
 	Added support for caPutLog, pvaSrv, and asynGenicam.
 	Reworked EVR related pv's w/ an emb-timestamps subscreen
