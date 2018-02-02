@@ -1,6 +1,7 @@
 
 R1.18.0: 2018-1-19, bhill
-
+	Update to event2/R4.3.0 and timeStampFifo/R1.5.9
+	Adds fix for trigger eventCode pv, TEC, being cleared occasionally during bootup.
 
 R1.17.0: 2017-12-19, bhill
 	Added support for caPutLog, pvaSrv, and asynGenicam.
