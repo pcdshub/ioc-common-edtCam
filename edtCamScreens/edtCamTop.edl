@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 964
-y 1237
+x 100
+y 100
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -2419,6 +2419,7 @@ h 20
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
+fgAlarm
 bgColor index 12
 visPv "CALC\\\{(A)\}($(P)$(R)Acquire)"
 visMin "0"
@@ -2440,7 +2441,8 @@ w 88
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "center"
-fgColor index 35
+fgColor index 15
+fgAlarm
 bgColor index 12
 visPv "CALC\\\{(A)\}($(P)$(R)Acquire)"
 visInvert
