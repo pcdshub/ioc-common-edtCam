@@ -24,7 +24,7 @@ updateScreenLinks:	updateScreenLinks_withSoftLinks
 #updateScreenLinks:	updateScreenLinks_withCopies
 
 updateScreenLinks_withSoftLinks:
-	@echo Updating $(TOP)/screenLinks with soft links ...
+	@echo Updating soft links in TOP/screenLinks ...
 	@rm -f     $(INSTALL_SCREENLINKS)/*
 	@mkdir -p  $(INSTALL_SCREENLINKS)
 	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
@@ -44,7 +44,7 @@ updateScreenLinks_withSoftLinks:
 # Still use soft link for configSiteTop as it's only for python viewer
 # and we'll need another solution for how to deploy it to accelerator.
 updateScreenLinks_withCopies:
-	@echo Updating $(TOP)/screenLinks ...
+	@echo Updating screen copies under TOP/screenLinks ...
 	@rm    -rf  $(INSTALL_SCREENLINKS)/*
 	@mkdir -p   $(INSTALL_SCREENLINKS)
 	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
