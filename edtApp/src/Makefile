@@ -47,9 +47,6 @@ edt_DBD += asynGenicam.dbd
 #edt_DBD += genSubRecord.dbd
 edt_DBD += pluginBldSpectrometer.dbd
 
-# ffmpegServer
-edt_DBD += ffmpegServer.dbd
-
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
 edt_SRCS += edt_registerRecordDeviceDriver.cpp
 edt_SRCS += pluginBldSpectrometer.cpp
@@ -65,26 +62,26 @@ serial_cmd_LIBS += pdv
 
 # Add required libraries
 # base and std modules
-$(PROD_NAME)_LIBS += devIocStats
-$(PROD_NAME)_LIBS += caPutLog
-$(PROD_NAME)_LIBS += bldClient
-$(PROD_NAME)_LIBS += history
+PROD_LIBS += devIocStats
+PROD_LIBS += caPutLog
+PROD_LIBS += bldClient
+PROD_LIBS += history
 
 # pvaSrv
-$(PROD_NAME)_LIBS += pvaSrv
+PROD_LIBS += pvaSrv
 
 ifdef EVENT2
 # ADCore Timestamp provider
-$(PROD_NAME)_LIBS += timeStampFifo
+PROD_LIBS += timeStampFifo
 
 # Timing and EVR
-$(PROD_NAME)_LIBS += evrSupport
-$(PROD_NAME)_LIBS += devMrfEr
-$(PROD_NAME)_LIBS += drvMrf
-$(PROD_NAME)_LIBS_Linux += mrfApi
+PROD_LIBS += evrSupport
+PROD_LIBS += devMrfEr
+PROD_LIBS += drvMrf
+PROD_LIBS_Linux += mrfApi
 
 # Diagnostics
-$(PROD_NAME)_LIBS += diagTimer
+PROD_LIBS += diagTimer
 endif
 
 # EDT PDV libs
@@ -111,22 +108,22 @@ edt_SYS_LIBS += dl
 #PROD_DEPLIB_DIRS += /usr/lib64
 
 # areaDetector ADSimDetector
-$(PROD_NAME)_LIBS += simDetector
+PROD_LIBS += simDetector
 
 ifdef FFMPEGSERVER
 # ffmpegServer
 $(PROD_NAME)_DBD += ffmpegServer.dbd
 DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
 DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
-$(PROD_NAME)_LIBS += avdevice
-$(PROD_NAME)_LIBS += ffmpegServer
-$(PROD_NAME)_LIBS += swscale
-$(PROD_NAME)_LIBS += avformat
-$(PROD_NAME)_LIBS += avcodec
-$(PROD_NAME)_LIBS += avutil
-$(PROD_NAME)_LIBS += swresample
-$(PROD_NAME)_LIBS += bz2
-$(PROD_NAME)_LIBS += lzma
+PROD_LIBS += avdevice
+PROD_LIBS += ffmpegServer
+PROD_LIBS += swscale
+PROD_LIBS += avformat
+PROD_LIBS += avcodec
+PROD_LIBS += avutil
+PROD_LIBS += swresample
+PROD_LIBS += bz2
+PROD_LIBS += lzma
 endif
 
 
