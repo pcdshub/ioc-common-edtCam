@@ -97,15 +97,12 @@ edt_LIBS += asynGenicam
 #edt_LIBS += PvAPI
 #edt_SYS_LIBS += X11
 #edt_SYS_LIBS += xml2
-ifdef PCRE_LIB
+ifneq ($(wildcard $(STREAMDEVICE)/lib/$(T_A)/libpcre.a),)
 edt_LIBS += pcre
 endif
 edt_SYS_LIBS += z
 edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
-
-#PROD_DEPLIB_DIRS += $(PCRE_TOP)/lib
-#PROD_DEPLIB_DIRS += /usr/lib64
 
 # areaDetector ADSimDetector
 PROD_LIBS += simDetector
@@ -139,5 +136,4 @@ include $(TOP)/configure/RULES
 showme:
 	@echo T_A=$(T_A)
 	@echo PKG_ARCH=$(PKG_ARCH)
-	@echo PCRE_LIB=$(PCRE_LIB)
 

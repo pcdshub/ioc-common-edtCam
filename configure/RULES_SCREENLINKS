@@ -28,15 +28,15 @@ updateScreenLinks_withSoftLinks:
 	@rm -f     $(INSTALL_SCREENLINKS)/*
 	@mkdir -p  $(INSTALL_SCREENLINKS)
 	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
-	@ln -s {$(ADSTREAM),$(INSTALL_SCREENLINKS)}/ADStreamScreens
-	@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorHelp
-	@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorScreens
-	@ln -s {$(ASYN),$(INSTALL_SCREENLINKS)}/asynScreens
-	@ln -s {$(ADEDTPDV),$(INSTALL_SCREENLINKS)}/edtPdvScreens
-	@ln -s {$(EVENT2),$(INSTALL_SCREENLINKS)}/event2Screens
-	@ln -s {$(HISTORY),$(INSTALL_SCREENLINKS)}/historyScreens
-	@ln -s {$(IOCADMIN),$(INSTALL_SCREENLINKS)}/iocScreens
-	@ln -s {$(FFMPEGSERVER),$(INSTALL_SCREENLINKS)}/ffmpegScreens
+	-@ln -s {$(ADSTREAM),$(INSTALL_SCREENLINKS)}/ADStreamScreens 2> /dev/null
+	-@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorHelp 2> /dev/null
+	-@ln -s {$(ADCORE),$(INSTALL_SCREENLINKS)}/areaDetectorScreens 2> /dev/null
+	-@ln -s {$(ASYN),$(INSTALL_SCREENLINKS)}/asynScreens 2> /dev/null
+	-@ln -s {$(ADEDTPDV),$(INSTALL_SCREENLINKS)}/edtPdvScreens 2> /dev/null
+	-@ln -s {$(EVENT2),$(INSTALL_SCREENLINKS)}/event2Screens 2> /dev/null
+	-@ln -s {$(HISTORY),$(INSTALL_SCREENLINKS)}/historyScreens 2> /dev/null
+	-@ln -s {$(IOCADMIN),$(INSTALL_SCREENLINKS)}/iocScreens 2> /dev/null
+	-@ln -s {$(FFMPEGSERVER),$(INSTALL_SCREENLINKS)}/ffmpegScreens 2> /dev/null
 
 # Use copies for most screens so they can be deployed to accelerator
 # PROD area via cram.
@@ -45,7 +45,7 @@ updateScreenLinks_withSoftLinks:
 # and we'll need another solution for how to deploy it to accelerator.
 updateScreenLinks_withCopies:
 	@echo Updating screen copies under TOP/screenLinks ...
-	@rm    -rf  $(INSTALL_SCREENLINKS)/*
+	@rm    -f  $(INSTALL_SCREENLINKS)/*
 	@mkdir -p   $(INSTALL_SCREENLINKS)
 	@ln -s {..,$(INSTALL_SCREENLINKS)}/edtCamScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/ADStreamScreens
