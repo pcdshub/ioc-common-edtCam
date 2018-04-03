@@ -610,7 +610,7 @@ void PluginSpectrometer::processCallbacks(NDArray *pArray)
 	NDArrayInfo arrayInfo;
 
 	/* Call the base class method */
-	NDPluginDriver::processCallbacks(pArray);
+	NDPluginDriver::beginProcessCallbacks(pArray);
 
 	pArray->getInfo(&arrayInfo);
 	getIntegerParam( PluginSpectrometerComputeCentroid,		&computeCentroid );
