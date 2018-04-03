@@ -11,6 +11,8 @@ epicsEnvSet( "IOCSH_PS1",    "$(IOCNAME)> " )
 epicsEnvSet( "IOC_PV",       "$$IOC_PV" )
 epicsEnvSet( "IOCTOP",       "$$IOCTOP" )
 epicsEnvSet( "BUILD_TOP",    "$$TOP" )
+epicsEnvSet( "EPICS_PVA_AUTO_ADDR_LIST",         "TRUE" )
+epicsEnvSet( "EPICS_PVAS_AUTO_BEACON_ADDR_LIST", "TRUE" )
 cd( "$(IOCTOP)" )
 
 # Set Max array size
@@ -233,7 +235,7 @@ epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
 # Start PVAccess Server
-startPVAServer()
+#startPVAServer() is now started automatically
 
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
