@@ -1,3 +1,5 @@
+R1.19.0: 2018-04-04, bhill
+	Updated for ADCore 3.0 and latest V4 support
 
 R1.18.0: 2018-1-19, bhill
 	Update to event2/R4.3.0 and timeStampFifo/R1.5.9
