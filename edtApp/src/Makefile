@@ -9,14 +9,13 @@ include $(TOP)/configure/CONFIG
 # Build an ioc application
 PROD_NAME = edt
 
-PROD_IOC = $(PROD_NAME) 
+PROD_IOC = $(PROD_NAME)
 PROD_IOC += serial_cmd
 
 # $(PROD_NAME).dbd will be created and installed
 DBD += $(PROD_NAME).dbd
 
 # $(PROD_NAME).dbd will be made up from these files:
-
 include $(ADCORE)/ADApp/commonDriverMakefile
 
 # std ioc modules
@@ -25,7 +24,7 @@ $(PROD_NAME)_DBD += caPutLog.dbd
 $(PROD_NAME)_DBD += history.dbd
 
 # pvaSrv
-$(PROD_NAME)_DBD += dbPv.dbd
+#$(PROD_NAME)_DBD += dbPv.dbd
 
 ifdef EVENT2
 # Timing and EVR
@@ -62,26 +61,26 @@ serial_cmd_LIBS += pdv
 
 # Add required libraries
 # base and std modules
-PROD_LIBS += devIocStats
-PROD_LIBS += caPutLog
-PROD_LIBS += bldClient
-PROD_LIBS += history
+$(PROD_NAME)_LIBS += devIocStats
+$(PROD_NAME)_LIBS += caPutLog
+$(PROD_NAME)_LIBS += bldClient
+$(PROD_NAME)_LIBS += history
 
 # pvaSrv
-PROD_LIBS += pvaSrv
+#$(PROD_NAME)_LIBS += pvaSrv
 
 ifdef EVENT2
 # ADCore Timestamp provider
-PROD_LIBS += timeStampFifo
+$(PROD_NAME)_LIBS += timeStampFifo
 
 # Timing and EVR
-PROD_LIBS += evrSupport
-PROD_LIBS += devMrfEr
-PROD_LIBS += drvMrf
-PROD_LIBS_Linux += mrfApi
+$(PROD_NAME)_LIBS += evrSupport
+$(PROD_NAME)_LIBS += devMrfEr
+$(PROD_NAME)_LIBS += drvMrf
+$(PROD_NAME)_LIBS_Linux += mrfApi
 
 # Diagnostics
-PROD_LIBS += diagTimer
+$(PROD_NAME)_LIBS += diagTimer
 endif
 
 # EDT PDV libs
@@ -105,22 +104,22 @@ edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
 
 # areaDetector ADSimDetector
-PROD_LIBS += simDetector
+$(PROD_NAME)_LIBS += simDetector
 
 ifdef FFMPEGSERVER
 # ffmpegServer
 $(PROD_NAME)_DBD += ffmpegServer.dbd
 DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
 DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
-PROD_LIBS += avdevice
-PROD_LIBS += ffmpegServer
-PROD_LIBS += swscale
-PROD_LIBS += avformat
-PROD_LIBS += avcodec
-PROD_LIBS += avutil
-PROD_LIBS += swresample
-PROD_LIBS += bz2
-PROD_LIBS += lzma
+$(PROD_NAME)_LIBS += avdevice
+$(PROD_NAME)_LIBS += ffmpegServer
+$(PROD_NAME)_LIBS += swscale
+$(PROD_NAME)_LIBS += avformat
+$(PROD_NAME)_LIBS += avcodec
+$(PROD_NAME)_LIBS += avutil
+$(PROD_NAME)_LIBS += swresample
+$(PROD_NAME)_LIBS += bz2
+$(PROD_NAME)_LIBS += lzma
 endif
 
 
