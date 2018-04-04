@@ -39,11 +39,6 @@ endif
 #               standard library search path then do not define XXX_LIB.
 #
 
-# BOOST is required for the ADCore/pluginTests unit tests
-WITH_BOOST     = NO
-#BOOST_LIB     =
-#BOOST_INCLUDE =
-
 # EPICS_V4 is required for NDPluginPva and pvaDriver
 WITH_EPICS_V4  = YES
 # As of R3-2 WITH_EPICS_V4 changes to WITH_PVA
