@@ -41,6 +41,7 @@ file timeStampEventCode.db
 {
 	{
 	CAM				= $(CAM),
+	TSS				= $(CAM):TSS,
 	CAM_DLY			= $(CAM_TRIG):TDES,
 	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES CPP MS",
 	}

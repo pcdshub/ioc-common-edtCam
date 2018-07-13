@@ -9,13 +9,15 @@
 #
 # Required macros:
 #	CAM				- Prefix for camera
+#	TSS				- Prefix for timeStampFifo PVs
+#	CAM_TRIG		- Prefix for EVR trigger
 #
 # Optional macros:
 #	CAM_DLY			- PV to write camera trigger delay to
 #	CAM_DLY_RBV		- PV for camera trigger delay readback
 #	CAM_DLY_EGU		- EGU for camera delay, defaults to ns
 #	CAM_DLY_SCALE	- Scale factor for coverting camera delay to sec, defaults to 1e9
-#	TSDLY_PV		- PV to write timestamp delay to, default to $(CAM):TSS:ExpectedDelay
+#	TSDLY_PV		- PV to write timestamp delay to, default to $(TSS):ExpectedDelay
 #
 
 record( ao, "$(CAM):CamTrigDelay" )
@@ -75,7 +77,7 @@ record( calcout, "$(CAM):ExpectedDelay_Calc" )
     field( CALC, "A+B" )
     field( EGU,  "sec" )
     field( PREC, "5" )
-    field( OUT,  "$(TSDLY_PV=$(CAM):TSS:ExpectedDelay) PP MS" )
+    field( OUT,  "$(TSDLY_PV=$(TSS):ExpectedDelay) PP MS" )
 }
 
 record( longout, "$(CAM):CamEventCode" )
@@ -122,6 +124,9 @@ record( calcout, "$(CAM):TsFreeRunCalc" )
     field( DESC, "Update TS FreeRun mode" )
 	field( INPA, "$(CAM):TriggerMode_RBV CPP NMS" )
     field( CALC, "A==0?1:0" )
-	field( OUT,  "$(CAM):TSS:TsFreeRun PP NMS" )
+	field( OUT,  "$(TSS):TsFreeRun PP NMS" )
 	info( autosaveFields, "DESC" )
 }
+
+record( bo, "$(TSS):TsFreeRun" ) { }
+record( ao, "$(TSS):ExpectedDelay" ) { }
