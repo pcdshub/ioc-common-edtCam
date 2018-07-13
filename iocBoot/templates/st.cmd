@@ -61,6 +61,9 @@ epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,0)" )
 dbLoadDatabase( "dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
 
+# Set a prefix for the iocLog
+iocLogPrefix( "$(IOCNAME): " )
+
 # Bump up scanOnce queue size for evr invariant timing
 scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
 
