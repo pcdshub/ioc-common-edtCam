@@ -1,3 +1,9 @@
+R1.20.0: 2018-07-19, bhill
+	Updated for ADEdtPdv/R2.3.0
+	Replace RELEASE_SITE w/ one generated via epics-update -r
+	Set iocLogPrefix( $IOCNAME )
+	Use TSS prefix for timeStampSource PVs
+
 R1.19.0: 2018-04-04, bhill
 	Updated for ADCore 3.0 and latest V4 support
 
