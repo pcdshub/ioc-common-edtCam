@@ -72,6 +72,7 @@ var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
 var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
 var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 var DEBUG_GENICAM $$IF(DEBUG_GENICAM,$$DEBUG_GENICAM,1)
+var save_restoreLogMissingRecords $$IF(save_restoreLogMissingRecords,$$save_restoreLogMissingRecords,0)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
@@ -199,14 +200,25 @@ $$IF(EVR_PV)
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD)$$IF(EVR_TRIG),IP$$(EVR_TRIG)E=Enabled$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG),IP$$(TRIG)E=Enabled$$ENDLOOP(EXTRA_TRIG)" )
-dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=1" )
+dbLoadRecords( "db/evrUsed.db",				"DEV=$(CAM_PV),IOC=$(IOC_PV),EVR=$(EVR_PV),TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0),EVR_USED=1" )
 $$ELSE(EVR_PV)
-dbLoadRecords( "db/evrUsed.db",				"EVR=$(EVR_PV),EVR_USED=0" )
+dbLoadRecords( "db/evrUsed.db",				"DEV=$(CAM_PV),EVR=$(EVR_PV),EVR_USED=0" )
 $$ENDIF(EVR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
-dbLoadRecords( "db/iocName.db",				"IOC=$(IOC_PV),IOCNAME=$(IOCNAME),CAM=$(CAM_PV)" )
+epicsEnvSet( "DEV_INFO", "DEV=$(CAM_PV),IOC=$(IOC_PV),IOCNAME=$(IOCNAME)" )
+epicsEnvSet( "DEV_INFO", "$(DEV_INFO),COM_TYPE=camLink,COM_PORT=Board $$BOARD Chan $$CHAN" )
+$$IF(POWER)
+epicsEnvSet( "DEV_INFO", "$(DEV_INFO),POWER=$$POWER" )
+$$ENDIF(POWER)
+$$IF(WEB_URL)
+epicsEnvSet( "DEV_INFO", "$(DEV_INFO),WEB_URL=$$WEB_URL" )
+$$ENDIF(WEB_URL)
+$$IF(CAPTAR)
+epicsEnvSet( "DEV_INFO", "$(DEV_INFO),CAPTAR=$$CAPTAR" )
+$$ENDIF(CAPTAR)
+dbLoadRecords( "db/devIocInfo.db",			"$(DEV_INFO)" )
 
 # Setup autosave
 dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
@@ -218,9 +230,7 @@ save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
 set_pass0_restoreFile( "autoSettings.sav" )
-#set_pass0_restoreFile( "$(IOC).sav" )
 set_pass1_restoreFile( "autoSettings.sav" )
-#set_pass1_restoreFile( "$(IOC).sav" )
 
 #
 # iocInit: Initialize the IOC and start processing records
@@ -237,15 +247,11 @@ $$ELSE(NO_ST_CMD_DELAY)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
-# Start PVAccess Server
-#startPVAServer() is now started automatically
-
 # Create autosave files from info directives
 makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "autosaveFields" )
 
 # Start autosave backups
 create_monitor_set( "autoSettings.req",  5,  "" )
-#create_monitor_set( "$(IOCNAME).req",    5,  "" )
 
 # All IOCs should dump some common info after initial startup.
 < $(IOC_COMMON)/All/post_linux.cmd
