@@ -13,7 +13,7 @@ source $SETUP_SITE_TOP/epicsenv-cur.sh
 export EVR_PV=$$IF(EVR_PV,$$EVR_PV,$$CAM_PV:NoEvr)
 export IOC_PV=$$IOC_PV
 export CAM=$$CAM_PV
-export CAM_NAME=$$IF(CAM_NAME,$$CAM_NAME,Unnamed)
+export CAM_NAME="$$IF(CAM_NAME,$$CAM_NAME,Unnamed)"
 export TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0)
 export HUTCH=$$IF(HUTCH,$$HUTCH,tst)
 
