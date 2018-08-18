@@ -49,15 +49,6 @@ typedef struct BldSpectrometer
 	size_t	maxY;
 }	BldSpectrometer_t;
 
-typedef enum
-{
-	profAverage,
-	profThreshold,
-	profCentroid,
-	profCursor
-}	NDStatProfileType;
-#define MAX_PROFILE_TYPES profCursor+1
-
 /* Statistics */
 #define PluginSpectrometerComputeStatisticsString  "SPEC_COMPUTE_STATISTICS"  /* (asynInt32,        r/w) Compute statistics? */
 #define PluginSpectrometerBgdWidthString           "SPEC_BGD_WIDTH"           /* (asynInt32,        r/w) Width of background region when computing net */
@@ -122,7 +113,7 @@ public:
 	PluginSpectrometer(const char *portName, int queueSize, int blockingCallbacks,
 				 const char *NDArrayPort, int NDArrayAddr,
 				 int maxBuffers, size_t maxMemory,
-				 int priority, int stackSize);
+				 int priority, int stackSize, int maxThreads );
 	/* These methods override the virtual methods in the base class */
 	void processCallbacks(NDArray *pArray);
 	asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
