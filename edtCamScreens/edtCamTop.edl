@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 100
-y 100
+x 80
+y 96
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -361,32 +361,6 @@ beginObjectProperties
 major 4
 minor 4
 release 0
-x 732
-y 8
-w 36
-h 24
-fgColor index 14
-bgColor index 3
-topShadowColor index 0
-botShadowColor index 14
-font "helvetica-medium-r-12.0"
-buttonLabel "EVR"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "event2Screens/evrOneTrig.edl"
-}
-symbols {
-  0 "EVR=$(EVR),CH=$(CH)"
-}
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
 x 276
 y 80
 w 56
@@ -535,9 +509,9 @@ beginObjectProperties
 major 4
 minor 3
 release 0
-x 368
+x 376
 y 8
-w 92
+w 88
 h 24
 fgColor index 14
 bgColor index 3
@@ -612,38 +586,6 @@ nullColor index 0
 useHexPrefix
 newPos
 objType "monitors"
-endObjectProperties
-
-# (Lines)
-object activeLineClass
-beginObjectProperties
-major 4
-minor 0
-release 1
-x 700
-y 8
-w 24
-h 24
-lineColor index 14
-fill
-fillColor index 15
-fillAlarm
-alarmPv "$(EVR):STATUS"
-numPoints 5
-xPoints {
-  0 712
-  1 700
-  2 712
-  3 724
-  4 712
-}
-yPoints {
-  0 8
-  1 20
-  2 32
-  3 20
-  4 8
-}
 endObjectProperties
 
 # (Related Display)
@@ -2795,9 +2737,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 248
+x 252
 y 224
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)MaxSizeY_RBV"
 font "helvetica-medium-r-12.0"
@@ -2822,7 +2764,7 @@ minor 7
 release 0
 x 164
 y 224
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)MaxSizeX_RBV"
 font "helvetica-medium-r-12.0"
@@ -2925,9 +2867,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 248
+x 252
 y 256
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)ArraySizeY_RBV"
 font "helvetica-medium-r-12.0"
@@ -2952,7 +2894,7 @@ minor 7
 release 0
 x 164
 y 284
-w 160
+w 168
 h 20
 controlPv "$(P)$(R)ArraySize_RBV"
 font "helvetica-medium-r-12.0"
@@ -2975,9 +2917,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 248
+x 252
 y 312
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)DataType_RBV"
 font "helvetica-medium-r-12.0"
@@ -3000,9 +2942,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 248
+x 252
 y 368
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)ColorMode_RBV"
 font "helvetica-medium-r-12.0"
@@ -3027,7 +2969,7 @@ minor 7
 release 0
 x 164
 y 256
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)ArraySizeX_RBV"
 font "helvetica-medium-r-12.0"
@@ -3092,7 +3034,7 @@ minor 7
 release 0
 x 164
 y 196
-w 160
+w 168
 h 20
 controlPv "$(P)$(R)Model_RBV"
 format "decimal"
@@ -3117,7 +3059,7 @@ minor 7
 release 0
 x 164
 y 168
-w 160
+w 168
 h 20
 controlPv "$(P)$(R)Manufacturer_RBV"
 format "decimal"
@@ -3140,9 +3082,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 248
+x 252
 y 340
-w 76
+w 80
 h 20
 controlPv "$(P)$(R)BitsPerPixel_RBV"
 font "helvetica-medium-r-12.0"
@@ -3187,7 +3129,7 @@ minor 0
 release 0
 x 164
 y 312
-w 76
+w 80
 h 20
 
 beginGroup
@@ -3200,7 +3142,7 @@ minor 0
 release 0
 x 164
 y 312
-w 76
+w 80
 h 20
 fgColor index 25
 bgColor index 5
@@ -3508,9 +3450,9 @@ major 4
 minor 1
 release 1
 x 208
-y 4
+y 0
 w 156
-h 32
+h 24
 font "helvetica-bold-r-14.0"
 fontAlign "center"
 fgColor index 14
@@ -3717,5 +3659,107 @@ endGroup
 visPv "$(EVR):EvrUsed"
 visMin "1"
 visMax "2"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 700
+y 8
+w 68
+h 24
+
+beginGroup
+
+# (Related Display)
+object relatedDisplayClass
+beginObjectProperties
+major 4
+minor 4
+release 0
+x 732
+y 8
+w 36
+h 24
+fgColor index 14
+bgColor index 3
+topShadowColor index 0
+botShadowColor index 14
+font "helvetica-medium-r-12.0"
+buttonLabel "EVR"
+numPvs 4
+numDsps 1
+displayFileName {
+  0 "event2Screens/evrOneTrig.edl"
+}
+symbols {
+  0 "EVR=$(EVR),CH=$(CH)"
+}
+endObjectProperties
+
+# (Lines)
+object activeLineClass
+beginObjectProperties
+major 4
+minor 0
+release 1
+x 700
+y 8
+w 24
+h 24
+lineColor index 14
+fill
+fillColor index 15
+fillAlarm
+alarmPv "$(EVR):STATUS"
+numPoints 5
+xPoints {
+  0 712
+  1 700
+  2 712
+  3 724
+  4 712
+}
+yPoints {
+  0 8
+  1 20
+  2 32
+  3 20
+  4 8
+}
+endObjectProperties
+
+endGroup
+
+visPv "$(EVR):EvrUsed"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Text Monitor)
+object activeXTextDspClass:noedit
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 208
+y 24
+w 156
+h 20
+controlPv "$(CAM):IOC_NAME"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+limitsFromDb
+nullColor index 0
+useHexPrefix
+newPos
+objType "monitors"
+noExecuteClipMask
 endObjectProperties
 
