@@ -1,0 +1,33 @@
+#
+# This db file can be loaded into an IOC to indicate if
+# FFMPEG plugins are available.
+#
+# It adds new records with optional macro N, default 1:
+#	FileMPEGAvail, opt macro FMPG_AVAIL, default 0, 0=Unavailable, 1=Available
+#	MJPGAvail,     opt macro MJPG_AVAIL, default 0, 0=Unavailable, 1=Available
+#
+# Normal usage: Load this file in st.cmd before loading your plugins
+#
+# If your st.cmd runs db/pluginFileMPEG.cmd  it will load the record
+# $CAM:FMPG$N:AVAIL w/ FMPG_AVAIL=1
+#
+# If your st.cmd runs db/pluginMJPG.cmd  it will load the record
+# $CAM:MJPG$N:AVAIL w/ MJPG_AVAIL=1
+#
+
+record( bo, "$(CAM):FMPG$(N=1):AVAIL" )
+{
+	field( PINI, "YES" )
+	field( ZNAM, "Unavailable" )
+	field( ONAM, "Available" )
+	field( DOL,  "$(FMPG_AVAIL=0)" )
+}
+
+record( bo, "$(CAM):MJPG$(N=1):AVAIL" )
+{
+	field( PINI, "YES" )
+	field( ZNAM, "Unavailable" )
+	field( ONAM, "Available" )
+	field( DOL,  "$(MJPG_AVAIL=0)" )
+}
+

@@ -3,8 +3,8 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-DB += iocName.db
-DB += evrUsed.db
+DB += ffmpegUsed.db
+DB_INSTALLS += $(EVENT2)/db/devEvrInfo.db
 
 # Create and install EDT Camera DB Files
 DB += bld_hist.db
@@ -24,6 +24,7 @@ DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
 DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
 DB_INSTALLS += $(EVENT2)/db/eventCodeDelays.db
 DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
+DB_INSTALLS += $(IOCADMIN)/db/devIocInfo.db
 DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
 DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.cmd)
 DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.db)
