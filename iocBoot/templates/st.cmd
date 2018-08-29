@@ -67,6 +67,12 @@ iocLogPrefix( "$(IOCNAME): " )
 # Bump up scanOnce queue size for evr invariant timing
 scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
 
+$$IF(CPU_AFFINITY_SET)
+# Set MCoreUtils rules for cpu affinity
+mcoreThreadRuleAdd CAM_cpu * * $$CPU_AFFINITY_SET CAM.*
+mcoreThreadRuleAdd evr_cpu * * $$CPU_AFFINITY_SET evr.*
+$$ENDIF(CPU_AFFINITY_SET)
+
 # Set iocsh debug variables
 var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
 var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
@@ -200,15 +206,15 @@ $$IF(EVR_PV)
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD)$$IF(EVR_TRIG),IP$$(EVR_TRIG)E=Enabled$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG),IP$$(TRIG)E=Enabled$$ENDLOOP(EXTRA_TRIG)" )
-dbLoadRecords( "db/evrUsed.db",				"DEV=$(CAM_PV),IOC=$(IOC_PV),EVR=$(EVR_PV),TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0),EVR_USED=1" )
+dbLoadRecords( "db/devEvrInfo.db",				"DEV=$(CAM_PV),IOC=$(IOC_PV),EVR=$(EVR_PV),TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0),EVR_USED=1" )
 $$ELSE(EVR_PV)
-dbLoadRecords( "db/evrUsed.db",				"DEV=$(CAM_PV),EVR=$(EVR_PV),EVR_USED=0" )
+dbLoadRecords( "db/devEvrInfo.db",				"DEV=$(CAM_PV),EVR=$(EVR_PV),EVR_USED=0" )
 $$ENDIF(EVR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )
 epicsEnvSet( "DEV_INFO", "DEV=$(CAM_PV),IOC=$(IOC_PV),IOCNAME=$(IOCNAME)" )
-epicsEnvSet( "DEV_INFO", "$(DEV_INFO),COM_TYPE=camLink,COM_PORT=Board $$BOARD Chan $$CHAN" )
+epicsEnvSet( "DEV_INFO", "$(DEV_INFO),COM_TYPE=camLink,COM_PORT=Card $(EDT_CARD) Chan $(EDT_CHAN)" )
 $$IF(POWER)
 epicsEnvSet( "DEV_INFO", "$(DEV_INFO),POWER=$$POWER" )
 $$ENDIF(POWER)
@@ -229,7 +235,8 @@ set_requestfile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
-set_pass0_restoreFile( "autoSettings.sav" )
+# pass0 autosave restore is not needed for cameras and slows IOC boot
+#set_pass0_restoreFile( "autoSettings.sav" )
 set_pass1_restoreFile( "autoSettings.sav" )
 
 #

@@ -23,6 +23,9 @@ $(PROD_NAME)_DBD += iocAdmin.dbd
 $(PROD_NAME)_DBD += caPutLog.dbd
 $(PROD_NAME)_DBD += history.dbd
 
+# Multicore utilities
+$(PROD_NAME)_DBD += mcoreutils.dbd
+
 # pvaSrv
 #$(PROD_NAME)_DBD += dbPv.dbd
 
@@ -65,6 +68,8 @@ $(PROD_NAME)_LIBS += devIocStats
 $(PROD_NAME)_LIBS += caPutLog
 $(PROD_NAME)_LIBS += bldClient
 $(PROD_NAME)_LIBS += history
+$(PROD_NAME)_LIBS += mcoreutils
+
 
 # pvaSrv
 #$(PROD_NAME)_LIBS += pvaSrv
