@@ -1,3 +1,9 @@
+R2.0.0: 2018-08-29, bhill
+	Added MCoreUtils and cfg macro CPU_AFFINITY_SET to allow specifying cpu affinity for camera and EVR threads.
+	Added support for cfg file POWER macro to specify a remote controlled power outlet PV prefix.
+	Updated to latest module releases, many improvements to camera timing and serial comms
+	Loading $IOCADMIN/db/devIocInfo.db and $EVENT2/db/devEvrInfo.db and added ffmpegUsed.db
+
 R1.20.0: 2018-07-19, bhill
 	Updated for ADEdtPdv/R2.3.0
 	Replace RELEASE_SITE w/ one generated via epics-update -r
