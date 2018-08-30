@@ -1,3 +1,6 @@
+R2.0.1: 2018-08-29, bhill
+	Update to ADEdtPdv/R3.4.0 for another serial comm fix.
+
 R2.0.0: 2018-08-29, bhill
 	Added MCoreUtils and cfg macro CPU_AFFINITY_SET to allow specifying cpu affinity for camera and EVR threads.
 	Added support for cfg file POWER macro to specify a remote controlled power outlet PV prefix.
