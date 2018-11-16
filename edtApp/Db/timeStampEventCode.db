@@ -22,11 +22,12 @@
 
 record( ao, "$(CAM):CamTrigDelay" )
 {
-	field( PINI, "YES" )
+field( TPRO, "$(TPRO=2)" )
 	field( PREC, "4" )
 	field( EGU,  "sec" )
 	field( FLNK, "$(CAM):CamTrigDelayCalc" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC HOPR LOPR PREC VAL" )
+# Dropping PINI and autosave of VAL field as it's already autosaved via the EVR trigger delay
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC HOPR LOPR PREC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
 }
 
@@ -36,9 +37,10 @@ record( calcout, "$(CAM):CamTrigDelayCalc" )
 {
 	field( INPA, "$(CAM):CamTrigDelay NPP MS" )
 	field( INPB, "$(CAM):CamDelayScale CPP MS" )
-	field( CALC, "A*B" )
-	field( OUT,  "$(CAM_DLY=) PP" )
-	field( EGU,  "sec" )
+	field( CALC, "FLOOR(A*B)" )
+	field( OOPT, "On Change" )
+	field( OUT,  "$(CAM_DLY=) PP MS" )
+	field( EGU,  "$(CAM_DLY_EGU=ns)" )
 	field( PREC, "4" )
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC PREC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
@@ -53,13 +55,17 @@ record( longout, "$(CAM):CamDelayScale" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
 }
 
-record( calc, "$(CAM):CamTrigDelay_RBV" )
+record( calcout, "$(CAM):CamTrigDelay_RBV" )
 {
+field( TPRO, "$(TPRO=2)" )
 	field( INPA, "$(CAM_DLY_RBV=unused) CPP MS" )
 	field( INPB, "$(CAM):CamDelayScale CPP MS" )
 	field( CALC, "B==0?A:(A/B)" )
 	field( EGU,  "sec" )
 	field( PREC, "4" )
+	field( OOPT, "On Change" )
+	field( OUT,  "$(CAM):CamTrigDelay PP MS" )
+#	field( PINI, "YES"
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC PREC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
 }
@@ -82,17 +88,34 @@ record( calcout, "$(CAM):ExpectedDelay_Calc" )
 
 record( longout, "$(CAM):CamEventCode" )
 {
-	field( VAL,  "40" )
+field( TPRO, "$(TPRO=2)" )
+	field( VAL,  "-1" )
 	field( OUT,  "$(CAM_TRIG):TEC CPP NMS" )
-	field( PINI, "YES" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
+# Dropping PINI and autosave of VAL field as it's already autosaved via the EVR trigger event code
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR VAL" )
 }
+
+# Use CA to monitor and update when EVR event code changes
 record( longin, "$(CAM):CamEventCode_RBV" )
 {
+field( TPRO, "$(TPRO=2)" )
 	field( INP,  "$(CAM_TRIG):EC_RBV CPP MS" )
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC VAL" )
+	field( FLNK, "$(CAM):CamEventCodeCalc" )
+}
+# This record keeps CAM event codes in sync if user changes EVR directly
+record( calcout, "$(CAM):CamEventCodeCalc" )
+{
+	field( INPA, "$(CAM):CamEventCode NPP NMS" )
+	field( INPB, "$(CAM):CamEventCode_RBV NPP MS" )
+	field( CALC, "A!=B" )
+	field( OOPT, "When Non-zero" )
+	field( DOPT, "Use OCAL" )
+	field( OCAL, "B" )
+	field( OUT,  "$(CAM):CamEventCode PP MS" )
+	field( PREC, "0" )
 }
 
 record( ai, "$(CAM):CamRepRate_RBV" )
