@@ -33,6 +33,9 @@ DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
 
 REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
 
+# Create iocRelease.db
+IOCRELEASE_DB	+=	iocRelease.db
+
 #
 # Install Camera db, configuration, and protocol files
 # The driver will expect that each camera model will
