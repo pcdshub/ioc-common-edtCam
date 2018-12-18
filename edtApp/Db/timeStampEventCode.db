@@ -116,7 +116,7 @@ record( calcout, "$(CAM):CamEventCodeCalc" )
 {
 	field( INPA, "$(CAM):CamEventCode NPP NMS" )
 	field( INPB, "$(CAM):CamEventCode_RBV NPP MS" )
-	field( CALC, "A!=B" )
+	field( CALC, "A!=B&&B!=0" )
 	field( OOPT, "When Non-zero" )
 	field( DOPT, "Use OCAL" )
 	field( OCAL, "B" )
@@ -124,25 +124,26 @@ record( calcout, "$(CAM):CamEventCodeCalc" )
 	field( PREC, "0" )
 }
 
-record( ai, "$(CAM):CamRepRate_RBV" )
-{
-	field( INP, "$(CAM_TRIG):RATE CPP MS" )
-	field( EGU,  "Hz" )
-	field( PREC, "1" )
-	field( FLNK, "$(CAM):CamRepDur" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
-	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
-}
-
-record( calc, "$(CAM):CamRepDur" )
-{
-	field( INPA, "$(CAM,undefined):CamRepRate_RBV CPP MS" )
-	field( CALC, "A==0?10:(1/A)" )
-	field( EGU,  "sec" )
-	field( PREC, "3" )
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
-	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
-}
+# These records are in $ADEDTPDV/edtApp/Db/edtPdvBase.template
+#record( ai, "$(CAM):CamRepRate_RBV" )
+#{
+#	field( INP, "$(CAM_TRIG):RATE CPP MS" )
+#	field( EGU,  "Hz" )
+#	field( PREC, "1" )
+#	field( FLNK, "$(CAM):CamRepDur" )
+#	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
+#	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
+#}
+#
+#record( calc, "$(CAM):CamRepDur" )
+#{
+#	field( INPA, "$(CAM,undefined):CamRepRate_RBV CPP MS" )
+#	field( CALC, "A==0?10:(1/A)" )
+#	field( EGU,  "sec" )
+#	field( PREC, "3" )
+#	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC" )
+#	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC PREC VAL" )
+#}
 
 
 # This record monitors the trigger mode and puts the timestamp source
