@@ -3,8 +3,8 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 80
-y 96
+x 1076
+y 24
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -842,9 +842,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 488
+x 448
 y 72
-w 140
+w 148
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -862,10 +862,10 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 644
+x 608
 y 72
-w 59
-h 18
+w 88
+h 20
 controlPv "$(P)$(R)AcquireTime"
 format "decimal"
 font "helvetica-medium-r-12.0"
@@ -892,7 +892,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 488
+x 480
 y 236
 w 140
 h 20
@@ -912,9 +912,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 72
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)AcquireTime_RBV"
 font "helvetica-medium-r-12.0"
@@ -938,9 +938,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 236
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)AcquirePeriod_RBV"
 font "helvetica-medium-r-12.0"
@@ -966,7 +966,7 @@ minor 0
 release 0
 x 584
 y 176
-w 120
+w 112
 h 20
 fgColor index 25
 bgColor index 5
@@ -986,7 +986,7 @@ minor 0
 release 0
 x 584
 y 208
-w 120
+w 112
 h 20
 fgColor index 25
 bgColor index 5
@@ -1044,9 +1044,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 176
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)ImageMode_RBV"
 font "helvetica-medium-r-12.0"
@@ -1069,9 +1069,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 208
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)TriggerMode_RBV"
 font "helvetica-medium-r-12.0"
@@ -1094,9 +1094,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 488
+x 448
 y 148
-w 140
+w 148
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -1114,9 +1114,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 148
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)NumImages_RBV"
 font "helvetica-medium-r-12.0"
@@ -1139,10 +1139,10 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 644
+x 608
 y 148
-w 60
-h 18
+w 88
+h 20
 controlPv "$(P)$(R)NumImages"
 format "decimal"
 font "helvetica-medium-r-12.0"
@@ -1180,9 +1180,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 644
+x 632
 y 120
-w 60
+w 64
 h 20
 controlPv "$(P)$(R)Gain"
 format "decimal"
@@ -1207,7 +1207,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 600
+x 592
 y 120
 w 32
 h 20
@@ -1227,7 +1227,7 @@ beginObjectProperties
 major 4
 minor 2
 release 0
-x 488
+x 472
 y 120
 w 112
 h 20
@@ -1256,9 +1256,9 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 712
+x 704
 y 120
-w 88
+w 96
 h 20
 
 beginGroup
@@ -1269,9 +1269,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 120
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)Gain_RBV"
 font "helvetica-medium-r-12.0"
@@ -3236,7 +3236,7 @@ beginObjectProperties
 major 4
 minor 0
 release 0
-x 644
+x 636
 y 236
 w 59
 h 18
@@ -3249,7 +3249,7 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 644
+x 636
 y 236
 w 59
 h 18
@@ -3482,17 +3482,18 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 712
+x 704
 y 96
-w 88
+w 96
 h 20
 controlPv "$(P)$(R)CamTrigDelay_RBV"
+format "exponential"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 15
 fgAlarm
 bgColor index 12
-limitsFromDb
+precision 3
 nullColor index 40
 smartRefresh
 useHexPrefix
@@ -3508,12 +3509,12 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 644
+x 608
 y 96
-w 59
+w 88
 h 18
 controlPv "$(P)$(R)CamTrigDelay"
-format "decimal"
+format "exponential"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
 fgColor index 25
@@ -3522,7 +3523,7 @@ bgColor index 5
 editable
 autoHeight
 motifWidget
-limitsFromDb
+precision 4
 nullColor index 40
 smartRefresh
 fastUpdate
@@ -3538,7 +3539,7 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 488
+x 456
 y 96
 w 140
 h 20
