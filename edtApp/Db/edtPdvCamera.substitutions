@@ -5,11 +5,12 @@
 file ADBase.template
 {
 	{
-	P		= $(CAM),
-	R		= :,
-	PORT	= $(CAM_PORT),
-	ADDR	= 0,
-	TIMEOUT	= 1
+	P			= $(CAM),
+	R			= :,
+	ADDR		= "\$(ADDR=0)",
+	TIMEOUT		= "\$(TIMEOUT=1)",
+	PORT		= "$(CAM_PORT)",
+	RATE_SMOOTH	= "\$(RATE_SMOOTH=0.2)"
 	}
 }
 
@@ -28,6 +29,14 @@ file edtPdvBase.template
 	}
 }
 
+file boxLimits.template
+{
+	{
+	P				= $(CAM),
+	R				= :,
+	}
+}
+
 file cross.db
 {
 	{
@@ -42,7 +51,6 @@ file timeStampEventCode.db
 	CAM				= "$(CAM)",
 	TSS				= "$(CAM):TSS",
 	CAM_DLY			= "$(CAM_TRIG):TDES",
-	CAM_DLY_RBV		= "$(CAM_TRIG):BW_TDES",
 	}
 }
 
