@@ -3,15 +3,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
-DB += ffmpegUsed.db
 DB_INSTALLS += $(EVENT2)/db/devEvrInfo.db
-
-# Create and install EDT Camera DB Files
-DB += bld_hist.db
-DB += edtCam_hist.db
-DB += edtPdvCamera.db
-DB += pluginBldSpectrometer.db
-DB += cannedSequences.db
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -20,25 +12,43 @@ DB += cannedSequences.db
 DB_INSTALLS += $(TOP)/edtApp/Db/pluginBldSpectrometer.cmd
 DB_INSTALLS += $(ASYN)/db/asynRecord.db
 DB_INSTALLS += $(AUTOSAVE)/db/save_restoreStatus.db
-DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
-DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
-DB_INSTALLS += $(EVENT2)/db/eventCodeDelays.db
 DB_INSTALLS += $(IOCADMIN)/db/iocSoft.db
 DB_INSTALLS += $(IOCADMIN)/db/devIocInfo.db
-DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
-DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.cmd)
-DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.db)
-DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
-DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
-
-REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
 
 # Create iocRelease.db
 IOCRELEASE_DB	+=	iocRelease.db
 
+ifdef EVENT2
+DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
+DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
+DB_INSTALLS += $(EVENT2)/db/eventCodeDelays.db
+ifdef TIMESTAMPFIFO
+DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
+endif
+endif
+
+# Install ADStream db files
+DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.db)
+
+# Install ADStream cmd scripts
+DB_INSTALLS += $(wildcard $(ADSTREAM)/db/*.cmd)
+
+DB += ffmpegUsed.db
+ifdef FFMPEGSERVER
+# Install ffmpegServer files
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
+DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
+endif
+
 #
-# Install Camera db, configuration, and protocol files
-# The driver will expect that each camera model will
+# Create and install Camera DB Files
+DB += bld_hist.db
+DB += edtCam_hist.db
+DB += edtPdvCamera.db
+DB += pluginBldSpectrometer.db
+DB += cannedSequences.db
+
+# The EDT driver will expect that each camera model will
 # have 3 versions of the PDV configuration file for
 # free run, external triggered, and external pulse mode.
 #
@@ -88,8 +98,10 @@ ARCHIVE += bld_hist.archive
 ARCHIVE += edtCam_hist.archive
 ARCHIVE += edt-ioc.archive
 ARCHIVE += pluginBldSpectrometer.archive
-ARCHIVE += archive_evr_PMC.archive
-ARCHIVE += archive_evr_SLAC.archive
+ifdef EVENT2
+ARCHIVE += $(EVENT2)/archive/archive_evr_PMC.archive
+ARCHIVE += $(EVENT2)/archive/archive_evr_SLAC.archive
+endif
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -99,8 +111,13 @@ REQ += bld_hist.req
 REQ += edtCam_hist.req
 REQ += edt-ioc.req
 REQ += pluginBldSpectrometer.req
-REQ += autosave_evr_PMC.req
-REQ += autosave_evr_SLAC.req
+
+ifdef EVENT2
+# Create and install autosave Files
+REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
+REQ += $(EVENT2)/autosave/autosave_evr_PMC.req
+REQ += $(EVENT2)/autosave/autosave_evr_SLAC.req
+endif
 
 include $(TOP)/configure/RULES
 #----------------------------------------

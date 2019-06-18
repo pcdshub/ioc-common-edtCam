@@ -107,9 +107,6 @@ edt_SYS_LIBS += z
 edt_SYS_LIBS += pthread
 edt_SYS_LIBS += dl
 
-# areaDetector ADSimDetector
-$(PROD_NAME)_LIBS += simDetector
-
 ifdef FFMPEGSERVER
 # ffmpegServer
 $(PROD_NAME)_DBD += ffmpegServer.dbd
