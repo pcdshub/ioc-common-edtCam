@@ -14,7 +14,6 @@
 #
 # Optional macros:
 #	CAM_DLY			- PV to write camera trigger delay to,  typically $CAM_TRIG:TDES
-#	CAM_DLY_RBV		- PV for camera trigger delay readback, typically $CAM_TRIG:BW_TDES
 #	CAM_DLY_EGU		- EGU for camera delay, defaults to ns
 #	CAM_DLY_SCALE	- Scale factor for coverting camera delay to sec, defaults to 1e9
 #	TSDLY_PV		- PV to write timestamp delay to, default to $(TSS):ExpectedDelay
@@ -22,12 +21,11 @@
 
 record( ao, "$(CAM):CamTrigDelay" )
 {
-field( TPRO, "$(TPRO=2)" )
+#field( TPRO, "$(TPRO=2)" )
 	field( PREC, "4" )
 	field( EGU,  "sec" )
 	field( FLNK, "$(CAM):CamTrigDelayCalc" )
-# Dropping PINI and autosave of VAL field as it's already autosaved via the EVR trigger delay
-	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC HOPR LOPR PREC" )
+	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV     DESC HOPR LOPR PREC VAL" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC HOPR LOPR PREC VAL" )
 }
 
@@ -59,10 +57,10 @@ record( longout, "$(CAM):CamDelayScale" )
 
 record( calcout, "$(CAM):CamTrigDelay_RBV" )
 {
-field( TPRO, "$(TPRO=2)" )
-	field( SDIS, "$(CAM_TRIG):STARTING_UP" )
-	field( INPA, "$(CAM_DLY_RBV=unused) CPP MS" )
-	field( INPB, "$(CAM):CamDelayScale CPP MS" )
+#field( TPRO, "$(TPRO=2)" )
+	field( SDIS, "$(CAM_TRIG):STARTING_UP CP NMS" )
+	field( INPA, "$(CAM_DLY=unused) CP MS" )
+	field( INPB, "$(CAM):CamDelayScale CP MS" )
 	field( CALC, "B==0?A:(A/B)" )
 	field( EGU,  "sec" )
 	field( PREC, "4" )
@@ -92,7 +90,7 @@ record( calcout, "$(CAM):ExpectedDelay_Calc" )
 
 record( longout, "$(CAM):CamEventCode" )
 {
-field( TPRO, "$(TPRO=2)" )
+#field( TPRO, "$(TPRO=2)" )
 #	field( VAL,  "-1" )
 	field( SDIS, "$(CAM_TRIG):STARTING_UP" )
 	field( OUT,  "$(CAM_TRIG):TEC PP NMS" )
@@ -104,9 +102,9 @@ field( TPRO, "$(TPRO=2)" )
 # Use CA to monitor and update when EVR event code changes
 record( longin, "$(CAM):CamEventCode_RBV" )
 {
-field( TPRO, "$(TPRO=2)" )
-	field( SDIS, "$(CAM_TRIG):STARTING_UP" )
-	field( INP,  "$(CAM_TRIG):EC_RBV CPP MS" )
+#field( TPRO, "$(TPRO=2)" )
+	field( SDIS, "$(CAM_TRIG):STARTING_UP CP NMS" )
+	field( INP,  "$(CAM_TRIG):EC_RBV CP MS" )
 	info( autosaveFields, "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC" )
 	info( archiveFields,  "HHSV HIGH HIHI HSV LLSV LOLO LOW LSV EGU DESC VAL" )
 	field( FLNK, "$(CAM):CamEventCodeCalc" )

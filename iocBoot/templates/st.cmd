@@ -75,7 +75,7 @@ $$ENDIF(CPU_AFFINITY_SET)
 
 # Set iocsh debug variables
 var DEBUG_TS_FIFO $$IF(DEBUG_TS_FIFO,$$DEBUG_TS_FIFO,1)
-var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,2)
+var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,1)
 var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 var DEBUG_GENICAM $$IF(DEBUG_GENICAM,$$DEBUG_GENICAM,1)
 var save_restoreLogMissingRecords $$IF(save_restoreLogMissingRecords,$$save_restoreLogMissingRecords,0)
@@ -136,8 +136,8 @@ $$ELSE(NO_ST_CMD_DELAY)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
-# Provide some reasonable defaults for plugin macros
-# May be overridden by $(PLUGINS).cmd
+#- Provide some reasonable defaults for plugin macros
+#- May be overridden by $(PLUGINS).cmd
 epicsEnvSet( "PLUGIN_SRC", "$(CAM_PORT)" )
 epicsEnvSet( "N", "1" )
 epicsEnvSet( "QSIZE", "10" )
@@ -180,16 +180,16 @@ epicsEnvSet( "PLUGIN_SRC",   "$$IF(SRC,$$SRC,CAM)" )
 $$ENDLOOP(PLUGIN)
 
 $$LOOP(BLD)
-# TODO: Reconfigure BLD as Spectrometer plugin
+#- TODO: Reconfigure BLD as Spectrometer plugin
 # Configure and load BLD plugin
 epicsEnvSet( "N",            "$$CALC{INDEX+1}" )
 epicsEnvSet( "PLUGIN_SRC",   "CAM" )
 < db/pluginBldSpectrometer.cmd
 $$IF(HIST)
 # Load history records
-# TODO: Fix me!  bld_hist.substitutions should become something
-# along the lines of
-# dbLoadRecords( "db/plugin$$(NAME)Hist.db 
+#- TODO: Fix me!  bld_hist.substitutions should become something
+#- along the lines of
+#- dbLoadRecords( "db/plugin$$(NAME)Hist.db 
 dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
 $$ENDIF(HIST)
 $$ENDLOOP(BLD)
@@ -228,7 +228,7 @@ $$ENDIF(CAPTAR)
 dbLoadRecords( "db/devIocInfo.db",			"$(DEV_INFO)" )
 
 # Setup autosave
-dbLoadRecords( "db/save_restoreStatus.db",	"IOC=$(IOC_PV)" )
+dbLoadRecords( "db/save_restoreStatus.db",	"P=$(IOC_PV),IOC=$(IOC_PV)" )
 set_savefile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 set_requestfile_path( "$(BUILD_TOP)/autosave" )
 # Also look in the iocData autosave folder for auto generated req files
@@ -236,9 +236,10 @@ set_requestfile_path( "$(IOC_DATA)/$(IOC)/autosave" )
 save_restoreSet_status_prefix( "$(IOC_PV):" )
 save_restoreSet_IncompleteSetsOk( 1 )
 save_restoreSet_DatedBackupFiles( 1 )
-# pass0 autosave restore is not needed for cameras and slows IOC boot
-#set_pass0_restoreFile( "autoSettings.sav" )
-set_pass1_restoreFile( "autoSettings.sav" )
+#- pass0 autosave restore IS needed for cameras
+set_pass0_restoreFile( "autoSettings.sav" )
+#- Is pass1 needed?  slows IOC boot
+#-set_pass1_restoreFile( "autoSettings.sav" )
 
 #
 # iocInit: Initialize the IOC and start processing records
@@ -285,6 +286,7 @@ $$ENDLOOP(PLUGIN)
 # This is for the FEE Spectrometer
 $$LOOP(BLD)
 $$IF(BLD_SRC)
+# Configure the BLD client
 epicsEnvSet( "BLD_IP",      "239.255.24.$$BLD_SRC" )
 epicsEnvSet( "BLD_PORT",    "$$IF(PORT,$$PORT,10148)" )
 epicsEnvSet( "BLD_MAX",     "$$IF(MAX,$$MAX,8980)" )    # 9000 MTU - 20 byte header
@@ -305,7 +307,7 @@ $$ELSE(NO_ST_CMD_DELAY)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
-# TODO: Remove these dbpf calls if possible
+#- TODO: Remove these dbpf calls if possible
 # Enable callbacks
 dbpf $(CAM_PV):ArrayCallbacks 1
 dbpf $(CAM_PV):LAUNCH_EDM "$$TOP/iocBoot/$(IOCNAME)/edm-$(IOCNAME).cmd"
