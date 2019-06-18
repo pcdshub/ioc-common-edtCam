@@ -1,3 +1,11 @@
+R2.1.0: 2019-06-17 Bruce Hill
+	Many changes to reduce error output during bootup.
+	Add guard against setting CamEventCode to 0.
+	Added records so CAM PVs for delay and event code stay in sync w/ EVR PVs.
+	Added support for building and loading iocRelease.db.
+	Changed trigger delay widgets to exp notation and tweaked layout.
+	Updated to latest modules and build support.
+
 R2.0.1: 2018-08-29, bhill
 	Update to ADEdtPdv/R3.4.0 for another serial comm fix.
 
