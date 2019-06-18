@@ -1,4 +1,4 @@
-file autosave_pmc_evr.tpl-req
+file autosave_evr_PMC.tpl-req
 {
 	{
 		# Hack till msi supports empty substitutions

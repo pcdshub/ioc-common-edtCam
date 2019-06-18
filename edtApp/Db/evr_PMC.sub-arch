@@ -1,4 +1,4 @@
-file archive_pmc_evr.tpl-arch
+file archive_evr_PMC.tpl-arch
 {
 	{
 		# Hack till msi supports empty substitutions
