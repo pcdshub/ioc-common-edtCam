@@ -40,10 +40,12 @@ DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.db)
 DB_INSTALLS += $(wildcard $(FFMPEGSERVER)/db/plugin*.cmd)
 endif
 
-#
-# Create and install Camera DB Files
+# History DB Files
 DB += bld_hist.db
 DB += edtCam_hist.db
+
+#
+# Create and install Camera DB Files
 DB += edtPdvCamera.db
 DB += pluginBldSpectrometer.db
 DB += cannedSequences.db
@@ -89,6 +91,7 @@ DB_INSTALLS += $(addsuffix f.cfg,	$(MODELS))
 DB_INSTALLS += $(addsuffix t.cfg,	$(MODELS))
 DB_INSTALLS += $(addsuffix p.cfg,	$(MODELS))
 DB_INSTALLS += $(addsuffix .proto,	$(MODELS))
+#DB_INSTALLS += $(ADEDTPDV)/db/ptm4200_12.cfg
 
 #----------------------------------------------------
 # Create and install (or just install)
@@ -114,7 +117,7 @@ REQ += pluginBldSpectrometer.req
 
 ifdef EVENT2
 # Create and install autosave Files
-REQ_INSTALLS += $(EVENT2)/autosave/eventCodeDelays.req
+REQ += $(EVENT2)/autosave/eventCodeDelays.req
 REQ += $(EVENT2)/autosave/autosave_evr_PMC.req
 REQ += $(EVENT2)/autosave/autosave_evr_SLAC.req
 endif

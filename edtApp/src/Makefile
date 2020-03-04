@@ -23,17 +23,18 @@ $(PROD_NAME)_DBD += iocAdmin.dbd
 $(PROD_NAME)_DBD += caPutLog.dbd
 $(PROD_NAME)_DBD += history.dbd
 
-# Multicore utilities
-$(PROD_NAME)_DBD += mcoreutils.dbd
 
-# pvaSrv
-#$(PROD_NAME)_DBD += dbPv.dbd
+# pva2pva
+$(PROD_NAME)_DBD += qsrv.dbd
 
 ifdef EVENT2
 # Timing and EVR
 $(PROD_NAME)_DBD += diagTimer.dbd
 $(PROD_NAME)_DBD += event2Support.dbd
 $(PROD_NAME)_DBD += devEvent2Er.dbd
+
+# Multicore utilities
+$(PROD_NAME)_DBD += mcoreutils.dbd
 
 # ADCore timeStamp provider
 $(PROD_NAME)_DBD += timeStampFifo.dbd
@@ -59,17 +60,14 @@ edt_SRCS_DEFAULT += edtMain.cpp
 serial_cmd_SRCS += serial_cmd.c
 serial_cmd_LIBS += pdv
 
-# Add locally compiled object code
-#edt_SRCS += dbSubExample.c
-
 # Add required libraries
 # base and std modules
+PROD_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
+
 $(PROD_NAME)_LIBS += devIocStats
 $(PROD_NAME)_LIBS += caPutLog
 $(PROD_NAME)_LIBS += bldClient
 $(PROD_NAME)_LIBS += history
-$(PROD_NAME)_LIBS += mcoreutils
-
 
 # pvaSrv
 #$(PROD_NAME)_LIBS += pvaSrv
@@ -82,6 +80,8 @@ $(PROD_NAME)_LIBS += timeStampFifo
 $(PROD_NAME)_LIBS += event2Support
 $(PROD_NAME)_LIBS += devEvent2Er
 $(PROD_NAME)_LIBS += drvEvent2
+
+$(PROD_NAME)_LIBS += mcoreutils
 
 # Diagnostics
 $(PROD_NAME)_LIBS += diagTimer
@@ -123,17 +123,9 @@ $(PROD_NAME)_LIBS += bz2
 $(PROD_NAME)_LIBS += lzma
 endif
 
-
-# install: showme
-
-
 #===========================
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
-
-showme:
-	@echo T_A=$(T_A)
-	@echo PKG_ARCH=$(PKG_ARCH)
 
