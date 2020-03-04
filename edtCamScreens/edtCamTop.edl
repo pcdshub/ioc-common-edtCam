@@ -4,7 +4,7 @@ major 4
 minor 0
 release 1
 x 1076
-y 24
+y 48
 w 840
 h 980
 font "helvetica-medium-r-12.0"
@@ -3107,9 +3107,9 @@ beginObjectProperties
 major 4
 minor 1
 release 1
-x 36
+x 16
 y 340
-w 120
+w 140
 h 20
 font "helvetica-medium-r-12.0"
 fontAlign "right"
@@ -3117,7 +3117,7 @@ fgColor index 14
 bgColor index 0
 useDisplayBg
 value {
-  "Bits per Pixel"
+  "Live Image Bits per Pixel"
 }
 endObjectProperties
 
