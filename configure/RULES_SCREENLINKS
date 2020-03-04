@@ -53,17 +53,17 @@ updateScreenLinks_withCopies:
 	@mkdir -p   $(INSTALL_SCREENLINKS)/areaDetectorScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/asynScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/event2Screens
-	@mkdir -p   $(INSTALL_SCREENLINKS)/iocScreens
-	@mkdir -p   $(INSTALL_SCREENLINKS)/edtPdvScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/ffmpegScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/historyScreens
-	-@cp $(ADCORE)/areaDetectorHelp/*.*      $(INSTALL_SCREENLINKS)/areaDetectorHelp    2> /dev/null
-	-@cp $(ADCORE)/areaDetectorScreens/*.*   $(INSTALL_SCREENLINKS)/areaDetectorScreens 2> /dev/null
-	-@cp $(ADEDTPDV)/edtPdvScreens/*.*       $(INSTALL_SCREENLINKS)/edtPdvScreens       2> /dev/null
-	-@cp $(ADSTREAM)/ADStreamScreens/*.*     $(INSTALL_SCREENLINKS)/ADStreamScreens     2> /dev/null
-	-@cp $(ASYN)/asynScreens/*.*             $(INSTALL_SCREENLINKS)/asynScreens         2> /dev/null
-	-@cp $(EVENT2)/event2Screens/*.*         $(INSTALL_SCREENLINKS)/event2Screens       2> /dev/null
-	-@cp $(FFMPEGSERVER)/ffmpegScreens/*.*   $(INSTALL_SCREENLINKS)/ffmpegScreens       2> /dev/null
-	-@cp $(HISTORY)/historyScreens/*.*       $(INSTALL_SCREENLINKS)/historyScreens      2> /dev/null
-	-@cp $(IOCADMIN)/iocScreens/*.*          $(INSTALL_SCREENLINKS)/iocScreens          2> /dev/null
+	@mkdir -p   $(INSTALL_SCREENLINKS)/iocScreens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/edtPdvScreens
+	-@cp $(ADCORE)/areaDetectorHelp/*.*            $(INSTALL_SCREENLINKS)/areaDetectorHelp     2> /dev/null
+	-@cp $(ADCORE)/areaDetectorScreens/*.*         $(INSTALL_SCREENLINKS)/areaDetectorScreens  2> /dev/null
+	-@cp $(ADSTREAM)/ADStreamScreens/*.*           $(INSTALL_SCREENLINKS)/ADStreamScreens      2> /dev/null
+	-@cp $(ASYN)/asynScreens/*.*                   $(INSTALL_SCREENLINKS)/asynScreens          2> /dev/null
+	-@cp $(EVENT2)/event2Screens/*.*               $(INSTALL_SCREENLINKS)/event2Screens        2> /dev/null
+	-@cp $(FFMPEGSERVER)/ffmpegScreens/*.*         $(INSTALL_SCREENLINKS)/ffmpegScreens        2> /dev/null
+	-@cp $(HISTORY)/historyScreens/*.*             $(INSTALL_SCREENLINKS)/historyScreens       2> /dev/null
+	-@cp $(IOCADMIN)/iocScreens/*.*                $(INSTALL_SCREENLINKS)/iocScreens           2> /dev/null
+	-@cp $(ADEDTPDV)/edtPdvScreens/*.*             $(INSTALL_SCREENLINKS)/edtPdvScreens        2> /dev/null
 
