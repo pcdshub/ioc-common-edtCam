@@ -1,3 +1,10 @@
+R2.1.1: 2020-03-03 Bruce Hill
+	Update to latest EDT 5.5.8.2 driver and EPICS modules
+	Cleanup Makefiles
+	Minor label change for bits/pixel
+	Update ioc-sample.cfg
+	Minor cleanup to RULES_SCREENLINKS
+
 R2.1.0: 2019-06-17 Bruce Hill
 	Many changes to reduce error output during bootup.
 	Add guard against setting CamEventCode to 0.
