@@ -79,6 +79,7 @@ var DEBUG_EDT_PDV $$IF(DEBUG_EDT_PDV,$$DEBUG_EDT_PDV,1)
 var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 var DEBUG_GENICAM $$IF(DEBUG_GENICAM,$$DEBUG_GENICAM,1)
 var save_restoreLogMissingRecords $$IF(save_restoreLogMissingRecords,$$save_restoreLogMissingRecords,0)
+var dbLoadSuspendOnError $$IF(dbLoadSuspendOnError,$$dbLoadSuspendOnError,1)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
@@ -128,7 +129,7 @@ $$ENDIF(BEAM_EC)
 
 $$IF(EVR_PV)
 # Load timestamp plugin
-dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):BeamEventCode_RBV" )
+dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):BeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
 $$ENDIF(EVR_PV)
 
 $$IF(NO_ST_CMD_DELAY)
@@ -194,6 +195,7 @@ dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
 $$ENDIF(HIST)
 $$ENDLOOP(BLD)
 
+# Load records for changing from FULL to HiRep camera mode
 dbLoadRecords("db/cannedSequences.db",  "CAM=$(CAM_PV)" )
 
 $$IF(NO_ST_CMD_DELAY)
