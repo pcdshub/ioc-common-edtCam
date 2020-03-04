@@ -6,9 +6,9 @@ include $(TOP)/RELEASE_SITE
 # Define the version of modules needed by
 # IOC apps or other Support apps
 # ===============================================================
-ADCORE_MODULE_VERSION               = R3.1-2.3.3
-ADEDTPDV_MODULE_VERSION             = R3.6.0
-ADSTREAM_MODULE_VERSION             = R2.7.0
+ADCORE_MODULE_VERSION               = R3.1-2.3.4
+ADEDTPDV_MODULE_VERSION             = R3.7.1
+ADSTREAM_MODULE_VERSION             = R2.7.2
 ADSUPPORT_MODULE_VERSION            = R1.1-0.1.1
 ASYNGENICAM_MODULE_VERSION          = R1.1.0
 ASYN_MODULE_VERSION                 = R4.32-1.0.0
@@ -21,18 +21,17 @@ DIAG_TIMER_MODULE_VERSION           = R1.9.2
 EVENT2_MODULE_VERSION               = R4.6.0
 FFMPEGSERVER_MODULE_VERSION         = R2.1.1-2.2.1
 HISTORY_MODULE_VERSION              = R2.7.0
-IOCADMIN_MODULE_VERSION             = R3.1.15-1.11.0
+IOCADMIN_MODULE_VERSION             = R3.1.16-1.2.0
 MCOREUTILS_MODULE_VERSION           = R1.2.1-0.1.0
 NULLHTTPD_MODULE_VERSION            = R0.5.1-0.4.0
 STREAMDEVICE_MODULE_VERSION         = R2.8.9-1.0.1
-TIMESTAMPFIFO_MODULE_VERSION        = R1.7.1
+TIMESTAMPFIFO_MODULE_VERSION        = R1.7.2
 
 ifndef BASE_7_0
 NORMATIVETYPES_MODULE_VERSION       = R5.2.0-0.0.1
 PVA2PVA_MODULE_VERSION              = R1.0.0-0.3.1
 PVACCESS_MODULE_VERSION             = R6.0.0-0.3.0
-#PVASRV_MODULE_VERSION               = R0.12.0-0.2.1
-PVDATABASE_MODULE_VERSION           = R4.3.0-0.0.1
+PVDATABASE_MODULE_VERSION           = R4.3.0-0.0.3
 PVDATA_MODULE_VERSION               = R7.0.0-0.0.1
 endif
 
