@@ -10,7 +10,7 @@ file ADBase.template
 	ADDR		= "\$(ADDR=0)",
 	TIMEOUT		= "\$(TIMEOUT=1)",
 	PORT		= "$(CAM_PORT)",
-	RATE_SMOOTH	= "\$(RATE_SMOOTH=0.2)"
+	RATE_SMOOTH	= "\$(RATE_SMOOTH=0.075)"
 	}
 }
 
