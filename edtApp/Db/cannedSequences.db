@@ -29,7 +29,7 @@ record( ao, "$(CAM):Def120HzExposure" )
 record( longout, "$(CAM):Def120HzMinY" )
 {
     field( DESC, "Default Y start line" )
-	field( DOL,  "0" )
+	field( DOL,  "828" )
     field( PINI, "YES" )
 	info( autosaveFields, "DESC VAL" )
 }
