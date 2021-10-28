@@ -7,7 +7,7 @@ include $(TOP)/RELEASE_SITE
 # IOC apps or other Support apps
 # ===============================================================
 ADCORE_MODULE_VERSION               = R3.1-2.3.4
-ADEDTPDV_MODULE_VERSION             = R3.7.1
+ADEDTPDV_MODULE_VERSION             = R3.7.2
 ADSTREAM_MODULE_VERSION             = R2.7.2
 ADSUPPORT_MODULE_VERSION            = R1.1-0.1.1
 ASYNGENICAM_MODULE_VERSION          = R1.1.0
@@ -83,9 +83,10 @@ EPICS_BASE      = $(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
 #MY_MODULES = /afs/slac/u/ey/bhill/git-wa/modules
 #MY_MODULES  = /reg/neh/home5/bhill/git-wa-neh/modules
 #MY_MODULES = /reg/neh/home5/slepicka/sandbox_lcls/git
+#MCB_MODULES = /cds/home/m/mcbrowne/git/modules
 
 #ADCORE         = $(MY_MODULES)/ADCore-git
-#ADEDTPDV       = $(MY_MODULES)/ADEdtPdv-git
+#ADEDTPDV        = $(MCB_MODULES)/ADEdtPdv
 #ADSTREAM       = $(MY_MODULES)/ADStream-git
 #ASYNGENICAM    = $(MY_MODULES)/asynGenicam-git
 #ASYN           = $(MY_MODULES)/asyn-git
