@@ -422,7 +422,7 @@ record( bo, "$(P)$(R)SendBld" )
 {
 	field( PINI, "YES" )
 	field( DTYP, "asynInt32" )
-	field( OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_SEND" )
+	field( OUT,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_BLD_SEND" )
 	field( VAL,  "0" )
 	field( ZNAM, "No" )
 	field( ONAM, "Yes" )
@@ -432,12 +432,27 @@ record( bo, "$(P)$(R)SendBld" )
 record( bi, "$(P)$(R)SendBld_RBV" )
 {
 	field( DTYP, "asynInt32" )
-	field( INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_SEND" )
+	field( INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_BLD_SEND" )
 	field( ZNAM, "No" )
 	field( ONAM, "Yes" )
 	field( ZSV,  "NO_ALARM" )
 	field( OSV,  "MINOR" )
 	field( SCAN, "I/O Intr" )
+}
+
+###################################################################
+#  These records are updated with BLD status values
+###################################################################
+record( stringin, "$(P)$(R)BldIpAddr_RBV" )
+{
+	field( INP,  "$(BLD_IP)" )
+}
+record( longin, "$(P)$(R)BldCount_RBV" )
+{
+	field( DTYP, "asynInt32" )
+	field( INP,  "@asyn($(PORT),$(ADDR=0),$(TIMEOUT=1))SPEC_BLD_COUNT" )
+	field( SCAN, "I/O Intr" )
+	field( TSE,  "-2" )
 }
 
 ###################################################################

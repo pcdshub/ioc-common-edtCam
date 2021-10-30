@@ -16,4 +16,4 @@
 BldSpectrometerConfigure( "BLD$(N)", $(QSIZE), 0, "$(PLUGIN_SRC)", 0, 0, 0, 90, 0, 4 )
 
 # Load the plugin records
-dbLoadRecords( "db/pluginBldSpectrometer.db",  "CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),XSIZE=$(IMAGE_XSIZE),YSIZE=$(IMAGE_YSIZE),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH)" )
+dbLoadRecords( "db/pluginBldSpectrometer.db",  "CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),PLUGIN_SRC=$(PLUGIN_SRC),N=$(N),XSIZE=$(IMAGE_XSIZE),YSIZE=$(IMAGE_YSIZE),IMAGE_BIT_DEPTH=$(IMAGE_BIT_DEPTH),BLD_IP=$(BLD_IP)" )
