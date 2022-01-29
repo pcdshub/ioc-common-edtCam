@@ -6,26 +6,26 @@ include $(TOP)/RELEASE_SITE
 # Define the version of modules needed by
 # IOC apps or other Support apps
 # ===============================================================
-ADCORE_MODULE_VERSION               = R3.1-2.3.4
+ADCORE_MODULE_VERSION               = R3.9-1.0.2
 ADEDTPDV_MODULE_VERSION             = R3.7.2
-ADSTREAM_MODULE_VERSION             = R2.7.2
-ADSUPPORT_MODULE_VERSION            = R1.1-0.1.1
-ASYNGENICAM_MODULE_VERSION          = R1.1.0
-ASYN_MODULE_VERSION                 = R4.32-1.0.0
+ADSTREAM_MODULE_VERSION             = R3.0.0
+ADSUPPORT_MODULE_VERSION            = R1.9-0.1.0
+ASYNGENICAM_MODULE_VERSION          = R1.2.0
+ASYN_MODULE_VERSION                 = R4.39-1.0.0
 AUTOSAVE_MODULE_VERSION             = R5.8-2.1.0
 BLD_CLIENT_MODULE_VERSION           = R2.17.0
-BUSY_MODULE_VERSION                 = R1.6.1-0.2.6
+BUSY_MODULE_VERSION                 = R1.7.2.1-0.1.1
 CALC_MODULE_VERSION                 = R3.7-1.0.1
 CAPUTLOG_MODULE_VERSION             = R3.5-1.0.0
 DIAG_TIMER_MODULE_VERSION           = R1.9.2
-EVENT2_MODULE_VERSION               = R4.6.0
+EVENT2_MODULE_VERSION               = R5.5.2
 FFMPEGSERVER_MODULE_VERSION         = R2.1.1-2.2.1
 HISTORY_MODULE_VERSION              = R2.7.0
 IOCADMIN_MODULE_VERSION             = R3.1.16-1.2.0
 MCOREUTILS_MODULE_VERSION           = R1.2.1-0.1.0
 NULLHTTPD_MODULE_VERSION            = R0.5.1-0.4.0
-STREAMDEVICE_MODULE_VERSION         = R2.8.9-1.0.1
-TIMESTAMPFIFO_MODULE_VERSION        = R1.7.2
+STREAMDEVICE_MODULE_VERSION         = R2.8.9-1.2.0
+TIMESTAMPFIFO_MODULE_VERSION        = R1.8.2
 
 ifndef BASE_7_0
 NORMATIVETYPES_MODULE_VERSION       = R5.2.0-0.0.1
@@ -49,7 +49,7 @@ endif
 # If your build fails, look for these paths in your build output
 # ============================================================
 ADCORE          = $(EPICS_MODULES)/ADCore/$(ADCORE_MODULE_VERSION)
-ADEDTPDV        = $(EPICS_MODULES)/ADEdtPdv/$(ADEDTPDV_MODULE_VERSION)
+#ADEDTPDV        = $(EPICS_MODULES)/ADEdtPdv/$(ADEDTPDV_MODULE_VERSION)
 ADSTREAM        = $(EPICS_MODULES)/ADStream/$(ADSTREAM_MODULE_VERSION)
 ADSUPPORT       = $(EPICS_MODULES)/ADSupport/$(ADSUPPORT_MODULE_VERSION)
 ASYN            = $(EPICS_MODULES)/asyn/$(ASYN_MODULE_VERSION)
@@ -81,12 +81,12 @@ endif
 EPICS_BASE      = $(EPICS_SITE_TOP)/base/$(BASE_MODULE_VERSION)
 
 #MY_MODULES = /afs/slac/u/ey/bhill/git-wa/modules
-#MY_MODULES  = /reg/neh/home5/bhill/git-wa-neh/modules
+MY_MODULES = /cds/home/b/bhill/git-wa-neh/modules
 #MY_MODULES = /reg/neh/home5/slepicka/sandbox_lcls/git
-#MCB_MODULES = /cds/home/m/mcbrowne/git/modules
+#MY_MODULES = /cds/home/m/mcbrowne/git/modules
 
 #ADCORE         = $(MY_MODULES)/ADCore-git
-#ADEDTPDV        = $(MCB_MODULES)/ADEdtPdv
+ADEDTPDV       = $(MY_MODULES)/ADEdtPdv-git
 #ADSTREAM       = $(MY_MODULES)/ADStream-git
 #ASYNGENICAM    = $(MY_MODULES)/asynGenicam-git
 #ASYN           = $(MY_MODULES)/asyn-git
