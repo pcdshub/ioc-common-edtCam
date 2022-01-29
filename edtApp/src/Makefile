@@ -25,7 +25,7 @@ $(PROD_NAME)_DBD += history.dbd
 
 
 # pva2pva
-$(PROD_NAME)_DBD += qsrv.dbd
+#$(PROD_NAME)_DBD += qsrv.dbd
 
 ifdef EVENT2
 # Timing and EVR
