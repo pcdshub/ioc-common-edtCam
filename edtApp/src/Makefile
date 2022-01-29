@@ -22,10 +22,8 @@ include $(ADCORE)/ADApp/commonDriverMakefile
 $(PROD_NAME)_DBD += iocAdmin.dbd
 $(PROD_NAME)_DBD += caPutLog.dbd
 $(PROD_NAME)_DBD += history.dbd
+$(PROD_NAME)_DBD += system.dbd
 
-
-# pva2pva
-#$(PROD_NAME)_DBD += qsrv.dbd
 
 ifdef EVENT2
 # Timing and EVR

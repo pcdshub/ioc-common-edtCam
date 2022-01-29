@@ -264,6 +264,9 @@ makeAutosaveFileFromDbInfo( "$(IOC_DATA)/$(IOC)/autosave/autoSettings.req", "aut
 # Start autosave backups
 create_monitor_set( "autoSettings.req",  5,  "" )
 
+# Update archive file
+system( "cp $(BUILD_TOP)/archive/$(IOC).archive $(IOC_DATA)/$(IOC)/archive/$(IOC).archive" ) 
+
 # All IOCs should dump some common info after initial startup.
 < $(IOC_COMMON)/All/post_linux.cmd
 
