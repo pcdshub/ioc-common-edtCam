@@ -1,3 +1,14 @@
+# Release Notes for ioc/common/edtCam
+R2.2.0: 2022-01-29 Bruce Hill
+	Update archive file each time IOC boots
+	Update to base/R7.0.3.1-2.0, ADCore/R3.9-1.0.3, and other latest modules.
+	Fix PVAcess support
+	Fix default for Spectrometer 120HzMinY
+	Tweaked RATE_SMOOTH for camera ArrayRate_RBV calc
+
+R2.1.2: 2021-10-28 Michael Browne
+	Move to the latest and greatest with Opal4000 support.
+
 R2.1.1: 2020-03-03 Bruce Hill
 	Update to latest EDT 5.5.8.2 driver and EPICS modules
 	Cleanup Makefiles
