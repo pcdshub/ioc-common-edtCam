@@ -178,10 +178,12 @@ epicsEnvSet( "PLUGIN_SRC",   "$$IF(SRC,$$SRC,CAM)" )
 $$ENDLOOP(PLUGIN)
 
 $$LOOP(BLD)
+$$IF(BLD_SRC)
 #- TODO: Reconfigure BLD as Spectrometer plugin
 # Configure and load BLD plugin
 epicsEnvSet( "N",            "$$CALC{INDEX+1}" )
 epicsEnvSet( "PLUGIN_SRC",   "CAM" )
+epicsEnvSet( "BLD_IP",       "239.255.24.$$BLD_SRC" )
 < db/pluginBldSpectrometer.cmd
 $$IF(HIST)
 # Load history records
@@ -190,6 +192,7 @@ $$IF(HIST)
 #- dbLoadRecords( "db/plugin$$(NAME)Hist.db 
 dbLoadRecords("db/bld_hist.db",     "P=$(CAM_PV),R=:" )
 $$ENDIF(HIST)
+$$ENDIF(BLD_SRC)
 $$ENDLOOP(BLD)
 
 # Load records for changing from FULL to HiRep camera mode
