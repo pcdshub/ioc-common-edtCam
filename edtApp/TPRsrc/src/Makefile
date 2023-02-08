@@ -38,19 +38,22 @@ $(PROD_NAME)_DBD += mcoreutils.dbd
 $(PROD_NAME)_DBD += timeStampFifo.dbd
 endif
 
-$(PROD_NAME)_DBD += edtPdvSupport.dbd
-$(PROD_NAME)_DBD += stream.dbd
-$(PROD_NAME)_DBD += bldClient.dbd
+edt_DBD += edtPdvSupport.dbd
+edt_DBD += stream.dbd
+edt_DBD += bldClient.dbd
 
 # Genicam support
-$(PROD_NAME)_DBD += asynGenicam.dbd
+edt_DBD += asynGenicam.dbd
 
-#$(PROD_NAME)_DBD += genSubRecord.dbd
-$(PROD_NAME)_DBD += pluginBldSpectrometer.dbd
+#edt_DBD += genSubRecord.dbd
+edt_DBD += pluginBldSpectrometer.dbd
 
 # <name>_registerRecordDeviceDriver.cpp will be created from <name>.dbd
-$(PROD_NAME)_SRCS += $(PROD_NAME)_registerRecordDeviceDriver.cpp
-$(PROD_NAME)_SRCS_DEFAULT += $(PROD_NAME)Main.cpp
+edt_SRCS += edt_registerRecordDeviceDriver.cpp
+edt_SRCS += pluginBldSpectrometer.cpp
+# Disabling libedt.c as I only brought it in to add some error msgs for debugging an mmap problem
+#edt_SRCS += libedt.c
+edt_SRCS_DEFAULT += edtMain.cpp
 
 serial_cmd_SRCS += serial_cmd.c
 serial_cmd_LIBS += pdv
@@ -83,26 +86,24 @@ $(PROD_NAME)_LIBS += diagTimer
 endif
 
 # EDT PDV libs
-$(PROD_NAME)_LIBS += edtPdv
-$(PROD_NAME)_LIBS += pdv
+edt_LIBS += edtPdv
+edt_LIBS += pdv
 
 # streamdevice lib
-$(PROD_NAME)_LIBS += stream
+edt_LIBS += stream
 
 # Genicam support
-$(PROD_NAME)_LIBS += asynGenicam
+edt_LIBS += asynGenicam
 
-$(PROD_NAME)_libs += edtSupport
-
-#$(PROD_NAME)_LIBS += PvAPI
-#$(PROD_NAME)_SYS_LIBS += X11
-#$(PROD_NAME)_SYS_LIBS += xml2
+#edt_LIBS += PvAPI
+#edt_SYS_LIBS += X11
+#edt_SYS_LIBS += xml2
 ifneq ($(wildcard $(STREAMDEVICE)/lib/$(T_A)/libpcre.a),)
-$(PROD_NAME)_LIBS += pcre
+edt_LIBS += pcre
 endif
-$(PROD_NAME)_SYS_LIBS += z
-$(PROD_NAME)_SYS_LIBS += pthread
-$(PROD_NAME)_SYS_LIBS += dl
+edt_SYS_LIBS += z
+edt_SYS_LIBS += pthread
+edt_SYS_LIBS += dl
 
 ifdef FFMPEGSERVER
 # ffmpegServer

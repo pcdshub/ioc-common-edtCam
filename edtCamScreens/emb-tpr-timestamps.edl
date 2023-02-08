@@ -3,10 +3,10 @@ beginScreenProperties
 major 4
 minor 0
 release 1
-x 1977
-y 1127
+x 976
+y 1122
 w 382
-h 168
+h 261
 font "helvetica-medium-r-12.0"
 ctlFont "helvetica-medium-r-12.0"
 btnFont "helvetica-medium-r-12.0"
@@ -19,70 +19,11 @@ ctlBgColor1 index 12
 ctlBgColor2 index 5
 topShadowColor index 1
 botShadowColor index 11
-title "emb-timestamps"
+title "emb-tpr-timestamps"
 showGrid
 snapToGrid
 gridSize 4
 endScreenProperties
-
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 196
-y 4
-w 172
-h 20
-
-beginGroup
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 288
-y 4
-w 80
-h 20
-font "helvetica-bold-r-14.0"
-fgColor index 20
-bgColor index 0
-useDisplayBg
-value {
-  "Not Owned"
-}
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 196
-y 4
-w 88
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "EVR Trig $(CH)"
-}
-endObjectProperties
-
-endGroup
-
-visPv "$(EVR):CTRL.IP$(CH)E"
-visMin "0"
-visMax "1"
-endObjectProperties
 
 # (Text Monitor)
 object activeXTextDspClass:noedit
@@ -160,195 +101,25 @@ value {
 }
 endObjectProperties
 
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 0
-y 4
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Cam Trig Event Code"
-}
-endObjectProperties
-
-# (Text Control)
-object activeXTextDspClass
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 128
-y 0
-w 64
-h 20
-controlPv "$(P)$(R)CamEventCode"
-format "decimal"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 25
-fgAlarm
-bgColor index 5
-editable
-motifWidget
-limitsFromDb
-nullColor index 40
-smartRefresh
-fastUpdate
-useHexPrefix
-newPos
-objType "controls"
-noExecuteClipMask
-endObjectProperties
-
-# (Related Display)
-object relatedDisplayClass
-beginObjectProperties
-major 4
-minor 4
-release 0
-x 8
-y 120
-w 120
-h 20
-fgColor index 14
-bgColor index 3
-topShadowColor index 2
-botShadowColor index 12
-font "helvetica-medium-r-12.0"
-buttonLabel "Timestamp Help"
-numPvs 4
-numDsps 1
-displayFileName {
-  0 "andorCamScreens/timeStampHelp.edl"
-}
-menuLabel {
-  0 "Timestamp Help"
-}
-symbols {
-  0 "P=$(P),R=$(R)"
-}
-icon
-endObjectProperties
-
-# (Group)
-object activeGroupClass
+# (Menu Button)
+object activeMenuButtonClass
 beginObjectProperties
 major 4
 minor 0
 release 0
-x 212
-y 4
-w 144
-h 20
-
-beginGroup
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 284
-y 4
-w 72
-h 20
-controlPv "$(P)$(R)CamRepRate_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 212
-y 4
-w 64
-h 20
-controlPv "$(P)$(R)TSS:EventCode_RBV"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-showUnits
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-endGroup
-
-visPv "$(EVR):CTRL.IP$(CH)E"
-visMin "1"
-visMax "2"
-endObjectProperties
-
-# (Text Monitor)
-object activeXTextDspClass:noedit
-beginObjectProperties
-major 4
-minor 7
-release 0
-x 264
-y 116
-w 92
-h 20
-controlPv "$(P)$(R)TSS:TsFreeRun"
-format "gfloat"
-font "helvetica-medium-r-12.0"
-fontAlign "center"
-fgColor index 15
-fgAlarm
-bgColor index 12
-limitsFromDb
-nullColor index 40
-smartRefresh
-useHexPrefix
-newPos
-objType "monitors"
-noExecuteClipMask
-endObjectProperties
-
-# (Group)
-object activeGroupClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 0
+x 156
 y 32
-w 356
-h 76
-
-beginGroup
+w 100
+h 20
+fgColor index 25
+bgColor index 5
+inconsistentColor index 40
+topShadowColor index 2
+botShadowColor index 13
+controlPv "$(P)$(R)TSS:TsPolicy"
+indicatorPv "$(P)$(R)TSS:TsPolicy"
+font "helvetica-medium-r-14.0"
+endObjectProperties
 
 # (Group)
 object activeGroupClass
@@ -605,18 +376,42 @@ visMin "1"
 visMax "2"
 endObjectProperties
 
-# (Group)
-object activeGroupClass
+# (Static Text)
+object activeXTextClass
 beginObjectProperties
 major 4
-minor 0
-release 0
-x 212
-y 4
-w 144
+minor 1
+release 1
+x 292
+y 152
+w 80
 h 20
+font "helvetica-bold-r-14.0"
+fgColor index 20
+bgColor index 3
+value {
+  "Not Owned"
+}
+endObjectProperties
 
-beginGroup
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 196
+y 152
+w 88
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 3
+value {
+  "TPR Trig $(TPR_CH)"
+}
+endObjectProperties
 
 # (Text Monitor)
 object activeXTextDspClass:noedit
@@ -624,9 +419,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 212
+x 236
 y 4
-w 64
+w 60
 h 20
 controlPv "$(P)$(R)TSS:EventCode_RBV"
 font "helvetica-medium-r-12.0"
@@ -650,9 +445,9 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 284
+x 300
 y 4
-w 72
+w 68
 h 20
 controlPv "$(P)$(R)CamRepRate_RBV"
 font "helvetica-medium-r-12.0"
@@ -670,11 +465,288 @@ objType "monitors"
 noExecuteClipMask
 endObjectProperties
 
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 192
+h 24
+
+beginGroup
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 128
+y 0
+w 64
+h 20
+controlPv "$(TPR_PV):CH$(TPR_CH)_EVCODE"
+format "decimal"
+font "helvetica-medium-r-12.0"
+fontAlign "center"
+fgColor index 25
+fgAlarm
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+nullColor index 40
+smartRefresh
+fastUpdate
+useHexPrefix
+newPos
+objType "controls"
+noExecuteClipMask
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 0
+y 4
+w 120
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Cam Trig Event Code"
+}
+endObjectProperties
+
 endGroup
 
-visPv "$(EVR):CTRL.IP$(CH)E"
+visPv "$(TPR_PV):MODE"
+visMin "0"
+visMax "1"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 64
+y 0
+w 167
+h 24
+
+beginGroup
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 151
+y 0
+w 80
+h 24
+controlPv "$(TPR_PV):CH$(TPR_CH)_SEQBIT"
+format "hex"
+font "helvetica-medium-r-12.0"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+precision 0
+nullColor index 0
+updatePvOnDrop
+newPos
+objType "controls"
+endObjectProperties
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 64
+y 0
+w 80
+h 24
+controlPv "$(TPR_PV):CH$(TPR_CH)_SEQNUM"
+format "decimal"
+font "helvetica-medium-r-12.0"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+precision 0
+nullColor index 0
+updatePvOnDrop
+newPos
+objType "controls"
+endObjectProperties
+
+endGroup
+
+visPv "CALC\\\{(A=1)&&(B=2)\}($(TPR_PV):MODE,$(TPR_PV):CH$(TPR_CH)_RATEMODE)"
 visMin "1"
 visMax "2"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 64
+y 0
+w 163
+h 24
+
+beginGroup
+
+# (Text Control)
+object activeXTextDspClass
+beginObjectProperties
+major 4
+minor 7
+release 0
+x 147
+y 0
+w 80
+h 24
+controlPv "$(TPR_PV):CH$(TPR_CH)_TSMASK"
+format "hex"
+font "helvetica-medium-r-12.0"
+fgColor index 25
+bgColor index 5
+editable
+motifWidget
+limitsFromDb
+precision 0
+nullColor index 0
+updatePvOnDrop
+newPos
+objType "controls"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 64
+y 0
+w 80
+h 24
+fgColor index 25
+bgColor index 5
+inconsistentColor index 14
+topShadowColor index 2
+botShadowColor index 13
+controlPv "$(TPR_PV):CH$(TPR_CH)_ACRATE"
+font "helvetica-medium-r-12.0"
+endObjectProperties
+
+endGroup
+
+visPv "CALC\\\{(A=1)&&(B=1)\}($(TPR_PV):MODE,$(TPR_PV):CH$(TPR_CH)_RATEMODE)"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Group)
+object activeGroupClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 64
+y 0
+w 80
+h 24
+
+beginGroup
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 64
+y 0
+w 80
+h 24
+fgColor index 25
+bgColor index 5
+inconsistentColor index 14
+topShadowColor index 2
+botShadowColor index 13
+controlPv "$(TPR_PV):CH$(TPR_CH)_FIXEDRATE"
+font "helvetica-medium-r-12.0"
+endObjectProperties
+
+endGroup
+
+visPv "CALC\\\{(A=1)&&(B=0)\}($(TPR_PV):MODE,$(TPR_PV):CH$(TPR_CH)_RATEMODE)"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Menu Button)
+object activeMenuButtonClass
+beginObjectProperties
+major 4
+minor 0
+release 0
+x 0
+y 0
+w 60
+h 24
+fgColor index 25
+bgColor index 5
+inconsistentColor index 14
+topShadowColor index 2
+botShadowColor index 13
+controlPv "$(TPR_PV):CH$(TPR_CH)_RATEMODE"
+font "helvetica-medium-r-12.0"
+visPv "$(TPR_PV):MODE"
+visMin "1"
+visMax "2"
+endObjectProperties
+
+# (Static Text)
+object activeXTextClass
+beginObjectProperties
+major 4
+minor 1
+release 1
+x 204
+y 120
+w 76
+h 20
+font "helvetica-medium-r-12.0"
+fontAlign "right"
+fgColor index 14
+bgColor index 0
+useDisplayBg
+value {
+  "Timing Mode"
+}
 endObjectProperties
 
 # (Text Monitor)
@@ -683,11 +755,11 @@ beginObjectProperties
 major 4
 minor 7
 release 0
-x 264
-y 32
-w 92
+x 288
+y 120
+w 68
 h 20
-controlPv "$(P)$(R)TSS:SyncStatus"
+controlPv "$(TPR_PV):MODE"
 format "gfloat"
 font "helvetica-medium-r-12.0"
 fontAlign "center"
@@ -701,52 +773,5 @@ useHexPrefix
 newPos
 objType "monitors"
 noExecuteClipMask
-endObjectProperties
-
-# (Menu Button)
-object activeMenuButtonClass
-beginObjectProperties
-major 4
-minor 0
-release 0
-x 156
-y 32
-w 100
-h 20
-fgColor index 25
-bgColor index 5
-inconsistentColor index 40
-topShadowColor index 2
-botShadowColor index 13
-controlPv "$(P)$(R)TSS:TsPolicy"
-indicatorPv "$(P)$(R)TSS:TsPolicy"
-font "helvetica-medium-r-14.0"
-endObjectProperties
-
-# (Static Text)
-object activeXTextClass
-beginObjectProperties
-major 4
-minor 1
-release 1
-x 0
-y 32
-w 120
-h 20
-font "helvetica-medium-r-12.0"
-fontAlign "right"
-fgColor index 14
-bgColor index 0
-useDisplayBg
-value {
-  "Sync Policy/Status"
-}
-endObjectProperties
-
-endGroup
-
-visPv "$(P)$(R)TSS:TsFreeRun"
-visMin "0"
-visMax "1"
 endObjectProperties
 

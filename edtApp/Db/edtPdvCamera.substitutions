@@ -45,15 +45,6 @@ file cross.db
 	}
 }
 
-file timeStampEventCode.db
-{
-	{
-	CAM				= "$(CAM)",
-	TSS				= "$(CAM):TSS",
-	CAM_DLY			= "$(CAM_TRIG):TDES",
-	}
-}
-
 file image_meta.template
 {
 	{
