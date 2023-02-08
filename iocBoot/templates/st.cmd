@@ -1,4 +1,4 @@
-#!$$IOCTOP/bin/$$IF(TARGET_ARCH,$$TARGET_ARCH,linux-x86_64)/edt
+#!$$IOCTOP/bin/$$IF(TARGET_ARCH,$$TARGET_ARCH,rhel7-x86_64)/$$IF(APP,$$APP,edt)
 
 # Run common startup commands for linux soft IOC's
 < $(IOC_COMMON)/All/pre_linux.cmd
@@ -18,8 +18,18 @@ cd( "$(IOCTOP)" )
 # Set Max array size
 epicsEnvSet( "EPICS_CA_MAX_ARRAY_BYTES", "$$IF(MAX_ARRAY,$$MAX_ARRAY,20000000)" )
 
-# Setup EVR env vars
-epicsEnvSet( "EVR_PV",       "$$IF(EVR_PV,$$EVR_PV,$$CAM_PV:NoEvr)" )
+# Set APP
+epicsEnvSet( "APP",			 "$$IF(APP,$$APP,edt)" )
+$$IF(APP,edtTpr)
+# Setup TPR env vars
+epicsEnvSet( "TPR_CARD",     "$$IF(TPR_CARD,$$TPR_CARD,0)" )
+epicsEnvSet( "TPR_PV",       "$$IF(TPR_PV,$$TPR_PV,$$CAM_PV:NoTpr)" )
+epicsEnvSet( "TPE_PV",       "$$IF(TPE_PV,$$TPE_PV,$$TPR_PV)" )
+epicsEnvSet( "TPR_TR",       "$$IF(TPR_TR,$$TPR_TR,0)" )
+epicsEnvSet( "TPR_CH",       "$$IF(TPR_CH,$$TPR_CH,$(TPR_TR))" )
+epicsEnvSet( "TPR_SE",       "$$IF(TPR_SE,$$TPR_SE,$(TPR_TR))" )
+epicsEnvSet( "TPR_PORT",     "$$IF(TPR_PORT,$$TPR_PORT,trig0)" )
+$$ELSE(APP)
 epicsEnvSet( "TRIG_PV",      "$(EVR_PV):TRIG$$IF(EVR_TRIG,$$EVR_TRIG,0)" )
 epicsEnvSet( "EVR_CARD",     "$$IF(EVR_CARD,$$EVR_CARD,0)" )
 # EVR Type: 0=VME, 1=PMC, 15=SLAC
@@ -32,6 +42,7 @@ epicsEnvSet( "EVRID",        "$(EVRID_$$EVR_TYPE)" )
 epicsEnvSet( "EVRDB",        "$(EVRDB_$$EVR_TYPE)" )
 $$ENDIF(EVR_TYPE)
 epicsEnvSet( "EVR_DEBUG",    "$$IF(EVR_DEBUG,$$EVR_DEBUG,0)" )
+$$ENDIF(APP)
 
 # Specify camera env variables
 $$IF(CAM_PV)
@@ -58,8 +69,13 @@ epicsEnvSet( "SER_TRACE_MASK",	    "$$IF(SER_TRACE,$$SER_TRACE,1)" )
 epicsEnvSet( "SER_TRACE_IO_MASK",	"$$IF(SER_TRACE_IO,$$SER_TRACE_IO,0)" )
 
 # Register all support components
-dbLoadDatabase( "dbd/edt.dbd" )
+$$IF(APP,edtTpr)
+dbLoadDatabase( "dbd/edtTpr.dbd" )
+edtTpr_registerRecordDeviceDriver(pdbbase)
+$$ELSE(APP)
+dbLoadDatabase( "$(IOCTOP)/dbd/edt.dbd" )
 edt_registerRecordDeviceDriver(pdbbase)
+$$ENDIF(APP)
 
 # Bump up scanOnce queue size for evr invariant timing
 scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
@@ -108,6 +124,21 @@ $$ELSE(NO_ST_CMD_DELAY)
 # Comment/uncomment/change delay as desired so you can see messages during boot
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
+$$IF(APP,edtTpr)
+# TPR driver DB
+$$IF(TPE_PV)
+dbLoadRecords("db/pcieSlave_tprTrig.db",    "DEV=$$TPE_PV,PORT=$(TPR_PORT)")
+$$ELSE(TPE_PV)
+dbLoadRecords("db/pcie_tprTrig.db",			"DEV=$$TPR_PV,PORT=$(TPR_PORT)")
+$$ENDIF(TPE_PV)
+# Load timestamp plugin
+dbLoadRecords("db/timeStampFifo.template",  "GIGECAM=1,DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):CamEventCode_RBV,GEN_PV=$(CAM_PV):Acquire,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
+$$ELSE(APP)
+$$IF(EVR_PV)
+# Load timestamp plugin
+dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):CamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
+$$ENDIF(EVR_PV)
+$$ENDIF(APP)
 
 # Configure and load standard edtPdv camera database
 dbLoadRecords("db/edtPdvCamera.db", "CAM=$(CAM_PV),CAM_PORT=$(CAM_PORT),CAM_TRIG=$(TRIG_PV),EVR=$(EVR_PV)" )
@@ -123,11 +154,6 @@ dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(T
 $$ELSE(BEAM_EC)
 dbLoadRecords("db/$(MODEL).db",     "P=$(CAM_PV),R=:,PORT=$(CAM_PORT),PWIDTH=$(TRIG_PV):TWID,PW_RBV=$(TRIG_PV):BW_TWIDCALC,SerialDisable=$(CAM_PV):SerialDisable.RVAL" )
 $$ENDIF(BEAM_EC)
-
-$$IF(EVR_PV)
-# Load timestamp plugin
-dbLoadRecords("db/timeStampFifo.template",  "DEV=$(CAM_PV):TSS,PORT_PV=$(CAM_PV):PortName_RBV,EC_PV=$(CAM_PV):BeamEventCode_RBV,DLY_PV=$(CAM_PV):TrigToTS_Calc NMS CPP" )
-$$ENDIF(EVR_PV)
 
 $$IF(NO_ST_CMD_DELAY)
 $$ELSE(NO_ST_CMD_DELAY)
@@ -203,15 +229,57 @@ $$ELSE(NO_ST_CMD_DELAY)
 epicsThreadSleep $(ST_CMD_DELAYS)
 $$ENDIF(NO_ST_CMD_DELAY)
 
+$$IF(APP,edtTpr)
+$$IF(TPE_PV)
+# ====================================
+# Setup TPR Driver
+# ====================================
+tprTriggerAsynDriverConfigure("$(TPR_PORT)", "PCIeSlave:/dev/tpra" )
+$$ELSE(TPE_PV)
+$$IF(TPR_PV)
+# =================================
+# Load YAML
+# =================================
+#epicsThreadSleep(2)
+epicsEnvSet("HASH",   "pcie-hash-968bb5f")
+epicsEnvSet("YAML_DIR",      "${TOP}/firmware/${HASH}/yaml")
+epicsEnvSet("YAML_TOP_FILE", "${YAML_DIR}/000TopLevel.yaml")
+
+# use slot A pcie tpr for root_0, override to use slot_a
+cpswLoadYamlFile("${YAML_TOP_FILE}", "MemDev", "", "/dev/tpra", "root_0")
+
+# ====================================
+# crossbarControlAsynDriverConfigure  (Pcie master only)
+# ====================================
+crossbarControlAsynDriverConfigure("crossbar0", "PCIe:/mmio/SfpXbar", "root_0")
+
+# ====================================
+# Setup TPR Driver
+# ====================================
+tprTriggerAsynDriverConfigure("$(TPR_PORT)", "PCIe:/mmio", "root_0")
+$$ENDIF(TPR_PV)
+$$ENDIF(TPE_PV)
+
+$$ELSE(APP)
 $$IF(EVR_PV)
 # Configure the EVR
 ErDebugLevel( $$IF(ErDebug,$$ErDebug,0) )
 ErConfigure( $(EVR_CARD), 0, 0, 0, $(EVRID_$$EVR_TYPE) )
 dbLoadRecords( "$(EVRDB)", "IOC=$(IOC_PV),EVR=$(EVR_PV),CARD=$(EVR_CARD)$$IF(EVR_TRIG),IP$$(EVR_TRIG)E=Enabled$$ENDIF(EVR_TRIG)$$LOOP(EXTRA_TRIG),IP$$(TRIG)E=Enabled$$ENDLOOP(EXTRA_TRIG)" )
-dbLoadRecords( "db/devEvrInfo.db",				"DEV=$(CAM_PV),IOC=$(IOC_PV),EVR=$(EVR_PV),TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0),EVR_USED=1" )
+$$ENDIF(EVR_PV)
+$$ENDIF(APP)
+
+# Load both devEvrInfo.db and devTprInfo.db so python programs can test for both sets of PVs
+$$IF(EVR_PV)
+dbLoadRecords( "db/devEvrInfo.db",				"DEV=$(CAM_PV),EVR=$(EVR_PV),TRIG_CH=$$IF(EVR_TRIG,$$EVR_TRIG,0),EVR_USED=1" )
 $$ELSE(EVR_PV)
 dbLoadRecords( "db/devEvrInfo.db",				"DEV=$(CAM_PV),EVR=$(EVR_PV),EVR_USED=0" )
 $$ENDIF(EVR_PV)
+$$IF(TPR_PV)
+dbLoadRecords( "db/devTprInfo.db",	"DEV=$(CAM_PV),TPR_PV=$(TPR_PV),TPE_PV=$(TPE_PV),TPR_CH=$(TPR_CH),TPR_TR=$(TPR_TR),TPR_SE=$(TPR_SE),TPR_USED=1" )
+$$ELSE(TPR_PV)
+dbLoadRecords( "db/devTprInfo.db",	"DEV=$(CAM_PV),TPR_USED=0" )
+$$ENDIF(TPR_PV)
 
 # Load soft ioc related record instances
 dbLoadRecords( "db/iocSoft.db",				"IOC=$(IOC_PV)" )

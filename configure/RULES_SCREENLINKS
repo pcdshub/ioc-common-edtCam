@@ -12,6 +12,7 @@ endif
 # Mark optional AD camera modules w/ unused/fooScreens
 ADSTREAM        ?= unused
 EVENT2          ?= unused
+TPRTRIGGER      ?= unused
 HISTORY         ?= unused
 IOCADMIN        ?= unused
 FFMPEGSERVER    ?= unused
@@ -34,6 +35,7 @@ updateScreenLinks_withSoftLinks:
 	-@ln -s {$(ASYN),$(INSTALL_SCREENLINKS)}/asynScreens 2> /dev/null
 	-@ln -s {$(ADEDTPDV),$(INSTALL_SCREENLINKS)}/edtPdvScreens 2> /dev/null
 	-@ln -s {$(EVENT2),$(INSTALL_SCREENLINKS)}/event2Screens 2> /dev/null
+	-@ln -s {$(TPRTRIGGER),$(INSTALL_SCREENLINKS)}/tprTriggerScreens 2> /dev/null
 	-@ln -s {$(HISTORY),$(INSTALL_SCREENLINKS)}/historyScreens 2> /dev/null
 	-@ln -s {$(IOCADMIN),$(INSTALL_SCREENLINKS)}/iocScreens 2> /dev/null
 	-@ln -s {$(FFMPEGSERVER),$(INSTALL_SCREENLINKS)}/ffmpegScreens 2> /dev/null
@@ -53,6 +55,7 @@ updateScreenLinks_withCopies:
 	@mkdir -p   $(INSTALL_SCREENLINKS)/areaDetectorScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/asynScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/event2Screens
+	@mkdir -p   $(INSTALL_SCREENLINKS)/tprTriggerScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/ffmpegScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/historyScreens
 	@mkdir -p   $(INSTALL_SCREENLINKS)/iocScreens
@@ -62,6 +65,7 @@ updateScreenLinks_withCopies:
 	-@cp $(ADSTREAM)/ADStreamScreens/*.*           $(INSTALL_SCREENLINKS)/ADStreamScreens      2> /dev/null
 	-@cp $(ASYN)/asynScreens/*.*                   $(INSTALL_SCREENLINKS)/asynScreens          2> /dev/null
 	-@cp $(EVENT2)/event2Screens/*.*               $(INSTALL_SCREENLINKS)/event2Screens        2> /dev/null
+	-@cp $(TPRTRIGGER)/tprTriggerScreens/*.*       $(INSTALL_SCREENLINKS)/tprTriggerScreens    2> /dev/null
 	-@cp $(FFMPEGSERVER)/ffmpegScreens/*.*         $(INSTALL_SCREENLINKS)/ffmpegScreens        2> /dev/null
 	-@cp $(HISTORY)/historyScreens/*.*             $(INSTALL_SCREENLINKS)/historyScreens       2> /dev/null
 	-@cp $(IOCADMIN)/iocScreens/*.*                $(INSTALL_SCREENLINKS)/iocScreens           2> /dev/null

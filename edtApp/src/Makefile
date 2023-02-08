@@ -92,7 +92,7 @@ $(PROD_NAME)_LIBS += stream
 # Genicam support
 $(PROD_NAME)_LIBS += asynGenicam
 
-$(PROD_NAME)_libs += edtSupport
+$(PROD_NAME)_LIBS += pbs
 
 #$(PROD_NAME)_LIBS += PvAPI
 #$(PROD_NAME)_SYS_LIBS += X11

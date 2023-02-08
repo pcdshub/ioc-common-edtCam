@@ -18,6 +18,21 @@ DB_INSTALLS += $(IOCADMIN)/db/devIocInfo.db
 # Create iocRelease.db
 IOCRELEASE_DB	+=	iocRelease.db
 
+DB += timeStampTprEventCode.db
+
+ifdef TPRTRIGGER
+# TODO: Move devTprInfo.db to TPRTRIGGER
+#DB += devTprInfo.db
+
+# Install Database for tprTrigger module
+DB_INSTALLS += $(TPRTRIGGER)/db/devTprInfo.db
+DB_INSTALLS += $(TPRTRIGGER)/db/pcie_tprTrig.db
+DB_INSTALLS += $(TPRTRIGGER)/db/pcieSlave_tprTrig.db
+ifdef TIMESTAMPFIFO
+DB_INSTALLS += $(TIMESTAMPFIFO)/db/timeStampFifo.template
+endif
+endif
+
 ifdef EVENT2
 DB_INSTALLS += $(EVENT2)/db/evrPmc230.db
 DB_INSTALLS += $(EVENT2)/db/evrSLAC.db
