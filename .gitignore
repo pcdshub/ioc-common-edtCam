@@ -9,7 +9,7 @@ db/
 dbd/
 html/
 include/
-lib/
+lib/*x86*
 screenLinks/
 templates/
 cdCommands
