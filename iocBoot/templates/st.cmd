@@ -81,7 +81,9 @@ edt_registerRecordDeviceDriver(pdbbase)
 $$ENDIF(APP)
 
 # Bump up scanOnce queue size for evr invariant timing
-scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,4000) )
+# and callback queue size for areaDetector plugins
+scanOnceSetQueueSize( $$IF(SCAN_ONCE_QUEUE_SIZE,$$SCAN_ONCE_QUEUE_SIZE,8000) )
+callbackSetQueueSize( $$IF(CALLBACK_QUEUE_SIZE,$$CALLBACK_QUEUE_SIZE,8000) )
 
 $$IF(CPU_AFFINITY_SET)
 # Set MCoreUtils rules for cpu affinity
@@ -96,6 +98,8 @@ var DEBUG_EDT_SER $$IF(DEBUG_EDT_SER,$$DEBUG_EDT_SER,2)
 var DEBUG_GENICAM $$IF(DEBUG_GENICAM,$$DEBUG_GENICAM,1)
 var save_restoreLogMissingRecords $$IF(save_restoreLogMissingRecords,$$save_restoreLogMissingRecords,0)
 var dbLoadSuspendOnError $$IF(dbLoadSuspendOnError,$$dbLoadSuspendOnError,1)
+var streamDebug $$IF(streamDebug,$$streamDebug,0)
+var streamDebugColored $$IF(streamDebugColored,$$streamDebugColored,0)
 
 # Setup the environment for the specified camera model
 < db/$(MODEL).env
