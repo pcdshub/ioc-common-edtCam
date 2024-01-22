@@ -1,3 +1,6 @@
+R2.1.1-1.0: 2024-01-22 Michael Skoufis
+	    Use ADEdtPdv module version R3.7.1-1.0 to support ORCA3 with VisionLink F4 framegrabber.
+
 R2.1.1: 2020-03-03 Bruce Hill
 	Update to latest EDT 5.5.8.2 driver and EPICS modules
 	Cleanup Makefiles
