@@ -1,18 +1,31 @@
-*~
+# Built file ignores
 O.*
-*.log
-*.swp
-archive/
-autosave/
-bin/
-db/
-dbd/
-html/
-include/
-lib/*x86*
-screenLinks/
-templates/
-cdCommands
+archive
+autosave
+bin
+build
+db
+dbd
 envPaths
+html
+include
+lib
+*.log
+
+# Terminal editor ignores
+*.swp
+*~
+
+# IDE ignores
+*.vscode
+
+# Core dumps
+core.*
+
+# From original afs gitignore
+lib/*x86*
+screenLinks
+templates
+cdCommands
 RELEASE_SITE
 tags
