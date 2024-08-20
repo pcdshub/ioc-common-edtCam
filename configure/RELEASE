@@ -7,7 +7,7 @@ include $(TOP)/RELEASE_SITE
 # IOC apps or other Support apps
 # ===============================================================
 ADCORE_MODULE_VERSION               = R3.10-1.1.0
-ADEDTPDV_MODULE_VERSION             = R3.8.3
+ADEDTPDV_MODULE_VERSION             = R3.8.4
 ADSTREAM_MODULE_VERSION             = R3.1.2
 ADSUPPORT_MODULE_VERSION            = R1.9-0.1.0
 ASYNGENICAM_MODULE_VERSION          = R1.2.1
