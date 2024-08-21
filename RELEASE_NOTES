@@ -1,4 +1,7 @@
 # Release Notes for ioc/common/edtCam
+R2.3.0: 2024-08-20 Michael Skoufis 
+	Update to ADEdtPdv R3.8.4
+
 R2.2.0: 2022-01-29 Bruce Hill
 	Update archive file each time IOC boots
 	Update to base/R7.0.3.1-2.0, ADCore/R3.9-1.0.3, and other latest modules.
