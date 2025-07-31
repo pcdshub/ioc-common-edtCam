@@ -11,7 +11,7 @@
 record( ao, "$(CAM):Def120HzTrigDelay" )
 {
     field( DESC, "Default trigger delay" )
-    field( DOL,  "1.0e-6" )
+    field( DOL,  "5.1e-3" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
@@ -20,7 +20,7 @@ record( ao, "$(CAM):Def120HzTrigDelay" )
 record( ao, "$(CAM):Def120HzExposure" )
 {
     field( DESC, "Default exposure" )
-	field( DOL,  "1.0e-3" )
+	field( DOL,  "4.1e-4" )
     field( PINI, "YES" )
     field( PREC, "5" )
 	info( autosaveFields, "DESC PREC VAL" )
