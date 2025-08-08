@@ -41,6 +41,7 @@ PKG_ARCH    = $(T_A)
 WITH_EPICS_V4  = YES
 # As of R3-2 WITH_EPICS_V4 changes to WITH_PVA
 WITH_PVA  = YES
+WITH_QSRV = YES
 
 # To install files into a location other than $(TOP) define
 #   INSTALL_LOCATION here.
