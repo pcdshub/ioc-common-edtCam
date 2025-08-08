@@ -125,14 +125,17 @@ boost_system_DIR = $(BOOST_LIB)
 yaml-cpp_DIR = $(YAML_LIB)
 hpstpr_DIR = $(HPSTPR_LIB)
 commonATCA_DIR = $(COMMONATCA_LIB)
-
+tirpc_DIR = $(TIRPC_LIB)
 # ======================================================
 # LINK "NON EPICS" EXTERNAL PACKAGE LIBRARIES STATICALLY
 #=======================================================
 USR_LIBS_Linux += cpsw
 USR_LIBS_Linux += boost_system yaml-cpp hpstpr
 USR_LIBS_Linux += commonATCA
-
+tpr_LIBS += $(EPICS_BASE_IOC_LIBS)
+ifeq ($(NEEDS_TIRPC),YES)
+USR_LIBS_Linux += tirpc
+endif
 #===========================
 
 include $(TOP)/configure/RULES
